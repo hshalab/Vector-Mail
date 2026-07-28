@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Bot, Lock, Search, Shield, Sparkles, Zap } from "lucide-react";
 
 const DRAFT_REPLY =
-  "Hey Sam — Thursday at 3pm works on my end. I'll send a calendar invite shortly.";
+  "Hey Sam - Thursday at 3pm works on my end. I'll send a calendar invite shortly.";
 
 function useTypewriter(text: string, speedMs = 22, startDelayMs = 1100) {
   const [out, setOut] = useState("");
@@ -547,8 +547,8 @@ export function ConnectGmailScreen() {
                     match: m98,
                   },
                   {
-                    from: "Aisha K.",
-                    subject: "Stripe — proposal v3",
+                    from: "Ava K.",
+                    subject: "Stripe - proposal v3",
                     match: m94,
                   },
                   {

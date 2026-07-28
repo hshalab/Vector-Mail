@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { useLocalStorage } from "usehooks-ts";
 import { cn } from "@/lib/utils";
+import { Skel, SkeletonLines } from "@/components/ui/skeletons";
 import { toast } from "sonner";
 import { api } from "@/trpc/react";
 import { fetchWithAuthRetry } from "@/lib/fetch-with-retry";
@@ -488,18 +489,15 @@ export default function EmailSearchAssistant({
 
   if (accountsLoading) {
     return (
-      <div className="flex h-full flex-col p-3">
-        <motion.div
-          className="flex h-full flex-col items-center justify-center rounded-xl border border-[#e4e7ed] bg-white p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
-        >
-          <div className="flex items-center gap-2">
-            <Loader2 className="h-5 w-5 animate-spin text-[#1e2a4a]" />
-            <span className="text-sm text-[#4a5572]">Loading...</span>
-          </div>
-        </motion.div>
+      <div className="flex h-full flex-col gap-3 p-3" aria-busy="true">
+        <Skel className="h-8 w-full rounded-xl" />
+        <div className="flex-1 space-y-4 rounded-xl border border-[#e4e7ed] bg-white p-4">
+          <SkeletonLines lines={3} lastWidth="62%" />
+          <SkeletonLines lines={2} lastWidth="44%" />
+          <SkeletonLines lines={3} lastWidth="72%" />
+          <SkeletonLines lines={2} lastWidth="52%" />
+        </div>
+        <Skel className="h-10 w-full rounded-xl" delay={140} />
       </div>
     );
   }

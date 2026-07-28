@@ -154,7 +154,7 @@ Format the response as a complete email with proper paragraphs. Use \\n\\n betwe
 
     if (useStream && isCompose) {
       const stream = await openai.chat.completions.create({
-        model: "anthropic/claude-3.5-haiku",
+        model: "anthropic/claude-haiku-4.5",
         messages: [
           { role: "system", content: systemContent },
           { role: "user", content: userContent },
@@ -183,7 +183,7 @@ Format the response as a complete email with proper paragraphs. Use \\n\\n betwe
               operation: "compose",
               inputTokens: inputEst,
               outputTokens: outputEst,
-              model: "anthropic/claude-3.5-haiku",
+              model: "anthropic/claude-haiku-4.5",
             });
           } catch (e) {
             controller.error(e);
@@ -201,7 +201,7 @@ Format the response as a complete email with proper paragraphs. Use \\n\\n betwe
     }
 
     const completion = await openai.chat.completions.create({
-      model: "anthropic/claude-3.5-haiku",
+      model: "anthropic/claude-haiku-4.5",
       messages: [
         { role: "system", content: systemContent },
         { role: "user", content: userContent },

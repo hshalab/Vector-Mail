@@ -15,7 +15,7 @@ export const identityProcedures = {
   getAccounts: protectedProcedure.query(async ({ ctx }) => {
     if (isDemoCall(ctx)) {
       return [
-        { id: DEMO_ACCOUNT_ID, emailAddress: DEMO_EMAIL, name: DEMO_DISPLAY_NAME },
+        { id: DEMO_ACCOUNT_ID, emailAddress: DEMO_EMAIL, name: DEMO_DISPLAY_NAME, calendarEnabled: false },
       ];
     }
     const accounts = await withDbRetry(() =>
@@ -34,6 +34,7 @@ export const identityProcedures = {
           nextDeltaToken: true,
           needsReconnection: true,
           tokenExpiresAt: true,
+          calendarEnabled: true,
         },
       }),
     );

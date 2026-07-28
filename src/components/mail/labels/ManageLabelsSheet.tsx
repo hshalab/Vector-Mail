@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
 import { Pencil, Trash2, Plus } from "lucide-react";
+import { Skel } from "@/components/ui/skeletons";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -229,8 +230,24 @@ export function ManageLabelsSheet({
                 )}
               </div>
               {isLoading ? (
-                <div className="flex flex-1 items-center justify-center py-10">
-                  <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#e4e7ed] border-t-[#1e2a4a]" />
+                <div className="flex flex-1 flex-col gap-1 py-2">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-3 rounded-lg px-2 py-2.5"
+                    >
+                      <Skel delay={i * 60} className="h-4 w-4 shrink-0 rounded-full" />
+                      <Skel
+                        delay={i * 60 + 30}
+                        className="h-3.5 rounded"
+                        style={{ width: `${40 + ((i * 13) % 34)}%` }}
+                      />
+                      <Skel
+                        delay={i * 60 + 60}
+                        className="ml-auto h-6 w-6 shrink-0 rounded-md"
+                      />
+                    </div>
+                  ))}
                 </div>
               ) : (labels ?? []).length === 0 ? (
                 <div className="flex flex-1 flex-col items-center justify-center gap-3 py-10 text-center">

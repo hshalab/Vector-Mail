@@ -67,6 +67,9 @@ model Account {
   deliverabilityChecklist Json?
   automationMode          AutomationMode    @default(manual)
   automationGuardrails    Json?
+  calendarEnabled         Boolean           @default(false)
+  calendarAccountId       String?
+  calendarToken           String?
   user                    User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   emailAddresses          EmailAddress[]
   threads                 Thread[]

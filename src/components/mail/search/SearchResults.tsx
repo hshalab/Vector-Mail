@@ -10,6 +10,7 @@ import {
 } from "./SearchBar";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { Skel } from "@/components/ui/skeletons";
 
 function HighlightedSnippet({ html }: { html: string }) {
   return (
@@ -39,10 +40,7 @@ export function SearchResults({
     return (
       <div className="border-t border-[#f1f3f4] bg-white dark:border-[#3c4043] dark:bg-[#202124]">
         <div className="p-4">
-          <div className="mb-3 flex items-center gap-2">
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#dadce0] border-t-[#1a73e8] dark:border-[#3c4043] dark:border-t-[#1e2a4a]" />
-            <span className="text-sm text-[#5f6368] dark:text-[#9aa0a6]">Searching…</span>
-          </div>
+          <Skel className="mb-3 h-3.5 w-28 rounded" />
           <div className="space-y-2">
             {Array.from({ length: 5 }).map((_, i) => (
               <div
@@ -51,11 +49,11 @@ export function SearchResults({
               >
                 <div className="flex min-w-0 flex-1 flex-col gap-2">
                   <div className="flex items-center gap-2">
-                    <div className="h-3.5 w-24 rounded bg-[#e8eaed] animate-pulse dark:bg-[#3c4043]" />
-                    <div className="h-3 w-12 rounded bg-[#e8eaed] animate-pulse dark:bg-[#3c4043]" />
+                    <Skel delay={i * 60} className="h-3.5 w-24 rounded" />
+                    <Skel delay={i * 60 + 20} className="h-3 w-12 rounded" />
                   </div>
-                  <div className="h-3.5 w-[85%] rounded bg-[#e8eaed] animate-pulse dark:bg-[#3c4043]" />
-                  <div className="h-3 w-[60%] rounded bg-[#e8eaed] animate-pulse dark:bg-[#3c4043]" />
+                  <Skel delay={i * 60 + 40} className="h-3.5 w-[85%] rounded" />
+                  <Skel delay={i * 60 + 60} className="h-3 w-[60%] rounded" />
                 </div>
               </div>
             ))}

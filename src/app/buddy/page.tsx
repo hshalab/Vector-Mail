@@ -34,6 +34,7 @@ import {
   Search,
 } from "lucide-react";
 import { useLocalStorage } from "usehooks-ts";
+import { BuddyShellSkeleton } from "./BuddyShellSkeleton";
 import { fetchWithAuthRetry } from "@/lib/fetch-with-retry";
 import { toast } from "sonner";
 import { useAuth, useUser } from "@clerk/nextjs";
@@ -273,7 +274,7 @@ function buildAugmentedPrompt(
   const constraints: string[] = [];
   if (language && language !== "English") {
     constraints.push(
-      `Write the entire email — subject line and body — in ${language}. Do not mix in English.`,
+      `Write the entire email - subject line and body - in ${language}. Do not mix in English.`,
     );
   }
   if (tone) {
@@ -286,7 +287,7 @@ function buildAugmentedPrompt(
       .map((m) => (m.address ? `${m.label} <${m.address}>` : m.label))
       .join(", ");
     constraints.push(
-      `Naturally reference or address the following in the email body: ${labels}. Weave them in where they fit the narrative — do not just list them.`,
+      `Naturally reference or address the following in the email body: ${labels}. Weave them in where they fit the narrative - do not just list them.`,
     );
   }
   if (constraints.length === 0) return input;
@@ -639,13 +640,13 @@ function BuddyPageContent() {
 
       if (!lastEmail) {
         toast.error(
-          "No email draft yet — generate one first, then I can send it.",
+          "No email draft yet - generate one first, then I can send it.",
         );
         return;
       }
       if (validRecipients.length === 0) {
         toast.error(
-          "Add a recipient first — tap 'add recipient' on the draft above.",
+          "Add a recipient first - tap 'add recipient' on the draft above.",
         );
         return;
       }
@@ -749,7 +750,7 @@ function BuddyPageContent() {
     if (isLoading) return;
     const display = "Regenerate";
     const send =
-      "Rewrite the previous email — same intent and key points, but a fresh angle, different phrasing, and a slightly different structure.";
+      "Rewrite the previous email - same intent and key points, but a fresh angle, different phrasing, and a slightly different structure.";
     sendMessage(display, buildAugmentedPrompt(send, [], tone, language));
   }, [isLoading, sendMessage, tone, language]);
 
@@ -1015,11 +1016,7 @@ function BuddyPageContent() {
   const accountEmail = railStats?.email ?? accountsQuery.data?.[0]?.emailAddress;
 
   if (!mounted || !isLoaded || !isSignedIn) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-[#0a0a0a]">
-        <Loader2 className="h-4 w-4 animate-spin text-[#5a5752]" />
-      </div>
-    );
+    return <BuddyShellSkeleton />;
   }
 
   const firstName =
@@ -1931,7 +1928,7 @@ function BuddyPageContent() {
                                                           <span className="menu-row-add">
                                                             {looksValid
                                                               ? "+ add"
-                                                              : "—"}
+                                                              : "-"}
                                                           </span>
                                                         </button>
                                                       );
@@ -2328,11 +2325,7 @@ function BuddyPageContent() {
 export default function BuddyPage() {
   return (
     <Suspense
-      fallback={
-        <div className="flex h-screen items-center justify-center bg-[#0a0a0a]">
-          <Loader2 className="h-4 w-4 animate-spin text-[#5a5752]" />
-        </div>
-      }
+      fallback={<BuddyShellSkeleton />}
     >
       <BuddyPageContent />
     </Suspense>

@@ -81,8 +81,36 @@ import { threadIdAtom } from "@/hooks/use-threads";
 import { trackInboxBrainEvent } from "@/lib/analytics/inbox-brain";
 import { AutopilotSection } from "@/components/mail/AutopilotSection";
 import { AutomationOutcomeBanner } from "@/components/mail/AutomationOutcomeBanner";
+import { CalendarSection } from "@/components/mail/CalendarSection";
+import { MeetingRequestsWidget } from "@/components/mail/MeetingRequestsWidget";
+import { BookingModal, type BookingCandidate } from "@/components/mail/BookingModal";
 import { DEMO_ACCOUNT_ID } from "@/lib/demo/constants";
 import { ConnectGmailScreen } from "./ConnectGmailScreen";
+import { Skel } from "@/components/ui/skeletons";
+import { MailShellSkeleton } from "@/components/mail/MailShellSkeleton";
+
+function UpcomingMeetingsSkeleton({ pad = "px-5 py-3" }: { pad?: string }) {
+  return (
+    <div
+      className="divide-y divide-[#eef0f4] dark:divide-[#3c4043]"
+      aria-hidden
+    >
+      {Array.from({ length: 4 }).map((_, i) => (
+        <div key={i} className={cn("flex flex-col gap-1.5", pad)}>
+          <div className="flex items-center gap-2">
+            <Skel delay={i * 60} className="h-4 w-16 rounded-md" />
+            <Skel delay={i * 60 + 30} className="h-3 w-20 rounded" />
+          </div>
+          <Skel
+            delay={i * 60 + 60}
+            className="h-3.5 rounded"
+            style={{ width: `${56 + ((i * 13) % 30)}%` }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
 
 interface MailLayoutProps {
   defaultLayout?: number[] | readonly number[] | undefined;
@@ -133,6 +161,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
     : threadListWidthPctDefault(defaultLayout);
   const [syncPending, setSyncPending] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
+  const [bookingCandidate, setBookingCandidate] = useState<BookingCandidate | null>(null);
   const [aiPanelWidthPx, setAiPanelWidthPx] = useLocalStorage<number>(
     "mail-ai-panel-width-px",
     AI_PANEL_WIDTH_PX.fallback,
@@ -230,6 +259,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
       : storedAccount
         ? storedAccountId
         : firstConnectedAccountId;
+  const calendarAccount = accountId ? accounts?.find((acc) => acc.id === accountId) : undefined;
 
   const { data: dailyBriefForCount } = api.account.getDailyBrief.useQuery(
     { accountId: accountId || "placeholder" },
@@ -601,11 +631,8 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
           )}
 
           {isNavigating && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1e2a4a]/40 backdrop-blur-sm">
-              <div className="flex flex-col items-center gap-4 rounded-lg bg-white p-8 shadow-lg dark:bg-[#292a2d]">
-                <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#dadce0] border-t-[#1a73e8] dark:border-[#3c4043] dark:border-t-[#1e2a4a]" />
-                <p className="text-sm font-medium text-[#5f6368] dark:text-[#9aa0a6]">Loading...</p>
-              </div>
+            <div className="fixed inset-0 z-50">
+              <MailShellSkeleton />
             </div>
           )}
 
@@ -781,10 +808,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
             </DialogDescription>
             <div className="min-h-0 flex-1 overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {upcomingLoading ? (
-                <div className="flex items-center justify-center gap-2 px-5 py-12 text-[12.5px] text-[#7a849a]">
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  Scanning your inbox…
-                </div>
+                <UpcomingMeetingsSkeleton pad="px-5 py-3" />
               ) : upcomingEvents.length === 0 ? (
                 <div className="px-5 py-12 text-center">
                   <p className="text-[14px] font-semibold text-[#0e1729] dark:text-[#e8eaed]">
@@ -836,7 +860,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                               {endDate &&
                                 endDate.getTime() !==
                                   startDate.getTime() &&
-                                ` – ${format(endDate, "h:mm a")}`}
+                                ` - ${format(endDate, "h:mm a")}`}
                             </span>
                           </div>
                           <p className="line-clamp-2 text-[13.5px] font-medium text-[#0e1729] dark:text-[#e8eaed]">
@@ -1179,10 +1203,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   </div>
                   <div className="max-h-[420px] overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {upcomingLoading ? (
-                      <div className="flex items-center justify-center gap-2 px-4 py-8 text-[12px] text-[#7a849a]">
-                        <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                        Scanning your inbox…
-                      </div>
+                      <UpcomingMeetingsSkeleton pad="px-4 py-3" />
                     ) : upcomingEvents.length === 0 ? (
                       <div className="px-4 py-8 text-center">
                         <p className="text-[13px] font-medium text-[#1e2a44]">
@@ -1246,7 +1267,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                                     {endDate &&
                                       endDate.getTime() !==
                                         startDate.getTime() &&
-                                      ` – ${format(endDate, "h:mm a")}`}
+                                      ` - ${format(endDate, "h:mm a")}`}
                                   </span>
                                   <span className="ml-auto text-[10px] text-[#a8b0c0]">
                                     in {formatDistanceToNow(startDate)}
@@ -1348,6 +1369,22 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                     </p>
                   )}
               </div>
+            )}
+
+            {accountId && !isDemo && (
+              <CalendarSection
+                accountId={accountId}
+                calendarEnabled={calendarAccount?.calendarEnabled ?? false}
+                emailAddress={calendarAccount?.emailAddress ?? ""}
+              />
+            )}
+
+            {accountId && !isDemo && calendarAccount?.calendarEnabled && (
+              <MeetingRequestsWidget
+                accountId={accountId}
+                onThreadSelect={handleThreadSelect}
+                onBookMeeting={setBookingCandidate}
+              />
             )}
 
             {accountId && isDemo && (
@@ -1789,6 +1826,14 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
         open={requestAccessOpen}
         onOpenChange={setRequestAccessOpen}
       />
+
+      {bookingCandidate && accountId && (
+        <BookingModal
+          accountId={accountId}
+          candidate={bookingCandidate}
+          onClose={() => setBookingCandidate(null)}
+        />
+      )}
     </TooltipProvider>
   );
 }

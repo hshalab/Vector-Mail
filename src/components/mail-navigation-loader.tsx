@@ -10,6 +10,7 @@ import {
   useTransition,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { MailShellSkeleton } from "@/components/mail/MailShellSkeleton";
 
 type MailNavContextType = {
   navigateToMail: () => void;
@@ -80,20 +81,12 @@ export function MailNavigationProvider({ children }: { children: React.ReactNode
 function MailNavigationOverlay() {
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30 backdrop-blur-xl"
+      className="fixed inset-0 z-[9999]"
       role="status"
       aria-live="polite"
-      aria-label="Loading"
+      aria-label="Loading your inbox"
     >
-      <div className="flex items-center gap-3 rounded-full border border-white/10 bg-black/40 px-4 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md">
-        <span
-          className="h-3.5 w-3.5 animate-spin rounded-full border-[1.5px] border-white/15 border-t-white/80"
-          aria-hidden="true"
-        />
-        <span className="text-[12.5px] font-medium tracking-tight text-white/80">
-          Loading
-        </span>
-      </div>
+      <MailShellSkeleton />
     </div>
   );
 }

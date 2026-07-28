@@ -5,6 +5,7 @@ import useThreads from "@/hooks/use-threads";
 import { cn } from "@/lib/utils";
 import { api } from "@/trpc/react";
 import { sanitizeEmailHtml } from "@/lib/validation";
+import { SkeletonLines } from "@/components/ui/skeletons";
 
 type Props = {
   email: RouterOutputs["account"]["getThreads"]["threads"][0]["emails"][0];
@@ -281,22 +282,13 @@ const EmailDisplay = ({ email }: Props) => {
       })}
     >
       {showLoading ? (
-        <div className="flex min-h-[70vh] items-center justify-center rounded-md bg-white">
-          <div className="flex flex-col items-center gap-4">
-            <div className="relative">
-              <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-200 border-t-text-[#1e2a4a]"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="h-6 w-6 animate-pulse rounded-full bg-text-[#1e2a4a]"></div>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-sm font-medium text-gray-700">
-                Loading email content...
-              </div>
-              <div className="mt-1 text-xs text-gray-500">
-                Fetching full email body
-              </div>
-            </div>
+        <div className="min-h-[70vh] rounded-md bg-white px-1 py-3">
+          <div className="flex flex-col gap-6">
+            <SkeletonLines lines={4} lastWidth="48%" />
+            <SkeletonLines lines={3} lastWidth="64%" />
+            <SkeletonLines lines={4} lastWidth="38%" />
+            <SkeletonLines lines={2} lastWidth="72%" />
+            <SkeletonLines lines={3} lastWidth="54%" />
           </div>
         </div>
       ) : showError ? (

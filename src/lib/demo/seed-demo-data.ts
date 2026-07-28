@@ -1012,7 +1012,7 @@ function prCheckRow(name: string, status: "passed" | "failed" | "running" | "ski
     passed: { icon: "✓", color: "#1a7f37" },
     failed: { icon: "✗", color: "#cf222e" },
     running: { icon: "●", color: "#bf8700" },
-    skipped: { icon: "—", color: "#80868b" },
+    skipped: { icon: "-", color: "#80868b" },
   } as const;
   const v = icons[status];
   return `<div style="margin: 0 0 6px 0; padding: 8px 12px; background: #ffffff; border: 1px solid #ececec; border-radius: 6px; display: flex; align-items: center; font-size: 13.5px;"><span style="display: inline-block; width: 18px; color: ${v.color}; font-weight: 700;">${v.icon}</span><span style="flex: 1; color: #1f1f1f; font-family: ${MONO_STACK}; font-size: 13px;">${name}</span></div>`;
@@ -1077,7 +1077,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "I'm Alex — founder of Founderloop, a small team workflow tool serving early-stage startup ops teams. We've been quietly testing AI inbox tools for the last 6 weeks and yours is the one that keeps coming up in our internal Slack.",
+            "I'm Alex - founder of Founderloop, a small team workflow tool serving early-stage startup ops teams. We've been quietly testing AI inbox tools for the last 6 weeks and yours is the one that keeps coming up in our internal Slack.",
           ),
           p(
             "Wanted to skip the lurking and reach out directly. Three things I'd love to learn more about, in priority order:",
@@ -1086,13 +1086,13 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>Pilot access for our 9-person team.</strong> We've outgrown Superhuman and our SDRs are drowning in inbound. Would love to start a paid pilot this month if there's bandwidth.",
           ),
           bullet(
-            "<strong>How summaries actually work under the hood.</strong> Most of the tools I've evaluated lose context once threads get past ~12 messages. Curious what you do differently — embedding strategy, summarization model, etc.",
+            "<strong>How summaries actually work under the hood.</strong> Most of the tools I've evaluated lose context once threads get past ~12 messages. Curious what you do differently - embedding strategy, summarization model, etc.",
           ),
           bullet(
             "<strong>API access.</strong> We'd want to pipe summaries into our own product. Is there a developer tier, and what does the rate-limit shape look like?",
           ),
           p(
-            "Happy to share more about Founderloop and how we'd use VectorMail if it helps frame the conversation. Free anytime this week — 15 minutes is fine, or even just a reply to this email with the basics is great.",
+            "Happy to share more about Founderloop and how we'd use VectorMail if it helps frame the conversation. Free anytime this week - 15 minutes is fine, or even just a reply to this email with the basics is great.",
           ),
           p("Thanks for building this. The inbox tooling space has needed someone to do it properly for years."),
           hr(),
@@ -1156,7 +1156,7 @@ function buildDemoThreads(): DemoThread[] {
             ctaButton("Open Bookface", { color: "#ff6600", variant: "outline" }),
           ]),
           fineprint(
-            "If you have questions or can't access something, reply to this email and someone on the team will help. Welcome again — we believe in you, even on the days you don't.",
+            "If you have questions or can't access something, reply to this email and someone on the team will help. Welcome again - we believe in you, even on the days you don't.",
           ),
           companyEmailFooter("YC Community"),
         ]),
@@ -1220,7 +1220,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("Review approved · PR #142"),
           infoCard(
-            `<div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">${statusPill("Approved", { color: "#1f883d" })}<strong>fix(sync): handle Aurinko webhook 429s with exponential backoff</strong></div><div style="font-size: 13px; color: #5f6368;">Reviewer: <strong>marcus-liu</strong> · "ship it — the retry budget is exactly what I'd have asked for"<br/>14 files changed · +228 / −68 · All CI checks passed · Ready to merge to main</div>`,
+            `<div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">${statusPill("Approved", { color: "#1f883d" })}<strong>fix(sync): handle Aurinko webhook 429s with exponential backoff</strong></div><div style="font-size: 13px; color: #5f6368;">Reviewer: <strong>marcus-liu</strong> · "ship it - the retry budget is exactly what I'd have asked for"<br/>14 files changed · +228 / −68 · All CI checks passed · Ready to merge to main</div>`,
             { accent: "#1f883d" },
           ),
           sectionTitle("You were mentioned · Issue #89"),
@@ -1230,7 +1230,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("New comment · vectormail-ai/vectormail-ai"),
           infoCard(
-            `<div style="font-size: 14px; color: #1f1f1f; margin-bottom: 6px;"><strong>nathan-wu-yc</strong> commented on <code>src/lib/embedding/batch.ts</code></div><div style="font-size: 13.5px; color: #5f6368; font-family: ${MONO_STACK};">"This null-check looks defensive but the type guard should make it unreachable. Worth checking if Prisma can ever return null sysLabels — I think it can, and if so we want this at the schema layer, not here."</div>`,
+            `<div style="font-size: 14px; color: #1f1f1f; margin-bottom: 6px;"><strong>nathan-wu-yc</strong> commented on <code>src/lib/embedding/batch.ts</code></div><div style="font-size: 13.5px; color: #5f6368; font-family: ${MONO_STACK};">"This null-check looks defensive but the type guard should make it unreachable. Worth checking if Prisma can ever return null sysLabels - I think it can, and if so we want this at the schema layer, not here."</div>`,
             { accent: "#0969da" },
           ),
           ctaRow([
@@ -1257,10 +1257,10 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi team,"),
           p(
-            "Quick note — I've been using VectorMail every day for the last three weeks and it's the first email tool that's actually changed how I work. The summaries hit, the search hits, the briefs hit. Got my whole product team on the trial now. Thank you.",
+            "Quick note - I've been using VectorMail every day for the last three weeks and it's the first email tool that's actually changed how I work. The summaries hit, the search hits, the briefs hit. Got my whole product team on the trial now. Thank you.",
           ),
           p(
-            "One suggestion that's been bugging me: when I run a natural-language search like <em>'investor emails from last week mentioning the term sheet,'</em> the results are great — but I don't see <strong>which</strong> filters the AI inferred to get me there. Was it filtering by sender domain? Last 7 days? The phrase 'term sheet'? All three?",
+            "One suggestion that's been bugging me: when I run a natural-language search like <em>'investor emails from last week mentioning the term sheet,'</em> the results are great - but I don't see <strong>which</strong> filters the AI inferred to get me there. Was it filtering by sender domain? Last 7 days? The phrase 'term sheet'? All three?",
           ),
           p(
             "If I could see the inferred filters as chips at the top (with the ability to remove or edit them inline), I could refine the query a lot faster instead of restarting from scratch. Right now if I want to tweak it, I have to retype the whole prompt.",
@@ -1272,7 +1272,7 @@ function buildDemoThreads(): DemoThread[] {
           p(
             "This isn't a blocker, just the one thing that would make a 9/10 product a 10/10 for me. If it's on the roadmap, what's the timing? If not, want me to put it in your feedback portal?",
           ),
-          p("Either way — great work. Keep shipping."),
+          p("Either way - great work. Keep shipping."),
           hr(),
           signature("Jordan Kim", "Head of Product · startup.io", "jordan@startup.io"),
         ]),
@@ -1300,9 +1300,9 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "You have a meeting invitation for Product sync.",
         body: email([
           brandBlock("Calendar"),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "19", weekday: "Tue" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Product sync · weekly</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">2:00 PM – 2:30 PM PT · 30 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Recurring · weekly on Tuesday</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "19", weekday: "Tue" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Product sync · weekly</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">2:00 PM - 2:30 PM PT · 30 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Recurring · weekly on Tuesday</div></td></tr></table>`,
           p(
-            "You've been invited to the recurring Product sync. The agenda doc is shared 24 hours before each meeting — please add updates from your area there if you have any.",
+            "You've been invited to the recurring Product sync. The agenda doc is shared 24 hours before each meeting - please add updates from your area there if you have any.",
           ),
           sectionTitle("Where"),
           keyValBlock([
@@ -1318,7 +1318,7 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Attendees · 7"),
           profileCard({ name: "Dana Howe", title: "Head of Engineering", initials: "DH", accent: "#4285f4", rightLabel: "Organizer" }),
           profileCard({ name: "Marcus Liu", title: "CTO", initials: "ML", accent: "#34a853", rightLabel: "Accepted" }),
-          profileCard({ name: "Aria Singh", title: "Customer Success", initials: "AS", accent: "#fbbc05", rightLabel: "Accepted" }),
+          profileCard({ name: "Aria Lawson", title: "Customer Success", initials: "AL", accent: "#fbbc05", rightLabel: "Accepted" }),
           profileCard({ name: "Nathan Wu", title: "Senior Engineer", initials: "NW", accent: "#ea4335", rightLabel: "Tentative" }),
           ctaRow([
             ctaButton("Yes", { color: "#0caa41" }),
@@ -1326,7 +1326,7 @@ function buildDemoThreads(): DemoThread[] {
             ctaButton("No", { color: "#dc2626", variant: "outline" }),
           ]),
           fineprint(
-            `Add agenda items in the linked doc by 12 PT Monday. If you can't attend, drop your written update in the doc — we'll incorporate it. Recurring meetings can be updated from your calendar without affecting series.`,
+            `Add agenda items in the linked doc by 12 PT Monday. If you can't attend, drop your written update in the doc - we'll incorporate it. Recurring meetings can be updated from your calendar without affecting series.`,
           ),
           companyEmailFooter("Calendar"),
         ]),
@@ -1347,7 +1347,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 4px 0; font-size: 12px; color: #80868b; letter-spacing: 0.8px; text-transform: uppercase; font-weight: 600;">Issue #412 · May 17, 2026</div>`,
           headline("This week in AI · the practical edge"),
           p(
-            "<strong>Dear builders,</strong><br/><br/>The story this week isn't another frontier model release — it's that the practical edge is becoming harder to find and easier to lose. We've got three pieces on what that means for production, one new course, and the usual roundup of papers worth your time. Let's get into it.",
+            "<strong>Dear builders,</strong><br/><br/>The story this week isn't another frontier model release - it's that the practical edge is becoming harder to find and easier to lose. We've got three pieces on what that means for production, one new course, and the usual roundup of papers worth your time. Let's get into it.",
           ),
           sectionTitle("In this issue"),
           listItem({
@@ -1367,7 +1367,7 @@ function buildDemoThreads(): DemoThread[] {
           }),
           listItem({
             title: "From the blog · running small models on-device without sacrificing quality",
-            meta: "The hard part isn't shrinking the model — it's the eval harness around it. Here's the one we use.",
+            meta: "The hard part isn't shrinking the model - it's the eval harness around it. Here's the one we use.",
             emoji: "📱",
           }),
           sectionTitle("Featured · 'Building reliable RAG pipelines'"),
@@ -1376,9 +1376,9 @@ function buildDemoThreads(): DemoThread[] {
             { accent: "#0a8f5c" },
           ),
           sectionTitle("Papers worth your time this week"),
-          bullet("<strong>'Long-context RAG without the regression cliff'</strong> — Stanford NLP. Provides a recipe to keep retrieval quality stable past 200K tokens."),
-          bullet("<strong>'Speculative decoding for production agents'</strong> — Anthropic. ~2.4× throughput on multi-tool runs, almost no quality loss."),
-          bullet("<strong>'On the limits of synthetic data for instruction tuning'</strong> — DeepMind. Sobering numbers on the cliff after ~30% synthetic mix."),
+          bullet("<strong>'Long-context RAG without the regression cliff'</strong> - Stanford NLP. Provides a recipe to keep retrieval quality stable past 200K tokens."),
+          bullet("<strong>'Speculative decoding for production agents'</strong> - Anthropic. ~2.4× throughput on multi-tool runs, almost no quality loss."),
+          bullet("<strong>'On the limits of synthetic data for instruction tuning'</strong> - DeepMind. Sobering numbers on the cliff after ~30% synthetic mix."),
           sectionTitle("Community + courses"),
           p(
             `Andrew is teaching a new short course this week with NVIDIA: <strong>'Reinforcement Fine-Tuning for Reasoning Models.'</strong> 90 minutes, free, with hands-on notebooks. The first hundred students each week get a Q&A session. <a href="#" style="color: #0a8f5c; text-decoration: none;">Enroll →</a>`,
@@ -1388,7 +1388,7 @@ function buildDemoThreads(): DemoThread[] {
             ctaButton("Subscribe a friend", { color: "#0a8f5c", variant: "outline" }),
           ]),
           fineprint(
-            "Keep building, and keep us posted on what you ship. — Andrew, John, and the DeepLearning.AI team. You're receiving this because you subscribed to The Batch.",
+            "Keep building, and keep us posted on what you ship. - Andrew, John, and the DeepLearning.AI team. You're receiving this because you subscribed to The Batch.",
           ),
           companyEmailFooter("The Batch"),
         ]),
@@ -1423,17 +1423,17 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Cobalt pentest complete</strong> with zero criticals and one resolvable medium. SOC 2 Type II audit period starts May 26."),
           bullet("<strong>Hired Nathan Wu.</strong> Senior backend engineer from Plaid. Starts June 9."),
           sectionTitle("What we're worried about"),
-          bullet("Inbound from larger enterprise prospects (300+ headcount) is outpacing our ability to sell to them — we need a second AE within 6 weeks."),
+          bullet("Inbound from larger enterprise prospects (300+ headcount) is outpacing our ability to sell to them - we need a second AE within 6 weeks."),
           bullet("AI cost trending toward $11K in May vs $7K budget. Investigating whether to switch to a cheaper embedding model."),
           bullet("Aurinko (our email provider) had two regional outages in February. We're scoping a fallback endpoint."),
           sectionTitle("Asks (in priority order)"),
           bullet("<strong>2-3 design partner intros in fintech.</strong> We have a workflow tool in beta that fits ops-heavy fintechs. If you know a product or eng lead at a Series B-D fintech who'd take a 30-min look, the warm intro would mean a lot."),
           bullet("<strong>One senior backend engineer referral.</strong> We're hiring for the second senior eng on the platform team. Anyone you'd vouch for."),
-          bullet("<strong>One go-to-market hire intro.</strong> Looking for our second AE in late Q2 — ideally someone who's sold productivity SaaS into mid-market."),
+          bullet("<strong>One go-to-market hire intro.</strong> Looking for our second AE in late Q2 - ideally someone who's sold productivity SaaS into mid-market."),
           p(
             "If you've got a slot, I'd love a 15-minute call to walk through the bottoms-up model for the rest of 2026. Otherwise, replies in this thread are great.",
           ),
-          p("Thanks for the support — going to keep building."),
+          p("Thanks for the support - going to keep building."),
           hr(),
           signature("Sam Chen", "Partner", "sam@vcpartners.com"),
         ]),
@@ -1452,35 +1452,35 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           brandBlock("VectorMail Support"),
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #0caa41; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Resolved · No further action</span></div>`,
-          headline("Support ticket #8842 — resolved"),
+          headline("Support ticket #8842 - resolved"),
           p(
             "Hi,<br/><br/>Your billing concern raised on Wednesday has been resolved. We re-checked the charge against your subscription history and confirmed you were billed twice for the May cycle. The duplicate charge has been refunded in full.",
           ),
           keyValBlock([
             { label: "Ticket", value: "#8842 · Billing · Severity 2" },
             { label: "Opened by", value: "demo@vectormail.app · 2026-05-14 11:42 PT" },
-            { label: "Resolved by", value: "Aria Singh · 2026-05-15 16:14 PT" },
+            { label: "Resolved by", value: "Aria Lawson · 2026-05-15 16:14 PT" },
             { label: "Time to resolution", value: "1 day, 4 hours, 32 min" },
             { label: "Refund amount", value: "$99.00 USD" },
             { label: "Refund method", value: "Original card · Visa •• 4242" },
-            { label: "Expected arrival", value: "5–7 business days (typically 2–3 for Visa)" },
+            { label: "Expected arrival", value: "5-7 business days (typically 2-3 for Visa)" },
             { label: "Stripe refund ID", value: "re_3PcL9aE2eZvKYlo2C" },
           ]),
           sectionTitle("Root cause + what we changed"),
           infoCard(
-            "On May 12 our billing service retried a failed webhook handoff after Stripe returned a 502. The retry succeeded but the original charge had quietly also gone through. We've added a deduplication key on the Stripe event ID — the same bug can't happen again. We also pulled a report of the last 30 days to confirm yours is the only account that hit this; you are.",
+            "On May 12 our billing service retried a failed webhook handoff after Stripe returned a 502. The retry succeeded but the original charge had quietly also gone through. We've added a deduplication key on the Stripe event ID - the same bug can't happen again. We also pulled a report of the last 30 days to confirm yours is the only account that hit this; you are.",
             { tone: "ok" },
           ),
           sectionTitle("Anything else?"),
           p(
-            "If you spot anything else odd on your account, reply directly to this email and it goes straight back to me (no queue, no bot). Otherwise: thank you for catching this and surfacing it — it directly led to a permanent fix.",
+            "If you spot anything else odd on your account, reply directly to this email and it goes straight back to me (no queue, no bot). Otherwise: thank you for catching this and surfacing it - it directly led to a permanent fix.",
           ),
           ctaRow([
             ctaButton("View refund receipt", { color: "#1F3A2E" }),
             ctaButton("View billing history", { color: "#1F3A2E", variant: "outline" }),
           ]),
           fineprint(
-            "Ticket #8842 will close automatically in 7 days unless you reply. Your satisfaction with this resolution would be appreciated — there's a one-question survey in the dashboard.",
+            "Ticket #8842 will close automatically in 7 days unless you reply. Your satisfaction with this resolution would be appreciated - there's a one-question survey in the dashboard.",
           ),
           companyEmailFooter("VectorMail Support"),
         ]),
@@ -1498,13 +1498,13 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hey team,"),
           p(
-            "First — I love the product. Been on Pro for two months and the briefs alone have saved me from missing two investor follow-ups. Worth the price tag a few times over.",
+            "First - I love the product. Been on Pro for two months and the briefs alone have saved me from missing two investor follow-ups. Worth the price tag a few times over.",
           ),
           p(
             "Wanted to throw a feature request out there since I haven't seen it on the roadmap. <strong>Calendar integration.</strong> Specifically: when I'm composing or scheduling a reply, I'd love VectorMail to know my calendar and:",
           ),
           bullet("Detect when I'm proposing a time that conflicts with an existing event, and warn me inline."),
-          bullet("Suggest 2–3 open slots that match the other person's working hours (if I'm replying to a known contact)."),
+          bullet("Suggest 2-3 open slots that match the other person's working hours (if I'm replying to a known contact)."),
           bullet("Auto-add a meeting block to my calendar when I send a scheduling reply (Calendly is fine but the back-and-forth before booking is what eats my day)."),
           p(
             "I work across Google Calendar and one shared team calendar in Notion. If you only support one initially, Google Calendar is the higher-priority for me.",
@@ -1544,7 +1544,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Marketing leads (both sides).</strong> Align on the joint webinar topic and date by next Wednesday."),
           bullet("<strong>Both of us.</strong> Schedule a 30-min follow-up next week to lock the LOI and kick off the webinar working group."),
           p(
-            "Let me know your availability next week — I'm wide open Tue afternoon and Thu morning. The deck is attached at the top of the thread. If anything in there is off from how you remember the call, please call it out so we can correct before sharing internally."),
+            "Let me know your availability next week - I'm wide open Tue afternoon and Thu morning. The deck is attached at the top of the thread. If anything in there is off from how you remember the call, please call it out so we can correct before sharing internally."),
           p("Excited about this one."),
           hr(),
           signature("Casey Park", "Head of Partnerships · PartnerCo", "casey@partnerco.com"),
@@ -1596,12 +1596,12 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Roles your profile fits · 5"),
           listItem({
             title: "Head of Engineering · Series B fintech",
-            meta: "Remote · San Francisco (preferred) · 2 connections work here · $260K – $340K + equity",
+            meta: "Remote · San Francisco (preferred) · 2 connections work here · $260K - $340K + equity",
             emoji: "💼",
           }),
           listItem({
             title: "VP Product · AI infrastructure company",
-            meta: "Hybrid · NYC · Recommended based on your profile · $280K – $360K",
+            meta: "Hybrid · NYC · Recommended based on your profile · $280K - $360K",
             emoji: "💼",
           }),
           listItem({
@@ -1616,12 +1616,12 @@ function buildDemoThreads(): DemoThread[] {
           }),
           listItem({
             title: "VP Engineering · Series A consumer · Austin",
-            meta: "On-site · 1 connection works here · $250K – $310K",
+            meta: "On-site · 1 connection works here · $250K - $310K",
             emoji: "💼",
           }),
           sectionTitle("Trending in your feed"),
           bullet("Posts on agentic infra and on-device AI are getting 2-3× normal engagement in your network."),
-          bullet("3 founders you follow posted hiring threads — likely to engage if you comment."),
+          bullet("3 founders you follow posted hiring threads - likely to engage if you comment."),
           bullet("The 'how we built it' format outperforms 'thought leadership' 4:1 this month."),
           ctaRow([
             ctaButton("See full digest", { color: "#0a66c2" }),
@@ -1649,14 +1649,14 @@ function buildDemoThreads(): DemoThread[] {
           p(
             "Quick note ahead of Tuesday's design review. We'll be walking through the updated flows and components for the four Q1 roadmap items, aligning on any changes, and locking the handoff for engineering. The bar for Tuesday is: every item should be ready for engineering to start estimating Wednesday morning.",
           ),
-          sectionTitle("What we'll cover (10 AM – 11:15 AM PT)"),
-          bullet("<strong>Inbox v3 triage column</strong> — the new sorting model + the brief-card density change. Most likely to need iteration."),
-          bullet("<strong>Buddy chat surface</strong> — final pass on the inline reply UI and the new tool-use indicator."),
-          bullet("<strong>Settings IA</strong> — the rebuilt nav and the consolidated account/security/billing page."),
-          bullet("<strong>Mobile shell</strong> — first proper look at the iOS bottom-tab structure."),
+          sectionTitle("What we'll cover (10 AM - 11:15 AM PT)"),
+          bullet("<strong>Inbox v3 triage column</strong> - the new sorting model + the brief-card density change. Most likely to need iteration."),
+          bullet("<strong>Buddy chat surface</strong> - final pass on the inline reply UI and the new tool-use indicator."),
+          bullet("<strong>Settings IA</strong> - the rebuilt nav and the consolidated account/security/billing page."),
+          bullet("<strong>Mobile shell</strong> - first proper look at the iOS bottom-tab structure."),
           sectionTitle("Before the meeting (Monday EOD)"),
           bullet(`<strong>Read the doc:</strong> <a href="#" style="color: #1a73e8; text-decoration: none;">Q1 design rationale</a> (8 min read)`),
-          bullet(`<strong>Skim the Figma:</strong> <a href="#" style="color: #1a73e8; text-decoration: none;">Q1 — Designs for review</a>. Comments inline are fine.`),
+          bullet(`<strong>Skim the Figma:</strong> <a href="#" style="color: #1a73e8; text-decoration: none;">Q1 - Designs for review</a>. Comments inline are fine.`),
           bullet("<strong>Drop feedback</strong> in <code>#design-q1</code> or directly in Figma. We'll group it on Tuesday so we spend the meeting on disagreements, not introductions."),
           sectionTitle("If you can't make it"),
           p(
@@ -1696,17 +1696,17 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Why this is a hard deadline"),
           infoCard(
-            "Press launch is at 9 AM PT tomorrow with a coordinated TechCrunch piece. If our integration hits 429s during peak traffic, our biggest moment of the year fails publicly. We're a paying Pro customer in good standing — this is the kind of bump that should be one-click.",
+            "Press launch is at 9 AM PT tomorrow with a coordinated TechCrunch piece. If our integration hits 429s during peak traffic, our biggest moment of the year fails publicly. We're a paying Pro customer in good standing - this is the kind of bump that should be one-click.",
             { tone: "danger" },
           ),
           sectionTitle("What we've already done"),
           bullet("Filed ticket #9912 at 09:42 PT this morning. No reply yet."),
-          bullet("Tried the in-app 'request limit increase' flow — got 'we'll review within 3 business days.'"),
-          bullet("Posted in your Discord — got referred back to support."),
+          bullet("Tried the in-app 'request limit increase' flow - got 'we'll review within 3 business days.'"),
+          bullet("Posted in your Discord - got referred back to support."),
           p(
             "Hoping someone senior can step in and just approve this. Happy to upgrade plans if needed, but we shouldn't need to in order to get a one-day burst that any reasonable API would handle gracefully. Marcus on your team has my number if a call is faster.",
           ),
-          p("Thanks in advance — we love what you've built and want tomorrow to work."),
+          p("Thanks in advance - we love what you've built and want tomorrow to work."),
           hr(),
           signature("DevOps Team", "Engineering · company.com", "devops@company.com"),
         ]),
@@ -1749,15 +1749,15 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Thanks for sending the pricing breakdown — really helpful to see it side by side. We talked it through internally yesterday and the Team plan is the right fit for us at our current size, with the option to upgrade if we hit the seat ceiling.",
+            "Thanks for sending the pricing breakdown - really helpful to see it side by side. We talked it through internally yesterday and the Team plan is the right fit for us at our current size, with the option to upgrade if we hit the seat ceiling.",
           ),
           sectionTitle("What we'd like to do"),
-          bullet("<strong>Plan:</strong> Team · 25 seats to start (we may add 5–10 more in Q3 depending on hiring)"),
+          bullet("<strong>Plan:</strong> Team · 25 seats to start (we may add 5-10 more in Q3 depending on hiring)"),
           bullet("<strong>Term:</strong> 12 months, annual billing"),
           bullet("<strong>Start date:</strong> Tuesday next week, May 26"),
           bullet("<strong>Payment:</strong> ACH preferred (Net-30 if possible, otherwise upfront is fine)"),
           p(
-            "Could you send over the contract template so our legal can review? We're not expecting many edits — your terms looked clean to our paralegal on the initial scan — but we'll mark up anything that stands out and send back within 48 hours.",
+            "Could you send over the contract template so our legal can review? We're not expecting many edits - your terms looked clean to our paralegal on the initial scan - but we'll mark up anything that stands out and send back within 48 hours.",
           ),
           p(
             "Also: we'd love to keep the rep we worked with through the eval (Aria) as our point of contact post-signature. Is that the standard handoff, or does it shift to CS at signing?",
@@ -1793,7 +1793,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Google"),
           headline("New sign-in to your Google Account"),
           p(
-            `Hi,<br/><br/>Your Google Account <strong>demo@vectormail.app</strong> was just used to sign in on Chrome on Windows. If this was you, you can safely ignore this email — we send these the first time we see a new device or browser on your account.`,
+            `Hi,<br/><br/>Your Google Account <strong>demo@vectormail.app</strong> was just used to sign in on Chrome on Windows. If this was you, you can safely ignore this email - we send these the first time we see a new device or browser on your account.`,
           ),
           keyValBlock([
             { label: "Device", value: "Windows 11 · Chrome 124" },
@@ -1838,21 +1838,21 @@ function buildDemoThreads(): DemoThread[] {
             "Sprint planning is Thursday 9 AM. The bar for the meeting is: we leave with a committed sprint and every blocker named. To make that happen, we need everyone's availability + headcount blockers in the planning doc by <strong>EOD Wednesday</strong>.",
           ),
           sectionTitle("Agenda · 60 minutes"),
-          logRow("0:00 – 0:10", "Retro outcomes — top 3 action items from last sprint, status check", { tone: "info" }),
-          logRow("0:10 – 0:25", "Capacity + time-off — update the doc with your availability", { tone: "info" }),
-          logRow("0:25 – 0:55", "Sprint goals + backlog — prioritization, commitment for the next two weeks", { tone: "info" }),
-          logRow("0:55 – 1:00", "Risks + closing — what could derail this sprint", { tone: "warn" }),
+          logRow("0:00 - 0:10", "Retro outcomes - top 3 action items from last sprint, status check", { tone: "info" }),
+          logRow("0:10 - 0:25", "Capacity + time-off - update the doc with your availability", { tone: "info" }),
+          logRow("0:25 - 0:55", "Sprint goals + backlog - prioritization, commitment for the next two weeks", { tone: "info" }),
+          logRow("0:55 - 1:00", "Risks + closing - what could derail this sprint", { tone: "warn" }),
           sectionTitle("Carrying into this sprint (3 items)"),
-          bullet("VM-118 · Outlook beta polish — 60% complete, Nathan continuing"),
-          bullet("VM-167 · Scheduled-send dashboard — blocked on design, unblocking Tuesday"),
-          bullet("VM-174 · Aurinko fallback endpoint switching — needs estimation"),
+          bullet("VM-118 · Outlook beta polish - 60% complete, Nathan continuing"),
+          bullet("VM-167 · Scheduled-send dashboard - blocked on design, unblocking Tuesday"),
+          bullet("VM-174 · Aurinko fallback endpoint switching - needs estimation"),
           sectionTitle("New for triage (you'll see these in the planning doc)"),
           bullet("VM-208 · pgvector migration · final cutover plan (Marcus, big rock)"),
           bullet("VM-211 · Inbox v3 triage column · post-design (engineering for two)"),
           bullet("VM-214 · Buddy v2.1 · streaming tool-use indicator"),
           bullet("VM-219 · SOC 2 evidence collection automation (carryover from Vanta)"),
           p(
-            `Doc: <a href="#" style="color: #1a73e8; text-decoration: none; font-weight: 500;">Sprint 11 planning doc</a>. Add your availability, blockers, and any items you want to nominate — we'll group and prioritize before Thursday so the meeting is decisions, not introductions.`,
+            `Doc: <a href="#" style="color: #1a73e8; text-decoration: none; font-weight: 500;">Sprint 11 planning doc</a>. Add your availability, blockers, and any items you want to nominate - we'll group and prioritize before Thursday so the meeting is decisions, not introductions.`,
           ),
           p("See you Thursday."),
           hr(),
@@ -1889,11 +1889,11 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Next steps · confirm by Friday"),
           bullet("Reply to this email confirming your participation (or decline) by EOD Friday."),
           bullet("Within 7 days of confirming, we'll send: the speaker kit, slide template, A/V tech check link, and your green-room schedule."),
-          bullet("Travel and lodging logistics open 30 days out. We use the conference travel desk — they'll handle flights, hotel, and ground transport."),
+          bullet("Travel and lodging logistics open 30 days out. We use the conference travel desk - they'll handle flights, hotel, and ground transport."),
           bullet("If you need accommodations (dietary, accessibility, childcare on site), please let us know in your confirmation reply so we can coordinate."),
           sectionTitle("Why we picked you"),
           infoCard(
-            `From the program chair: "The proposal threaded the needle on the AI-inbox category at exactly the right level of depth for our audience. We're hearing a lot of high-level AI talks this year — yours stood out for being practical, opinionated, and grounded in real customer outcomes. Excited for it."`,
+            `From the program chair: "The proposal threaded the needle on the AI-inbox category at exactly the right level of depth for our audience. We're hearing a lot of high-level AI talks this year - yours stood out for being practical, opinionated, and grounded in real customer outcomes. Excited for it."`,
             { accent: "#0a2540" },
           ),
           ctaRow([
@@ -1941,9 +1941,9 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Total due", value: "$2,400.00 USD" },
           ]),
           sectionTitle("Payment methods"),
-          bullet("<strong>ACH</strong> — preferred. Routing 122000247 · Account 9012345678 · Reference 'INV-2044'."),
-          bullet("<strong>Wire</strong> — same routing/account; please bear all wire fees on your side."),
-          bullet("<strong>Card</strong> — through the payment portal (2.9% processing fee applied)."),
+          bullet("<strong>ACH</strong> - preferred. Routing 122000247 · Account 9012345678 · Reference 'INV-2044'."),
+          bullet("<strong>Wire</strong> - same routing/account; please bear all wire fees on your side."),
+          bullet("<strong>Card</strong> - through the payment portal (2.9% processing fee applied)."),
           ctaRow([
             ctaButton("Pay invoice", { color: "#1f2937" }),
             ctaButton("Download PDF", { color: "#1f2937", variant: "outline" }),
@@ -1969,15 +1969,15 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hey!"),
           p(
-            "Been way too long since the last time we caught up — I keep meaning to text and then a week becomes a month becomes a quarter. Want to fix that.",
+            "Been way too long since the last time we caught up - I keep meaning to text and then a week becomes a month becomes a quarter. Want to fix that.",
           ),
           p(
             "I'm downtown both Thursday and Friday for client stuff and would love to grab lunch one of those days. Either works on my side. We could do the usual at Tartine if you're up for a bit of a walk, or somewhere closer to your office if you only have an hour.",
           ),
           p(
-            "Also — heard the bits and pieces from mutual friends about how things are going at the company. Would love to hear the actual story straight from you over food rather than the LinkedIn-curated version.",
+            "Also - heard the bits and pieces from mutual friends about how things are going at the company. Would love to hear the actual story straight from you over food rather than the LinkedIn-curated version.",
           ),
-          p("Reply when you get a sec. No pressure if this week is too packed — we can shoot for next."),
+          p("Reply when you get a sec. No pressure if this week is too packed - we can shoot for next."),
           hr(),
           signature("Jamie"),
         ]),
@@ -2000,23 +2000,23 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("Major changes"),
           bullet(
-            "<strong>Authentication</strong> — completely rewritten. Now covers API keys + OAuth + bearer tokens with side-by-side examples in cURL, TypeScript, Python. Old version got 4 of 5 most common support questions wrong.",
+            "<strong>Authentication</strong> - completely rewritten. Now covers API keys + OAuth + bearer tokens with side-by-side examples in cURL, TypeScript, Python. Old version got 4 of 5 most common support questions wrong.",
           ),
           bullet(
-            "<strong>Webhooks</strong> — new section with examples for all 14 event types, the signature-verification snippet, and a 'common failure modes' subsection.",
+            "<strong>Webhooks</strong> - new section with examples for all 14 event types, the signature-verification snippet, and a 'common failure modes' subsection.",
           ),
           bullet(
-            "<strong>Pagination</strong> — clarified the difference between cursor and offset and which endpoints support which (people were guessing).",
+            "<strong>Pagination</strong> - clarified the difference between cursor and offset and which endpoints support which (people were guessing).",
           ),
-          bullet("<strong>Rate limits</strong> — added per-endpoint limits in a table; before they were only in prose."),
+          bullet("<strong>Rate limits</strong> - added per-endpoint limits in a table; before they were only in prose."),
           sectionTitle("Small polish across the rest"),
           bullet("Consistent code snippets across all three languages."),
           bullet("Every example now has a 'run in CodeSandbox' button."),
           bullet("Search now finds parameters by name, not just headings."),
-          bullet("Mobile rendering doesn't break the sidebar anymore (sorry — known issue for 6 months)."),
+          bullet("Mobile rendering doesn't break the sidebar anymore (sorry - known issue for 6 months)."),
           sectionTitle("What I need from you"),
           p(
-            `Please read the auth + webhooks sections specifically — those are the highest-traffic pages and the most likely to have content errors. Drop comments in <a href="#" style="color: #1a73e8; text-decoration: none;">the docs review doc</a> or directly in the page (we shipped inline comments yesterday). Anything you flag by EOW gets fixed before we mark the docs 'stable' next Tuesday.`,
+            `Please read the auth + webhooks sections specifically - those are the highest-traffic pages and the most likely to have content errors. Drop comments in <a href="#" style="color: #1a73e8; text-decoration: none;">the docs review doc</a> or directly in the page (we shipped inline comments yesterday). Anything you flag by EOW gets fixed before we mark the docs 'stable' next Tuesday.`,
           ),
           ctaRow([
             ctaButton("Open docs", { color: "#1a73e8" }),
@@ -2040,7 +2040,7 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "Reminder: Team all-hands tomorrow at 10:00 AM.",
         body: email([
           brandBlock("Calendar"),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "18", weekday: "Mon" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Team All-Hands · May</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">10:00 AM – 11:00 AM PT · 1 hour</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Monthly recurring · second Monday</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "18", weekday: "Mon" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Team All-Hands · May</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">10:00 AM - 11:00 AM PT · 1 hour</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Monthly recurring · second Monday</div></td></tr></table>`,
           p("This is your 24-hour reminder for tomorrow's monthly all-hands. Dana is hosting; agenda + the recording link below."),
           sectionTitle("Where"),
           keyValBlock([
@@ -2050,11 +2050,11 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Host", value: "Dana Howe (dana@vectormail.app)" },
           ]),
           sectionTitle("Agenda · 60 minutes"),
-          logRow("10:00 – 10:05", "Open + safety message · Dana", { tone: "info" }),
-          logRow("10:05 – 10:20", "Quarter so far · CEO + CFO · KPIs and how we're tracking", { tone: "info" }),
-          logRow("10:20 – 10:35", "Product demo: Buddy v2 streaming · Marcus + Elena", { tone: "info" }),
-          logRow("10:35 – 10:45", "Customer story of the month: Brightlane (recorded) · Aria", { tone: "info" }),
-          logRow("10:45 – 11:00", "Q&A — submit questions in Slido (link in #all-hands)", { tone: "info" }),
+          logRow("10:00 - 10:05", "Open + safety message · Dana", { tone: "info" }),
+          logRow("10:05 - 10:20", "Quarter so far · CEO + CFO · KPIs and how we're tracking", { tone: "info" }),
+          logRow("10:20 - 10:35", "Product demo: Buddy v2 streaming · Marcus + Elena", { tone: "info" }),
+          logRow("10:35 - 10:45", "Customer story of the month: Brightlane (recorded) · Aria", { tone: "info" }),
+          logRow("10:45 - 11:00", "Q&A - submit questions in Slido (link in #all-hands)", { tone: "info" }),
           sectionTitle("Pre-read"),
           bullet("Slide deck will be posted in <code>#all-hands</code> by 9:00 AM PT tomorrow."),
           bullet("Submit Q&A questions anonymously through the Slido link (open now)."),
@@ -2085,15 +2085,15 @@ function buildDemoThreads(): DemoThread[] {
           replyMeta("Re: Contract review"),
           headline("Brightlane MSA · review complete · two minor comments before signing"),
           p(
-            "We've finished the legal review of the Brightlane MSA you sent for the Q2 renewal. Overall, the contract is in good shape — significantly cleaner than what we typically see from customers of this size. Recommend signing as-is with two small fixes to the language. Neither is a deal-blocker; both are protective for us in scenarios that are unlikely but worth covering.",
+            "We've finished the legal review of the Brightlane MSA you sent for the Q2 renewal. Overall, the contract is in good shape - significantly cleaner than what we typically see from customers of this size. Recommend signing as-is with two small fixes to the language. Neither is a deal-blocker; both are protective for us in scenarios that are unlikely but worth covering.",
           ),
           sectionTitle("Two comments inline in the doc"),
           infoCard(
-            `<strong>§4.2 · Limitation of liability</strong> — current language caps our total liability at 1× fees paid in the trailing 12 months. Industry-standard for this deal size is the same number for direct damages, but consequential / indirect damages should be excluded outright rather than capped. <strong>Proposed edit</strong> in the redline.<br/><br/><strong>Risk if we don't fix:</strong> if Brightlane has a major outage on their side that happens to touch our system, they could argue the consequential losses are within our cap. Probably wouldn't win — but not worth leaving the ambiguity.`,
+            `<strong>§4.2 · Limitation of liability</strong> - current language caps our total liability at 1× fees paid in the trailing 12 months. Industry-standard for this deal size is the same number for direct damages, but consequential / indirect damages should be excluded outright rather than capped. <strong>Proposed edit</strong> in the redline.<br/><br/><strong>Risk if we don't fix:</strong> if Brightlane has a major outage on their side that happens to touch our system, they could argue the consequential losses are within our cap. Probably wouldn't win - but not worth leaving the ambiguity.`,
             { tone: "warn" },
           ),
           infoCard(
-            `<strong>§7.1 · Termination for convenience</strong> — currently allows either side to terminate with 30 days' notice. Two-way is fine, but the language doesn't address what happens to prepaid amounts. <strong>Proposed edit:</strong> add a single sentence — "Termination for convenience by Customer does not entitle Customer to a refund of prepaid annual fees."<br/><br/><strong>Why it matters:</strong> this clause is the kind of thing that, in a downturn, customers occasionally try to exploit to claw back annual prepays.`,
+            `<strong>§7.1 · Termination for convenience</strong> - currently allows either side to terminate with 30 days' notice. Two-way is fine, but the language doesn't address what happens to prepaid amounts. <strong>Proposed edit:</strong> add a single sentence - "Termination for convenience by Customer does not entitle Customer to a refund of prepaid annual fees."<br/><br/><strong>Why it matters:</strong> this clause is the kind of thing that, in a downturn, customers occasionally try to exploit to claw back annual prepays.`,
             { tone: "warn" },
           ),
           sectionTitle("Everything else"),
@@ -2103,7 +2103,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Insurance requirements ($2M cyber, $1M E&O) match our policy · ✓"),
           bullet("IP, confidentiality, publicity clauses are clean · ✓"),
           p(
-            "Once §4.2 and §7.1 are tightened we're ready to sign. Brightlane has been a great customer to work with — happy to redline back on a call if it's faster, or you can route the final draft to me and I'll close it out tonight.",
+            "Once §4.2 and §7.1 are tightened we're ready to sign. Brightlane has been a great customer to work with - happy to redline back on a call if it's faster, or you can route the final draft to me and I'll close it out tonight.",
           ),
           hr(),
           signature("Legal", "Legal Team · VectorMail", "legal@vectormail.app"),
@@ -2124,7 +2124,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("VectorMail"),
           headline("Your account is in good standing"),
           p(
-            "Hi,<br/><br/>This is a regular check-in on your VectorMail subscription. Everything is in order — your account is active, your payment method is valid, and you're well within the limits of your plan.",
+            "Hi,<br/><br/>This is a regular check-in on your VectorMail subscription. Everything is in order - your account is active, your payment method is valid, and you're well within the limits of your plan.",
           ),
           keyValBlock([
             { label: "Plan", value: "VectorMail Pro · monthly" },
@@ -2144,7 +2144,7 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Anything to do?"),
           p(
-            "Nothing — this email is informational. We'll send another one only if your payment method needs attention or you cross a usage threshold worth flagging. If you have questions about your plan or want to switch tiers (Team or Enterprise), reply to this email and we'll route you to the right person.",
+            "Nothing - this email is informational. We'll send another one only if your payment method needs attention or you cross a usage threshold worth flagging. If you have questions about your plan or want to switch tiers (Team or Enterprise), reply to this email and we'll route you to the right person.",
           ),
           ctaRow([
             ctaButton("Manage subscription", { color: "#1F3A2E" }),
@@ -2163,15 +2163,15 @@ function buildDemoThreads(): DemoThread[] {
       {
         id: "demo-thread-26",
         subject: "Re: Series A term sheet",
-        senderName: "Priya Mehta",
-        senderEmail: "priya@horizoncap.vc",
+        senderName: "Claire Donovan",
+        senderEmail: "claire@horizoncap.vc",
         daysAgo: 1,
         hour: 14,
         snippet: "Updated term sheet attached. Three open items - need your call by Wednesday.",
         body: email([
           p("Hi,"),
           p(
-            "Great progress on the call yesterday. Attached is the updated term sheet reflecting where we landed. Most of the structural pieces are now in shape — clean preferred, standard vesting, no participation, no IP escrow weirdness — and our counsel signed off on the final draft this morning.",
+            "Great progress on the call yesterday. Attached is the updated term sheet reflecting where we landed. Most of the structural pieces are now in shape - clean preferred, standard vesting, no participation, no IP escrow weirdness - and our counsel signed off on the final draft this morning.",
           ),
           p(
             "Three open items I'd like your call on by <strong>Wednesday EOD</strong> so we can sign by Friday and start the closing process Monday:",
@@ -2181,10 +2181,10 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>Pro-rata rights.</strong> Agreed for the lead (us) at 1.0×. We're proposing 1.5× cap for follow-on participants. Anything north of that and we'll need to reopen the cap table conversation.",
           ),
           bullet(
-            "<strong>Board composition.</strong> One investor seat (us, taken by Priya). One independent to be mutually agreed within 90 days of closing. Founder retains chair. No observer seats — clean five-person board at the next round.",
+            "<strong>Board composition.</strong> One investor seat (us, taken by Claire). One independent to be mutually agreed within 90 days of closing. Founder retains chair. No observer seats - clean five-person board at the next round.",
           ),
           bullet(
-            "<strong>Liquidation preference.</strong> 1× non-participating preferred, broad-based weighted-average anti-dilution. Standard and clean — but I want to make sure we're aligned before counsel papers it.",
+            "<strong>Liquidation preference.</strong> 1× non-participating preferred, broad-based weighted-average anti-dilution. Standard and clean - but I want to make sure we're aligned before counsel papers it.",
           ),
           sectionTitle("Headline terms (for reference)"),
           keyValBlock([
@@ -2198,11 +2198,11 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Closing target", value: "First week of June" },
           ]),
           p(
-            "Happy to jump on a 30-minute call if redlines are faster that way — I'm holding 11–12 PT and 3–4 PT Tuesday open just in case. Otherwise, send the marked-up doc straight to counsel (cc'd) and we'll turn it in 24 hours.",
+            "Happy to jump on a 30-minute call if redlines are faster that way - I'm holding 11-12 PT and 3-4 PT Tuesday open just in case. Otherwise, send the marked-up doc straight to counsel (cc'd) and we'll turn it in 24 hours.",
           ),
           p("Looking forward to closing this and getting back to building."),
           hr(),
-          signature("Priya Mehta", "Partner · Horizon Capital", "priya@horizoncap.vc"),
+          signature("Claire Donovan", "Partner · Horizon Capital", "claire@horizoncap.vc"),
         ]),
         summary: "Lead investor sent updated Series A term sheet. Action: respond on 3 open items by Wednesday. Time-sensitive.",
         labels: [labelImportant],
@@ -2211,7 +2211,7 @@ function buildDemoThreads(): DemoThread[] {
         replySnippet: "Reviewing tonight - redlines by tomorrow EOD.",
         replyBody: email([
           replyMeta("Re: Series A term sheet"),
-          p("Hi Priya,"),
+          p("Hi Claire,"),
           p("Reading tonight - will send redlines back by tomorrow EOD. Aligned on pro-rata and board structure. Liquidation is where I'll have the most marked up."),
           p("Talk soon."),
           hr(),
@@ -2230,14 +2230,14 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "April board meeting prep is staged in the shared drive — link below. Pre-read covers Q1 KPIs vs plan, the new GTM motion that's been compounding the last 8 weeks, and two governance items the board will need to sign off on at the meeting.",
+            "April board meeting prep is staged in the shared drive - link below. Pre-read covers Q1 KPIs vs plan, the new GTM motion that's been compounding the last 8 weeks, and two governance items the board will need to sign off on at the meeting.",
           ),
           sectionTitle("Pre-read · what's in the doc"),
-          bullet("Tab 1: <strong>Financials</strong> — Q1 vs plan, burn, runway, and the updated bottoms-up model for the rest of 2026."),
-          bullet("Tab 2: <strong>KPIs</strong> — ARR, NRR by cohort, activation, retention curves (your strongest chart this quarter)."),
-          bullet("Tab 3: <strong>GTM</strong> — outbound experiment results, top-of-funnel attribution, and the case for doubling the BDR team."),
-          bullet("Tab 4: <strong>Hiring</strong> — proposed plan to ship through Q3 (8 new heads, leveled and budgeted)."),
-          bullet("Tab 5: <strong>Pricing</strong> — proposed self-serve reset with cohort impact modeling and the rollout plan."),
+          bullet("Tab 1: <strong>Financials</strong> - Q1 vs plan, burn, runway, and the updated bottoms-up model for the rest of 2026."),
+          bullet("Tab 2: <strong>KPIs</strong> - ARR, NRR by cohort, activation, retention curves (your strongest chart this quarter)."),
+          bullet("Tab 3: <strong>GTM</strong> - outbound experiment results, top-of-funnel attribution, and the case for doubling the BDR team."),
+          bullet("Tab 4: <strong>Hiring</strong> - proposed plan to ship through Q3 (8 new heads, leveled and budgeted)."),
+          bullet("Tab 5: <strong>Pricing</strong> - proposed self-serve reset with cohort impact modeling and the rollout plan."),
           sectionTitle("Two decisions for the board"),
           bullet(
             "<strong>Hiring plan.</strong> 8 new heads through Q3. Currently spending below plan, but the proposal pulls us back to plan + 1 head. Counsel has reviewed the budget impact on next round dilution.",
@@ -2246,7 +2246,7 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>Self-serve pricing reset.</strong> Net-revenue impact is modeled at +18% based on the cohort A/B that just wrapped. The proposal includes the gradual rollout plan and a kill-switch if the experiment results don't hold in production.",
           ),
           p(
-            "Please skim by Wednesday EOD and shoot me any pushback in the doc comments — easier to resolve in writing than at the meeting. If you want a pre-call to walk through the pricing model in detail I'm holding 30 minutes Thursday morning open.",
+            "Please skim by Wednesday EOD and shoot me any pushback in the doc comments - easier to resolve in writing than at the meeting. If you want a pre-call to walk through the pricing model in detail I'm holding 30 minutes Thursday morning open.",
           ),
           p("See you Thursday."),
           hr(),
@@ -2267,13 +2267,13 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Caught up on the March investor update yesterday over a flight delay — this is the strongest one you've sent since I started backing the company. Two specific things I want to flag, plus an intro:",
+            "Caught up on the March investor update yesterday over a flight delay - this is the strongest one you've sent since I started backing the company. Two specific things I want to flag, plus an intro:",
           ),
           p(
-            "First, the customer logos are stronger than I expected this quarter. Mosaic, Brightlane, Castleworks — these are the kinds of mid-market accounts that drag your reference list up. The fact that all three came through inbound is the part I want to dig into on our next call.",
+            "First, the customer logos are stronger than I expected this quarter. Mosaic, Brightlane, Castleworks - these are the kinds of mid-market accounts that drag your reference list up. The fact that all three came through inbound is the part I want to dig into on our next call.",
           ),
           p(
-            "Second, the activation jump from 58% → 71% (first-reply within 7 days) is meaningful. If that number holds through April, you've got a real story to tell at the Series B. I'd be interested in seeing the cohort breakdown — is the lift concentrated in self-serve, or are sales-assisted accounts ramping too?",
+            "Second, the activation jump from 58% → 71% (first-reply within 7 days) is meaningful. If that number holds through April, you've got a real story to tell at the Series B. I'd be interested in seeing the cohort breakdown - is the lift concentrated in self-serve, or are sales-assisted accounts ramping too?",
           ),
           sectionTitle("My one DD question"),
           p(
@@ -2281,9 +2281,9 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("Intro I'd like to make"),
           p(
-            "I'd love to introduce you to <strong>Sam at Mosaic Health</strong>. They're scaling a workflow product across 1,200 healthcare admins and were just complaining last week about their inbox setup. Your AI inbox would slot in cleanly. He's also a fantastic person and a future customer — they're closing their Series B in July. Want me to make the connection?",
+            "I'd love to introduce you to <strong>Sam at Mosaic Health</strong>. They're scaling a workflow product across 1,200 healthcare admins and were just complaining last week about their inbox setup. Your AI inbox would slot in cleanly. He's also a fantastic person and a future customer - they're closing their Series B in July. Want me to make the connection?",
           ),
-          p("Talk soon — and well done on the quarter."),
+          p("Talk soon - and well done on the quarter."),
           hr(),
           signature("Hana Cho", "Partner · Forerunner Ventures", "hana@forerunnervc.com"),
         ]),
@@ -2329,7 +2329,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Form D filing initiated · auto-files to SEC by deadline (15 days from first sale)"),
           bullet("Bryan added to your investor communications list"),
           sectionTitle("Heads up"),
-          bullet("Bryan is a high-signal angel — 47 prior investments, ~10% returned 10x+. Worth a personal thank-you note from you within the week."),
+          bullet("Bryan is a high-signal angel - 47 prior investments, ~10% returned 10x+. Worth a personal thank-you note from you within the week."),
           bullet("He's been quietly evangelizing the company on Twitter; might be worth amplifying his next post"),
           ctaRow([
             ctaButton("View signed SAFE", { color: "#0e0e10" }),
@@ -2345,7 +2345,7 @@ function buildDemoThreads(): DemoThread[] {
       {
         id: "demo-thread-30",
         subject: "Quick DD ask - retention curves",
-        senderName: "Maya Patel",
+        senderName: "Maya Bennett",
         senderEmail: "maya@usv.com",
         daysAgo: 4,
         hour: 16,
@@ -2353,7 +2353,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Spending Saturday with your deck — really impressive across the board. The activation curve is the strongest I've seen in this space all year, and your customer logo concentration is more diversified than most of the early-stage AI productivity companies I've evaluated.",
+            "Spending Saturday with your deck - really impressive across the board. The activation curve is the strongest I've seen in this space all year, and your customer logo concentration is more diversified than most of the early-stage AI productivity companies I've evaluated.",
           ),
           p(
             "Before our partner meeting Tuesday, I'd love to dig deeper on retention. One specific ask:",
@@ -2363,24 +2363,24 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>L4 cohort retention curves</strong> (logo retention, not revenue retention) for the last 12 monthly cohorts.",
           ),
           bullet(
-            "<strong>Cut by acquisition channel</strong>: self-serve, sales-assisted, partner-referred. Even a hand-curated chart in Sheets is fine — I don't need anything polished.",
+            "<strong>Cut by acquisition channel</strong>: self-serve, sales-assisted, partner-referred. Even a hand-curated chart in Sheets is fine - I don't need anything polished.",
           ),
           bullet(
             "<strong>Best if it includes a 'why' annotation</strong>: any cohort where retention dipped, a 1-sentence note on what was happening that month (product issue, pricing change, big customer cancelled, etc.).",
           ),
           sectionTitle("What I'll do with it"),
           p(
-            "I'll bring it to the partner meeting Tuesday morning. We're a small partnership and I just need to show two of my partners the retention story before we can move to a conviction call. The curves either de-risk this for them or they don't — better to find out now than after we've spent another two weeks on the process.",
+            "I'll bring it to the partner meeting Tuesday morning. We're a small partnership and I just need to show two of my partners the retention story before we can move to a conviction call. The curves either de-risk this for them or they don't - better to find out now than after we've spent another two weeks on the process.",
           ),
           sectionTitle("On confidentiality"),
           p(
-            "Happy to sign an NDA if you'd prefer — or you can just send a Loom walking me through it if the data is sensitive and you'd rather not let it leave your system. Whatever is easiest for you.",
+            "Happy to sign an NDA if you'd prefer - or you can just send a Loom walking me through it if the data is sensitive and you'd rather not let it leave your system. Whatever is easiest for you.",
           ),
           p(
-            "If you want to talk through it on a call instead of email, I'm holding 4-5 PT Monday open as well. Talk soon — and seriously, the more I look at this, the more excited I am.",
+            "If you want to talk through it on a call instead of email, I'm holding 4-5 PT Monday open as well. Talk soon - and seriously, the more I look at this, the more excited I am.",
           ),
           hr(),
-          signature("Maya Patel", "Partner · USV", "maya@usv.com"),
+          signature("Maya Bennett", "Partner · USV", "maya@usv.com"),
         ]),
         summary: "VC due diligence: requesting L4 retention curves by cohort. Action: share data (NDA optional). Time-sensitive.",
         labels: [labelImportant],
@@ -2420,13 +2420,13 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>Pending offers are safe.</strong> Outstanding offers issued at the old strike (e.g., Nathan Wu, Elena Vargas) are still valid as long as they're countersigned within 30 days of original offer date.",
           ),
           bullet(
-            "<strong>Board-approval rule.</strong> All new option grants from May 12 onward must use $0.4327 — no exceptions. Your board members have been notified separately.",
+            "<strong>Board-approval rule.</strong> All new option grants from May 12 onward must use $0.4327 - no exceptions. Your board members have been notified separately.",
           ),
           bullet(
             "<strong>Existing employees.</strong> No impact on their already-granted options. Their strike is locked at issue date.",
           ),
           bullet(
-            "<strong>Next refresh.</strong> Either 12 months from today, or 30 days after your next financing closes — whichever comes first.",
+            "<strong>Next refresh.</strong> Either 12 months from today, or 30 days after your next financing closes - whichever comes first.",
           ),
           ctaRow([
             ctaButton("Download report", { color: "#0a2540" }),
@@ -2475,7 +2475,7 @@ function buildDemoThreads(): DemoThread[] {
             "No action required. We will use the wire instructions on file. You'll receive a separate notification when the wire is initiated and a confirmation when it settles.",
           ),
           sectionTitle("Tax treatment"),
-          bullet("This is a return of capital (RoC) followed by partial gain — your K-1 will reflect both portions separately."),
+          bullet("This is a return of capital (RoC) followed by partial gain - your K-1 will reflect both portions separately."),
           bullet("Q1 K-1 estimates will be sent in early May; finals after fund audit completion (typically September)."),
           bullet("Consult your tax advisor for treatment in your specific entity."),
           ctaRow([
@@ -2503,24 +2503,24 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Following up from our call last Thursday. Took the conversation to my partners on Monday and again to the IC on Wednesday — got conviction across the table.",
+            "Following up from our call last Thursday. Took the conversation to my partners on Monday and again to the IC on Wednesday - got conviction across the table.",
           ),
           p(
-            "<strong>We're in for $500K on the bridge at the same terms as the upcoming Series A.</strong> Specifically: post-money SAFE, $90M cap, no discount, no MFN. Same as what Priya is leading. We'll convert at the same price when the priced round closes.",
+            "<strong>We're in for $500K on the bridge at the same terms as the upcoming Series A.</strong> Specifically: post-money SAFE, $90M cap, no discount, no MFN. Same as what Claire is leading. We'll convert at the same price when the priced round closes.",
           ),
           sectionTitle("What we need from you"),
-          bullet("SAFE doc — we'll use the latest YC template or yours, your call. Either is fine."),
-          bullet("Wire instructions — we'll pre-fund within 5 business days of signature."),
-          bullet("Confirm cap-table impact with Priya/Horizon so there are no surprises at Series A close."),
+          bullet("SAFE doc - we'll use the latest YC template or yours, your call. Either is fine."),
+          bullet("Wire instructions - we'll pre-fund within 5 business days of signature."),
+          bullet("Confirm cap-table impact with Claire/Horizon so there are no surprises at Series A close."),
           sectionTitle("A few notes"),
           p(
-            "We considered taking pro-rata at the Series A instead but decided we wanted to be capitalizing you now — when the conviction is highest and the support is most useful. The $500K is meaningful at this stage and we want it deployed now, not held back.",
+            "We considered taking pro-rata at the Series A instead but decided we wanted to be capitalizing you now - when the conviction is highest and the support is most useful. The $500K is meaningful at this stage and we want it deployed now, not held back.",
           ),
           p(
-            "I shared the recent investor update with my partners — your customer logos and the NRR jump from 108 → 117 were the headlines they latched onto. The pricing-experiment results sealed it. Genuinely impressive quarter.",
+            "I shared the recent investor update with my partners - your customer logos and the NRR jump from 108 → 117 were the headlines they latched onto. The pricing-experiment results sealed it. Genuinely impressive quarter.",
           ),
           p(
-            "Send the doc whenever you're ready. We'll countersign and wire within 5 business days. Excited to keep building with you — this is the kind of company we wish we'd put more in earlier.",
+            "Send the doc whenever you're ready. We'll countersign and wire within 5 business days. Excited to keep building with you - this is the kind of company we wish we'd put more in earlier.",
           ),
           hr(),
           signature("Daniel Brun", "General Partner · Foundry Capital", "daniel@foundry.vc"),
@@ -2540,7 +2540,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Reaching out from <strong>Northwind Corp</strong> — we're a 400-person engineering organization (Series C, profitable, expanding into APAC) and our security team flagged VectorMail as a likely fit for our internal rollout. We've already evaluated Superhuman and a Microsoft Copilot pilot internally; neither cleared our compliance bar. Your team came up twice in last week's evaluation, so I'm short-listing you for an enterprise POC.",
+            "Reaching out from <strong>Northwind Corp</strong> - we're a 400-person engineering organization (Series C, profitable, expanding into APAC) and our security team flagged VectorMail as a likely fit for our internal rollout. We've already evaluated Superhuman and a Microsoft Copilot pilot internally; neither cleared our compliance bar. Your team came up twice in last week's evaluation, so I'm short-listing you for an enterprise POC.",
           ),
           sectionTitle("Two hard requirements before we book the demo"),
           bullet(
@@ -2551,12 +2551,12 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("If both are 'yes' (we suspect they are)"),
           p(
-            "We'd like to scope a paid POC for Q2 with 30 seats from our IT + Eng leadership and our customer support org. Success criteria attached to this email — three clear pass/fail metrics across 30 days. If we hit them, our procurement team will move forward with a 250-seat Master Services Agreement starting Q3.",
+            "We'd like to scope a paid POC for Q2 with 30 seats from our IT + Eng leadership and our customer support org. Success criteria attached to this email - three clear pass/fail metrics across 30 days. If we hit them, our procurement team will move forward with a 250-seat Master Services Agreement starting Q3.",
           ),
           sectionTitle("Procurement / legal notes"),
           bullet("Net-60 payment terms (we can move to Net-30 if there's a discount)."),
           bullet("Our standard MSA template attached; happy to redline yours instead."),
-          bullet("Vendor security questionnaire is in the SecurityScorecard portal — we can send the link."),
+          bullet("Vendor security questionnaire is in the SecurityScorecard portal - we can send the link."),
           p(
             "Looking forward to your reply. If both items are confirmed, our calendar shows Tuesday and Thursday open next week for a 60-minute scoping call.",
           ),
@@ -2578,7 +2578,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Coming up on our renewal in June and wanted to get ahead of it. Short version: the team has been very happy with VectorMail — it's one of the few tools I can say genuinely changed how we work. We'd like to renew the current 50 seats <strong>and expand to 75</strong> starting June 1.",
+            "Coming up on our renewal in June and wanted to get ahead of it. Short version: the team has been very happy with VectorMail - it's one of the few tools I can say genuinely changed how we work. We'd like to renew the current 50 seats <strong>and expand to 75</strong> starting June 1.",
           ),
           sectionTitle("What I'm proposing"),
           keyValBlock([
@@ -2591,7 +2591,7 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Why we're expanding"),
           bullet(
-            "All three engineering pods are now on it — the holdouts on the platform team finally got jealous of the search latency. We're hiring +14 engineers in Q2/Q3 and want every new joiner on it from day one.",
+            "All three engineering pods are now on it - the holdouts on the platform team finally got jealous of the search latency. We're hiring +14 engineers in Q2/Q3 and want every new joiner on it from day one.",
           ),
           bullet(
             "Sales team picked it up as a side effect (our SDRs heard the briefs feature and asked). 8 seats from them.",
@@ -2624,27 +2624,27 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "I run Code For Good, a registered 501(c)(3) non-profit that teaches programming to teens in under-resourced school districts. We've been on a trial of VectorMail for the last three weeks and our small team (just 12 people, mostly part-time) is in love with it. The brief feature in particular has been a meaningful unlock — we run a lot of partnership outreach and it's the first tool that actually surfaces the threads we keep losing in the noise.",
+            "I run Code For Good, a registered 501(c)(3) non-profit that teaches programming to teens in under-resourced school districts. We've been on a trial of VectorMail for the last three weeks and our small team (just 12 people, mostly part-time) is in love with it. The brief feature in particular has been a meaningful unlock - we run a lot of partnership outreach and it's the first tool that actually surfaces the threads we keep losing in the noise.",
           ),
           sectionTitle("What I'd like to ask"),
           bullet("<strong>Do you offer non-profit pricing?</strong> We've seen a lot of vendors offer 50-80% off for 501(c)(3) orgs and it makes the difference between us being able to fund a tool versus not."),
           bullet("<strong>Seats:</strong> 12 to start. We may go up to 18 if our summer fellowship program runs as planned, but that's a Q3 question."),
-          bullet("<strong>Plan:</strong> Whatever your Team plan equivalent is would be enough — we don't need Enterprise features."),
+          bullet("<strong>Plan:</strong> Whatever your Team plan equivalent is would be enough - we don't need Enterprise features."),
           sectionTitle("What I can offer"),
           bullet(
-            "<strong>Determination letter</strong> — happy to send. We've been 501(c)(3) since 2019, EIN attached.",
+            "<strong>Determination letter</strong> - happy to send. We've been 501(c)(3) since 2019, EIN attached.",
           ),
           bullet(
-            "<strong>Annual budget transparency</strong> — we operate on ~$340K/year. Most of that is program delivery and stipends. Tools are a real line item.",
+            "<strong>Annual budget transparency</strong> - we operate on ~$340K/year. Most of that is program delivery and stipends. Tools are a real line item.",
           ),
           bullet(
-            "<strong>Story</strong> — we'd be a happy reference for other non-profits in your pipeline, and our students would love a write-up about the tool that helped their org function. Tax-deductible coverage for you, real impact for us.",
+            "<strong>Story</strong> - we'd be a happy reference for other non-profits in your pipeline, and our students would love a write-up about the tool that helped their org function. Tax-deductible coverage for you, real impact for us.",
           ),
           p(
             "If non-profit pricing isn't possible, would also love to know if there are foundations you've worked with that sponsor non-profit access to your platform.",
           ),
           p(
-            "Thanks for considering — we love what you've built and would love to keep using it.",
+            "Thanks for considering - we love what you've built and would love to keep using it.",
           ),
           hr(),
           signature("Felix Romero", "Executive Director · Code For Good (501(c)(3))", "felix@codeforgood.org"),
@@ -2656,7 +2656,7 @@ function buildDemoThreads(): DemoThread[] {
       {
         id: "demo-thread-37",
         subject: "Churn risk - low usage flagged",
-        senderName: "Aria Singh",
+        senderName: "Aria Lawson",
         senderEmail: "aria@vectormail.app",
         daysAgo: 4,
         hour: 10,
@@ -2664,7 +2664,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Heads up — wanted to surface this before it crosses our auto-renewal window. <strong>Loop AI</strong> (45 seats, $24K ARR, signed last August) is showing the kind of usage pattern that historically precedes a non-renewal.",
+            "Heads up - wanted to surface this before it crosses our auto-renewal window. <strong>Loop AI</strong> (45 seats, $24K ARR, signed last August) is showing the kind of usage pattern that historically precedes a non-renewal.",
           ),
           sectionTitle("The signal"),
           keyValBlock([
@@ -2674,11 +2674,11 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Active users this month", value: "4 of 45" },
             { label: "Health score", value: "Red · trending down for 6 weeks" },
             { label: "Auto-renewal date", value: "June 8 · in 21 days" },
-            { label: "Owner of relationship", value: "Aria Singh" },
+            { label: "Owner of relationship", value: "Aria Lawson" },
           ]),
           sectionTitle("My read"),
           p(
-            "Their CSM contact (Jules Park) was warm and engaged last quarter — sent us an unsolicited recommendation to a friend, scored 9/10 in NPS. The usage drop coincides exactly with their VP Ops leaving for a new role on April 3. My hypothesis is the new ops lead hasn't been onboarded to the tool yet and the team's defaulted back to native Gmail.",
+            "Their CSM contact (Jules Park) was warm and engaged last quarter - sent us an unsolicited recommendation to a friend, scored 9/10 in NPS. The usage drop coincides exactly with their VP Ops leaving for a new role on April 3. My hypothesis is the new ops lead hasn't been onboarded to the tool yet and the team's defaulted back to native Gmail.",
           ),
           sectionTitle("What I'd recommend"),
           bullet("<strong>Option A · Save call (recommended):</strong> I reach out to Jules directly today, offer a 20-min reset call + free training session for the new ops lead. Soft, helpful, no pressure."),
@@ -2689,7 +2689,7 @@ function buildDemoThreads(): DemoThread[] {
             "A 30-second 'go for it / wait' on Option A. I have a draft outreach ready to send within 2 hours of your reply. If you want to be the one on the call instead of me given the spend, just say.",
           ),
           hr(),
-          signature("Aria Singh", "Customer Success Lead · VectorMail", "aria@vectormail.app"),
+          signature("Aria Lawson", "Customer Success Lead · VectorMail", "aria@vectormail.app"),
         ]),
         summary: "Internal alert: Loop AI churn risk, $24K ARR. Action: decide on save call within 3 weeks. Time-sensitive.",
         labels: [labelImportant],
@@ -2705,7 +2705,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "We're on the Team plan and have been generally happy. But our API integration with your platform has scaled faster than we expected — we've hit the rate-limit ceiling twice this week, both times during normal business hours, both times resulting in degraded experience for our customers.",
+            "We're on the Team plan and have been generally happy. But our API integration with your platform has scaled faster than we expected - we've hit the rate-limit ceiling twice this week, both times during normal business hours, both times resulting in degraded experience for our customers.",
           ),
           sectionTitle("Where we are today"),
           keyValBlock([
@@ -2713,7 +2713,7 @@ function buildDemoThreads(): DemoThread[] {
             { label: "API rate limit", value: "100 req/min · 5,000 req/day" },
             { label: "Current sustained traffic", value: "~85 req/min, peaks to 180" },
             { label: "Times we hit 429 this week", value: "2 (Tue 2:48 PM, Thu 11:32 AM)" },
-            { label: "Customer-facing impact", value: "Yes — 12-minute degraded mode each time" },
+            { label: "Customer-facing impact", value: "Yes - 12-minute degraded mode each time" },
           ]),
           sectionTitle("What we'd like to propose"),
           p(
@@ -2721,9 +2721,9 @@ function buildDemoThreads(): DemoThread[] {
           ),
           bullet("<strong>Commit to a monthly minimum</strong> (let's say $500/mo or 50K requests, whichever is more)."),
           bullet("<strong>Overage pricing</strong> for anything above commit at a clearly-priced per-request rate."),
-          bullet("<strong>No seat-rate change</strong> — we're happy with our current Team plan otherwise."),
+          bullet("<strong>No seat-rate change</strong> - we're happy with our current Team plan otherwise."),
           bullet(
-            "<strong>SLA on rate-limit handling</strong> — formal commitment that requests above the limit get 429ed with proper retry-after headers, not silently dropped.",
+            "<strong>SLA on rate-limit handling</strong> - formal commitment that requests above the limit get 429ed with proper retry-after headers, not silently dropped.",
           ),
           sectionTitle("Why this works for both sides"),
           p(
@@ -2750,7 +2750,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Delighted"),
           headline("New NPS response · 9/10 from Brightlane"),
           p(
-            "A new NPS response just came in from your active feedback survey. Score and verbatim below — this one is worth reading.",
+            "A new NPS response just came in from your active feedback survey. Score and verbatim below - this one is worth reading.",
           ),
           bigStat("Score", "9 / 10", { color: "#0caa41" }),
           keyValBlock([
@@ -2763,12 +2763,12 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Verbatim feedback"),
           infoCard(
-            `"Briefs save me 2 hours a day. The summaries are scary-accurate — I trust them enough that I stopped scrolling through the inbox most mornings. Search just works the way I want it to ('investor threads from last week mentioning the term sheet' returns exactly what I expect). The only thing I'd ask for is the mobile app, which I know is coming but I wish were here yesterday. Other than that — this is the first tool in years that I'd actually pay for personally if my company didn't."`,
+            `"Briefs save me 2 hours a day. The summaries are scary-accurate - I trust them enough that I stopped scrolling through the inbox most mornings. Search just works the way I want it to ('investor threads from last week mentioning the term sheet' returns exactly what I expect). The only thing I'd ask for is the mobile app, which I know is coming but I wish were here yesterday. Other than that - this is the first tool in years that I'd actually pay for personally if my company didn't."`,
             { tone: "ok" },
           ),
           sectionTitle("Suggested follow-ups"),
           bullet("<strong>Case study candidate.</strong> Customer has health = green, NPS = 9, and 9 months of tenure. Strong candidate for the public case study Aria's been working on."),
-          bullet(`<strong>Mobile waitlist priority.</strong> Add this user to the iOS beta when it goes out — they'll be a great early tester.`),
+          bullet(`<strong>Mobile waitlist priority.</strong> Add this user to the iOS beta when it goes out - they'll be a great early tester.`),
           bullet("<strong>Reference call material.</strong> Add this verbatim to the sales reference deck (with permission)."),
           ctaRow([
             ctaButton("View response in Delighted", { color: "#ff8866" }),
@@ -2794,7 +2794,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Quick note — our 14-day trial expires this Friday and I want to convert before then if at all possible. Both of our PMs are now genuinely dependent on the briefs feature, and the rest of the team has been asking when they get access.",
+            "Quick note - our 14-day trial expires this Friday and I want to convert before then if at all possible. Both of our PMs are now genuinely dependent on the briefs feature, and the rest of the team has been asking when they get access.",
           ),
           sectionTitle("Where we are"),
           keyValBlock([
@@ -2837,22 +2837,22 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Loving the product so far — we're three weeks into the trial. One quick integration question before we go all-in:",
+            "Loving the product so far - we're three weeks into the trial. One quick integration question before we go all-in:",
           ),
           p(
             "<strong>Does VectorMail push thread summaries into Slack?</strong> Our team has three shared inboxes (support@, partnerships@, hello@) and we want the morning brief for each one to land in our team Slack channel every weekday at 8:30 AM PT. That way the whole team sees what's brewing without having to log into a separate tool.",
           ),
           sectionTitle("What we'd need"),
-          bullet("<strong>Native Slack integration</strong> ideally — bot user, OAuth, channel selector, the works."),
-          bullet("<strong>Or a webhook</strong> — we have engineering bandwidth to wire it up if you publish a stable webhook API."),
+          bullet("<strong>Native Slack integration</strong> ideally - bot user, OAuth, channel selector, the works."),
+          bullet("<strong>Or a webhook</strong> - we have engineering bandwidth to wire it up if you publish a stable webhook API."),
           bullet("<strong>Configurable schedule and channels</strong> per inbox (different briefs to different channels)."),
-          bullet("<strong>Threading</strong> — when someone clicks the link in Slack, it should open the actual thread in VectorMail (not just a summary view)."),
+          bullet("<strong>Threading</strong> - when someone clicks the link in Slack, it should open the actual thread in VectorMail (not just a summary view)."),
           sectionTitle("Why this matters to us"),
           p(
             "Right now most of our team only reads email at the end of the day. The result: by the time someone responds to a partner inquiry that came in at 9 AM, the partner has already gone with a competitor. The brief in Slack would make those time-sensitive threads visible to the whole team in the morning, not just to whoever happens to check their inbox.",
           ),
           p(
-            "If this exists, please point me at the docs. If it doesn't yet, what's the realistic timeline — and are you open to building it with us as a design partner? We'd be happy to provide feedback through implementation.",
+            "If this exists, please point me at the docs. If it doesn't yet, what's the realistic timeline - and are you open to building it with us as a design partner? We'd be happy to provide feedback through implementation.",
           ),
           hr(),
           signature("Mei Lin", "Head of Operations · Haystack Studio", "mei@haystack.studio"),
@@ -2883,15 +2883,15 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Days to renewal", value: "21" },
           ]),
           sectionTitle("Most-impactful drivers"),
-          bullet("New ops lead onboarded after Aria's save call (Mar 24) — DAU jumped within 4 days."),
-          bullet("Buddy v2 streaming responses adopted by their sales team — 18 new active users."),
-          bullet("Slack integration shipped — surfaces briefs in their team channels, which drives daily engagement."),
+          bullet("New ops lead onboarded after Aria's save call (Mar 24) - DAU jumped within 4 days."),
+          bullet("Buddy v2 streaming responses adopted by their sales team - 18 new active users."),
+          bullet("Slack integration shipped - surfaces briefs in their team channels, which drives daily engagement."),
           sectionTitle("Risk indicators (still watch)"),
           bullet("One power user dropped from daily to weekly · investigate before renewal."),
-          bullet("Account has not yet adopted the search feature heavily — opportunity to nudge."),
+          bullet("Account has not yet adopted the search feature heavily - opportunity to nudge."),
           ctaRow([
             ctaButton("View account in Vitally", { color: "#5b3bff" }),
-            ctaButton("Owner: Aria Singh", { color: "#5b3bff", variant: "outline" }),
+            ctaButton("Owner: Aria Lawson", { color: "#5b3bff", variant: "outline" }),
           ]),
           fineprint("Health score calculation: usage frequency (40%) + feature breadth (30%) + sentiment signals (20%) + commercial signals (10%)."),
           companyEmailFooter("Vitally"),
@@ -2910,7 +2910,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "We're a Superhuman shop and have been for two years. Loved it for the first year, but we've reached the ceiling on what keyboard shortcuts can do for inbox velocity — at this point, our team is just <em>faster at the same kind of work</em>, and the work itself is still drowning us.",
+            "We're a Superhuman shop and have been for two years. Loved it for the first year, but we've reached the ceiling on what keyboard shortcuts can do for inbox velocity - at this point, our team is just <em>faster at the same kind of work</em>, and the work itself is still drowning us.",
           ),
           p(
             "What we actually want is a tool that reads our inbox <strong>for us</strong>, drafts replies in our voice, and surfaces what matters. Your demo videos look closer to that vision than anything else we've evaluated.",
@@ -2926,10 +2926,10 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Three things we want to see in the demo"),
           bullet("<strong>Buddy live.</strong> Drafting a reply to a real-looking thread, end-to-end, with you narrating the failure modes you've designed around."),
           bullet("<strong>Daily brief.</strong> A real brief on a busy inbox so we can see if it surfaces what we'd actually care about."),
-          bullet("<strong>Semantic search.</strong> A query like 'investor threads from last week mentioning the term sheet' — does it actually work?"),
+          bullet("<strong>Semantic search.</strong> A query like 'investor threads from last week mentioning the term sheet' - does it actually work?"),
           sectionTitle("Timeline"),
           p(
-            "If the demo confirms our hypothesis, we'd want to start a paid trial this week and convert to annual within 10 days. We're not the kind of customer that drags procurement out — small team, founder-led, fast decisions.",
+            "If the demo confirms our hypothesis, we'd want to start a paid trial this week and convert to annual within 10 days. We're not the kind of customer that drags procurement out - small team, founder-led, fast decisions.",
           ),
           p(
             "Got availability for a 30-minute live demo this week (Thu or Fri preferred)? Looking forward to seeing it.",
@@ -2975,7 +2975,7 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Competing offer (Series B fintech NYC)"),
           bullet("$230K base, 0.30% equity, $20K sign-on"),
           bullet("Decision deadline: <strong>Friday EOD</strong>"),
-          bullet("He's been honest the entire process — wants to be at VectorMail if comp lands close"),
+          bullet("He's been honest the entire process - wants to be at VectorMail if comp lands close"),
           sectionTitle("My recommendation"),
           infoCard(
             `Send the offer today at <strong>$215K base, 0.45% equity, $30K sign-on</strong>. Cash is slightly below their offer but equity is ~50% richer at our 409A. He values long-term equity and the technical bar, not the headline base. We're comfortably within Engineering band for L5 and this is a candidate worth slightly stretching for.`,
@@ -3004,12 +3004,12 @@ function buildDemoThreads(): DemoThread[] {
             "Thank you so much for the time and thoughtfulness over the last three weeks. The team is clearly thinking deeply about how to build something special, and the conversations with Dana and Marcus in particular were some of the best technical interviews I've had.",
           ),
           p(
-            "I'm writing to let you know I've accepted an offer at a Series C infrastructure company in NYC. The decision came down to a few things specific to my personal situation: my partner just took a job there that we can't reasonably move out of, and the role offers a clearer path into the platform-architecture work I've been pointing at for years. Neither is a knock on VectorMail — frankly, your offer was the harder one to walk away from.",
+            "I'm writing to let you know I've accepted an offer at a Series C infrastructure company in NYC. The decision came down to a few things specific to my personal situation: my partner just took a job there that we can't reasonably move out of, and the role offers a clearer path into the platform-architecture work I've been pointing at for years. Neither is a knock on VectorMail - frankly, your offer was the harder one to walk away from.",
           ),
           p(
             "Please keep me in mind if a senior eng role opens up in 18-24 months on the East Coast or fully remote. And if there's anyone I should connect you with from my Plaid days who'd be a good fit for what you're building, I'm happy to make the warm intro.",
           ),
-          p("Wishing you and the team the best — really excited to watch what you build."),
+          p("Wishing you and the team the best - really excited to watch what you build."),
           hr(),
           signature("Priscilla Adams"),
         ]),
@@ -3028,19 +3028,19 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "I'm in. Signed offer letter is attached, and I've already given notice at Stripe this morning. The team there was generous in saying I could leave on the early side, so I can start on <strong>Monday, May 5</strong> as we'd discussed — no need to push it.",
+            "I'm in. Signed offer letter is attached, and I've already given notice at Stripe this morning. The team there was generous in saying I could leave on the early side, so I can start on <strong>Monday, May 5</strong> as we'd discussed - no need to push it.",
           ),
           p(
-            "To say this was a difficult decision is a real understatement. Three weeks ago I was 70-30 leaning to stay at Stripe. The thing that flipped me wasn't the comp (which was generous) or the equity (which is meaningful but uncertain) — it was the technical bar in the loop, and specifically the systems-design conversation with Marcus where he genuinely pressed me on a tradeoff I hadn't thought through. That's the calibration I want to be around for the next chapter.",
+            "To say this was a difficult decision is a real understatement. Three weeks ago I was 70-30 leaning to stay at Stripe. The thing that flipped me wasn't the comp (which was generous) or the equity (which is meaningful but uncertain) - it was the technical bar in the loop, and specifically the systems-design conversation with Marcus where he genuinely pressed me on a tradeoff I hadn't thought through. That's the calibration I want to be around for the next chapter.",
           ),
           sectionTitle("Practical bits for onboarding"),
           bullet("Laptop preference: 16\" MacBook Pro M3, 64GB RAM (I do a lot of model work locally)."),
-          bullet("Address for shipping: changing it on May 1 — I'll send the updated one then."),
+          bullet("Address for shipping: changing it on May 1 - I'll send the updated one then."),
           bullet("Office days: happy to commit to 3 days/week in person from week 1. SF based."),
-          bullet("Background check: already in motion via Checkr — you should see results by next Tuesday."),
+          bullet("Background check: already in motion via Checkr - you should see results by next Tuesday."),
           sectionTitle("What I'm bringing on day 1"),
           p(
-            "I've been quietly reading the public engineering blog and your founders' Twitter for months. I have a doc with first-30-days thoughts I want to validate against the real codebase — happy to share with Dana before I start so we can use my first 1:1 to discuss it.",
+            "I've been quietly reading the public engineering blog and your founders' Twitter for months. I have a doc with first-30-days thoughts I want to validate against the real codebase - happy to share with Dana before I start so we can use my first 1:1 to discuss it.",
           ),
           p("Excited beyond words. See you in two weeks."),
           hr(),
@@ -3065,18 +3065,18 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Quick background on Sasha"),
           bullet("<strong>Currently:</strong> Staff PM at Anthropic. Led the API platform from $0 → 9-figure annualized in 22 months."),
           bullet("<strong>Before that:</strong> Product at Stripe (Connect platform), early at Brex, undergrad CS at MIT."),
-          bullet("<strong>What she wants next:</strong> Something small, AI-native, where she can shape product from the ground up. Not 'AI feature in an existing product' — full AI-native product surface."),
+          bullet("<strong>What she wants next:</strong> Something small, AI-native, where she can shape product from the ground up. Not 'AI feature in an existing product' - full AI-native product surface."),
           bullet("<strong>Why she's leaving:</strong> Anthropic grew past her comfort zone (~50 people when she joined, now 1000+). She wants the early stage again."),
           sectionTitle("Why I'm sending you specifically"),
           p(
-            "She and I had dinner last weekend and she described what she wants in her next role basically by listing your product surface — AI native, inbox/workflow category, small team, technical co-founders she'd be working with directly. Your name didn't come up because she hasn't done the research yet. I think she'd open her eyes wide when she sees what you're building.",
+            "She and I had dinner last weekend and she described what she wants in her next role basically by listing your product surface - AI native, inbox/workflow category, small team, technical co-founders she'd be working with directly. Your name didn't come up because she hasn't done the research yet. I think she'd open her eyes wide when she sees what you're building.",
           ),
           sectionTitle("How to proceed"),
           p(
-            "If you're interested, I'll loop her in with a triple-handle intro. She's not on the open market yet (and probably won't be — too many former-Anthropic friends in similar positions, the speed will be lightning), so this is a small window.",
+            "If you're interested, I'll loop her in with a triple-handle intro. She's not on the open market yet (and probably won't be - too many former-Anthropic friends in similar positions, the speed will be lightning), so this is a small window.",
           ),
           p(
-            "If not, no problem at all — I'll send her in a different direction. Either way, want to support what you're building either as a customer or with people referrals."),
+            "If not, no problem at all - I'll send her in a different direction. Either way, want to support what you're building either as a customer or with people referrals."),
           hr(),
           signature("Jamal Ortiz", "Engineering · ex-Anthropic", "jamal.ortiz@anthropic-friend.io"),
         ]),
@@ -3095,24 +3095,24 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Lever"),
           headline("Weekly applicant digest · 3 new applications"),
           p(
-            "Three new applications landed for <strong>Senior Backend Engineer (SF / Remote)</strong> this week. The referral is the highest-priority — referrals from existing team typically convert at 4-5× the rate of cold inbound. Quick summary below; full profiles in Lever.",
+            "Three new applications landed for <strong>Senior Backend Engineer (SF / Remote)</strong> this week. The referral is the highest-priority - referrals from existing team typically convert at 4-5× the rate of cold inbound. Quick summary below; full profiles in Lever.",
           ),
           sectionTitle("Referral · highest priority"),
           profileCard({
-            name: "Connor Patel",
+            name: "Connor Bailey",
             title: "Backend Engineer · 5 years",
-            company: "Currently: Senior at Twilio · Referred by Aria Singh",
+            company: "Currently: Senior at Twilio · Referred by Aria Lawson",
             initials: "CP",
             accent: "#9b51e0",
             rightLabel: "Referred",
           }),
           infoCard(
-            `<strong>Aria's note:</strong> "Worked with Connor at Twilio. Pragmatic, deeply curious, ships clean code. He's been looking for something smaller for a while. I think he'd be a strong cultural and technical fit. Confidential — current manager doesn't know yet."`,
+            `<strong>Aria's note:</strong> "Worked with Connor at Twilio. Pragmatic, deeply curious, ships clean code. He's been looking for something smaller for a while. I think he'd be a strong cultural and technical fit. Confidential - current manager doesn't know yet."`,
             { tone: "ok" },
           ),
           sectionTitle("Inbound · job page"),
           profileCard({
-            name: "Devika Sharma",
+            name: "Diana Foster",
             title: "Backend Engineer · 6 years",
             company: "Currently: Senior at LaunchDarkly · open to remote",
             initials: "DS",
@@ -3170,7 +3170,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet(`If you were starting a company tomorrow, would you hire her as your first PM? Why or why not?`),
           bullet(`Anything I haven't asked that would help me understand her better?`),
           p(
-            "Open to phone or Zoom — whatever's easiest. I'm holding the following slots:",
+            "Open to phone or Zoom - whatever's easiest. I'm holding the following slots:",
           ),
           keyValBlock([
             { label: "Tuesday", value: "10:00 AM, 2:00 PM, 4:30 PM PT" },
@@ -3178,7 +3178,7 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Thursday", value: "11:00 AM, 3:00 PM PT" },
           ]),
           p(
-            "If none of those work, send me anything and I'll move things around — I really appreciate you taking the time. We're moving fast on the role and your input will weigh heavily in our decision.",
+            "If none of those work, send me anything and I'll move things around - I really appreciate you taking the time. We're moving fast on the role and your input will weigh heavily in our decision.",
           ),
           hr(),
           signature("Quinn Holloway", "Recruiting Lead · NextRoom", "quinn@nextroom.ai"),
@@ -3200,7 +3200,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #dc2626; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Overdue · Decision Friday</span></div>`,
           headline("Your scorecard for Carter Liu is overdue"),
           p(
-            "Friendly nudge — your scorecard for <strong>Carter Liu</strong> (Senior Backend Engineer · onsite Wednesday) is now 18 hours past the 24-hour SLA. We owe Carter a final decision by Friday, and Dana needs all four interviewer scorecards before the debrief on Friday morning at 10 AM.",
+            "Friendly nudge - your scorecard for <strong>Carter Liu</strong> (Senior Backend Engineer · onsite Wednesday) is now 18 hours past the 24-hour SLA. We owe Carter a final decision by Friday, and Dana needs all four interviewer scorecards before the debrief on Friday morning at 10 AM.",
           ),
           profileCard({
             name: "Carter Liu",
@@ -3214,17 +3214,17 @@ function buildDemoThreads(): DemoThread[] {
           keyValBlock([
             { label: "Coding interview (Marcus)", value: "✓ Submitted · Strong Yes" },
             { label: "Systems design (Dana)", value: "✓ Submitted · Hire" },
-            { label: "Behavioral (you)", value: "⚠ Outstanding — overdue" },
+            { label: "Behavioral (you)", value: "⚠ Outstanding - overdue" },
             { label: "Hiring-manager loop (Aria)", value: "✓ Submitted · Strong Yes" },
-            { label: "Debrief", value: "Friday, 10:00 AM PT — needs all 4 in by Thursday EOD" },
+            { label: "Debrief", value: "Friday, 10:00 AM PT - needs all 4 in by Thursday EOD" },
           ]),
           sectionTitle("What we need from you"),
           bullet("Open the scorecard in Greenhouse (link below)."),
-          bullet("Submit a written assessment in 5-10 minutes — doesn't need to be exhaustive, but does need to be specific."),
+          bullet("Submit a written assessment in 5-10 minutes - doesn't need to be exhaustive, but does need to be specific."),
           bullet("Pick: Strong Yes / Yes / No / Strong No · with one-sentence rationale per dimension."),
           sectionTitle("Why this matters"),
           infoCard(
-            "Carter is a founder-stage candidate who's been on the market 9 days and has competing offers (we've confirmed at least 2). Every 24 hours we delay is a measurable drop in our chances of closing him. We've already pushed our decision once — pushing again will cost us this candidate.",
+            "Carter is a founder-stage candidate who's been on the market 9 days and has competing offers (we've confirmed at least 2). Every 24 hours we delay is a measurable drop in our chances of closing him. We've already pushed our decision once - pushing again will cost us this candidate.",
             { tone: "warn" },
           ),
           ctaRow([
@@ -3249,7 +3249,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           headline("Standup digest · Tuesday, May 17"),
           p(
-            "Auto-generated recap of today's 10 AM standup. <strong>Velocity is healthy</strong> — no blockers reported across any of the 8 engineers, and the auth refactor is on track to merge by EOW. Action items below.",
+            "Auto-generated recap of today's 10 AM standup. <strong>Velocity is healthy</strong> - no blockers reported across any of the 8 engineers, and the auth refactor is on track to merge by EOW. Action items below.",
           ),
           sectionTitle("Top-line status"),
           metricGrid([
@@ -3281,7 +3281,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>#418</strong> · feat(api): per-user-key rate limiter (closes VM-187) · Nathan · 6 files, +89/-12 · CI green · ETA: 15 min review"),
           sectionTitle("Tomorrow's plan"),
           bullet("Marcus runs the pgvector RFC review (1 hour, blocked time on calendar)."),
-          bullet("Sprint 11 planning kicks off Thursday — make sure your availability is in the doc."),
+          bullet("Sprint 11 planning kicks off Thursday - make sure your availability is in the doc."),
           bullet("Aria + Marcus on the DataPipe escalation call at 10 AM."),
           hr(),
           signature("Engineering Bot", "Daily standup auto-digest · #eng-standup"),
@@ -3310,18 +3310,18 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>Index type · IVFFlat vs HNSW.</strong> HNSW is faster and more accurate at our scale (~12M vectors today, projecting to 80M by year-end), but uses ~3× the memory. IVFFlat is leaner but recall drops at high-dimensional queries unless we tune <code>lists</code> aggressively. My current recommendation is HNSW with <code>m=16, ef_construction=64</code>, but I want pushback if anyone has read papers I haven't.",
           ),
           bullet(
-            "<strong>Migration plan · online cutover vs dark launch.</strong> Online cutover is faster (a weekend) but riskier. Dark launch is safer (dual-write for 30 days, compare results) but stretches the migration into June and ties up two engineers full-time. I'm leaning dark launch given our SLA commitments — but it's a real cost.",
+            "<strong>Migration plan · online cutover vs dark launch.</strong> Online cutover is faster (a weekend) but riskier. Dark launch is safer (dual-write for 30 days, compare results) but stretches the migration into June and ties up two engineers full-time. I'm leaning dark launch given our SLA commitments - but it's a real cost.",
           ),
           bullet(
             "<strong>Cost model.</strong> Our Pinecone bill is currently $4,200/mo. Projecting to $12K/mo by year-end at our growth rate. pgvector on our existing RDS (just promotes to a larger instance type) projects to $1,800/mo year-end. That's a 70% reduction at scale, but the migration eats ~6 weeks of one senior engineer.",
           ),
           sectionTitle("Risks I want surfaced"),
           bullet("HNSW build times on the initial 12M vectors. Need to time-box and have a rollback plan."),
-          bullet("Query plan stability — Postgres planner can surprise us on hybrid filter+vector queries. I want to add EXPLAIN ANALYZE tests in CI."),
+          bullet("Query plan stability - Postgres planner can surprise us on hybrid filter+vector queries. I want to add EXPLAIN ANALYZE tests in CI."),
           bullet("Operational story for pgvector on RDS at our scale isn't as battle-tested as Pinecone's managed offering. Need clear runbook for index rebuild + tuning."),
           sectionTitle("How to give feedback"),
           p(
-            "<strong>Comments in the doc by Friday EOD.</strong> I'll triage them over the weekend and update the RFC. <strong>Decision meeting Tuesday at 2 PM</strong> — anyone who's worked on infra is invited, but it's not a required meeting; if you'd rather give input in writing, the doc is fine.",
+            "<strong>Comments in the doc by Friday EOD.</strong> I'll triage them over the weekend and update the RFC. <strong>Decision meeting Tuesday at 2 PM</strong> - anyone who's worked on infra is invited, but it's not a required meeting; if you'd rather give input in writing, the doc is fine.",
           ),
           p(
             "If we decide to move forward Tuesday, target ship date is end of Q3. I'd run the migration myself with Nathan supporting on the dual-write infrastructure.",
@@ -3346,7 +3346,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #0caa41; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Resolved · No customer impact</span></div>`,
           headline("Incident INC-0091 · email sync delays (36 min) · resolved"),
           p(
-            "Auto-generated post-incident summary for the sync-delay event that paged the team this evening. <strong>Auto-resolved without intervention</strong> — included here for awareness and action-item tracking. No data loss, no customer-reported impact (we'll watch support inbox for 24h).",
+            "Auto-generated post-incident summary for the sync-delay event that paged the team this evening. <strong>Auto-resolved without intervention</strong> - included here for awareness and action-item tracking. No data loss, no customer-reported impact (we'll watch support inbox for 24h).",
           ),
           sectionTitle("Quick stats"),
           metricGrid([
@@ -3396,7 +3396,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           headline("Sprint 14 retro · what worked, what didn't, what we're changing"),
           p(
-            "Sprint 14 closed Friday at 5 PM PT. Retro session ran Saturday morning, here's the writeup. <strong>The headline is positive</strong>: velocity up 18% with zero rollbacks for the first time in four sprints. The improvement areas are the same as Sprint 13 — design handoff timing and PR review SLA — which means our previous mitigations didn't work. New plan inside.",
+            "Sprint 14 closed Friday at 5 PM PT. Retro session ran Saturday morning, here's the writeup. <strong>The headline is positive</strong>: velocity up 18% with zero rollbacks for the first time in four sprints. The improvement areas are the same as Sprint 13 - design handoff timing and PR review SLA - which means our previous mitigations didn't work. New plan inside.",
           ),
           metricGrid([
             { label: "Velocity", value: "44 pts", sub: "+18% vs Sprint 13" },
@@ -3410,9 +3410,9 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Pairing experiment paid off.</strong> Marcus + Elena spent ~2 days pairing on the search-index project. Result: shipped a sprint earlier than originally scoped, with cleaner code and zero rollbacks. Continuing pairing for the next two big rocks."),
           bullet("<strong>Zero rollbacks.</strong> First clean sprint in months. Likely a combination of better test coverage (now at 84%) and the new pre-deploy smoke suite."),
           bullet("<strong>On-call load down 40%.</strong> Last sprint's noise-reduction work on Sentry alerts is showing up in the data."),
-          bullet("<strong>Cross-team dependencies cleared faster.</strong> Design partner sat with eng for the last 2 days of the sprint — that closed 3 ambiguities that would have spilled to Sprint 15."),
+          bullet("<strong>Cross-team dependencies cleared faster.</strong> Design partner sat with eng for the last 2 days of the sprint - that closed 3 ambiguities that would have spilled to Sprint 15."),
           sectionTitle("What didn't"),
-          bullet("<strong>Design handoff still late.</strong> Three of four design assets landed Wednesday instead of Monday. Same pattern as Sprint 13. Talked through it on the call — root cause is upstream: PMs giving design less than 5 days of lead time on the spec."),
+          bullet("<strong>Design handoff still late.</strong> Three of four design assets landed Wednesday instead of Monday. Same pattern as Sprint 13. Talked through it on the call - root cause is upstream: PMs giving design less than 5 days of lead time on the spec."),
           bullet("<strong>PR review SLA at 18 hours median.</strong> Up from 14h two sprints ago. Reviewers consistently delaying because of 'I'll get to it tomorrow' on small PRs."),
           bullet("<strong>Two backlog items got promoted mid-sprint.</strong> Both legitimate (a customer escalation and a security finding), but the disruption cost ~6 points of velocity."),
           sectionTitle("What we're changing"),
@@ -3447,7 +3447,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Datadog"),
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #f59e0b; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">P2 · Resolved</span></div>`,
           headline("api.latency.p95 alert recovered after deploy rollback"),
-          p("A 5-minute latency spike on <strong>vectormail-api</strong> auto-resolved when the triggering deploy was rolled back. No customer-facing requests timed out — the long-tail traffic fell within our retry budget."),
+          p("A 5-minute latency spike on <strong>vectormail-api</strong> auto-resolved when the triggering deploy was rolled back. No customer-facing requests timed out - the long-tail traffic fell within our retry budget."),
           metricGrid([
             { label: "Window", value: "20:48 → 20:53 PT", sub: "5m 12s" },
             { label: "p95 peak", value: "1,287ms", sub: "+887ms over baseline" },
@@ -3458,7 +3458,7 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Triggering change"),
           infoCard(
-            `<strong>Build #2241</strong> — <span style="font-family: ${MONO_STACK}; font-size: 13px;">feat: parallel embedding fetch</span><br/><span style="color: #5f6368; font-size: 13px;">Author: elena-vargas · merged 19:42 PT · auto-rolled-back 20:54 PT</span>`,
+            `<strong>Build #2241</strong> - <span style="font-family: ${MONO_STACK}; font-size: 13px;">feat: parallel embedding fetch</span><br/><span style="color: #5f6368; font-size: 13px;">Author: elena-vargas · merged 19:42 PT · auto-rolled-back 20:54 PT</span>`,
             { tone: "info" },
           ),
           sectionTitle("Why it auto-resolved"),
@@ -3518,7 +3518,7 @@ function buildDemoThreads(): DemoThread[] {
           prCheckRow("preview / vercel", "passed"),
           sectionTitle("Description (from PR)"),
           infoCard(
-            `<p style="margin: 0 0 10px 0;">All tRPC routers now throw <code>TypedTRPCError</code> with a discriminated <code>code</code> field, mapping cleanly to HTTP status. Clients receive a strongly-typed envelope and can switch on <code>code</code> without prop-drilling string matches.</p><p style="margin: 0;"><strong>Migration:</strong> existing <code>throw new Error("...")</code> call sites caught by the linter — autofix included.</p>`,
+            `<p style="margin: 0 0 10px 0;">All tRPC routers now throw <code>TypedTRPCError</code> with a discriminated <code>code</code> field, mapping cleanly to HTTP status. Clients receive a strongly-typed envelope and can switch on <code>code</code> without prop-drilling string matches.</p><p style="margin: 0;"><strong>Migration:</strong> existing <code>throw new Error("...")</code> call sites caught by the linter - autofix included.</p>`,
             { tone: "info" },
           ),
           ctaRow([
@@ -3557,14 +3557,14 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Carry-over from last week"),
           bullet(
-            "<strong>Inngest worker tuning</strong> — Elena left a draft PR (#451) to bump the concurrency limit. Doesn't need to ship this week, just needs your eyes when you have 20 minutes.",
+            "<strong>Inngest worker tuning</strong> - Elena left a draft PR (#451) to bump the concurrency limit. Doesn't need to ship this week, just needs your eyes when you have 20 minutes.",
           ),
           bullet(
-            "<strong>Aurinko TLS runbook entry</strong> — Aria's working on it, due Friday. Make sure it lands before your shift ends.",
+            "<strong>Aurinko TLS runbook entry</strong> - Aria's working on it, due Friday. Make sure it lands before your shift ends.",
           ),
           sectionTitle("Known unknowns"),
-          bullet("Aurinko has a regional maintenance window Tuesday 2-4 AM PT — they say no impact, we'll watch."),
-          bullet("Our Stripe webhook handler had a signature failure 12 days ago that they 'fixed' — keep an eye on the dashboard."),
+          bullet("Aurinko has a regional maintenance window Tuesday 2-4 AM PT - they say no impact, we'll watch."),
+          bullet("Our Stripe webhook handler had a signature failure 12 days ago that they 'fixed' - keep an eye on the dashboard."),
           bullet("Marcus is shipping the pgvector cutover Wednesday at 7 PM PT. Be available; it's behind a feature flag with a kill-switch."),
           sectionTitle("Quick bookmarks for the week"),
           bullet("Datadog dashboard: <code>vectormail-api.health</code>"),
@@ -3597,26 +3597,26 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           headline("Design crit · Thursday 3 PM PT · Inbox v3 proposal"),
           p(
-            "Hi team,<br/><br/>Hosting design crit on <strong>Thursday at 3 PM PT (60 min)</strong> for the v3 inbox UI proposal. This is the design that will absorb the triage column, the new brief panel, and the density change we've been talking about for two sprints. I want sharp, opinionated input — not 'looks great.'",
+            "Hi team,<br/><br/>Hosting design crit on <strong>Thursday at 3 PM PT (60 min)</strong> for the v3 inbox UI proposal. This is the design that will absorb the triage column, the new brief panel, and the density change we've been talking about for two sprints. I want sharp, opinionated input - not 'looks great.'",
           ),
           sectionTitle("Pre-read · please look at Figma before the meeting"),
           p(
-            `<a href="#" style="color: #1a73e8; text-decoration: none; font-weight: 500;">Figma · Inbox v3 — three variants</a> · 12 frames · ~10 min skim.`,
+            `<a href="#" style="color: #1a73e8; text-decoration: none; font-weight: 500;">Figma · Inbox v3 - three variants</a> · 12 frames · ~10 min skim.`,
           ),
           sectionTitle("Three questions I want pressure on"),
           bullet(
-            "<strong>Does the new triage column read as 'safe to skim' or 'needs me'?</strong> We're using subtle color shifts (warm = needs me, cool = safe). Test it on yourself — what's your gut reaction the first 3 seconds you look at it?",
+            "<strong>Does the new triage column read as 'safe to skim' or 'needs me'?</strong> We're using subtle color shifts (warm = needs me, cool = safe). Test it on yourself - what's your gut reaction the first 3 seconds you look at it?",
           ),
           bullet(
             "<strong>Density: 12px vs 14px line height for thread previews.</strong> Variant A is tighter, Variant B is more spacious. The tighter one shows more, but the spacious one feels less stressful. I have a hypothesis but want fresh eyes.",
           ),
           bullet(
-            "<strong>Brief panel placement — top vs side.</strong> Variants 1 & 2 keep the brief on top (where it is today), Variant 3 moves it to the right side as a persistent rail. Which one makes the brief feel more like a 'this is the most important thing' moment vs feeling like 'background context'?",
+            "<strong>Brief panel placement - top vs side.</strong> Variants 1 & 2 keep the brief on top (where it is today), Variant 3 moves it to the right side as a persistent rail. Which one makes the brief feel more like a 'this is the most important thing' moment vs feeling like 'background context'?",
           ),
           sectionTitle("What I'm NOT looking for in this crit"),
-          bullet("Color palette opinions — that's locked from the brand work last quarter."),
-          bullet("Typography opinions — those are locked at the brand level too."),
-          bullet("'What if we also did X' tangents — capture those, but we're not designing new features at this crit."),
+          bullet("Color palette opinions - that's locked from the brand work last quarter."),
+          bullet("Typography opinions - those are locked at the brand level too."),
+          bullet("'What if we also did X' tangents - capture those, but we're not designing new features at this crit."),
           sectionTitle("Format"),
           p(
             "I'll present each variant for 5 minutes, then 15 minutes of open discussion on each question above. If you can't make it live, drop your written input in Figma comments before Thursday 12 PM PT and I'll incorporate it. Recording will be in <code>#design-q1</code> within 30 min of the meeting.",
@@ -3638,7 +3638,7 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "DAU 1,847 (+4.2%). New signups 312. Reply latency p50 1.4s.",
         body: email([
           brandBlock("VectorMail Metrics"),
-          headline("Weekly product metrics · week of May 10–17"),
+          headline("Weekly product metrics · week of May 10-17"),
           p("Auto-generated weekly digest from the product analytics pipeline. <strong>Healthy across the board.</strong> No new fires. Highlights below."),
           sectionTitle("Usage"),
           metricGrid([
@@ -3671,7 +3671,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Bulk operations</strong> · 18 mentions · technical scope sketched"),
           sectionTitle("Negative signals to watch"),
           bullet("Drop-off on onboarding step 3 (connect Gmail) is up 3 pp. Investigate Tuesday."),
-          bullet("Sentiment in support tickets trending slightly negative — Aria flagging."),
+          bullet("Sentiment in support tickets trending slightly negative - Aria flagging."),
           ctaRow([
             ctaButton("Open full dashboard", { color: "#1F3A2E" }),
             ctaButton("Drill into onboarding drop-off", { color: "#1F3A2E", variant: "outline" }),
@@ -3694,7 +3694,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Setting our 1:1 tomorrow up with structure since I have three real things I want to push on this week — better to do it in writing than verbally, both for our sake (covering more ground in 30 minutes) and for posterity (these will compound over quarters).",
+            "Setting our 1:1 tomorrow up with structure since I have three real things I want to push on this week - better to do it in writing than verbally, both for our sake (covering more ground in 30 minutes) and for posterity (these will compound over quarters).",
           ),
           sectionTitle("Three things, ranked"),
           bullet(
@@ -3704,7 +3704,7 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>Hiring plan · pull the senior eng role forward.</strong> Currently scheduled to open in late Q2. I think we should open it next week. Velocity is at risk if Nathan + Elena both end up bottlenecked on the same project, which is happening in two weeks per my staffing model. Notes have the math.",
           ),
           bullet(
-            "<strong>My career path · what does Director look like here and when?</strong> I've been Head of Eng for 14 months. I want to understand the rubric for the next level, what gaps I'd need to close, and what the realistic timeline is. Not asking for a promo decision tomorrow — asking for a conversation that I can use to drive the next 6 months.",
+            "<strong>My career path · what does Director look like here and when?</strong> I've been Head of Eng for 14 months. I want to understand the rubric for the next level, what gaps I'd need to close, and what the realistic timeline is. Not asking for a promo decision tomorrow - asking for a conversation that I can use to drive the next 6 months.",
           ),
           sectionTitle("My notes (please read before)"),
           p(
@@ -3712,7 +3712,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("What I need from you"),
           p(
-            "Read the notes, push back where I'm wrong, and come prepared to make calls on items 1 and 2. Item 3 doesn't need a decision tomorrow — but I want at least 5 minutes on it. If you'd rather pull it into a dedicated career conversation later this week, that's fine.",
+            "Read the notes, push back where I'm wrong, and come prepared to make calls on items 1 and 2. Item 3 doesn't need a decision tomorrow - but I want at least 5 minutes on it. If you'd rather pull it into a dedicated career conversation later this week, that's fine.",
           ),
           p("See you at 11."),
           hr(),
@@ -3733,7 +3733,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           brandBlock("Notion"),
           headline("Your Notion Plus plan renews in 7 days"),
-          p("Heads up — your annual Notion Plus subscription for <strong>VectorMail HQ</strong> auto-renews on May 24, 2026. We'll charge the card on file (Brex •• 1842) for the full year on that date. No action required if everything below looks right."),
+          p("Heads up - your annual Notion Plus subscription for <strong>VectorMail HQ</strong> auto-renews on May 24, 2026. We'll charge the card on file (Brex •• 1842) for the full year on that date. No action required if everything below looks right."),
           bigStat("Total at renewal", "$1,344.00 USD"),
           keyValBlock([
             { label: "Workspace", value: "VectorMail HQ" },
@@ -3826,7 +3826,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Linear"),
           headline("Cycle 9 closed · vectormail-ai · 2 weeks"),
           p(
-            "Cycle 9 wrapped Friday at 5 PM PT. Here's how the team did against what you committed to two weeks ago — completion rate is your best yet (88%), and only 6 issues carried over.",
+            "Cycle 9 wrapped Friday at 5 PM PT. Here's how the team did against what you committed to two weeks ago - completion rate is your best yet (88%), and only 6 issues carried over.",
           ),
           metricGrid([
             { label: "Completed", value: "42", sub: "of 48 committed" },
@@ -3847,18 +3847,18 @@ function buildDemoThreads(): DemoThread[] {
             `Shipped <strong>VM-156</strong>: Inbox brain weekly digest (Aria + product)`,
           ),
           bullet(
-            `Bug fixed: <strong>VM-203</strong> — search filters not persisting on refresh`,
+            `Bug fixed: <strong>VM-203</strong> - search filters not persisting on refresh`,
           ),
           sectionTitle("Carried into Cycle 10"),
-          bullet("VM-118 · Outlook beta polish — 60% complete"),
-          bullet("VM-167 · Scheduled-send dashboard — blocked on design"),
+          bullet("VM-118 · Outlook beta polish - 60% complete"),
+          bullet("VM-167 · Scheduled-send dashboard - blocked on design"),
           bullet("VM-174 · Aurinko fallback endpoint switching"),
-          bullet("VM-181 · Mobile responsive — needs another sprint"),
+          bullet("VM-181 · Mobile responsive - needs another sprint"),
           bullet("VM-189 · Cron job observability"),
           bullet("VM-192 · Postmortem doc workflow"),
           sectionTitle("Up next · Cycle 10 begins Monday"),
           p(
-            "47 issues triaged into Cycle 10 (already started planning). Capacity check looks healthy; we're at 84% of stretch — leaving room for spec'd work that comes in this week.",
+            "47 issues triaged into Cycle 10 (already started planning). Capacity check looks healthy; we're at 84% of stretch - leaving room for spec'd work that comes in this week.",
           ),
           ctaRow([
             ctaButton("View cycle in Linear", { color: "#5e6ad2" }),
@@ -3891,16 +3891,16 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Seats included", value: "Unlimited editors + viewers" },
             { label: "Active editors", value: "8 editors, 14 viewers" },
             { label: "Billing change", value: "$45/editor/mo (was $15/editor/mo)" },
-            { label: "Effective immediately", value: "Yes — pro-rated charge on next invoice" },
+            { label: "Effective immediately", value: "Yes - pro-rated charge on next invoice" },
             { label: "Next invoice", value: "June 9, 2026 · ~$3,420" },
           ]),
           sectionTitle("New features your team can use today"),
-          bullet("<strong>Design systems</strong> — shared component libraries across multiple files, with versioning and update tracking."),
-          bullet("<strong>Branching</strong> — create design branches on top of your main file, review changes, merge back. Like git for designs."),
-          bullet("<strong>Advanced permissions</strong> — set per-file and per-folder permissions, including view-only and comment-only modes."),
-          bullet("<strong>SSO + SCIM</strong> — Okta SSO and SCIM provisioning for adding/removing teammates automatically."),
-          bullet("<strong>Audit log</strong> — full activity history for compliance and incident response."),
-          bullet("<strong>Variable themes</strong> — share design tokens across your team and apply them to any component."),
+          bullet("<strong>Design systems</strong> - shared component libraries across multiple files, with versioning and update tracking."),
+          bullet("<strong>Branching</strong> - create design branches on top of your main file, review changes, merge back. Like git for designs."),
+          bullet("<strong>Advanced permissions</strong> - set per-file and per-folder permissions, including view-only and comment-only modes."),
+          bullet("<strong>SSO + SCIM</strong> - Okta SSO and SCIM provisioning for adding/removing teammates automatically."),
+          bullet("<strong>Audit log</strong> - full activity history for compliance and incident response."),
+          bullet("<strong>Variable themes</strong> - share design tokens across your team and apply them to any component."),
           sectionTitle("Setup we'd recommend in the first 30 days"),
           bullet("Set up SSO via Okta (~30 min, requires admin)."),
           bullet("Migrate your existing component library into the new Design Systems area."),
@@ -3984,7 +3984,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #0caa41; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Credit applied · Twilio for AI Startups</span></div>`,
           headline("$200 in credits applied to your Twilio account"),
           p(
-            "Congratulations — you've been approved for the <strong>Twilio for AI Startups</strong> program. We've added $200 in account credit, which you can use across any Twilio product (SMS, Voice, WhatsApp, Verify, etc.).",
+            "Congratulations - you've been approved for the <strong>Twilio for AI Startups</strong> program. We've added $200 in account credit, which you can use across any Twilio product (SMS, Voice, WhatsApp, Verify, etc.).",
           ),
           bigStat("Credit balance added", "$200.00 USD", { color: "#0caa41" }),
           keyValBlock([
@@ -3997,7 +3997,7 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("What's next"),
           p(
-            "Your credit was applied automatically — you don't need to do anything. It will be consumed first before we charge your card for any usage. If you have unused credit at the 12-month mark, it expires (it doesn't roll over).",
+            "Your credit was applied automatically - you don't need to do anything. It will be consumed first before we charge your card for any usage. If you have unused credit at the 12-month mark, it expires (it doesn't roll over).",
           ),
           sectionTitle("Get more out of Twilio for AI Startups"),
           bullet("<strong>Free tier consultation</strong> with a Twilio AI solutions engineer (45 min)."),
@@ -4029,7 +4029,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("1Password"),
           headline("Marcus shared a vault with you"),
           p(
-            `<strong>Marcus Liu</strong> shared the <strong>Production secrets</strong> vault with you in the <em>VectorMail Engineering</em> business account. Items are immediately available — open 1Password to access.`,
+            `<strong>Marcus Liu</strong> shared the <strong>Production secrets</strong> vault with you in the <em>VectorMail Engineering</em> business account. Items are immediately available - open 1Password to access.`,
           ),
           keyValBlock([
             { label: "Vault", value: "Production secrets" },
@@ -4037,7 +4037,7 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Your permission level", value: "Manage (read, write, share with admin approval)" },
             { label: "Shared by", value: "Marcus Liu · marcus@vectormail.app" },
             { label: "Shared on", value: "Friday, May 14, 2026 · 11:18 AM PT" },
-            { label: "Vault audit trail", value: "Enabled — your accesses are logged" },
+            { label: "Vault audit trail", value: "Enabled - your accesses are logged" },
           ]),
           sectionTitle("What's in this vault"),
           bullet("Production database credentials (read-write + read-only)"),
@@ -4047,7 +4047,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("TLS certificates and PKI material"),
           sectionTitle("Reminders before you use this"),
           infoCard(
-            `<strong>Audit trail is on.</strong> Every read of an item in this vault is logged and reviewed during SOC 2 audits. Don't copy values to personal notes or password managers — keep them in 1Password and use the CLI / browser extension instead.`,
+            `<strong>Audit trail is on.</strong> Every read of an item in this vault is logged and reviewed during SOC 2 audits. Don't copy values to personal notes or password managers - keep them in 1Password and use the CLI / browser extension instead.`,
             { tone: "warn" },
           ),
           ctaRow([
@@ -4084,15 +4084,15 @@ function buildDemoThreads(): DemoThread[] {
             { accent: "#f59e0b" },
           ),
           infoCard(
-            `<div style="font-size: 14.5px;"><strong>Datadog</strong> · $895.00 · May 12, 2026 · Card •• 1842 · Auto-categorized: Software</div><div style="font-size: 13px; color: #5f6368; margin-top: 4px;">9 days outstanding. Monthly bill — receipt was emailed to billing@vectormail.app on May 12. Find and forward.</div>`,
+            `<div style="font-size: 14.5px;"><strong>Datadog</strong> · $895.00 · May 12, 2026 · Card •• 1842 · Auto-categorized: Software</div><div style="font-size: 13px; color: #5f6368; margin-top: 4px;">9 days outstanding. Monthly bill - receipt was emailed to billing@vectormail.app on May 12. Find and forward.</div>`,
             { accent: "#f59e0b" },
           ),
           infoCard(
-            `<div style="font-size: 14.5px;"><strong>United Airlines</strong> · $612.40 · May 9, 2026 · Card •• 1842 · Auto-categorized: Travel</div><div style="font-size: 13px; color: #5f6368; margin-top: 4px;">12 days outstanding. Likely your SFO-JFK flight. United emails receipts to the booking email — search inbox for 'UA 1142'.</div>`,
+            `<div style="font-size: 14.5px;"><strong>United Airlines</strong> · $612.40 · May 9, 2026 · Card •• 1842 · Auto-categorized: Travel</div><div style="font-size: 13px; color: #5f6368; margin-top: 4px;">12 days outstanding. Likely your SFO-JFK flight. United emails receipts to the booking email - search inbox for 'UA 1142'.</div>`,
             { accent: "#f59e0b" },
           ),
           sectionTitle("How to attach (any of the 3 work)"),
-          bullet("<strong>Email:</strong> Forward the original receipt to <code>receipts@brex.com</code> from this address — Brex auto-matches it."),
+          bullet("<strong>Email:</strong> Forward the original receipt to <code>receipts@brex.com</code> from this address - Brex auto-matches it."),
           bullet("<strong>App:</strong> Open the Brex app → Recent → tap the transaction → 'Add receipt' → snap or upload."),
           bullet("<strong>Slack:</strong> DM @Brex in Slack with the receipt + transaction ID."),
           ctaRow([
@@ -4120,7 +4120,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #0caa41; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Wire received · Funds available</span></div>`,
           headline("$45,000.00 wire from Brightlane Holdings has cleared"),
           p(
-            `A wire transfer was credited to your Mercury Checking account this morning. Funds are immediately available — no holding period for inbound wires.`,
+            `A wire transfer was credited to your Mercury Checking account this morning. Funds are immediately available - no holding period for inbound wires.`,
           ),
           bigStat("Amount received", "$45,000.00 USD", { color: "#0caa41" }),
           keyValBlock([
@@ -4138,9 +4138,9 @@ function buildDemoThreads(): DemoThread[] {
             { tone: "ok" },
           ),
           sectionTitle("Anti-fraud check"),
-          bullet("Sender on file? <strong>Yes</strong> — Brightlane Holdings has sent wires to this account 6 times in the past 12 months."),
-          bullet("Amount matches expected invoice? <strong>Yes</strong> — exact match to INV-0091."),
-          bullet("Originating bank matches history? <strong>Yes</strong> — First Republic, same as prior wires."),
+          bullet("Sender on file? <strong>Yes</strong> - Brightlane Holdings has sent wires to this account 6 times in the past 12 months."),
+          bullet("Amount matches expected invoice? <strong>Yes</strong> - exact match to INV-0091."),
+          bullet("Originating bank matches history? <strong>Yes</strong> - First Republic, same as prior wires."),
           ctaRow([
             ctaButton("View transaction", { color: "#0f1c3f" }),
             ctaButton("Mark invoice paid in Stripe", { color: "#0f1c3f", variant: "outline" }),
@@ -4170,7 +4170,7 @@ function buildDemoThreads(): DemoThread[] {
             "Per your team's rotation policy, the webhook signing secret for your <strong>Sandbox environment</strong> was rotated on May 14, 2026 at 11:42 AM PT. Webhook deliveries to your sandbox endpoint will fail signature verification until you update the environment variable.",
           ),
           keyValBlock([
-            { label: "Environment", value: "Sandbox (test data only — Production is unaffected)" },
+            { label: "Environment", value: "Sandbox (test data only - Production is unaffected)" },
             { label: "Rotated by", value: "marcus@vectormail.app · auto-policy (90-day rotation)" },
             { label: "Old secret", value: "Last 4: ••••8F2A · revoked at 11:47 AM" },
             { label: "New secret", value: "Available in your Plaid dashboard · view-once" },
@@ -4184,7 +4184,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Trigger a test webhook delivery to confirm signature verification passes."),
           sectionTitle("If you're unsure where this is configured"),
           infoCard(
-            "Check <code>src/app/api/plaid/webhook/route.ts</code> in the codebase — that's where the signing secret is loaded. Your Vercel preview environment variable is <code>PLAID_WEBHOOK_SIGNING_SECRET</code> on the <code>vectormail-ai</code> project.",
+            "Check <code>src/app/api/plaid/webhook/route.ts</code> in the codebase - that's where the signing secret is loaded. Your Vercel preview environment variable is <code>PLAID_WEBHOOK_SIGNING_SECRET</code> on the <code>vectormail-ai</code> project.",
             { tone: "info" },
           ),
           ctaRow([
@@ -4210,9 +4210,9 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "Board meeting invite from Hana Cho. 2 PM PT, May 28.",
         body: email([
           brandBlock("Calendar"),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "28", weekday: "Thu" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Q2 Board Meeting · VectorMail</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">2:00 PM – 4:00 PM PT · 2 hours</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Hybrid · Forerunner Ventures office + Zoom</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "28", weekday: "Thu" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Q2 Board Meeting · VectorMail</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">2:00 PM - 4:00 PM PT · 2 hours</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Hybrid · Forerunner Ventures office + Zoom</div></td></tr></table>`,
           p(
-            "<strong>Hana Cho</strong> (Forerunner) is inviting you to the May board meeting. Pre-read materials were posted to the shared drive on Friday — please read before the meeting so we can spend time on decisions, not on context.",
+            "<strong>Hana Cho</strong> (Forerunner) is inviting you to the May board meeting. Pre-read materials were posted to the shared drive on Friday - please read before the meeting so we can spend time on decisions, not on context.",
           ),
           sectionTitle("Where"),
           keyValBlock([
@@ -4224,13 +4224,13 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Dial-in", value: "+1 (669) 900-6833 · ID 812 44 901 · PIN 4421" },
           ]),
           sectionTitle("Agenda (drafted)"),
-          logRow("2:00 – 2:10", "Welcome + safety message · Hana", { tone: "info" }),
-          logRow("2:10 – 2:35", "Q1 + April KPIs · CEO + CFO", { tone: "info" }),
-          logRow("2:35 – 2:55", "Customer wins + pipeline · CRO", { tone: "info" }),
-          logRow("2:55 – 3:15", "Hiring plan through Q3 · Head of People", { tone: "info" }),
-          logRow("3:15 – 3:35", "Product roadmap + Q3 themes · CPO", { tone: "info" }),
-          logRow("3:35 – 3:55", "Governance items · Counsel", { tone: "warn" }),
-          logRow("3:55 – 4:00", "Wrap-up + AOB", { tone: "info" }),
+          logRow("2:00 - 2:10", "Welcome + safety message · Hana", { tone: "info" }),
+          logRow("2:10 - 2:35", "Q1 + April KPIs · CEO + CFO", { tone: "info" }),
+          logRow("2:35 - 2:55", "Customer wins + pipeline · CRO", { tone: "info" }),
+          logRow("2:55 - 3:15", "Hiring plan through Q3 · Head of People", { tone: "info" }),
+          logRow("3:15 - 3:35", "Product roadmap + Q3 themes · CPO", { tone: "info" }),
+          logRow("3:35 - 3:55", "Governance items · Counsel", { tone: "warn" }),
+          logRow("3:55 - 4:00", "Wrap-up + AOB", { tone: "info" }),
           sectionTitle("Decisions needed"),
           bullet("Approval to expand hiring plan by +3 heads in Q3."),
           bullet("Authorize $250K bridge facility with SVB (already vetted by counsel)."),
@@ -4262,7 +4262,7 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "Monthly all-hands. Dana hosting.",
         body: email([
           brandBlock("Calendar"),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "23", weekday: "Fri" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">All-Hands · May</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">10:00 AM – 10:45 AM PT · 45 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Office + Zoom · monthly</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "23", weekday: "Fri" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">All-Hands · May</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">10:00 AM - 10:45 AM PT · 45 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Office + Zoom · monthly</div></td></tr></table>`,
           p(
             "Monthly all-hands. Dana is hosting and Marcus + Elena will be demoing Buddy v2. We're keeping it tight (45 min instead of 60) so everyone can get back to focused work before the weekend.",
           ),
@@ -4274,13 +4274,13 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Calendar", value: "Work" },
           ]),
           sectionTitle("Agenda"),
-          logRow("10:00 – 10:10", "CEO update · KPIs, hiring, customer wins", { tone: "info" }),
-          logRow("10:10 – 10:25", "Product demo: Buddy v2 streaming · Marcus + Elena", { tone: "info" }),
-          logRow("10:25 – 10:40", "Live Q&A — submit questions in Slido in advance", { tone: "info" }),
-          logRow("10:40 – 10:45", "Wrap + birthdays this month", { tone: "info" }),
+          logRow("10:00 - 10:10", "CEO update · KPIs, hiring, customer wins", { tone: "info" }),
+          logRow("10:10 - 10:25", "Product demo: Buddy v2 streaming · Marcus + Elena", { tone: "info" }),
+          logRow("10:25 - 10:40", "Live Q&A - submit questions in Slido in advance", { tone: "info" }),
+          logRow("10:40 - 10:45", "Wrap + birthdays this month", { tone: "info" }),
           sectionTitle("Pre-read"),
           bullet("Slides will be posted in <code>#all-hands</code> by 9 AM PT day-of."),
-          bullet("Anonymous Q&A is live now — submit anything you want addressed."),
+          bullet("Anonymous Q&A is live now - submit anything you want addressed."),
           bullet("Recording will be in the shared drive within 30 min of the meeting."),
           ctaRow([
             ctaButton("Yes", { color: "#0caa41" }),
@@ -4306,14 +4306,14 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "Renewal call with Sophia (Brightlane). May 20, 3 PM.",
         body: email([
           brandBlock("Calendar"),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "20", weekday: "Tue" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Brightlane renewal call</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">3:00 PM – 3:30 PM PT · 30 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Zoom · with Sophia Pereira</div></td></tr></table>`,
-          p("Q2 renewal conversation with Sophia at Brightlane. They're expanding 50 → 75 seats and asking for a 10% volume discount + 12-month price lock. Aria has the quote ready — please review before the call."),
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "20", weekday: "Tue" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Brightlane renewal call</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">3:00 PM - 3:30 PM PT · 30 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Zoom · with Sophia Pereira</div></td></tr></table>`,
+          p("Q2 renewal conversation with Sophia at Brightlane. They're expanding 50 → 75 seats and asking for a 10% volume discount + 12-month price lock. Aria has the quote ready - please review before the call."),
           sectionTitle("Where"),
           keyValBlock([
             { label: "Video", value: `<a href="#" style="color: #1a73e8; text-decoration: none;">brightlane.zoom.us/j/4188-99-2841</a>` },
             { label: "Organizer", value: "Sophia Pereira (sophia@brightlane.io)" },
             { label: "Brightlane attendees", value: "Sophia Pereira (VP Eng), Tomas Reyes (CFO)" },
-            { label: "Our attendees", value: "You + Aria Singh" },
+            { label: "Our attendees", value: "You + Aria Lawson" },
           ]),
           sectionTitle("Pre-read · quote + relationship history"),
           bullet("<strong>Current state:</strong> 50 seats · $99/seat/mo · ~$59.4K ARR · 9 months tenure"),
@@ -4345,9 +4345,9 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "30 min coffee with Lina. Mission district, May 21, 9 AM.",
         body: email([
           brandBlock("Calendar"),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "21", weekday: "Wed" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Coffee with Lina Ortiz</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">9:00 AM – 9:30 AM PT · 30 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Ritual Coffee, Valencia · in-person</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "21", weekday: "Wed" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Coffee with Lina Ortiz</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">9:00 AM - 9:30 AM PT · 30 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Ritual Coffee, Valencia · in-person</div></td></tr></table>`,
           p(
-            "Standing quarterly with Lina from Greenhouse — our senior recruiting partner. She runs the talent market intel for ~30 portfolio companies and is always a good check on how we're calibrated on comp, leveling, and the broader hiring market.",
+            "Standing quarterly with Lina from Greenhouse - our senior recruiting partner. She runs the talent market intel for ~30 portfolio companies and is always a good check on how we're calibrated on comp, leveling, and the broader hiring market.",
           ),
           sectionTitle("Where"),
           keyValBlock([
@@ -4388,25 +4388,25 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #f59e0b; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Rescheduled · please reconfirm</span></div>`,
           headline("Design review · moved to Wednesday 2 PM"),
           p(
-            "Taylor moved the Q1 design review. The meeting has been rescheduled to <strong>Wednesday, May 21 · 2:00 PM – 3:00 PM PT</strong> (was Tuesday May 20 at 10 AM). Your calendar has been automatically updated; please reconfirm.",
+            "Taylor moved the Q1 design review. The meeting has been rescheduled to <strong>Wednesday, May 21 · 2:00 PM - 3:00 PM PT</strong> (was Tuesday May 20 at 10 AM). Your calendar has been automatically updated; please reconfirm.",
           ),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "21", weekday: "Wed" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 17px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Design review · Q1 roadmap</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">2:00 PM – 3:00 PM PT · 60 min</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "21", weekday: "Wed" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 17px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Design review · Q1 roadmap</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">2:00 PM - 3:00 PM PT · 60 min</div></td></tr></table>`,
           sectionTitle("Organizer note"),
           infoCard(
-            `<strong>Taylor:</strong> "Conflict came up on my end with the Brightlane onsite — sorry for the shuffle. New time should work for the same group. Recording will be available afterward for anyone who can't make Wed."`,
+            `<strong>Taylor:</strong> "Conflict came up on my end with the Brightlane onsite - sorry for the shuffle. New time should work for the same group. Recording will be available afterward for anyone who can't make Wed."`,
             { tone: "warn" },
           ),
           sectionTitle("Where"),
           keyValBlock([
             { label: "Video", value: `<a href="#" style="color: #1a73e8; text-decoration: none;">meet.google.com/vmh-design-q1</a>` },
-            { label: "Figma", value: `<a href="#" style="color: #1a73e8; text-decoration: none;">Q1 — Designs for review</a>` },
+            { label: "Figma", value: `<a href="#" style="color: #1a73e8; text-decoration: none;">Q1 - Designs for review</a>` },
             { label: "Pre-read", value: "Read Figma + comments before the meeting" },
           ]),
           sectionTitle("What's still on the agenda"),
-          bullet("Inbox v3 triage column — first sharpened pass"),
-          bullet("Buddy chat surface — final review"),
-          bullet("Settings IA — first cut"),
-          bullet("Mobile shell — first proper look"),
+          bullet("Inbox v3 triage column - first sharpened pass"),
+          bullet("Buddy chat surface - final review"),
+          bullet("Settings IA - first cut"),
+          bullet("Mobile shell - first proper look"),
           ctaRow([
             ctaButton("Reconfirm Wednesday", { color: "#0caa41" }),
             ctaButton("Propose another time", { color: "#1a73e8", variant: "outline" }),
@@ -4435,19 +4435,19 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("His note"),
           infoCard(
-            `"Conflict came up on my end — partner offsite landed Friday and I can't move it. Apologies for the late notice. Can we look at next week instead? I'm wide open Tuesday through Thursday — your pick. Still want to catch up on the Series A close + I owe you the intros to those fintech operators I mentioned."`,
+            `"Conflict came up on my end - partner offsite landed Friday and I can't move it. Apologies for the late notice. Can we look at next week instead? I'm wide open Tuesday through Thursday - your pick. Still want to catch up on the Series A close + I owe you the intros to those fintech operators I mentioned."`,
             { accent: "#5f6368" },
           ),
           sectionTitle("Original event"),
           keyValBlock([
-            { label: "Was", value: "Friday, May 22 · 12:30 PM – 1:30 PM PT" },
+            { label: "Was", value: "Friday, May 22 · 12:30 PM - 1:30 PM PT" },
             { label: "Where", value: "Tartine, 18th & Guerrero" },
             { label: "Status", value: "Declined · removed from your calendar" },
           ]),
           sectionTitle("Suggested next steps"),
           bullet("Reply to Sam directly to propose a new time. Easiest: send your Calendly link for next week."),
           bullet("Hold Tuesday-Thursday next week open until he confirms."),
-          bullet("Make sure to surface 'intros to fintech operators' when you reschedule — Hana asked about that 3 days ago and his are valuable."),
+          bullet("Make sure to surface 'intros to fintech operators' when you reschedule - Hana asked about that 3 days ago and his are valuable."),
           ctaRow([
             ctaButton("Reply to Sam", { color: "#1a73e8" }),
             ctaButton("Send Calendly link", { color: "#1a73e8", variant: "outline" }),
@@ -4468,9 +4468,9 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "30 min office hours with Hana. May 25, 4 PM.",
         body: email([
           brandBlock("Calendar"),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "25", weekday: "Mon" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">VC office hours · Hana Cho</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">4:00 PM – 4:30 PM PT · 30 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Forerunner Ventures, Letterman Drive (or Zoom)</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "25", weekday: "Mon" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">VC office hours · Hana Cho</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">4:00 PM - 4:30 PM PT · 30 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Forerunner Ventures, Letterman Drive (or Zoom)</div></td></tr></table>`,
           p(
-            "Monthly investor office hours with Hana at Forerunner. Open agenda — Hana likes 'bring whatever's on top' over structured. Use it for honest reality checks on whatever you're wrestling with.",
+            "Monthly investor office hours with Hana at Forerunner. Open agenda - Hana likes 'bring whatever's on top' over structured. Use it for honest reality checks on whatever you're wrestling with.",
           ),
           sectionTitle("Where"),
           keyValBlock([
@@ -4481,13 +4481,13 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Suggested topics this month"),
           bullet("<strong>The NRR question.</strong> She asked in March whether the jump from 108 to 117 was concentrated or broad-based. You owe her an answer with data."),
-          bullet("<strong>Mosaic Health intro.</strong> She offered an intro to Sam at Mosaic. You haven't confirmed yes/no — easiest answer is yes."),
+          bullet("<strong>Mosaic Health intro.</strong> She offered an intro to Sam at Mosaic. You haven't confirmed yes/no - easiest answer is yes."),
           bullet("<strong>Pricing reset.</strong> The variant-B rollout is live. Share early results since this is one of her favorite topics."),
-          bullet("<strong>Wild card.</strong> Anything else you want fresh-eye input on — pricing, hiring, fundraising approach."),
+          bullet("<strong>Wild card.</strong> Anything else you want fresh-eye input on - pricing, hiring, fundraising approach."),
           sectionTitle("Pre-prep"),
           bullet("Bring the NRR cohort cut Hana asked for in March."),
           bullet("Have one specific question ready that's actually keeping you up at night."),
-          bullet("She always closes with 'what can I help with' — have a real ask."),
+          bullet("She always closes with 'what can I help with' - have a real ask."),
           ctaRow([
             ctaButton("Yes", { color: "#0caa41" }),
             ctaButton("Maybe", { color: "#1a73e8", variant: "outline" }),
@@ -4514,18 +4514,18 @@ function buildDemoThreads(): DemoThread[] {
           p("Theo Vargas (Castleworks) cancelled the lunch you had booked for Friday May 22 at 1:00 PM. He's working on a new time and will send a replacement invite separately."),
           sectionTitle("Original event"),
           keyValBlock([
-            { label: "Was", value: "Friday, May 22 · 1:00 PM – 2:00 PM PT" },
+            { label: "Was", value: "Friday, May 22 · 1:00 PM - 2:00 PM PT" },
             { label: "Where", value: "Tartine Manufactory" },
             { label: "Status", value: "Cancelled · removed from calendar" },
           ]),
           sectionTitle("Organizer note"),
           infoCard(
-            `<strong>Theo:</strong> "Something came up at Castleworks that I need to handle this week — apologies for the late notice. I'll send a new invite for next week. Don't book this slot back up yet — I'll try to lock by Tuesday."`,
+            `<strong>Theo:</strong> "Something came up at Castleworks that I need to handle this week - apologies for the late notice. I'll send a new invite for next week. Don't book this slot back up yet - I'll try to lock by Tuesday."`,
             { accent: "#5f6368" },
           ),
           sectionTitle("Suggested follow-up"),
           bullet("Wait until Tuesday for Theo's replacement invite (he said he'd lock it by then)."),
-          bullet("If you don't hear from Theo by Wednesday, send a friendly nudge — it's worth keeping this on the calendar given he's a paying customer."),
+          bullet("If you don't hear from Theo by Wednesday, send a friendly nudge - it's worth keeping this on the calendar given he's a paying customer."),
           ctaRow([
             ctaButton("Reply to Theo", { color: "#1a73e8" }),
           ]),
@@ -4554,7 +4554,7 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("What's in this issue"),
           listItem({
             title: "The 5 levels every PM ladder needs (and why most teams only use 3)",
-            meta: "PM I, PM II, Senior PM, Staff PM, Principal PM — with the specific evidence each level requires.",
+            meta: "PM I, PM II, Senior PM, Staff PM, Principal PM - with the specific evidence each level requires.",
             emoji: "🪜",
           }),
           listItem({
@@ -4574,7 +4574,7 @@ function buildDemoThreads(): DemoThread[] {
           }),
           sectionTitle("One quote that stuck with me"),
           infoCard(
-            `"The most expensive leveling mistake startups make is over-leveling early hires to compete for talent. It feels like a win in the moment, but it inflates the org chart and makes the next 30 hires harder to recruit. Bands compress fast in companies that under-discipline this." — VP Product at a Series B company, anonymized.`,
+            `"The most expensive leveling mistake startups make is over-leveling early hires to compete for talent. It feels like a win in the moment, but it inflates the org chart and makes the next 30 hires harder to recruit. Bands compress fast in companies that under-discipline this." - VP Product at a Series B company, anonymized.`,
             { accent: "#dc2626" },
           ),
           sectionTitle("Templates you can copy today"),
@@ -4587,7 +4587,7 @@ function buildDemoThreads(): DemoThread[] {
             ctaButton("Forward to a friend", { color: "#dc2626", variant: "outline" }),
           ]),
           fineprint(
-            "Keep building. — Lenny<br/>This took 6 weeks to research. If you found it useful, the best thing you can do is share with one PM friend. That's how this newsletter grows.",
+            "Keep building. - Lenny<br/>This took 6 weeks to research. If you found it useful, the best thing you can do is share with one PM friend. That's how this newsletter grows.",
           ),
           companyEmailFooter("Lenny's Newsletter"),
         ]),
@@ -4607,31 +4607,31 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 4px 0; font-size: 12px; color: #80868b; letter-spacing: 0.8px; text-transform: uppercase; font-weight: 600;">Daily Update · May 14, 2026</div>`,
           headline("AI Agents and the Platform Shift"),
           p(
-            `<em>Subscriber edition — please don't forward this email; if a colleague wants to read it, they can subscribe at stratechery.com.</em>`,
+            `<em>Subscriber edition - please don't forward this email; if a colleague wants to read it, they can subscribe at stratechery.com.</em>`,
           ),
           p(
             "Every fifteen years or so, the layer where software gets built and distributed shifts. Mainframes to PCs (1980s). PCs to web (mid-90s). Web to mobile (2008). Mobile to cloud (2014). The pattern is consistent: a new substrate emerges that disrupts the economics of distribution, and the incumbents who control distribution at the prior layer either reinvent themselves or get disrupted.",
           ),
           p(
-            "AI agents are the next platform shift. Not the model itself — the model is more like the GPU of this era. The platform shift is the layer of software that orchestrates models, tools, and user intent end-to-end. The companies that win this layer will define the economics of software distribution for the next decade.",
+            "AI agents are the next platform shift. Not the model itself - the model is more like the GPU of this era. The platform shift is the layer of software that orchestrates models, tools, and user intent end-to-end. The companies that win this layer will define the economics of software distribution for the next decade.",
           ),
           sectionTitle("Today's argument · three claims"),
           bullet(
             "<strong>Distribution is shifting from app stores to agents.</strong> Users no longer want to learn 30 apps to do their work; they want to describe their intent and have it be handled. The interface to software is changing.",
           ),
           bullet(
-            "<strong>Aggregation theory still applies, but the aggregators are different.</strong> The companies that own the user's intent layer (where you direct the agent) will be the aggregators. Today that's OpenAI, Anthropic, Google. Tomorrow it could be the OS layer — Apple, Microsoft.",
+            "<strong>Aggregation theory still applies, but the aggregators are different.</strong> The companies that own the user's intent layer (where you direct the agent) will be the aggregators. Today that's OpenAI, Anthropic, Google. Tomorrow it could be the OS layer - Apple, Microsoft.",
           ),
           bullet(
-            "<strong>Vertical specialists will not be disrupted by horizontal agents — at least not initially.</strong> The economics of getting the long tail of workflows right are not in the agent's favor. Vertical AI products will win the next 5 years; horizontal agents will eat them in years 7-10.",
+            "<strong>Vertical specialists will not be disrupted by horizontal agents - at least not initially.</strong> The economics of getting the long tail of workflows right are not in the agent's favor. Vertical AI products will win the next 5 years; horizontal agents will eat them in years 7-10.",
           ),
           sectionTitle("Who's positioned well"),
           p(
-            "Microsoft (Copilot + OS distribution), Apple (devices + privacy story), and OpenAI/Anthropic (model + first-party agent surface). Google has the strongest theoretical position — they own search, devices, productivity, and models — but execution has been weaker than the others.",
+            "Microsoft (Copilot + OS distribution), Apple (devices + privacy story), and OpenAI/Anthropic (model + first-party agent surface). Google has the strongest theoretical position - they own search, devices, productivity, and models - but execution has been weaker than the others.",
           ),
           sectionTitle("Who's positioned poorly"),
           p(
-            "Notion-style horizontal productivity tools without a clear AI moat. Salesforce as the aggregator of business workflows — they're trying to become the agent layer but their distribution surface (Slack) is being eaten by Microsoft + AI-native challengers.",
+            "Notion-style horizontal productivity tools without a clear AI moat. Salesforce as the aggregator of business workflows - they're trying to become the agent layer but their distribution surface (Slack) is being eaten by Microsoft + AI-native challengers.",
           ),
           ctaRow([
             ctaButton("Read the full update", { color: "#ed1c24" }),
@@ -4661,7 +4661,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("Top story"),
           infoCard(
-            `<div style="font-size: 15px; font-weight: 600; color: #1f1f1f; margin-bottom: 6px;">OpenAI's New Flagship Model Beats Claude on Internal Benchmarks</div><div style="font-size: 13px; color: #5f6368; margin-bottom: 8px;">By Stephanie Palazzolo · 8-min read</div><div style="font-size: 14px; color: #1f1f1f; line-height: 1.55;">According to three sources familiar with internal testing, OpenAI's unreleased GPT-5.1 outperforms Claude 4.7 by 4-7% on coding and reasoning benchmarks, with substantial gains on agentic tool-use. The model is expected to ship in late June. Pricing leaked at $5/1M input, $20/1M output — a 30% discount vs current GPT-4.1.</div>`,
+            `<div style="font-size: 15px; font-weight: 600; color: #1f1f1f; margin-bottom: 6px;">OpenAI's New Flagship Model Beats Claude on Internal Benchmarks</div><div style="font-size: 13px; color: #5f6368; margin-bottom: 8px;">By Stephanie Palazzolo · 8-min read</div><div style="font-size: 14px; color: #1f1f1f; line-height: 1.55;">According to three sources familiar with internal testing, OpenAI's unreleased GPT-5.1 outperforms Claude 4.7 by 4-7% on coding and reasoning benchmarks, with substantial gains on agentic tool-use. The model is expected to ship in late June. Pricing leaked at $5/1M input, $20/1M output - a 30% discount vs current GPT-4.1.</div>`,
             { accent: "#d4af37" },
           ),
           sectionTitle("Also today"),
@@ -4678,12 +4678,12 @@ function buildDemoThreads(): DemoThread[] {
             meta: "Sources at Apple say the on-device agentic features previewed at last year's WWDC have slipped to iOS 19 from iOS 18.4.",
           }),
           listItem({
-            title: "Nvidia's Quarter Beats — but Concentration Risk Grows",
+            title: "Nvidia's Quarter Beats - but Concentration Risk Grows",
             meta: "60% of last quarter's revenue came from just 4 hyperscaler customers. The Information's analysis on what this means for the next 4 quarters.",
           }),
           sectionTitle("Trending in the comments"),
           p(
-            "Subscriber discussion on yesterday's piece on 'Why Microsoft Will Win the Agent Wars' is at 412 comments and counting — the most-discussed piece this year. Worth a read of the top-rated reply.",
+            "Subscriber discussion on yesterday's piece on 'Why Microsoft Will Win the Agent Wars' is at 412 comments and counting - the most-discussed piece this year. Worth a read of the top-rated reply.",
           ),
           ctaRow([
             ctaButton("Read full briefing", { color: "#000000" }),
@@ -4708,17 +4708,17 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 4px 0; font-size: 12px; color: #ed1c24; letter-spacing: 0.8px; text-transform: uppercase; font-weight: 600;">Founder playbooks · 18-min read</div>`,
           headline("The first 10 enterprise sales · what 50+ founders wish they'd known"),
           p(
-            "We surveyed 50+ founders across our portfolio about their first 10 enterprise customers — what worked, what didn't, what they'd do differently. The result is a playbook for the most counterintuitive phase of building a B2B company: when no one on the team has a sales background, and every deal feels like a one-off.",
+            "We surveyed 50+ founders across our portfolio about their first 10 enterprise customers - what worked, what didn't, what they'd do differently. The result is a playbook for the most counterintuitive phase of building a B2B company: when no one on the team has a sales background, and every deal feels like a one-off.",
           ),
           sectionTitle("Five patterns that show up over and over"),
-          bullet("<strong>Discount everything in year 1.</strong> The data is unambiguous — first-year customers should be 30-50% below your standard pricing in exchange for written feedback and a willingness to be a reference. Founders who 'held the line' on pricing in the first 10 deals lost 70% of them."),
-          bullet("<strong>You don't need an AE until your 11th customer.</strong> Founders close the first 10. Hiring earlier means you teach an AE a sales motion that doesn't exist yet — they fail, and you blame them. Don't."),
+          bullet("<strong>Discount everything in year 1.</strong> The data is unambiguous - first-year customers should be 30-50% below your standard pricing in exchange for written feedback and a willingness to be a reference. Founders who 'held the line' on pricing in the first 10 deals lost 70% of them."),
+          bullet("<strong>You don't need an AE until your 11th customer.</strong> Founders close the first 10. Hiring earlier means you teach an AE a sales motion that doesn't exist yet - they fail, and you blame them. Don't."),
           bullet("<strong>Build a sales artifact, not a pitch deck.</strong> A one-page case study from your first customer is worth 10× more than a 30-slide pitch deck. Spend time making it perfect."),
           bullet("<strong>Procurement gates are the real bottleneck.</strong> SOC 2, MSA template, security questionnaires, DPA. Build a 'procurement-ready' kit before customer #2, not customer #10."),
           bullet("<strong>Founder-led sales is the only sustainable signal of PMF.</strong> If you can't sell it, no one else can. Period."),
           sectionTitle("Featured founder · Marisol Choi, CEO of Lattice"),
           infoCard(
-            `"I made every mistake in this playbook. The biggest one: I tried to hire an AE in year one because I hated selling. The AE was great at selling — for a product that didn't exist yet. We didn't have a sales motion to transfer, we had a series of founder conversations. The AE quit after 4 months because she couldn't repeat what I was doing."`,
+            `"I made every mistake in this playbook. The biggest one: I tried to hire an AE in year one because I hated selling. The AE was great at selling - for a product that didn't exist yet. We didn't have a sales motion to transfer, we had a series of founder conversations. The AE quit after 4 months because she couldn't repeat what I was doing."`,
             { accent: "#ed1c24" },
           ),
           ctaRow([
@@ -4744,7 +4744,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 4px 0; font-size: 12px; color: #1a1a1a; letter-spacing: 0.8px; text-transform: uppercase; font-weight: 600;">Sunday essay · 22-min read</div>`,
           headline("The Vertical AI Moment"),
           p(
-            "Hey friends,<br/><br/>I want to argue something specific this week: the next 100 unicorns are going to be vertical AI companies, and the people building them are exactly the people who should be paying attention <em>right now</em> — not in 6 months when this is mainstream Twitter discourse.",
+            "Hey friends,<br/><br/>I want to argue something specific this week: the next 100 unicorns are going to be vertical AI companies, and the people building them are exactly the people who should be paying attention <em>right now</em> - not in 6 months when this is mainstream Twitter discourse.",
           ),
           sectionTitle("The argument in three pieces"),
           bullet(
@@ -4773,7 +4773,7 @@ function buildDemoThreads(): DemoThread[] {
             ctaButton("Read the full essay", { color: "#1a1a1a" }),
             ctaButton("Watch the podcast version", { color: "#fde047", variant: "outline" }),
           ]),
-          fineprint("Reply with what you're working on — I read every one. Not Boring is supported by sponsors that I personally vet. This week's sponsor: Mercury (banking).<br/><br/>Catch you next Sunday — Packy"),
+          fineprint("Reply with what you're working on - I read every one. Not Boring is supported by sponsors that I personally vet. This week's sponsor: Mercury (banking).<br/><br/>Catch you next Sunday - Packy"),
           companyEmailFooter("Not Boring"),
         ]),
         summary: "Newsletter. No action.",
@@ -4797,7 +4797,7 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Featured this week"),
           listItem({
             title: "The state of the engineering hiring market · Q2 2026",
-            meta: "Based on data from 47 companies and 12,000 candidates. The market is more bifurcated than ever — top 10% candidates have offers within 2 weeks; everyone else is stuck. The split is mostly explained by one variable.",
+            meta: "Based on data from 47 companies and 12,000 candidates. The market is more bifurcated than ever - top 10% candidates have offers within 2 weeks; everyone else is stuck. The split is mostly explained by one variable.",
             emoji: "📊",
           }),
           listItem({
@@ -4816,7 +4816,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("A staff engineer's career retrospective: 'I should have left earlier' (paid)"),
           sectionTitle("From the community"),
           p(
-            "Reader Drew K. wrote in with a great point on incident-response runbooks: 'The runbook nobody reads is worse than no runbook — at least with no runbook, people are calibrated to think for themselves.' Couldn't agree more.",
+            "Reader Drew K. wrote in with a great point on incident-response runbooks: 'The runbook nobody reads is worse than no runbook - at least with no runbook, people are calibrated to think for themselves.' Couldn't agree more.",
           ),
           ctaRow([
             ctaButton("Read everything", { color: "#16213e" }),
@@ -4839,10 +4839,10 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           brandBlock("Substack"),
           headline("3 new posts from people you follow"),
-          p("Three writers you follow published in the last 24 hours. Quick summaries below — tap any title to read the full post."),
+          p("Three writers you follow published in the last 24 hours. Quick summaries below - tap any title to read the full post."),
           listItem({
             title: "Lenny Rachitsky · How to ship faster without ruining quality",
-            meta: "9-min read · 412 likes · 38 comments · The 'speed without panic' framework Stripe used in 2018 that still applies — and the three places startups confuse 'speed' for 'recklessness.'",
+            meta: "9-min read · 412 likes · 38 comments · The 'speed without panic' framework Stripe used in 2018 that still applies - and the three places startups confuse 'speed' for 'recklessness.'",
             emoji: "✍️",
           }),
           listItem({
@@ -4856,9 +4856,9 @@ function buildDemoThreads(): DemoThread[] {
             emoji: "✍️",
           }),
           sectionTitle("Discover · trending in your network"),
-          bullet("'Why every Series B is rewriting their pricing right now' — by Hana Cho · 1.2K likes"),
-          bullet("'The post-AI cost stack for SaaS' — by Ben Thompson · 980 likes"),
-          bullet("'Hiring for adversarial product sense' — by Marisol Choi · 720 likes"),
+          bullet("'Why every Series B is rewriting their pricing right now' - by Hana Cho · 1.2K likes"),
+          bullet("'The post-AI cost stack for SaaS' - by Ben Thompson · 980 likes"),
+          bullet("'Hiring for adversarial product sense' - by Marisol Choi · 720 likes"),
           ctaRow([
             ctaButton("Open Substack", { color: "#ff6719" }),
             ctaButton("Manage subscriptions", { color: "#ff6719", variant: "outline" }),
@@ -4881,7 +4881,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Startup School"),
           headline("Week 4 talk available · Jessica Livingston on founder humility"),
           p(
-            "Hi,<br/><br/>Week 4 of YC Startup School is live. Jessica Livingston's talk this week is one of my personal favorites in the curriculum — it's about how the founders we backed who succeeded shared one trait that doesn't show up on any pitch deck: they listened harder than they talked.",
+            "Hi,<br/><br/>Week 4 of YC Startup School is live. Jessica Livingston's talk this week is one of my personal favorites in the curriculum - it's about how the founders we backed who succeeded shared one trait that doesn't show up on any pitch deck: they listened harder than they talked.",
           ),
           sectionTitle("This week's talk"),
           listItem({
@@ -4890,14 +4890,14 @@ function buildDemoThreads(): DemoThread[] {
             emoji: "🎥",
           }),
           sectionTitle("What you'll learn"),
-          bullet("Why the most successful founders we've backed were 'great listeners, not great talkers' — and the specific behaviors that show this trait in early conversations."),
-          bullet("How to spot when you're talking past your customer (vs. talking with them) — Jessica's specific test."),
+          bullet("Why the most successful founders we've backed were 'great listeners, not great talkers' - and the specific behaviors that show this trait in early conversations."),
+          bullet("How to spot when you're talking past your customer (vs. talking with them) - Jessica's specific test."),
           bullet("The 'first 50 customer conversations' framework that produced PMF for half of YC's most successful companies."),
           bullet("Why founders who 'know everything already' have the lowest success rate in our data, and how to avoid that trap."),
           sectionTitle("Recommended reading + exercises"),
           bullet("Do the 'Mom Test' exercise from Rob Fitzpatrick's book before next week. We provide the worksheet."),
           bullet("Ship the next 3 customer conversations as recorded calls (with permission) and transcribe them. You'll see things you missed in real time."),
-          bullet("Read the Startup School essay 'The Hidden Power of Listening' (2018, Jessica) — it's the written version of the talk, useful as a refresher."),
+          bullet("Read the Startup School essay 'The Hidden Power of Listening' (2018, Jessica) - it's the written version of the talk, useful as a refresher."),
           ctaRow([
             ctaButton("Watch the talk", { color: "#ff6600" }),
             ctaButton("Download transcript", { color: "#ff6600", variant: "outline" }),
@@ -4923,7 +4923,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #e91e63; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Speakers · Early-bird ends June 1</span></div>`,
           headline("MTP Engage 2026 speaker lineup is live"),
           p(
-            "We're excited to announce the full speaker lineup for <strong>MTP Engage 2026</strong>, happening October 17-18 in San Francisco. This year's program is the strongest in our history — 34 speakers across 3 stages, 2 days of workshops, and the legendary 'product-leader-only' dinner on the second night.",
+            "We're excited to announce the full speaker lineup for <strong>MTP Engage 2026</strong>, happening October 17-18 in San Francisco. This year's program is the strongest in our history - 34 speakers across 3 stages, 2 days of workshops, and the legendary 'product-leader-only' dinner on the second night.",
           ),
           metricGrid([
             { label: "Speakers", value: "34" },
@@ -4959,7 +4959,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Marisol Choi · CEO, Lattice"),
           bullet("Daniel Hsu · Director of Product, Stripe"),
           bullet("Sasha Hill · Staff PM, Anthropic"),
-          bullet("Aditya Mehta · CPO, Linear"),
+          bullet("Adam Reeves · CPO, Linear"),
           bullet("Drew Hwang · Director of Product, Brightlane"),
           sectionTitle("Pricing tiers"),
           keyValBlock([
@@ -4995,11 +4995,11 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #f59e0b; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Audit · 4 items open</span></div>`,
           headline("Your SOC 2 Type II audit kicks off in 7 days"),
           p(
-            "Your audit period for SOC 2 Type II begins <strong>Monday, May 26, 2026</strong>. Your auditor (Prescient Assurance) will start sampling evidence from that day forward. Below is a snapshot of where you stand — four open items remain, all resolvable this week.",
+            "Your audit period for SOC 2 Type II begins <strong>Monday, May 26, 2026</strong>. Your auditor (Prescient Assurance) will start sampling evidence from that day forward. Below is a snapshot of where you stand - four open items remain, all resolvable this week.",
           ),
           metricGrid([
             { label: "Auditor", value: "Prescient Assurance" },
-            { label: "Audit period", value: "May 26 – Nov 26", sub: "6 months" },
+            { label: "Audit period", value: "May 26 - Nov 26", sub: "6 months" },
             { label: "Policies", value: "100%", sub: "all approved" },
             { label: "Controls", value: "96%", sub: "4 open" },
             { label: "Evidence collected", value: "91%", sub: "auto + manual" },
@@ -5011,11 +5011,11 @@ function buildDemoThreads(): DemoThread[] {
             { tone: "warn" },
           ),
           infoCard(
-            `<strong>2. Vendor risk review — Aurinko</strong><br/><span style="color: #5f6368; font-size: 13px;">Owner: Aria · Due May 24 · SOC 2 report received; need to upload and complete the questionnaire in Vanta.</span>`,
+            `<strong>2. Vendor risk review - Aurinko</strong><br/><span style="color: #5f6368; font-size: 13px;">Owner: Aria · Due May 24 · SOC 2 report received; need to upload and complete the questionnaire in Vanta.</span>`,
             { tone: "warn" },
           ),
           infoCard(
-            `<strong>3. Vendor risk review — OpenRouter</strong><br/><span style="color: #5f6368; font-size: 13px;">Owner: Aria · Due May 24 · No SOC 2 available; alternate questionnaire from the vendor instead.</span>`,
+            `<strong>3. Vendor risk review - OpenRouter</strong><br/><span style="color: #5f6368; font-size: 13px;">Owner: Aria · Due May 24 · No SOC 2 available; alternate questionnaire from the vendor instead.</span>`,
             { tone: "warn" },
           ),
           infoCard(
@@ -5032,7 +5032,7 @@ function buildDemoThreads(): DemoThread[] {
             ctaButton("Message your auditor", { color: "#314CE5", variant: "outline" }),
           ]),
           fineprint(
-            "If any item slips past its due date, it becomes a finding for the audit. Vanta will retry evidence collection daily — keep your Slack notifications on.",
+            "If any item slips past its due date, it becomes a finding for the audit. Vanta will retry evidence collection daily - keep your Slack notifications on.",
           ),
           companyEmailFooter("Vanta"),
         ]),
@@ -5067,7 +5067,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("If this wasn't you"),
           infoCard(
-            "Someone may have access to your account. We recommend you sign out of all devices, change your password, and review your recent security activity — Google can walk you through each step on the security checkup page.",
+            "Someone may have access to your account. We recommend you sign out of all devices, change your password, and review your recent security activity - Google can walk you through each step on the security checkup page.",
             { tone: "danger" },
           ),
           ctaRow([
@@ -5111,7 +5111,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Cannot contain your name, email, or org name"),
           sectionTitle("MFA reminder"),
           infoCard(
-            "Your account uses Okta Verify Push as primary MFA. Keep your phone with you when you reset — you'll be prompted to approve.",
+            "Your account uses Okta Verify Push as primary MFA. Keep your phone with you when you reset - you'll be prompted to approve.",
             { tone: "info" },
           ),
           ctaRow([
@@ -5137,7 +5137,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           headline("GDPR data export request · Brightlane customer"),
           p(
-            "Hi,<br/><br/>Heads up — received a formal GDPR Article 15 data-access request from one of Brightlane's team members this morning. The user submitted through our self-serve portal. <strong>Handling is in motion under standard process — no action needed from you</strong>, but you should know this exists in case anything escalates.",
+            "Hi,<br/><br/>Heads up - received a formal GDPR Article 15 data-access request from one of Brightlane's team members this morning. The user submitted through our self-serve portal. <strong>Handling is in motion under standard process - no action needed from you</strong>, but you should know this exists in case anything escalates.",
           ),
           keyValBlock([
             { label: "Request type", value: "GDPR Article 15 · Right of Access (data export)" },
@@ -5146,21 +5146,21 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Submitted via", value: "Self-serve portal · privacy.vectormail.app/request" },
             { label: "Received", value: "Friday, May 15, 2026 · 9:32 AM PT" },
             { label: "Statutory deadline", value: "30 days · target complete May 28, 2026" },
-            { label: "Owner", value: "Aria Singh + Privacy team" },
+            { label: "Owner", value: "Aria Lawson + Privacy team" },
           ]),
           sectionTitle("What's being exported"),
           bullet("All emails synced for this user (~2,400 threads, ~14,800 individual messages)"),
           bullet("All AI-generated summaries, briefs, drafts attributed to this user"),
-          bullet("Account metadata: signup date, payment history (none — they're on the company plan), audit log of their access"),
+          bullet("Account metadata: signup date, payment history (none - they're on the company plan), audit log of their access"),
           bullet("Vector embeddings (we'll include them as raw arrays + an explanation of what they are)"),
           bullet("All linked support tickets and in-app messages"),
           sectionTitle("Process"),
           p(
-            "Standard pipeline: automated export runs via Aurinko + our analytics warehouse → privacy review (PII redaction check) → secure delivery via signed download link valid for 7 days. Target completion well within the 30-day window — likely by Wednesday next week.",
+            "Standard pipeline: automated export runs via Aurinko + our analytics warehouse → privacy review (PII redaction check) → secure delivery via signed download link valid for 7 days. Target completion well within the 30-day window - likely by Wednesday next week.",
           ),
           sectionTitle("When you'll hear from us again"),
           bullet("Day-of confirmation when the export is ready."),
-          bullet("Only if anything unusual surfaces in the review (e.g., they're asking us to also delete the data — which is a separate Article 17 request and goes through a different flow)."),
+          bullet("Only if anything unusual surfaces in the review (e.g., they're asking us to also delete the data - which is a separate Article 17 request and goes through a different flow)."),
           hr(),
           signature("Privacy team", "Privacy + Compliance · VectorMail", "privacy@vectormail.app"),
         ]),
@@ -5199,13 +5199,13 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>L-02.</strong> Content-Security-Policy header missing on /demo subroutes. <span style='color: #5f6368;'>CVSS 3.1</span>"),
           bullet("<strong>L-03.</strong> Default password policy allows 8-character passwords without complexity requirements. <span style='color: #5f6368;'>CVSS 2.9</span>"),
           sectionTitle("Informational (selected)"),
-          bullet("HSTS preload not enabled — recommend submitting to hstspreload.org."),
+          bullet("HSTS preload not enabled - recommend submitting to hstspreload.org."),
           bullet("Subresource Integrity not enforced on Marketing site."),
-          bullet("Webhook endpoints accept events older than 5 minutes — replay window."),
+          bullet("Webhook endpoints accept events older than 5 minutes - replay window."),
           bullet("Stripe webhook handler doesn't enforce <code>stripe-signature</code> timestamp."),
           sectionTitle("What's strong"),
           p(
-            "Authorization model is tight — we couldn't escalate from one account to another. Secrets management via 1Password + AWS Secrets Manager is well-instrumented. Audit logging is comprehensive. Your incident response playbook (which we tested in a tabletop) is mature for your stage.",
+            "Authorization model is tight - we couldn't escalate from one account to another. Secrets management via 1Password + AWS Secrets Manager is well-instrumented. Audit logging is comprehensive. Your incident response playbook (which we tested in a tabletop) is mature for your stage.",
           ),
           ctaRow([
             ctaButton("Open full report", { color: "#0a2540" }),
@@ -5231,7 +5231,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Harry Stebbings here (technically his team — I'm Marisol on the production side, looping you both in below the signature). Harry caught the Brightlane case study you published last month and would love to have you on <strong>20VC</strong> to talk about the AI inbox category, where it fits in the broader productivity stack, and the founder journey of building an AI-native company at this moment.",
+            "Harry Stebbings here (technically his team - I'm Marisol on the production side, looping you both in below the signature). Harry caught the Brightlane case study you published last month and would love to have you on <strong>20VC</strong> to talk about the AI inbox category, where it fits in the broader productivity stack, and the founder journey of building an AI-native company at this moment.",
           ),
           sectionTitle("Format"),
           keyValBlock([
@@ -5244,13 +5244,13 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("What Harry tends to ask (heads up)"),
           bullet("How you arrived at the specific wedge of 'AI inbox' vs other AI productivity surfaces."),
-          bullet("The Series A — fundraise timing, terms, what you wish you'd known."),
+          bullet("The Series A - fundraise timing, terms, what you wish you'd known."),
           bullet("Honest conversation on your competitive landscape (Microsoft Copilot, Superhuman, etc.). Harry likes specifics, not platitudes."),
           bullet("The one thing you got wrong in the first 18 months and what changed."),
           bullet("Closing question Harry always asks: 'What advice would you give the founder who's exactly where you were 18 months ago?'"),
           sectionTitle("Recording window"),
           p(
-            "Late June. Specifically, we're holding two 90-min blocks: <strong>Thursday, June 25 at 2 PM PT</strong> and <strong>Friday, June 26 at 10 AM PT</strong>. If neither works, we can flex into early July — just want to publish before SaaStr in mid-September.",
+            "Late June. Specifically, we're holding two 90-min blocks: <strong>Thursday, June 25 at 2 PM PT</strong> and <strong>Friday, June 26 at 10 AM PT</strong>. If neither works, we can flex into early July - just want to publish before SaaStr in mid-September.",
           ),
           sectionTitle("Logistics"),
           bullet("If remote: we send pro-grade microphone + camera to your office a week before. Yours to keep."),
@@ -5258,10 +5258,10 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Pre-call with Harry ~10 days before to align on themes (60 min, video)."),
           bullet("Episode goes out across YouTube, Spotify, Apple Podcasts, and standalone newsletter (35K subscribers)."),
           p(
-            "Let me know if you're interested and which window works. If not the right time, totally understand — happy to revisit in 3-6 months.",
+            "Let me know if you're interested and which window works. If not the right time, totally understand - happy to revisit in 3-6 months.",
           ),
           hr(),
-          signature("Marisol Singh", "Head of Production · 20VC", "marisol@20vc.com"),
+          signature("Marisol Reyes", "Head of Production · 20VC", "marisol@20vc.com"),
         ]),
         summary: "Podcast invitation from 20VC. Action: confirm yes/no, propose recording slot.",
         labels: [labelImportant],
@@ -5277,7 +5277,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Pleased to invite you to speak at <strong>SaaStr Annual 2026</strong> on the AI-Native track. This is the most-attended SaaS conference in the world — and the AI-Native track this year is the most demanded slot we have. We'd love to have you.",
+            "Pleased to invite you to speak at <strong>SaaStr Annual 2026</strong> on the AI-Native track. This is the most-attended SaaS conference in the world - and the AI-Native track this year is the most demanded slot we have. We'd love to have you.",
           ),
           sectionTitle("Conference details"),
           keyValBlock([
@@ -5288,12 +5288,12 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Your track", value: "AI-Native · 14 speakers across 2 days" },
             { label: "Audience profile", value: "Founders (38%), product/eng leaders (28%), investors (18%), other (16%)" },
           ]),
-          sectionTitle("Two formats — your pick"),
+          sectionTitle("Two formats - your pick"),
           bullet("<strong>Solo talk (25 min):</strong> Your stage, your story. We help with framing if needed. Strong format for the kind of opinionated, contrarian content that gets shared after the event."),
           bullet("<strong>Moderated panel (35 min):</strong> 3-4 speakers on stage, Jason Lemkin moderating. More conversational. Good if you'd prefer a discussion to a monologue."),
           sectionTitle("Why we're inviting you specifically"),
           infoCard(
-            "Three reasons: (1) Your category — AI-native inbox — is one of the most talked-about and least understood at the moment, and our audience needs an authoritative voice on it. (2) You've shipped — your customer logos and growth are real, not hype. (3) Multiple speakers we've already locked in named you as someone they'd want to share a stage with.",
+            "Three reasons: (1) Your category - AI-native inbox - is one of the most talked-about and least understood at the moment, and our audience needs an authoritative voice on it. (2) You've shipped - your customer logos and growth are real, not hype. (3) Multiple speakers we've already locked in named you as someone they'd want to share a stage with.",
             { tone: "ok" },
           ),
           sectionTitle("Honorarium + logistics"),
@@ -5303,7 +5303,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Recording rights: SaaStr.com (full), your own marketing (clip-only)."),
           sectionTitle("Confirm by June 1"),
           p(
-            "If you're interested, reply by EOD June 1 and we'll send the full speaker packet (bio template, abstract requirements, slide deck guidelines, A/V tech specs, hotel block code). After June 1 we move to alternates — the AI-Native track has more demand than spots.",
+            "If you're interested, reply by EOD June 1 and we'll send the full speaker packet (bio template, abstract requirements, slide deck guidelines, A/V tech specs, hotel block code). After June 1 we move to alternates - the AI-Native track has more demand than spots.",
           ),
           hr(),
           signature("SaaStr Programs", "Speaker booking · SaaStr Annual 2026", "programs@saastr.com"),
@@ -5323,27 +5323,27 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Avery Tan from TechCrunch — I cover productivity and AI tooling. I'm working on a piece about the consolidation happening in the AI inbox category and where the meaningful differentiation is showing up. I'd like to include VectorMail in the story.",
+            "Avery Tan from TechCrunch - I cover productivity and AI tooling. I'm working on a piece about the consolidation happening in the AI inbox category and where the meaningful differentiation is showing up. I'd like to include VectorMail in the story.",
           ),
           p(
             "Publication target is <strong>Tuesday next week</strong>. I'm filing my draft Friday so I'd need a few quotes (or 15 minutes by phone) by EOD Friday at the latest. Here's what I want to ask about:",
           ),
           sectionTitle("Questions I'd want to cover"),
           bullet(
-            "Your view on whether 'AI inbox' is a category or a feature — what's the defensible product surface in 24 months?",
+            "Your view on whether 'AI inbox' is a category or a feature - what's the defensible product surface in 24 months?",
           ),
           bullet(
             "How you're thinking about Microsoft Copilot and Google Duet as a competitive threat (vs. an inbound funnel that helps you sell).",
           ),
           bullet(
-            "The specific product decisions you'd defend that most competitors haven't made yet — pgvector over Pinecone is one, but I'd want one or two more if you have them.",
+            "The specific product decisions you'd defend that most competitors haven't made yet - pgvector over Pinecone is one, but I'd want one or two more if you have them.",
           ),
           bullet(
             "How big does this market need to be for a venture outcome, and how do you message that to investors and customers without overpromising.",
           ),
           sectionTitle("Format"),
           p(
-            "Happy to do this on the record by email (cleaner for you, often better for accuracy), or by phone if you'd prefer. If on the record by phone I'll record and transcribe, you'll see the quotes I plan to use before publication — standard TechCrunch policy.",
+            "Happy to do this on the record by email (cleaner for you, often better for accuracy), or by phone if you'd prefer. If on the record by phone I'll record and transcribe, you'll see the quotes I plan to use before publication - standard TechCrunch policy.",
           ),
           p(
             "Background context: my last piece covered the broader productivity stack and ran on the front page. This one is more analytical and is likely to be the framework piece reporters reference for the next 6-12 months. Worth doing if your time allows.",
@@ -5368,7 +5368,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #da552f; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Nominated · Golden Kitty 2026</span></div>`,
           headline("VectorMail has been nominated for a Golden Kitty Award"),
           p(
-            "Congratulations! Our community nominated <strong>VectorMail</strong> as one of 12 finalists in the <strong>AI Productivity</strong> category for the 2026 Golden Kitty Awards — our annual celebration of the best products launched on Product Hunt this year.",
+            "Congratulations! Our community nominated <strong>VectorMail</strong> as one of 12 finalists in the <strong>AI Productivity</strong> category for the 2026 Golden Kitty Awards - our annual celebration of the best products launched on Product Hunt this year.",
           ),
           sectionTitle("Category details"),
           keyValBlock([
@@ -5389,7 +5389,7 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>Mobilize your community early.</strong> Most winning products see 70% of their votes in the first 48 hours. Get a coordinated announcement ready for June 5.",
           ),
           bullet(
-            "<strong>Voting is one-per-user across all categories.</strong> So tell your fans to vote for you specifically — they can only choose one product per category.",
+            "<strong>Voting is one-per-user across all categories.</strong> So tell your fans to vote for you specifically - they can only choose one product per category.",
           ),
           bullet(
             "<strong>Engagement matters.</strong> We look at quality of discussion, not just vote count. Encourage comments from real users about specific outcomes.",
@@ -5425,7 +5425,7 @@ function buildDemoThreads(): DemoThread[] {
           p("Your semi-monthly payroll run is in motion. The total has been deducted from your linked bank account (Mercury Checking •• 3412) and will hit your team's accounts on Friday, May 17."),
           bigStat("Total payroll", "$258,130.00"),
           keyValBlock([
-            { label: "Pay period", value: "May 1 – May 15, 2026" },
+            { label: "Pay period", value: "May 1 - May 15, 2026" },
             { label: "Pay date", value: "Friday, May 17, 2026" },
             { label: "Employees paid", value: "14" },
             { label: "Net pay (ACH)", value: "$187,420.00" },
@@ -5539,7 +5539,7 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Users", value: "8 active" },
           ]),
           sectionTitle("Cost-optimization tips (auto-generated)"),
-          bullet("You have 23 custom metrics with zero queries in the last 30 days — consider dropping them ($28/mo savings)."),
+          bullet("You have 23 custom metrics with zero queries in the last 30 days - consider dropping them ($28/mo savings)."),
           bullet("Log retention is at 30 days; you can drop to 15 days for non-prod indexes ($94/mo savings)."),
           ctaRow([
             ctaButton("Download receipt", { color: "#632ca6" }),
@@ -5624,16 +5624,16 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Finished reviewing Brightlane's redlined MSA this morning. Overall it's a clean markup — Brightlane's counsel is sharp and reasonable. <strong>Two material changes worth your call</strong>, plus a handful of non-material edits that I'd accept as-is. Detail below; happy to walk through on a call if it's faster.",
+            "Finished reviewing Brightlane's redlined MSA this morning. Overall it's a clean markup - Brightlane's counsel is sharp and reasonable. <strong>Two material changes worth your call</strong>, plus a handful of non-material edits that I'd accept as-is. Detail below; happy to walk through on a call if it's faster.",
           ),
           sectionTitle("Material change #1 · Liability cap"),
           infoCard(
-            `<strong>What they changed:</strong> Raised the liability cap from <strong>1× fees paid in the trailing 12 months</strong> to <strong>2× fees paid in the trailing 12 months</strong>.<br/><br/><strong>My recommendation:</strong> Push back to <strong>1.5× as a compromise</strong>. Industry standard for this deal size ($45K ARR) is 1× — but I expect them to dig in. 1.5× is the place I'd settle in their favor without leaving real money on the table.<br/><br/><strong>Risk if we accept 2×:</strong> Insurance premium could increase ~$1.2K/year. Their leverage on this is medium.`,
+            `<strong>What they changed:</strong> Raised the liability cap from <strong>1× fees paid in the trailing 12 months</strong> to <strong>2× fees paid in the trailing 12 months</strong>.<br/><br/><strong>My recommendation:</strong> Push back to <strong>1.5× as a compromise</strong>. Industry standard for this deal size ($45K ARR) is 1× - but I expect them to dig in. 1.5× is the place I'd settle in their favor without leaving real money on the table.<br/><br/><strong>Risk if we accept 2×:</strong> Insurance premium could increase ~$1.2K/year. Their leverage on this is medium.`,
             { tone: "warn" },
           ),
           sectionTitle("Material change #2 · Termination for convenience"),
           infoCard(
-            `<strong>What they changed:</strong> Added a unilateral termination-for-convenience clause with a <strong>30-day notice window</strong>, only on their side.<br/><br/><strong>My recommendation:</strong> Accept the clause but make it <strong>mutual</strong> (both sides can exit on 45 days' notice, not 30, and not just them). They probably won't push back — every customer of this size wants this clause.<br/><br/><strong>Risk if we accept as-written:</strong> They could exit any time with 30 days; we can't.`,
+            `<strong>What they changed:</strong> Added a unilateral termination-for-convenience clause with a <strong>30-day notice window</strong>, only on their side.<br/><br/><strong>My recommendation:</strong> Accept the clause but make it <strong>mutual</strong> (both sides can exit on 45 days' notice, not 30, and not just them). They probably won't push back - every customer of this size wants this clause.<br/><br/><strong>Risk if we accept as-written:</strong> They could exit any time with 30 days; we can't.`,
             { tone: "warn" },
           ),
           sectionTitle("Non-material edits I'd accept as-is"),
@@ -5664,7 +5664,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #0caa41; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Approved for publication</span></div>`,
           headline("Your trademark application has been approved for publication"),
           p(
-            "The United States Patent and Trademark Office has examined your trademark application and approved it for publication in the Official Gazette. This is a significant milestone — your mark has cleared substantive examination and now enters the 30-day public opposition window.",
+            "The United States Patent and Trademark Office has examined your trademark application and approved it for publication in the Official Gazette. This is a significant milestone - your mark has cleared substantive examination and now enters the 30-day public opposition window.",
           ),
           keyValBlock([
             { label: "Serial Number", value: "98712341" },
@@ -5678,13 +5678,13 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("What happens next"),
           bullet("<strong>June 1:</strong> Your mark publishes in the USPTO's Official Gazette."),
-          bullet("<strong>June 1 – July 1:</strong> 30-day opposition window. Anyone who believes your mark damages theirs can file an opposition (rare at this stage)."),
+          bullet("<strong>June 1 - July 1:</strong> 30-day opposition window. Anyone who believes your mark damages theirs can file an opposition (rare at this stage)."),
           bullet("<strong>~Aug 1 (if no opposition):</strong> USPTO issues a Notice of Allowance."),
           bullet("<strong>Within 6 months of NoA:</strong> You file a Statement of Use, which we already have."),
           bullet("<strong>~Q4 2026:</strong> Registration certificate issued. Your ® symbol use is legal nationwide."),
           sectionTitle("Recommended monitoring"),
           infoCard(
-            "We recommend setting up a watching service for the next 30 days to flag any opposition filings. Our counsel uses Corsearch — about $500 for the watch period. If you'd like to skip that, we can monitor manually with daily Gazette checks.",
+            "We recommend setting up a watching service for the next 30 days to flag any opposition filings. Our counsel uses Corsearch - about $500 for the watch period. If you'd like to skip that, we can monitor manually with daily Gazette checks.",
             { tone: "info" },
           ),
           ctaRow([
@@ -5752,7 +5752,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Attached is the Master Services Agreement for our partnership on the embedding pipeline contract — specifically, the 24-month commitment with the data-residency carve-out your legal team requested in our last call.",
+            "Attached is the Master Services Agreement for our partnership on the embedding pipeline contract - specifically, the 24-month commitment with the data-residency carve-out your legal team requested in our last call.",
           ),
           sectionTitle("What's in the package"),
           bullet("<strong>Master Services Agreement</strong> · standard DataPipe terms, lightly customized."),
@@ -5782,7 +5782,7 @@ function buildDemoThreads(): DemoThread[] {
             "If you can route the package to your legal team this morning and ask them to flag any blockers by Wednesday, we should be comfortably done by Friday. Happy to set up a call with our counsel directly if it'd shorten the loop.",
           ),
           hr(),
-          signature("Anand Rao", "VP Legal & Compliance · DataPipe", "anand@datapipe.io"),
+          signature("Aaron Cole", "VP Legal & Compliance · DataPipe", "aaron@datapipe.io"),
         ]),
         summary: "Vendor MSA awaiting review. Action: route to counsel, target signature next week.",
         labels: [labelImportant],
@@ -5848,7 +5848,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("The Standard"),
           headline("Your reservation is confirmed"),
           p(
-            "Hello,<br/><br/>Thank you for choosing The Standard, High Line. Below is everything you need for your stay in New York. We've sent the same details to your iOS Wallet — you can add a digital room key once we send it 24 hours before check-in.",
+            "Hello,<br/><br/>Thank you for choosing The Standard, High Line. Below is everything you need for your stay in New York. We've sent the same details to your iOS Wallet - you can add a digital room key once we send it 24 hours before check-in.",
           ),
           keyValBlock([
             { label: "Reservation", value: "STH-22841" },
@@ -5864,8 +5864,8 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Property amenities"),
           bullet("24-hour fitness center (no extra charge)"),
-          bullet("The Top of The Standard — rooftop bar (15th floor)"),
-          bullet("The Living Room — open all night, perfect for jet lag"),
+          bullet("The Top of The Standard - rooftop bar (15th floor)"),
+          bullet("The Living Room - open all night, perfect for jet lag"),
           bullet("In-room iPad for room service + concierge"),
           bullet("Bicycles available at the front desk (free, 4-hour limit)"),
           sectionTitle("Getting there"),
@@ -5940,10 +5940,10 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi friend,"),
           p(
-            "Been way too long since Toronto — feels like that dinner was 5 years ago, not 18 months. I'm going to be in SF next week, Wed through Fri, doing the usual investor + customer thing now that we've finally closed our Series A. <strong>Want to grab dinner Thursday?</strong> My treat to celebrate the close, and because I owe you about 4 dinners at this point.",
+            "Been way too long since Toronto - feels like that dinner was 5 years ago, not 18 months. I'm going to be in SF next week, Wed through Fri, doing the usual investor + customer thing now that we've finally closed our Series A. <strong>Want to grab dinner Thursday?</strong> My treat to celebrate the close, and because I owe you about 4 dinners at this point.",
           ),
           p(
-            "I made an attempt at Mister Jiu's — they have a 6:30 PM table for two if you're in. If you'd rather do something less formal, no strong feelings; happy to go wherever you want. SF restaurant intel is your wheelhouse, not mine.",
+            "I made an attempt at Mister Jiu's - they have a 6:30 PM table for two if you're in. If you'd rather do something less formal, no strong feelings; happy to go wherever you want. SF restaurant intel is your wheelhouse, not mine.",
           ),
           p(
             "A few things I want to actually talk about over food, in no particular order: (1) Your fundraise (heard you closed; congrats); (2) the partnership we've been talking about for 6 months that we still haven't done anything about; (3) life and the fact that we both seem to be working too much.",
@@ -5970,13 +5970,13 @@ function buildDemoThreads(): DemoThread[] {
             "Putting the intro together as promised. Quick double-handle so you can take it from here.",
           ),
           p(
-            "<strong>Sasha</strong> · meet <strong>Demo User</strong>, founder and CEO of <strong>VectorMail</strong>. They're building an AI-native inbox — the kind of company you'd love working on. Recently closed a Series A led by Horizon Capital. Team of 14, mostly in SF. Real revenue, real customers, technical co-founders you'd respect.",
+            "<strong>Sasha</strong> · meet <strong>Demo User</strong>, founder and CEO of <strong>VectorMail</strong>. They're building an AI-native inbox - the kind of company you'd love working on. Recently closed a Series A led by Horizon Capital. Team of 14, mostly in SF. Real revenue, real customers, technical co-founders you'd respect.",
           ),
           p(
             "<strong>Demo User</strong> · meet <strong>Sasha Hill</strong>, Staff PM at Anthropic and about to leave. Sasha was the API platform lead and grew it from $0 to 9-figure annualized in 22 months. Before Anthropic she was at Stripe (Connect platform) and early at Brex. CS degree from MIT. The kind of PM you'd build the next 5 years of product around.",
           ),
           p(
-            "I'll let you two take it from here. Sasha — I told her she should look at what you're building before she runs into the open market. <strong>Demo User</strong> — Sasha is technical, opinionated, and has a real bias for action. You'll click immediately or not at all; I'm 90% on 'immediately.'",
+            "I'll let you two take it from here. Sasha - I told her she should look at what you're building before she runs into the open market. <strong>Demo User</strong> - Sasha is technical, opinionated, and has a real bias for action. You'll click immediately or not at all; I'm 90% on 'immediately.'",
           ),
           p("Good luck. Loop me in on the outcome whenever it happens. ✌️"),
           hr(),
@@ -5996,13 +5996,13 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi friend,"),
           p(
-            "We can hardly believe it's already that close, but our wedding is just <strong>four weeks away</strong> — Saturday, June 14, in Sonoma. We'd love nothing more than to have you (and a plus-one if you'd like to bring someone) celebrate with us.",
+            "We can hardly believe it's already that close, but our wedding is just <strong>four weeks away</strong> - Saturday, June 14, in Sonoma. We'd love nothing more than to have you (and a plus-one if you'd like to bring someone) celebrate with us.",
           ),
           keyValBlock([
             { label: "Date", value: "Saturday, June 14, 2026" },
             { label: "Ceremony", value: "5:00 PM · Beltane Ranch · 11775 Sonoma Hwy" },
             { label: "Reception + dinner", value: "5:45 PM onward · same venue" },
-            { label: "Dress code", value: "Garden party — cocktail attire" },
+            { label: "Dress code", value: "Garden party - cocktail attire" },
             { label: "Lodging block", value: "Sonoma Mission Inn · $325/night, code 'PEREIRA-WEDDING'" },
             { label: "RSVP deadline", value: "Sunday, May 25, 2026" },
           ]),
@@ -6013,7 +6013,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Shuttle</strong> from Sonoma Mission Inn at 4:30 PM and back at 11:30 PM."),
           bullet("<strong>+1 invited if you have someone you'd like to bring.</strong>"),
           p(
-            "Beyond logistics — we wanted to say: we've been watching from afar as VectorMail has grown over the last year, and it's been so much fun to see the company progress. You've worked so hard for this, and we're proud of you. Cannot wait to hug you, hear all the stories, and dance until our feet hurt.",
+            "Beyond logistics - we wanted to say: we've been watching from afar as VectorMail has grown over the last year, and it's been so much fun to see the company progress. You've worked so hard for this, and we're proud of you. Cannot wait to hug you, hear all the stories, and dance until our feet hurt.",
           ),
           ctaRow([
             ctaButton("RSVP yes", { color: "#0caa41" }),
@@ -6038,10 +6038,10 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Following up from our Slack DM earlier today — putting this in writing so it's easier to track on your side. <strong>The filter chips on search aren't persisting after page refresh.</strong>",
+            "Following up from our Slack DM earlier today - putting this in writing so it's easier to track on your side. <strong>The filter chips on search aren't persisting after page refresh.</strong>",
           ),
           sectionTitle("Repro"),
-          bullet("Open VectorMail in Chrome 124 (or Safari 17.3 — same behavior in both)."),
+          bullet("Open VectorMail in Chrome 124 (or Safari 17.3 - same behavior in both)."),
           bullet("Run an NL search like 'investor emails this week.'"),
           bullet("Notice the auto-inferred filter chips appear at the top (sender domain, date range, etc.)."),
           bullet("Refresh the page (Cmd-R)."),
@@ -6050,7 +6050,7 @@ function buildDemoThreads(): DemoThread[] {
           p("Either the chips and results persist (preferred), or at minimum the original NL query is preserved in the search bar so users can re-run with one keystroke."),
           sectionTitle("Severity from our side"),
           infoCard(
-            "Not blocking, but the team is calling it out. The kind of thing that erodes daily trust — every refresh feels like 'oh, I lost my work.' For power users who run 8-12 searches a day, this happens multiple times per session.",
+            "Not blocking, but the team is calling it out. The kind of thing that erodes daily trust - every refresh feels like 'oh, I lost my work.' For power users who run 8-12 searches a day, this happens multiple times per session.",
             { tone: "warn" },
           ),
           sectionTitle("Workaround we're using"),
@@ -6078,22 +6078,22 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Yes — happy to do the customer interview you mentioned at our last check-in. We've now been on VectorMail for three months and the team has accumulated a lot of opinions (some pointed, mostly positive) that should be useful for your product team.",
+            "Yes - happy to do the customer interview you mentioned at our last check-in. We've now been on VectorMail for three months and the team has accumulated a lot of opinions (some pointed, mostly positive) that should be useful for your product team.",
           ),
           sectionTitle("What I can talk about"),
           bullet("How we onboarded the team (the 'first 14 days' story)."),
           bullet("What we use heavily, what we never use, and why."),
-          bullet("What we tried to use but bounced off — your team should hear this."),
+          bullet("What we tried to use but bounced off - your team should hear this."),
           bullet("How our usage patterns have shifted in the last 90 days as we've gotten comfortable."),
           bullet("Specific quality-of-life improvements that would make us heavier users."),
-          bullet("The procurement conversation — what worked, what was painful."),
+          bullet("The procurement conversation - what worked, what was painful."),
           sectionTitle("Format suggestions"),
           bullet("<strong>25 minutes</strong> is plenty. Anything more and we'll start drifting."),
-          bullet("<strong>Recorded is fine</strong> — I'll trust you to share excerpts with permission."),
-          bullet("<strong>Video or audio</strong> — your call. I prefer video but I can do either."),
+          bullet("<strong>Recorded is fine</strong> - I'll trust you to share excerpts with permission."),
+          bullet("<strong>Video or audio</strong> - your call. I prefer video but I can do either."),
           sectionTitle("Availability"),
           p(
-            "Next week is open all week except Tuesday morning. Send a Calendly and I'll grab the first slot that works. If your team would like specific employees in the conversation rather than just me, I can pull in our IT lead (who handled procurement) or our PM (who's the heaviest power user) — just let me know.",
+            "Next week is open all week except Tuesday morning. Send a Calendly and I'll grab the first slot that works. If your team would like specific employees in the conversation rather than just me, I can pull in our IT lead (who handled procurement) or our PM (who's the heaviest power user) - just let me know.",
           ),
           p("Looking forward to it."),
           hr(),
@@ -6130,8 +6130,8 @@ function buildDemoThreads(): DemoThread[] {
           bullet(`Brightlane VP Eng: "First Outlook tool that doesn't feel like a port. Briefs are working day one."`),
           bullet(`Castleworks PM: "One thing I missed: shared inbox folders aren't yet supported." (Already filed.)`),
           sectionTitle("Tracking"),
-          bullet("Sentiment in <code>#outlook-beta</code> Slack channel — Aria monitoring."),
-          bullet("Sync error rate dashboard — Datadog · alerts at 0.1% threshold."),
+          bullet("Sentiment in <code>#outlook-beta</code> Slack channel - Aria monitoring."),
+          bullet("Sync error rate dashboard - Datadog · alerts at 0.1% threshold."),
           bullet("Daily check-in calls with first 3 customers for the first week."),
           sectionTitle("Next milestones"),
           bullet("<strong>Week 2:</strong> Add 30 more customers from waitlist (currently 188 deep)."),
@@ -6147,7 +6147,7 @@ function buildDemoThreads(): DemoThread[] {
       {
         id: "demo-thread-114",
         subject: "Customer escalation - DataPipe",
-        senderName: "Aria Singh",
+        senderName: "Aria Lawson",
         senderEmail: "aria@vectormail.app",
         daysAgo: 1,
         hour: 19,
@@ -6155,26 +6155,26 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Heads up — wanted to surface this before it sits in your inbox over the weekend. <strong>DataPipe</strong> (35 seats, $42K ARR, signed in November) is escalating sync delays they've seen over the past 7 days. Their CTO emailed our shared Slack channel asking 'is anyone home over there.' The tone is frustrated but recoverable.",
+            "Heads up - wanted to surface this before it sits in your inbox over the weekend. <strong>DataPipe</strong> (35 seats, $42K ARR, signed in November) is escalating sync delays they've seen over the past 7 days. Their CTO emailed our shared Slack channel asking 'is anyone home over there.' The tone is frustrated but recoverable.",
           ),
           sectionTitle("What's happening on their side"),
           bullet("4 reported instances of full inbox sync stalling for 2+ hours."),
           bullet("Two of their highest-volume users (sales leads) hit the latency twice each."),
-          bullet("They opened an internal Slack channel '#vectormail-watch' to track issues — that's the canary signal."),
+          bullet("They opened an internal Slack channel '#vectormail-watch' to track issues - that's the canary signal."),
           bullet("Their CSAT survey from yesterday came in at 6/10 (was 9/10 in March)."),
           sectionTitle("What we know on our side"),
-          bullet("Their sync token rotation is fine — no auth errors."),
+          bullet("Their sync token rotation is fine - no auth errors."),
           bullet("They're geographically split between SF and Dublin; the Dublin pod hits a known Aurinko EU latency window every Friday afternoon."),
           bullet("Eng has a fix in flight (the EU fallback endpoint switch in #VM-174); not yet in production."),
           sectionTitle("What I'm proposing"),
           p(
-            "I've got a save call queued for <strong>Wednesday 10:00 AM PT</strong> with their CTO (Roberto) and their head of IT. Want you on it given the spend and the fact that he asked for someone senior. 30 minutes max — I'll run the agenda. Marcus is on standby to join if engineering questions come up.",
+            "I've got a save call queued for <strong>Wednesday 10:00 AM PT</strong> with their CTO (Roberto) and their head of IT. Want you on it given the spend and the fact that he asked for someone senior. 30 minutes max - I'll run the agenda. Marcus is on standby to join if engineering questions come up.",
           ),
           p(
             "If you can't make it, I'll handle it solo and loop you in afterward. Just want the option locked in by EOD Monday so I can confirm with Roberto.",
           ),
           hr(),
-          signature("Aria Singh", "Customer Success", "aria@vectormail.app"),
+          signature("Aria Lawson", "Customer Success", "aria@vectormail.app"),
         ]),
         summary: "Customer escalation, $42K ARR. Action: confirm Wed 10 AM call attendance.",
         labels: [labelImportant],
@@ -6194,7 +6194,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("What I need"),
           bullet(
-            "<strong>Cancel our subscription</strong> effective June 30, 2026 — before the auto-renewal hits.",
+            "<strong>Cancel our subscription</strong> effective June 30, 2026 - before the auto-renewal hits.",
           ),
           bullet(
             "<strong>Confirm in writing</strong> that no further charges will be issued.",
@@ -6203,7 +6203,7 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>Data retention:</strong> What's our 30/60/90-day window for downloading our data before deletion?",
           ),
           bullet(
-            "<strong>GDPR-style deletion request</strong> after we've exported what we need — preferably end of July.",
+            "<strong>GDPR-style deletion request</strong> after we've exported what we need - preferably end of July.",
           ),
           sectionTitle("Why we're winding down"),
           infoCard(
@@ -6212,7 +6212,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("Personal note"),
           p(
-            "Thank you for accommodating our non-profit pricing tier last year — it made a real difference to us. Your team handled the conversation with grace, and the briefs feature genuinely helped me run a small organization more effectively. If we end up rebuilding this work elsewhere, we'll be back.",
+            "Thank you for accommodating our non-profit pricing tier last year - it made a real difference to us. Your team handled the conversation with grace, and the briefs feature genuinely helped me run a small organization more effectively. If we end up rebuilding this work elsewhere, we'll be back.",
           ),
           p("Sad to leave, but grateful for the support."),
           hr(),
@@ -6232,18 +6232,18 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi there,"),
           p(
-            "New to VectorMail — connected my account two days ago and the briefs are already saving me real time, so good first impression. I have an onboarding question I couldn't find in the help docs.",
+            "New to VectorMail - connected my account two days ago and the briefs are already saving me real time, so good first impression. I have an onboarding question I couldn't find in the help docs.",
           ),
           sectionTitle("What I'm trying to do"),
           p(
-            "I'm a VC partner at Meadow Partners and I use <strong>6 different email signatures</strong>, each tailored to a specific kind of conversation — founder cold inbound, portfolio CEOs, LPs, co-investors, journalists, and personal. I had them all set up as templates in Gmail and was using them via keyboard shortcut.",
+            "I'm a VC partner at Meadow Partners and I use <strong>6 different email signatures</strong>, each tailored to a specific kind of conversation - founder cold inbound, portfolio CEOs, LPs, co-investors, journalists, and personal. I had them all set up as templates in Gmail and was using them via keyboard shortcut.",
           ),
           p(
-            "Can I bulk-import these into VectorMail somehow? Or do I have to recreate them one by one? If the latter — is there a way to assign a default signature per recipient domain (e.g., always use the LP signature when emailing my LPs)?",
+            "Can I bulk-import these into VectorMail somehow? Or do I have to recreate them one by one? If the latter - is there a way to assign a default signature per recipient domain (e.g., always use the LP signature when emailing my LPs)?",
           ),
           sectionTitle("Why this matters to me"),
           bullet("I send 50-80 emails per day; per-thread signature switching is a real time-savings if it works."),
-          bullet("My current Gmail signatures have HTML formatting (logos, link styling) — would need to preserve that."),
+          bullet("My current Gmail signatures have HTML formatting (logos, link styling) - would need to preserve that."),
           bullet("Some signatures have legal-disclosure boilerplate that's non-negotiable from a compliance standpoint."),
           p(
             "If this is on the roadmap but not yet shipped, I'd appreciate honesty so I can decide whether to wait or work around. If it does exist and I just missed the setting, I'll happily blame my onboarding curve.",
@@ -6268,7 +6268,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("VectorMail Recruiting"),
           headline("Offer letter sent · Nathan Wu · Senior Engineer"),
           p(
-            "Sent the formal offer to Nathan at 9:42 AM PT this morning. He acknowledged receipt within 18 minutes (you'll see his reply confirming below). He's deciding by <strong>Friday EOD</strong> — that's his competing-offer deadline.",
+            "Sent the formal offer to Nathan at 9:42 AM PT this morning. He acknowledged receipt within 18 minutes (you'll see his reply confirming below). He's deciding by <strong>Friday EOD</strong> - that's his competing-offer deadline.",
           ),
           profileCard({
             name: "Nathan Wu",
@@ -6327,7 +6327,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("VectorMail Recruiting"),
           headline("Phone screen today at 11 AM · Mei Lin (Backend Engineer)"),
           p(
-            "Reminder: you're running the 45-minute phone screen with <strong>Mei Lin</strong> today at 11:00 AM PT. This is her first conversation with us — culture + role fit, not a technical deep dive (that's the next round). Resume and prep notes are linked below.",
+            "Reminder: you're running the 45-minute phone screen with <strong>Mei Lin</strong> today at 11:00 AM PT. This is her first conversation with us - culture + role fit, not a technical deep dive (that's the next round). Resume and prep notes are linked below.",
           ),
           profileCard({
             name: "Mei Lin",
@@ -6340,11 +6340,11 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("At a glance"),
           keyValBlock([
             { label: "Role", value: "Senior Backend Engineer (L4/L5)" },
-            { label: "Source", value: "Inbound · referred by Aria Singh" },
+            { label: "Source", value: "Inbound · referred by Aria Lawson" },
             { label: "Resume", value: "6 yrs · Haystack Studio (4 yrs) · Twilio (2 yrs)" },
             { label: "Stack overlap", value: "TypeScript ✓ · Node ✓ · Postgres ✓ · Redis ✓ · Inngest (new)" },
             { label: "Location", value: "San Francisco · open to hybrid" },
-            { label: "Comp expectations", value: "$195K – $230K base + equity (per recruiter)" },
+            { label: "Comp expectations", value: "$195K - $230K base + equity (per recruiter)" },
             { label: "Notice period", value: "2 weeks (clean exit per her ref check)" },
           ]),
           sectionTitle("Suggested topics (15 min each)"),
@@ -6352,7 +6352,7 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>Why us, why now.</strong> She's been at Haystack 4 years. What's pulling her out, and what makes VectorMail interesting specifically (vs. the 7 other AI startups recruiting her)?",
           ),
           bullet(
-            "<strong>One project she's most proud of.</strong> Lets her show technical depth without us throwing a problem at her. Notes from Aria say she rebuilt Haystack's queueing layer — ask about it.",
+            "<strong>One project she's most proud of.</strong> Lets her show technical depth without us throwing a problem at her. Notes from Aria say she rebuilt Haystack's queueing layer - ask about it.",
           ),
           bullet(
             "<strong>What would your first 30 days look like.</strong> Tests judgment + reveals how she scopes ambiguity.",
@@ -6386,7 +6386,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Glassdoor"),
           headline("New 5-star Glassdoor review on VectorMail"),
           p(
-            "A former employee just posted a new review on your Glassdoor company page. Below is the public version — they identified themselves as a verified former employee, so the review is weighted higher in your overall score.",
+            "A former employee just posted a new review on your Glassdoor company page. Below is the public version - they identified themselves as a verified former employee, so the review is weighted higher in your overall score.",
           ),
           bigStat("Rating", "★★★★★ 5.0 / 5", { color: "#0caa41" }),
           keyValBlock([
@@ -6399,13 +6399,13 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("The review · 'Best engineering culture I've worked in'"),
           infoCard(
-            `<div style="font-size: 14.5px; line-height: 1.6;"><strong>Pros</strong><br/>Best engineering culture I've worked in. High autonomy, no bureaucracy, and the AI work is genuinely cutting-edge. Leadership is unusually thoughtful — they tell you the real reasons behind decisions, not the sanitized versions. Comp is competitive. Equity feels meaningful. Real customers, real product, no vapor.<br/><br/><strong>Cons</strong><br/>Pace can be intense. Onboarding is light — they expect you to ramp by doing, which works for most but not everyone. Office is small (intentional) so there's nowhere to hide on a heads-down day.<br/><br/><strong>Advice to management</strong><br/>Hire your second technical recruiter sooner than you think you need to. The current bottleneck is going to bite hard at 20+ engineers.</div>`,
+            `<div style="font-size: 14.5px; line-height: 1.6;"><strong>Pros</strong><br/>Best engineering culture I've worked in. High autonomy, no bureaucracy, and the AI work is genuinely cutting-edge. Leadership is unusually thoughtful - they tell you the real reasons behind decisions, not the sanitized versions. Comp is competitive. Equity feels meaningful. Real customers, real product, no vapor.<br/><br/><strong>Cons</strong><br/>Pace can be intense. Onboarding is light - they expect you to ramp by doing, which works for most but not everyone. Office is small (intentional) so there's nowhere to hide on a heads-down day.<br/><br/><strong>Advice to management</strong><br/>Hire your second technical recruiter sooner than you think you need to. The current bottleneck is going to bite hard at 20+ engineers.</div>`,
             { tone: "ok" },
           ),
           sectionTitle("Suggested follow-up"),
           bullet("Reply publicly with a thoughtful, non-generic response (Glassdoor weighs employer responses)."),
-          bullet("Forward to your hiring page — these reviews actively help close candidates in final stages."),
-          bullet("Consider the 'second technical recruiter' advice — Lina has been pushing this for two weeks now."),
+          bullet("Forward to your hiring page - these reviews actively help close candidates in final stages."),
+          bullet("Consider the 'second technical recruiter' advice - Lina has been pushing this for two weeks now."),
           ctaRow([
             ctaButton("Reply publicly", { color: "#0caa41" }),
             ctaButton("View on Glassdoor", { color: "#0caa41", variant: "outline" }),
@@ -6427,10 +6427,10 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            `I'm reaching out from Harrison & Co. — we're an executive search firm focused exclusively on fintech engineering leadership. We've placed VPs Eng at the likes of Stripe, Plaid, Brex, and Mercury over the last 5 years.`,
+            `I'm reaching out from Harrison & Co. - we're an executive search firm focused exclusively on fintech engineering leadership. We've placed VPs Eng at the likes of Stripe, Plaid, Brex, and Mercury over the last 5 years.`,
           ),
           p(
-            "I want to be direct: I'm <strong>not asking you to leave VectorMail</strong>. You clearly love what you're building, and I can see why. I'm reaching out because I have a confidential search that I think you'd appreciate hearing about — either for yourself, for someone you know, or just so it's in your awareness for future networking.",
+            "I want to be direct: I'm <strong>not asking you to leave VectorMail</strong>. You clearly love what you're building, and I can see why. I'm reaching out because I have a confidential search that I think you'd appreciate hearing about - either for yourself, for someone you know, or just so it's in your awareness for future networking.",
           ),
           sectionTitle("The role · Series B fintech in NYC"),
           keyValBlock([
@@ -6448,8 +6448,8 @@ function buildDemoThreads(): DemoThread[] {
             "Your public engineering writing and the team you've built at VectorMail are exactly what they're looking for: AI-native instincts, sharp on systems design, a real bias for shipping, and the kind of leadership that pulls senior engineers into the company rather than scaring them off.",
           ),
           sectionTitle("If you're open · two paths"),
-          bullet("<strong>Quick 20-min call</strong> — just to evaluate, no commitment. I'll share company name and full deck."),
-          bullet("<strong>If not for you</strong> — would you have 1-2 referrals in your network? Standard $5K referral fee on a successful hire, paid to you personally."),
+          bullet("<strong>Quick 20-min call</strong> - just to evaluate, no commitment. I'll share company name and full deck."),
+          bullet("<strong>If not for you</strong> - would you have 1-2 referrals in your network? Standard $5K referral fee on a successful hire, paid to you personally."),
           p(
             "Reply with one of: 'yes book me' / 'no but here are 2 names' / 'not the right time, ping me in 12 months.' Any of those is helpful.",
           ),
@@ -6476,7 +6476,7 @@ function buildDemoThreads(): DemoThread[] {
           bigStat("April total", "$4,210.42"),
           keyValBlock([
             { label: "Account", value: "vectormail-prod · 7841-2912-3041" },
-            { label: "Billing period", value: "April 1 – April 30, 2026" },
+            { label: "Billing period", value: "April 1 - April 30, 2026" },
             { label: "Payment method", value: "Brex Visa •• 1842 · auto-charge May 14" },
             { label: "Change vs March", value: "−$582 (−12% MoM)" },
             { label: "Change vs April 2025", value: "+$840 (+25% YoY)" },
@@ -6547,7 +6547,7 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Recommendation"),
           infoCard(
-            "No tuning required — the attack was caught by your standard WAF rules. If you see another wave from the same ASNs in the next 24 hours, consider promoting Rule #14 from <em>challenge</em> to <em>block</em>.",
+            "No tuning required - the attack was caught by your standard WAF rules. If you see another wave from the same ASNs in the next 24 hours, consider promoting Rule #14 from <em>challenge</em> to <em>block</em>.",
             { tone: "info" },
           ),
           ctaRow([
@@ -6575,7 +6575,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #f59e0b; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Expiring · 14 days left</span></div>`,
           headline("$50 of OpenRouter credits expire May 31"),
           p(
-            "Heads up — you have <strong>$50.00 USD</strong> in OpenRouter promotional credits that expire on <strong>Saturday, May 31</strong>. We give these once per account (yours were granted when you signed up 12 months ago). After May 31 the unused balance is forfeited; we can't extend.",
+            "Heads up - you have <strong>$50.00 USD</strong> in OpenRouter promotional credits that expire on <strong>Saturday, May 31</strong>. We give these once per account (yours were granted when you signed up 12 months ago). After May 31 the unused balance is forfeited; we can't extend.",
           ),
           bigStat("Credits expiring", "$50.00 USD", { color: "#f59e0b" }),
           keyValBlock([
@@ -6587,14 +6587,14 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Stacking", value: "Consumed before paid balance" },
           ]),
           sectionTitle("Suggested ways to use it"),
-          bullet("Run an evaluation against your top 3 candidate models — $50 is enough for a real benchmark."),
+          bullet("Run an evaluation against your top 3 candidate models - $50 is enough for a real benchmark."),
           bullet("Try the newer Claude 4.7 1M-context model on a long-document workflow."),
           bullet("Quietly route 5-10% of production traffic for two days to compare cost + quality with your current provider."),
           ctaRow([
             ctaButton("Open dashboard", { color: "#6c5dd3" }),
             ctaButton("Browse models", { color: "#6c5dd3", variant: "outline" }),
           ]),
-          fineprint("Credits are non-transferable, non-refundable, and don't roll over. To extend, contact your OpenRouter sales rep — we sometimes offer renewal credits for high-volume customers."),
+          fineprint("Credits are non-transferable, non-refundable, and don't roll over. To extend, contact your OpenRouter sales rep - we sometimes offer renewal credits for high-volume customers."),
           companyEmailFooter("OpenRouter"),
         ]),
         summary: "OpenRouter free credits expire. Action: use or lose by May 31.",
@@ -6614,7 +6614,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #dc2626; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Spike alert · Active</span></div>`,
           headline("23 runs of process-scheduled-sends failed in the last hour"),
           p(
-            "Function failure rate exceeded your alert threshold of 5%. Of the 124 runs invoked in the last hour, 23 failed — a 18.5% failure rate. All failures hit the same step (<code>step.run('send-via-aurinko')</code>) with the same timeout error.",
+            "Function failure rate exceeded your alert threshold of 5%. Of the 124 runs invoked in the last hour, 23 failed - a 18.5% failure rate. All failures hit the same step (<code>step.run('send-via-aurinko')</code>) with the same timeout error.",
           ),
           metricGrid([
             { label: "Function", value: "process-scheduled-sends" },
@@ -6626,7 +6626,7 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Error"),
           codeBlock(
-            `<span style="color: #ff7b72;">TimeoutError</span>: step <span style="color: #d2a8ff;">'send-via-aurinko'</span> exceeded its 60s timeout<br/>&nbsp;&nbsp;at <span style="color: #79c0ff;">step.run</span> (inngest/functions/process-scheduled-sends.ts:48)<br/>&nbsp;&nbsp;at <span style="color: #79c0ff;">fetch</span> (lib/aurinko/send.ts:24) — request to <span style="color: #79c0ff;">api.aurinko.io/send</span> timed out after 60s`,
+            `<span style="color: #ff7b72;">TimeoutError</span>: step <span style="color: #d2a8ff;">'send-via-aurinko'</span> exceeded its 60s timeout<br/>&nbsp;&nbsp;at <span style="color: #79c0ff;">step.run</span> (inngest/functions/process-scheduled-sends.ts:48)<br/>&nbsp;&nbsp;at <span style="color: #79c0ff;">fetch</span> (lib/aurinko/send.ts:24) - request to <span style="color: #79c0ff;">api.aurinko.io/send</span> timed out after 60s`,
           ),
           sectionTitle("Probable cause"),
           infoCard(
@@ -6636,7 +6636,7 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Recommended action"),
           bullet("Raise the step timeout to 90s temporarily (config change, no deploy needed)."),
           bullet("Switch the EU region to the Aurinko fallback endpoint until they recover."),
-          bullet("Watch the status page — if not green in 1h, escalate via support."),
+          bullet("Watch the status page - if not green in 1h, escalate via support."),
           ctaRow([
             ctaButton("Open function logs", { color: "#52d9d3" }),
             ctaButton("Aurinko status", { color: "#52d9d3", variant: "outline" }),
@@ -6662,7 +6662,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #dc2626; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Webhook · Verification failed</span></div>`,
           headline("12 webhook deliveries failed signature verification"),
           p(
-            `Your Clerk webhooks endpoint <code>https://vectormail.app/api/clerk/webhook</code> rejected 12 of the last 24 deliveries because the <code>svix-signature</code> header did not match the expected payload signature. Your application is correctly hardened — but Clerk events are queuing while we wait for that to be resolved.`,
+            `Your Clerk webhooks endpoint <code>https://vectormail.app/api/clerk/webhook</code> rejected 12 of the last 24 deliveries because the <code>svix-signature</code> header did not match the expected payload signature. Your application is correctly hardened - but Clerk events are queuing while we wait for that to be resolved.`,
           ),
           metricGrid([
             { label: "Endpoint", value: "/api/clerk/webhook" },
@@ -6681,7 +6681,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet(
             "Confirm you're verifying <code>svix-id</code>, <code>svix-timestamp</code>, AND <code>svix-signature</code> together (verifying signature alone leaks to replay).",
           ),
-          bullet("Make sure the raw request body is passed to <code>wh.verify()</code> — not a re-parsed JSON object."),
+          bullet("Make sure the raw request body is passed to <code>wh.verify()</code> - not a re-parsed JSON object."),
           bullet(
             "Reject deliveries older than 5 minutes by checking <code>svix-timestamp</code>; we'll retry up to 24 hours.",
           ),
@@ -6775,7 +6775,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 4px 0; font-size: 12px; color: #1a1a1a; letter-spacing: 0.8px; text-transform: uppercase; font-weight: 600;">☕ Sunday, May 17 · Good morning</div>`,
           headline("S&P up. Tech earnings rip. The Fed signals patience."),
           p(
-            `<strong>Good morning, friend.</strong> Last week ended with a rip-roaring week for the market — S&P up 0.8%, Nasdaq up 1.4%, and the kickoff of Big Tech earnings season. The Fed went on a victory lap signaling patience on rate cuts after April's CPI print. Let's dig in.`,
+            `<strong>Good morning, friend.</strong> Last week ended with a rip-roaring week for the market - S&P up 0.8%, Nasdaq up 1.4%, and the kickoff of Big Tech earnings season. The Fed went on a victory lap signaling patience on rate cuts after April's CPI print. Let's dig in.`,
           ),
           sectionTitle("📈 Markets"),
           metricGrid([
@@ -6797,7 +6797,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("4 of 5 · Number of Big Tech companies that beat earnings"),
           sectionTitle("☕ One thing to take to your meeting"),
           p(
-            `If Anthropic at $400B is real, the implied revenue multiple is more aggressive than even OpenAI's last round. The market is making a bet on agentic productivity — not on the chatbot interface — and that bet is reshaping the AI cost stack for everyone downstream of these labs.`,
+            `If Anthropic at $400B is real, the implied revenue multiple is more aggressive than even OpenAI's last round. The market is making a bet on agentic productivity - not on the chatbot interface - and that bet is reshaping the AI cost stack for everyone downstream of these labs.`,
           ),
           ctaRow([
             ctaButton("Read full edition", { color: "#0066ff" }),
@@ -6844,10 +6844,10 @@ function buildDemoThreads(): DemoThread[] {
             emoji: "🔍",
           }),
           sectionTitle("My personal picks"),
-          bullet("'The Quiet Revolution in DSLs' — why narrow, domain-specific languages are quietly making a comeback in 2026."),
-          bullet("'On On-Call' — the most thoughtful piece I've read on the actual emotional load of being primary on-call, separate from the technical aspects."),
-          bullet("'Why postgres just won' — argues database consolidation around postgres is now an irreversible trend."),
-          bullet("'Three years of unicorn engineering' — recently-Series-D engineer reflecting on the trade-offs of working at a high-growth company."),
+          bullet("'The Quiet Revolution in DSLs' - why narrow, domain-specific languages are quietly making a comeback in 2026."),
+          bullet("'On On-Call' - the most thoughtful piece I've read on the actual emotional load of being primary on-call, separate from the technical aspects."),
+          bullet("'Why postgres just won' - argues database consolidation around postgres is now an irreversible trend."),
+          bullet("'Three years of unicorn engineering' - recently-Series-D engineer reflecting on the trade-offs of working at a high-growth company."),
           ctaRow([
             ctaButton("Read everything", { color: "#ff6600" }),
             ctaButton("Forward to a friend", { color: "#ff6600", variant: "outline" }),
@@ -6871,7 +6871,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 4px 0; font-size: 12px; color: #febf00; letter-spacing: 0.8px; text-transform: uppercase; font-weight: 600;">The Hustle · Founder profiles · 7-min read</div>`,
           headline("$5M ARR in 14 months · without raising a dollar"),
           p(
-            `This week's deep dive is on <strong>Mira & Carlos Rodriguez</strong>, husband-wife co-founders of an AI legal-research startup that went from zero to $5M ARR in 14 months <em>without ever pitching a VC</em>. The numbers are extraordinary — but the tactics they used are stealable for anyone.`,
+            `This week's deep dive is on <strong>Mira & Carlos Rodriguez</strong>, husband-wife co-founders of an AI legal-research startup that went from zero to $5M ARR in 14 months <em>without ever pitching a VC</em>. The numbers are extraordinary - but the tactics they used are stealable for anyone.`,
           ),
           sectionTitle("The numbers"),
           metricGrid([
@@ -6888,7 +6888,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Profitable from week one.</strong> They were profitable before they had product-market fit. The discipline forced focus and gave them runway no VC could have provided."),
           sectionTitle("The single biggest decision"),
           infoCard(
-            `<em>"The hardest decision was not raising. Three VCs cold-emailed us in month 6 offering $5M term sheets at $25M post. We said no every time. Our logic was: if the business works, we don't need the money. If it doesn't, the money won't save us. Looking back, that's the decision that actually built the company."</em><br/><br/><span style="color: #5f6368; font-size: 13px;">— Mira Rodriguez, co-founder</span>`,
+            `<em>"The hardest decision was not raising. Three VCs cold-emailed us in month 6 offering $5M term sheets at $25M post. We said no every time. Our logic was: if the business works, we don't need the money. If it doesn't, the money won't save us. Looking back, that's the decision that actually built the company."</em><br/><br/><span style="color: #5f6368; font-size: 13px;">- Mira Rodriguez, co-founder</span>`,
             { accent: "#febf00" },
           ),
           ctaRow([
@@ -6925,7 +6925,7 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("What Variant B looked like"),
           bullet("Headline price stayed at <strong>$99/month</strong>"),
-          bullet("Added <strong>'Save 17%'</strong> annual toggle on the pricing page — landing on annual by default"),
+          bullet("Added <strong>'Save 17%'</strong> annual toggle on the pricing page - landing on annual by default"),
           bullet("Annual was prepaid · ~$988/year (rounded from $987.84)"),
           bullet("Copy emphasized 'lock your rate' rather than 'discount'"),
           sectionTitle("Why it worked"),
@@ -6959,7 +6959,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           headline("Q3 planning kicks off Monday · three sessions over two weeks"),
           p(
-            "Hi team,<br/><br/>We're kicking off Q3 planning Monday. The goal: leave week 2 with a committed Q3 roadmap, owners, and the dependencies named. Process below — your time investment is ~6 hours of meetings + ~3 hours of pre-read across two weeks.",
+            "Hi team,<br/><br/>We're kicking off Q3 planning Monday. The goal: leave week 2 with a committed Q3 roadmap, owners, and the dependencies named. Process below - your time investment is ~6 hours of meetings + ~3 hours of pre-read across two weeks.",
           ),
           sectionTitle("Three sessions"),
           logRow("Week 1 · Mon May 19", "Strategy + Q3 themes · 90 min · everyone", { tone: "info" }),
@@ -6976,7 +6976,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Trade-offs visible.</strong> Every commit gets a paired 'we are NOT doing X because we said yes to Y.' If you can't name the trade-off, the commit isn't real."),
           sectionTitle("Logistics"),
           bullet("Sessions in person at the office (large meeting room) + Zoom for remote folks"),
-          bullet("All three are <strong>required</strong> — if you can't make one, send a delegate with decision rights"),
+          bullet("All three are <strong>required</strong> - if you can't make one, send a delegate with decision rights"),
           bullet("Async ranking ballot for theme selection drops Wednesday at noon"),
           p("See you Monday."),
           hr(),
@@ -6997,7 +6997,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("VectorMail · Friday Wins"),
           headline("Friday wins · the highlight reel"),
           p(
-            `Each Friday at 5 PM PT we publish the highlight reel — the wins that move the company forward this week. The whole team feeds these in via the <code>#wins</code> Slack channel; this is the curated digest.`,
+            `Each Friday at 5 PM PT we publish the highlight reel - the wins that move the company forward this week. The whole team feeds these in via the <code>#wins</code> Slack channel; this is the curated digest.`,
           ),
           metricGrid([
             { label: "New logos this week", value: "3", sub: "Brightlane, Castleworks, Northglade" },
@@ -7019,7 +7019,7 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("People wins"),
           bullet("<strong>Hired Elena Vargas</strong> · senior eng from Stripe, starts June 2"),
           bullet("<strong>Nathan Wu in offer-decision week</strong> · expected yes by Friday"),
-          bullet("<strong>Glassdoor 5-star</strong> from a former employee — second this quarter"),
+          bullet("<strong>Glassdoor 5-star</strong> from a former employee - second this quarter"),
           sectionTitle("Misc wins"),
           bullet("<strong>Series A term sheet</strong> from Horizon · 90% across the line"),
           bullet("<strong>Bridge SAFE from Foundry</strong> · $500K, executed today"),
@@ -7089,7 +7089,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           brandBlock("HackerOne"),
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #f59e0b; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">New report · Medium · Triage in 48h</span></div>`,
-          headline("IDOR vulnerability on /api/labels — lateral account access"),
+          headline("IDOR vulnerability on /api/labels - lateral account access"),
           p(
             "A new bug bounty report was submitted to your <strong>VectorMail</strong> program. Researcher <strong>nikolasl</strong> (reputation 8,420 · top 1% on HackerOne) identified an IDOR (Insecure Direct Object Reference) that allows authenticated users to view labels belonging to other accounts.",
           ),
@@ -7099,11 +7099,11 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Submitted", value: "Saturday, May 16, 2026 · 8:42 PM PT" },
             { label: "Triage SLA (per your program)", value: "48 hours · due Monday 8:42 PM" },
             { label: "Severity (researcher claim)", value: "Medium · CVSS 5.4" },
-            { label: "Bounty range (your program)", value: "$1,000 – $3,500 for medium" },
+            { label: "Bounty range (your program)", value: "$1,000 - $3,500 for medium" },
           ]),
           sectionTitle("Researcher's description"),
           infoCard(
-            `<strong>Title:</strong> IDOR on POST /api/labels/move — lateral access between accounts<br/><br/><strong>Proof of concept:</strong><br/>1. Sign up two accounts (A and B).<br/>2. As Account A, call POST /api/labels with a label_id that belongs to Account B.<br/>3. The API returns the label payload — the account-scope check is missing on this specific endpoint (the GET endpoint is correctly scoped; the POST is not).<br/><br/><strong>Impact:</strong> Limited (labels are mostly metadata), but lateral access shouldn't exist anywhere. If the same authorization gap is present on other endpoints, the impact could be substantial.`,
+            `<strong>Title:</strong> IDOR on POST /api/labels/move - lateral access between accounts<br/><br/><strong>Proof of concept:</strong><br/>1. Sign up two accounts (A and B).<br/>2. As Account A, call POST /api/labels with a label_id that belongs to Account B.<br/>3. The API returns the label payload - the account-scope check is missing on this specific endpoint (the GET endpoint is correctly scoped; the POST is not).<br/><br/><strong>Impact:</strong> Limited (labels are mostly metadata), but lateral access shouldn't exist anywhere. If the same authorization gap is present on other endpoints, the impact could be substantial.`,
             { tone: "warn" },
           ),
           sectionTitle("Recommended triage steps"),
@@ -7117,7 +7117,7 @@ function buildDemoThreads(): DemoThread[] {
             ctaButton("Acknowledge report", { color: "#dd4d4d", variant: "outline" }),
           ]),
           fineprint(
-            "HackerOne · vectormail bug-bounty program · Your program's average triage time: 31 hours (target: 48). Researchers track your responsiveness publicly — slow triage hurts your future report quality.",
+            "HackerOne · vectormail bug-bounty program · Your program's average triage time: 31 hours (target: 48). Researchers track your responsiveness publicly - slow triage hurts your future report quality.",
           ),
           companyEmailFooter("HackerOne"),
         ]),
@@ -7175,7 +7175,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           brandBlock("GitHub"),
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #dc2626; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Critical · Dependabot · Auto-PR opened</span></div>`,
-          headline("Critical CVE in axios@1.6.0 — auto-PR ready to merge"),
+          headline("Critical CVE in axios@1.6.0 - auto-PR ready to merge"),
           p(
             `Dependabot identified a critical vulnerability in <strong>axios@1.6.0</strong>, used in your <strong>vectormail-ai/vectormail-ai</strong> repository. An auto-generated pull request (#441) has been opened to upgrade to axios@1.7.4, which contains the fix. All CI checks have passed.`,
           ),
@@ -7184,12 +7184,12 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Severity", value: "Critical · CVSS 9.1" },
             { label: "Vulnerable package", value: "axios@1.6.0" },
             { label: "Fixed in", value: "axios@1.7.4 (released yesterday)" },
-            { label: "Auto-PR", value: "vectormail-ai/vectormail-ai#441 — ready to merge" },
+            { label: "Auto-PR", value: "vectormail-ai/vectormail-ai#441 - ready to merge" },
             { label: "Repo locations affected", value: "5 import sites · all in /src/lib/integrations" },
           ]),
           sectionTitle("Vulnerability details"),
           infoCard(
-            "<strong>SSRF (Server-Side Request Forgery) via redirect handling</strong> in axios 1.6.0-1.6.7. A malicious response can cause axios to make a follow-up request to an attacker-chosen URL while still authenticated with the original credentials. Practical impact in your codebase is low — most uses are to trusted vendor APIs — but you have one user-input-driven URL fetch in the OAuth callback handler that's directly exploitable.",
+            "<strong>SSRF (Server-Side Request Forgery) via redirect handling</strong> in axios 1.6.0-1.6.7. A malicious response can cause axios to make a follow-up request to an attacker-chosen URL while still authenticated with the original credentials. Practical impact in your codebase is low - most uses are to trusted vendor APIs - but you have one user-input-driven URL fetch in the OAuth callback handler that's directly exploitable.",
             { tone: "danger" },
           ),
           sectionTitle("PR #441 details"),
@@ -7198,7 +7198,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("CodeQL: no new findings"),
           bullet("Preview deploy: green · functional tests pass"),
           sectionTitle("Recommendation"),
-          p("This is a low-risk merge — pure version bump of a well-tested patch. <strong>Recommend merging today.</strong> The vulnerable path is exploitable in your OAuth callback flow, so this is meaningful to ship."),
+          p("This is a low-risk merge - pure version bump of a well-tested patch. <strong>Recommend merging today.</strong> The vulnerable path is exploitable in your OAuth callback flow, so this is meaningful to ship."),
           ctaRow([
             ctaButton("Review + merge PR #441", { color: "#1f883d" }),
             ctaButton("View CVE details", { color: "#24292f", variant: "outline" }),
@@ -7325,13 +7325,13 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Comments added", value: "2 (1 to you, 1 open)" },
           ]),
           sectionTitle("Summary of changes"),
-          bullet("Updated <strong>Objective 1</strong> wording — softened 'dominate' to 'lead' (after your feedback last week)."),
+          bullet("Updated <strong>Objective 1</strong> wording - softened 'dominate' to 'lead' (after your feedback last week)."),
           bullet("Added a <strong>new key result</strong> under Objective 2 about Outlook NRR by end of Q3."),
-          bullet("Reorganized the <strong>hiring section</strong> — split senior eng + staff eng into separate sub-objectives."),
-          bullet("Added two questions in comments — one tagged to you about the GTM objective."),
+          bullet("Reorganized the <strong>hiring section</strong> - split senior eng + staff eng into separate sub-objectives."),
+          bullet("Added two questions in comments - one tagged to you about the GTM objective."),
           sectionTitle("Comment threads · 2 open"),
           infoCard(
-            `<strong>Dana asked you:</strong> "Should we put pricing experiments under Marketing or under Product for Q3? Different incentives apply." — 47 minutes ago, awaiting reply.`,
+            `<strong>Dana asked you:</strong> "Should we put pricing experiments under Marketing or under Product for Q3? Different incentives apply." - 47 minutes ago, awaiting reply.`,
             { accent: "#000000" },
           ),
           ctaRow([
@@ -7358,13 +7358,13 @@ function buildDemoThreads(): DemoThread[] {
             "Following through on the Mosaic Health intro I offered last week. Both of you are exactly the kind of people who should be talking to each other and I don't want to be the bottleneck. Looping you in directly.",
           ),
           p(
-            "<strong>Sam</strong> — meet <strong>Demo User</strong>, CEO of <strong>VectorMail</strong>. They're building an AI-native inbox that I think is going to define this category. Closed Series A in March, ~14 person team, real customers (Brightlane, Castleworks, Northglade, plus a handful of healthcare-adjacent ones), and a technical bar I'd put up against any AI company at this stage.",
+            "<strong>Sam</strong> - meet <strong>Demo User</strong>, CEO of <strong>VectorMail</strong>. They're building an AI-native inbox that I think is going to define this category. Closed Series A in March, ~14 person team, real customers (Brightlane, Castleworks, Northglade, plus a handful of healthcare-adjacent ones), and a technical bar I'd put up against any AI company at this stage.",
           ),
           p(
-            "<strong>Demo User</strong> — meet <strong>Sam Chen</strong>, COO of <strong>Mosaic Health</strong>. Mosaic is scaling a workflow product for 1,200+ healthcare administrators. They have shared inboxes (3 distinct ones) and Sam was complaining to me at our partner offsite last week about the operational drag from them. I think VectorMail solves this almost out of the box — but obviously Sam has a real say in that.",
+            "<strong>Demo User</strong> - meet <strong>Sam Chen</strong>, COO of <strong>Mosaic Health</strong>. Mosaic is scaling a workflow product for 1,200+ healthcare administrators. They have shared inboxes (3 distinct ones) and Sam was complaining to me at our partner offsite last week about the operational drag from them. I think VectorMail solves this almost out of the box - but obviously Sam has a real say in that.",
           ),
           p(
-            "I'll leave the rest to you two. Sam — Demo User can run you through a demo any time; they're particularly good at the customer-story-style demos, not the 'feature tour' ones. <strong>Demo User</strong> — Sam is in NYC, decisions move quickly at Mosaic, and they're in a procurement-friendly mode this quarter.",
+            "I'll leave the rest to you two. Sam - Demo User can run you through a demo any time; they're particularly good at the customer-story-style demos, not the 'feature tour' ones. <strong>Demo User</strong> - Sam is in NYC, decisions move quickly at Mosaic, and they're in a procurement-friendly mode this quarter.",
           ),
           p("Good luck. Loop me in on the outcome whenever it happens. 🤝"),
           hr(),
@@ -7377,28 +7377,28 @@ function buildDemoThreads(): DemoThread[] {
       {
         id: "demo-thread-141",
         subject: "Co-investor intro - SignalFire",
-        senderName: "Maya Patel",
+        senderName: "Maya Bennett",
         senderEmail: "maya@usv.com",
         daysAgo: 5,
         snippet: "If room in the round, SignalFire wants in. Connecting you.",
         body: email([
           p("Hi,"),
           p(
-            "Quick heads up — I was at the SignalFire offsite last week and ran into <strong>Wesley Park</strong> over dinner. We got to talking about who's actually building the AI-native category right now, and your name came up before mine did. He's been wanting to invest but hadn't found the entry point.",
+            "Quick heads up - I was at the SignalFire offsite last week and ran into <strong>Wesley Park</strong> over dinner. We got to talking about who's actually building the AI-native category right now, and your name came up before mine did. He's been wanting to invest but hadn't found the entry point.",
           ),
           p(
-            "If there's room left in the round, <strong>Wesley would love to co-invest</strong>. SignalFire's typical check at Series A is $1-3M, they're highly engaged on the data-infra and AI-native productivity theses, and they bring real recruiting horsepower for senior eng/product roles — which I know is your top constraint right now.",
+            "If there's room left in the round, <strong>Wesley would love to co-invest</strong>. SignalFire's typical check at Series A is $1-3M, they're highly engaged on the data-infra and AI-native productivity theses, and they bring real recruiting horsepower for senior eng/product roles - which I know is your top constraint right now.",
           ),
           sectionTitle("Quick context on Wesley + SignalFire"),
-          bullet("<strong>Wesley Park</strong> — Partner at SignalFire, leads enterprise AI. Ex-Atlassian product, ex-Snap. Has been the lead voice on AI-productivity in their portfolio."),
-          bullet("<strong>SignalFire</strong> — $2.8B AUM. Notable AI investments: Cresta, Decagon, Lattice (early). Strong recruiting platform (Beacon AI) that pulls candidates from their proprietary dataset."),
+          bullet("<strong>Wesley Park</strong> - Partner at SignalFire, leads enterprise AI. Ex-Atlassian product, ex-Snap. Has been the lead voice on AI-productivity in their portfolio."),
+          bullet("<strong>SignalFire</strong> - $2.8B AUM. Notable AI investments: Cresta, Decagon, Lattice (early). Strong recruiting platform (Beacon AI) that pulls candidates from their proprietary dataset."),
           bullet("<strong>Their typical engagement post-investment:</strong> active on hiring, lightweight on product, quick at board meetings."),
           sectionTitle("My recommendation"),
           p(
-            "If you have any room — even $500K-1M — I'd take the call. Their value-add at this stage is meaningful and Wesley personally is one of the higher-signal VCs I work with. <strong>Looping him in below the line</strong> so you two can take it from here. If there's no room, easiest reply is 'thanks Maya, we're at capacity but stay in touch for the B' — Wesley will get it.",
+            "If you have any room - even $500K-1M - I'd take the call. Their value-add at this stage is meaningful and Wesley personally is one of the higher-signal VCs I work with. <strong>Looping him in below the line</strong> so you two can take it from here. If there's no room, easiest reply is 'thanks Maya, we're at capacity but stay in touch for the B' - Wesley will get it.",
           ),
           hr(),
-          signature("Maya Patel", "Partner · USV", "maya@usv.com"),
+          signature("Maya Bennett", "Partner · USV", "maya@usv.com"),
         ]),
         summary: "Co-investor warm intro. Action: respond and qualify SignalFire.",
         labels: [labelImportant],
@@ -7412,7 +7412,7 @@ function buildDemoThreads(): DemoThread[] {
         daysAgo: 4,
         snippet: "Daniel's bridge SAFE is fully executed. Cap table updated.",
         body: email([
-          headline("Bridge SAFE — fully executed · cap table updated"),
+          headline("Bridge SAFE - fully executed · cap table updated"),
           p(
             "Hi,<br/><br/>Quick confirmation: <strong>Daniel Brun's $500K bridge SAFE is now fully executed.</strong> Both signatures captured this afternoon, board consent was signed in parallel, and Carta has been updated to reflect the new instrument. Wire from Foundry expected by Monday close of business.",
           ),
@@ -7433,7 +7433,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Schedule of investors updated"),
           sectionTitle("What you need to do · nothing this week"),
           p(
-            "Form D will auto-file before deadline. State Blue Sky filings are in the queue. Once funds clear Monday, I'll send a final wire confirmation for your records. Otherwise — closed cleanly, no loose ends.",
+            "Form D will auto-file before deadline. State Blue Sky filings are in the queue. Once funds clear Monday, I'll send a final wire confirmation for your records. Otherwise - closed cleanly, no loose ends.",
           ),
           ctaRow([
             ctaButton("View signed SAFE", { color: "#1F3A2E" }),
@@ -7457,7 +7457,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Attached is the formal POC scoping document for our 30-day evaluation. Our IT and security teams jointly authored it — three clear pass/fail success criteria, the timeline, the participant list, and the success-state contract terms we'd move to if all three criteria are met. Want your sign-off before kickoff Monday.",
+            "Attached is the formal POC scoping document for our 30-day evaluation. Our IT and security teams jointly authored it - three clear pass/fail success criteria, the timeline, the participant list, and the success-state contract terms we'd move to if all three criteria are met. Want your sign-off before kickoff Monday.",
           ),
           sectionTitle("POC overview"),
           keyValBlock([
@@ -7527,9 +7527,9 @@ function buildDemoThreads(): DemoThread[] {
           bullet("By May 30 · all artifacts in"),
           bullet("June 2-9 · our security team reviews (typical 5-7 days)"),
           bullet("June 10 · approval issued · renewal can proceed"),
-          bullet("Without artifacts by May 30 — our procurement team can't sign off and the renewal slips into June"),
+          bullet("Without artifacts by May 30 - our procurement team can't sign off and the renewal slips into June"),
           p(
-            "Apologies for the formality — Brightlane's compliance team has tightened the renewal process this year. You're in great standing with us; this is procedural, not adversarial.",
+            "Apologies for the formality - Brightlane's compliance team has tightened the renewal process this year. You're in great standing with us; this is procedural, not adversarial.",
           ),
           hr(),
           signature("Marcus Reeves", "Procurement · Brightlane", "procurement@brightlane.io"),
@@ -7541,14 +7541,14 @@ function buildDemoThreads(): DemoThread[] {
       {
         id: "demo-thread-145",
         subject: "Onboarding success - Northglade",
-        senderName: "Aria Singh",
+        senderName: "Aria Lawson",
         senderEmail: "aria@vectormail.app",
         daysAgo: 6,
         snippet: "Carter and team fully onboarded. 100% activation in 3 days.",
         body: email([
           p("Hi,"),
           p(
-            "Quick win to share before the day ends — <strong>Northglade is fully onboarded.</strong> 100% activation across 6 seats in 3 days, which is our second-fastest onboarding on record (Brightlane was 2 days, but they had a dedicated internal champion). Carter Liu (their founder) sent me an unsolicited note this afternoon — quoted below.",
+            "Quick win to share before the day ends - <strong>Northglade is fully onboarded.</strong> 100% activation across 6 seats in 3 days, which is our second-fastest onboarding on record (Brightlane was 2 days, but they had a dedicated internal champion). Carter Liu (their founder) sent me an unsolicited note this afternoon - quoted below.",
           ),
           sectionTitle("Activation metrics"),
           metricGrid([
@@ -7561,19 +7561,19 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Carter's note (excerpted with permission)"),
           infoCard(
-            `<em>"We're 3 days in and the team is already wondering how they survived without it. Two of my engineers told me unprompted that the briefs are 'the most useful AI feature they've ever paid for.' I'm not going to gush, but consider me a vocal evangelist whenever you need one — reference calls, podcast features, customer story, all available. We're glad we switched."</em><br/><br/><span style="color: #5f6368; font-size: 13px;">— Carter Liu · Founder, Northglade · sent yesterday at 4:42 PM PT</span>`,
+            `<em>"We're 3 days in and the team is already wondering how they survived without it. Two of my engineers told me unprompted that the briefs are 'the most useful AI feature they've ever paid for.' I'm not going to gush, but consider me a vocal evangelist whenever you need one - reference calls, podcast features, customer story, all available. We're glad we switched."</em><br/><br/><span style="color: #5f6368; font-size: 13px;">- Carter Liu · Founder, Northglade · sent yesterday at 4:42 PM PT</span>`,
             { tone: "ok" },
           ),
           sectionTitle("What we did differently"),
-          bullet("Pre-onboarding workshop with the team (45 min) — walked them through the 3 features that matter most for week-1 usage."),
-          bullet("Dedicated Slack Connect channel from day 1 — they ask questions there instead of filing tickets."),
+          bullet("Pre-onboarding workshop with the team (45 min) - walked them through the 3 features that matter most for week-1 usage."),
+          bullet("Dedicated Slack Connect channel from day 1 - they ask questions there instead of filing tickets."),
           bullet("Set Buddy expectations correctly upfront ('it will make mistakes, here's how to give it feedback' beats 'it's magic and never wrong')."),
           sectionTitle("What I'd propose next"),
           bullet("Add Carter to the customer-advisory list (he's offered)."),
           bullet("Bring him on the next podcast episode if your interest is there."),
           bullet("Feature Northglade as the 'fast onboarding' case study in next month's marketing."),
           hr(),
-          signature("Aria Singh", "Customer Success Lead · VectorMail", "aria@vectormail.app"),
+          signature("Aria Lawson", "Customer Success Lead · VectorMail", "aria@vectormail.app"),
         ]),
         summary: "New customer fully activated. No action.",
         labels: [labelUpdates],
@@ -7589,14 +7589,14 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Great news — confirming you for <strong>SaaStr Annual 2026</strong> on the AI-Native track. Welcome to the lineup. Your slot, format, and what we need from you in the next 30 days are below.",
+            "Great news - confirming you for <strong>SaaStr Annual 2026</strong> on the AI-Native track. Welcome to the lineup. Your slot, format, and what we need from you in the next 30 days are below.",
           ),
           sectionTitle("Your confirmed slot"),
           keyValBlock([
             { label: "Format", value: "Solo talk · 25 minutes · 5 min Q&A" },
             { label: "Track", value: "AI-Native" },
             { label: "Date", value: "Tuesday, September 15, 2026" },
-            { label: "Time", value: "2:30 PM – 3:00 PM PT" },
+            { label: "Time", value: "2:30 PM - 3:00 PM PT" },
             { label: "Room", value: "Pavilion 2 (1,400 capacity)" },
             { label: "Recording", value: "Yes · livestream + post-event YouTube" },
             { label: "Estimated audience", value: "~1,100 in-person + ~3,800 livestream" },
@@ -7611,7 +7611,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Travel: business-class flight from your home city, fully covered (we book through our travel desk)."),
           bullet("Hotel: Marriott San Mateo, 3 nights (Sept 13-15). Block code is 'SAASTR2026SPK'."),
           bullet("A/V tech check: Sunday Sept 13, 3 PM. Required."),
-          bullet("Speaker dinner: Sunday Sept 13, 7 PM. Optional but encouraged — most speakers attend."),
+          bullet("Speaker dinner: Sunday Sept 13, 7 PM. Optional but encouraged - most speakers attend."),
           bullet("Green room access throughout the conference + VIP lounge."),
           sectionTitle("Honorarium"),
           bullet("<strong>$2,500 USD</strong> · paid via wire within 14 days of the talk being delivered."),
@@ -7639,9 +7639,9 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "Daily standup at 10 AM PT.",
         body: email([
           brandBlock("Calendar"),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "18", weekday: "Mon" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Engineering Standup · daily</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">10:00 AM – 10:15 AM PT · 15 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Recurring · weekdays · Zoom</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "18", weekday: "Mon" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">Engineering Standup · daily</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">10:00 AM - 10:15 AM PT · 15 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Recurring · weekdays · Zoom</div></td></tr></table>`,
           p(
-            "Reminder for today's engineering standup. Daily blocked time for the engineering team — 15 minutes, async update via the bot first, then 5-7 minutes of synchronous discussion on the one or two things that need it.",
+            "Reminder for today's engineering standup. Daily blocked time for the engineering team - 15 minutes, async update via the bot first, then 5-7 minutes of synchronous discussion on the one or two things that need it.",
           ),
           sectionTitle("Format"),
           bullet("Pre-standup: drop your update in <code>#eng-standup</code> bot thread by 9:45 AM."),
@@ -7654,7 +7654,7 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Dial-in", value: "+1 (669) 900-6833 · ID 812 44 901 · PIN 9821" },
           ]),
           sectionTitle("This morning's open items (from the bot)"),
-          bullet("Marcus shipping pgvector cutover Wednesday — flag any concerns today."),
+          bullet("Marcus shipping pgvector cutover Wednesday - flag any concerns today."),
           bullet("Two PRs need review by EOD (Marcus #412, Nathan #418)."),
           bullet("Aria + Marcus on DataPipe call at 10 AM (right after standup)."),
           ctaRow([
@@ -7678,7 +7678,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           brandBlock("Stripe"),
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #f59e0b; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Payment · Action recommended</span></div>`,
-          headline("Charge to Code for Good failed — auto-retry scheduled"),
+          headline("Charge to Code for Good failed - auto-retry scheduled"),
           p(
             "An invoice for one of your subscribers couldn't be collected. Stripe Billing will automatically retry the charge over the next 7 days. Most insufficient-funds failures recover on the second attempt.",
           ),
@@ -7692,17 +7692,17 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Next retry", value: "Tomorrow, May 18 · 8:00 AM PT" },
           ]),
           sectionTitle("Smart Retries timeline"),
-          logRow("May 17", "First attempt — declined (insufficient_funds)", { tone: "danger" }),
-          logRow("May 18", "Retry #2 — scheduled", { tone: "info" }),
-          logRow("May 20", "Retry #3 — if still failing", { tone: "info" }),
-          logRow("May 23", "Retry #4 — final attempt", { tone: "info" }),
+          logRow("May 17", "First attempt - declined (insufficient_funds)", { tone: "danger" }),
+          logRow("May 18", "Retry #2 - scheduled", { tone: "info" }),
+          logRow("May 20", "Retry #3 - if still failing", { tone: "info" }),
+          logRow("May 23", "Retry #4 - final attempt", { tone: "info" }),
           logRow("May 24", "Subscription paused if all retries fail", { tone: "warn" }),
           sectionTitle("Communications already sent"),
           bullet("Smart Retry email to felix@codeforgood.org (default template)"),
           bullet("In-app banner on the customer's billing page"),
           sectionTitle("What you can do"),
           p(
-            "Nothing required — Smart Retries handle most failures automatically. If you want to reach out personally, this is a non-profit customer running on a tight cycle; a brief note often helps recovery rates here.",
+            "Nothing required - Smart Retries handle most failures automatically. If you want to reach out personally, this is a non-profit customer running on a tight cycle; a brief note often helps recovery rates here.",
           ),
           ctaRow([
             ctaButton("View invoice", { color: "#635bff" }),
@@ -7756,7 +7756,7 @@ function buildDemoThreads(): DemoThread[] {
             ctaButton("Raise usage limits", { color: "#10a37f" }),
             ctaButton("View usage by API key", { color: "#10a37f", variant: "outline" }),
           ]),
-          fineprint("Org: VectorMail Eng · Billing email: finance@vectormail.app · Cycle: May 1 – May 31"),
+          fineprint("Org: VectorMail Eng · Billing email: finance@vectormail.app · Cycle: May 1 - May 31"),
           companyEmailFooter("OpenAI"),
         ]),
         summary: "OpenAI usage alert. Action: monitor or raise limit.",
@@ -7774,7 +7774,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Anthropic"),
           headline("Claude 4.7 is now generally available"),
           p(
-            "Today we're announcing Claude 4.7 in two sizes — <strong>Opus 4.7</strong> and <strong>Sonnet 4.7</strong> — generally available via the API. Both are drop-in upgrades; no code changes needed. We've spent the last 6 months focused on three things: long-context retrieval quality, agentic tool-use, and latency.",
+            "Today we're announcing Claude 4.7 in two sizes - <strong>Opus 4.7</strong> and <strong>Sonnet 4.7</strong> - generally available via the API. Both are drop-in upgrades; no code changes needed. We've spent the last 6 months focused on three things: long-context retrieval quality, agentic tool-use, and latency.",
           ),
           metricGrid([
             { label: "Context window", value: "1M tokens", sub: "from 200K" },
@@ -7786,9 +7786,9 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("What's new"),
           bullet(`<strong>1M-token context window</strong> for both Opus and Sonnet. Retrieval quality at full context is meaningfully better than 4.6's 200K (see the long-context retrieval benchmarks in the model card).`),
-          bullet(`<strong>Improved tool use.</strong> Multi-step agentic workflows are noticeably more reliable — fewer 'forgot to call the tool' failures and better recovery when tools return unexpected outputs.`),
+          bullet(`<strong>Improved tool use.</strong> Multi-step agentic workflows are noticeably more reliable - fewer 'forgot to call the tool' failures and better recovery when tools return unexpected outputs.`),
           bullet(`<strong>Lower latency.</strong> Sonnet 4.7 is significantly faster at the same quality. Opus 4.7 maintains 4.6's latency profile while improving quality.`),
-          bullet(`<strong>Same pricing, same API surface.</strong> No migration cost — just change the model string.`),
+          bullet(`<strong>Same pricing, same API surface.</strong> No migration cost - just change the model string.`),
           sectionTitle("Migration"),
           codeBlock(
             `<span style="color: #8b949e;"># Before</span><br/>model=<span style="color: #a5d6ff;">"claude-sonnet-4-6"</span><br/><br/><span style="color: #8b949e;"># After</span><br/>model=<span style="color: #a5d6ff;">"claude-sonnet-4-7"</span>`,
@@ -7831,13 +7831,13 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Three options"),
           bullet(
-            "<strong>Upgrade to 2 TB</strong> ($9.99/mo) — Google One Premium. Adds storage, family sharing, VPN, advanced photo editing.",
+            "<strong>Upgrade to 2 TB</strong> ($9.99/mo) - Google One Premium. Adds storage, family sharing, VPN, advanced photo editing.",
           ),
           bullet(
-            "<strong>Clean up Gmail</strong> — Search for 'has:attachment larger:25M' in Gmail to find the biggest space-hoggers. Easily clears 5-10 GB.",
+            "<strong>Clean up Gmail</strong> - Search for 'has:attachment larger:25M' in Gmail to find the biggest space-hoggers. Easily clears 5-10 GB.",
           ),
           bullet(
-            "<strong>Move to Workspace</strong> — If you're at this account for VectorMail, you should be on Workspace Business Standard ($14.40/user/mo), not personal. 2 TB per user + admin controls.",
+            "<strong>Move to Workspace</strong> - If you're at this account for VectorMail, you should be on Workspace Business Standard ($14.40/user/mo), not personal. 2 TB per user + admin controls.",
           ),
           ctaRow([
             ctaButton("Upgrade Google One", { color: "#1a73e8" }),
@@ -7862,7 +7862,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Closing the loop on what's been a quiet 6 weeks of internal evaluation. <strong>I demoed VectorMail to the team yesterday — strong reception across the board.</strong> Two engineers wanted to start using it before I'd even finished my walkthrough. The data team had questions that I think your team would actually love answering. PMs are sold.",
+            "Closing the loop on what's been a quiet 6 weeks of internal evaluation. <strong>I demoed VectorMail to the team yesterday - strong reception across the board.</strong> Two engineers wanted to start using it before I'd even finished my walkthrough. The data team had questions that I think your team would actually love answering. PMs are sold.",
           ),
           p(
             "I'd like to move forward with a <strong>Team plan rollout for 22 seats</strong>. Annual is fine; we have the budget set aside for the rest of fiscal year already. A few specific asks below."
@@ -7878,8 +7878,8 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Three asks alongside the contract"),
           bullet("<strong>API access addendum.</strong> We want programmatic access for our internal integrations. Do you have a standard API addendum we can sign at the same time as the MSA, or is that a separate negotiation?"),
-          bullet("<strong>Pricing lock</strong> for the first 12 months — no mid-year increases."),
-          bullet("<strong>Account-management contact</strong> — we'd appreciate Aria specifically as our primary contact post-signing if she's available."),
+          bullet("<strong>Pricing lock</strong> for the first 12 months - no mid-year increases."),
+          bullet("<strong>Account-management contact</strong> - we'd appreciate Aria specifically as our primary contact post-signing if she's available."),
           sectionTitle("Timeline I'm targeting"),
           p(
             "Quote to me by Tuesday; legal review on our side by Friday; signature next week; rollout starts May 26 with onboarding sessions for the team Tuesday-Thursday. If your team can match that, we're good. If not, just let me know what you need on your side and we'll adjust.",
@@ -7903,7 +7903,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Substack"),
           headline("New comment on your post 'Why we built VectorMail'"),
           p(
-            "A new reader left a comment on your post <strong>'Why we built VectorMail'</strong>. Comments on your posts are getting picked up — this is the 14th comment this week, and they're driving meaningful traffic from the public feed.",
+            "A new reader left a comment on your post <strong>'Why we built VectorMail'</strong>. Comments on your posts are getting picked up - this is the 14th comment this week, and they're driving meaningful traffic from the public feed.",
           ),
           profileCard({
             name: "Andre Pérez",
@@ -7915,7 +7915,7 @@ function buildDemoThreads(): DemoThread[] {
           }),
           sectionTitle("The comment"),
           infoCard(
-            `<em>"This is exactly what I've been wanting. Following along. Three questions I'd love to see addressed in a future post: (1) How do you think about the moat against Microsoft Copilot? (2) Where's the line between 'AI agent' and 'AI feature'? (3) Have you thought about what makes a 1-person customer different from a 50-person customer? Keep building."</em><br/><br/><span style="color: #5f6368; font-size: 13px;">— Andre Pérez · posted 14 minutes ago</span>`,
+            `<em>"This is exactly what I've been wanting. Following along. Three questions I'd love to see addressed in a future post: (1) How do you think about the moat against Microsoft Copilot? (2) Where's the line between 'AI agent' and 'AI feature'? (3) Have you thought about what makes a 1-person customer different from a 50-person customer? Keep building."</em><br/><br/><span style="color: #5f6368; font-size: 13px;">- Andre Pérez · posted 14 minutes ago</span>`,
             { accent: "#ff6719" },
           ),
           sectionTitle("Engagement on this post"),
@@ -7990,7 +7990,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "As a founder adjacent to our portfolio (one of our partners knows yours and we've been quietly cheering you on), you've been invited to join <strong>Backstage's founder Slack community</strong>. This is a private community of 600+ founders across our portfolio and our extended network — heavily focused on Black and underrepresented founders building venture-scale companies.",
+            "As a founder adjacent to our portfolio (one of our partners knows yours and we've been quietly cheering you on), you've been invited to join <strong>Backstage's founder Slack community</strong>. This is a private community of 600+ founders across our portfolio and our extended network - heavily focused on Black and underrepresented founders building venture-scale companies.",
           ),
           sectionTitle("What's in it"),
           bullet("<strong>600+ founders</strong> · pre-seed through Series C · spanning consumer, B2B, fintech, AI, biotech"),
@@ -8043,12 +8043,12 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("What caused the drop"),
           infoCard(
-            `<strong>Campaign: "May product update"</strong> on May 14 (12,840 recipients) saw a <strong>5.8% bounce rate</strong>, well above the threshold. Of those bounces:<br/>• <strong>62% hard bounces</strong> — invalid mailboxes (likely stale list segments)<br/>• <strong>31% soft bounces</strong> — full mailboxes / temp issues<br/>• <strong>7%</strong> — DMARC / SPF rejection from a small ESP cluster`,
+            `<strong>Campaign: "May product update"</strong> on May 14 (12,840 recipients) saw a <strong>5.8% bounce rate</strong>, well above the threshold. Of those bounces:<br/>• <strong>62% hard bounces</strong> - invalid mailboxes (likely stale list segments)<br/>• <strong>31% soft bounces</strong> - full mailboxes / temp issues<br/>• <strong>7%</strong> - DMARC / SPF rejection from a small ESP cluster`,
             { tone: "warn" },
           ),
           sectionTitle("Recommended cleanup before next send"),
           bullet("Suppress addresses that have hard-bounced 2+ times in the last 90 days (~640 records)."),
-          bullet("Run the next list through Mailgun Validate before send — catches ~85% of invalid mailboxes pre-send."),
+          bullet("Run the next list through Mailgun Validate before send - catches ~85% of invalid mailboxes pre-send."),
           bullet("Re-confirm consent on the ~2,200 recipients who haven't engaged in 6+ months."),
           bullet("If your next send is transactional, route it via the <code>transactional</code> domain instead of <code>marketing</code> to insulate that reputation."),
           sectionTitle("Risk if you don't"),
@@ -8079,7 +8079,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           brandBlock("Sentry"),
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #dc2626; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">New issue · Assigned to you</span></div>`,
-          headline("TypeError in /api/inbox — 14 events, 8 users in the last hour"),
+          headline("TypeError in /api/inbox - 14 events, 8 users in the last hour"),
           p(
             "Marcus auto-assigned this to you 47 minutes ago after the issue rate breached the alert threshold (10 events / 30 min). It's a regression introduced in the most recent embeddings deploy, and is currently blocking 8 users from loading their inbox.",
           ),
@@ -8107,7 +8107,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("+5 more"),
           sectionTitle("Suggested fix"),
           infoCard(
-            "The query path no longer guarantees <code>sysLabels</code> on the email object — it's filtered out in one of the new join branches. Add a null-safe access or filter upstream in <code>filterByLabel()</code> at line 142.",
+            "The query path no longer guarantees <code>sysLabels</code> on the email object - it's filtered out in one of the new join branches. Add a null-safe access or filter upstream in <code>filterByLabel()</code> at line 142.",
             { tone: "info" },
           ),
           ctaRow([
@@ -8132,7 +8132,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           brandBlock("PagerDuty"),
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #f59e0b; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Incident #142 · Acknowledged</span></div>`,
-          headline("Marcus Liu acknowledged incident #142 — API 5xx spike"),
+          headline("Marcus Liu acknowledged incident #142 - API 5xx spike"),
           p(
             `<strong>Marcus Liu</strong> acknowledged the incident at 11:42 PM PT (3 minutes after the page fired) and is actively investigating. As primary on-call, you can see live updates in the incident channel. Auto-escalation paused.`,
           ),
@@ -8160,7 +8160,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("If still not resolved by 1:42 AM, auto-escalates to Dana (eng lead)"),
           sectionTitle("Current status (last 2 min)"),
           infoCard(
-            "Marcus posted in #incident-142: 'Looks like our embedding worker hit a rate limit on OpenRouter side. Working on a fix — should be 10 min. No customer-facing impact yet, all retries succeeding within budget.'",
+            "Marcus posted in #incident-142: 'Looks like our embedding worker hit a rate limit on OpenRouter side. Working on a fix - should be 10 min. No customer-facing impact yet, all retries succeeding within budget.'",
             { tone: "info" },
           ),
           ctaRow([
@@ -8186,7 +8186,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #006bff; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">New booking · 30-min intro</span></div>`,
           headline("Sasha Hill booked your '30-min intro' slot"),
           p(
-            `<strong>Sasha Hill</strong> just booked a slot through your Calendly. This is a follow-up from Jamal's intro from yesterday — Sasha clearly moved fast.`,
+            `<strong>Sasha Hill</strong> just booked a slot through your Calendly. This is a follow-up from Jamal's intro from yesterday - Sasha clearly moved fast.`,
           ),
           profileCard({
             name: "Sasha Hill",
@@ -8196,18 +8196,18 @@ function buildDemoThreads(): DemoThread[] {
             accent: "#006bff",
             rightLabel: "Candidate",
           }),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "22", weekday: "Thu", accent: "#006bff" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 17px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">30-min intro · with Sasha Hill</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">11:00 AM – 11:30 AM PT · 30 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Zoom · auto-generated link</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "22", weekday: "Thu", accent: "#006bff" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 17px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">30-min intro · with Sasha Hill</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">11:00 AM - 11:30 AM PT · 30 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Zoom · auto-generated link</div></td></tr></table>`,
           sectionTitle("Sasha's intake form answers"),
           keyValBlock([
-            { label: "What is this about?", value: "Following up on Jamal's intro — interested in learning about VectorMail and where you might be hiring." },
+            { label: "What is this about?", value: "Following up on Jamal's intro - interested in learning about VectorMail and where you might be hiring." },
             { label: "Why now?", value: "Leaving Anthropic in 2 weeks, exploring opportunities in AI-native product roles." },
             { label: "What I'd like to discuss", value: "Product surface + scope, the customer base, where the team is biggest gap in product capacity." },
-            { label: "Time preference", value: "Mornings work best for me — I'm a slow afternoon thinker." },
+            { label: "Time preference", value: "Mornings work best for me - I'm a slow afternoon thinker." },
           ]),
           sectionTitle("Suggested prep"),
-          bullet("Look at her Anthropic API platform work — most of it is publicly traceable through their docs and announcements."),
+          bullet("Look at her Anthropic API platform work - most of it is publicly traceable through their docs and announcements."),
           bullet("Read Jamal's intro email again (you have it in your inbox) for his framing."),
-          bullet("Have a clear answer to 'where would I sit in your product org' — she'll ask within 5 min."),
+          bullet("Have a clear answer to 'where would I sit in your product org' - she'll ask within 5 min."),
           ctaRow([
             ctaButton("View on calendar", { color: "#006bff" }),
             ctaButton("Reschedule", { color: "#006bff", variant: "outline" }),
@@ -8232,7 +8232,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #dc2626; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Dispute · Response due May 25</span></div>`,
           headline("Customer filed a dispute on a $99 charge"),
           p(
-            "A cardholder has disputed a payment on their card via their card issuer. The funds and a $15 dispute fee have been withheld from your balance pending the outcome. You have until <strong>May 25, 2026</strong> (UTC) to submit evidence — after that the dispute is decided automatically based on what we already have.",
+            "A cardholder has disputed a payment on their card via their card issuer. The funds and a $15 dispute fee have been withheld from your balance pending the outcome. You have until <strong>May 25, 2026</strong> (UTC) to submit evidence - after that the dispute is decided automatically based on what we already have.",
           ),
           bigStat("Amount in dispute", "$99.00 + $15.00 fee"),
           keyValBlock([
@@ -8253,7 +8253,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Terms of service the customer agreed to at signup."),
           sectionTitle("Likelihood of winning"),
           infoCard(
-            `<strong>Estimated win probability: 71%</strong><br/><span style="color: #5f6368; font-size: 13px;">Disputes coded <code>product_not_received</code> for SaaS subscriptions typically win when there's clear evidence of product access. Your usage data shows this user logged in 14 times and sent 38 emails through VectorMail in the dispute window — that's strong evidence.</span>`,
+            `<strong>Estimated win probability: 71%</strong><br/><span style="color: #5f6368; font-size: 13px;">Disputes coded <code>product_not_received</code> for SaaS subscriptions typically win when there's clear evidence of product access. Your usage data shows this user logged in 14 times and sent 38 emails through VectorMail in the dispute window - that's strong evidence.</span>`,
             { tone: "info" },
           ),
           sectionTitle("If you don't respond"),
@@ -8288,7 +8288,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("Top-level changes · the three big ones"),
           infoCard(
-            `<strong>1. Hero headline</strong><br/><span style="color: #5f6368; font-size: 13px;"><strong>Was:</strong> "The AI inbox that reads itself."<br/><strong>Now:</strong> "Your inbox, back in your control."<br/><br/><strong>Why:</strong> Customer-research synthesis last quarter showed that 'AI inbox' tested poorly on first-time visitors — too crowded a phrase. 'Back in your control' tested 2.4× better on first-impression intent.</span>`,
+            `<strong>1. Hero headline</strong><br/><span style="color: #5f6368; font-size: 13px;"><strong>Was:</strong> "The AI inbox that reads itself."<br/><strong>Now:</strong> "Your inbox, back in your control."<br/><br/><strong>Why:</strong> Customer-research synthesis last quarter showed that 'AI inbox' tested poorly on first-time visitors - too crowded a phrase. 'Back in your control' tested 2.4× better on first-impression intent.</span>`,
             { accent: "#0a8f5c" },
           ),
           infoCard(
@@ -8307,7 +8307,7 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("How to comment"),
           bullet(`Doc: <a href="#" style="color: #1a73e8; text-decoration: none; font-weight: 500;">Marketing v3 copy</a> in the shared drive`),
           bullet("Comments inline; we'll resolve by EOW"),
-          bullet("Tuesday EOD is the hard cut — we want Wednesday ship for the experiment to land before Memorial Day weekend"),
+          bullet("Tuesday EOD is the hard cut - we want Wednesday ship for the experiment to land before Memorial Day weekend"),
           ctaRow([
             ctaButton("Open the doc", { color: "#1F3A2E" }),
             ctaButton("Approve as-is", { color: "#1F3A2E", variant: "outline" }),
@@ -8329,23 +8329,23 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Saw your note about co-marketing — sorry for the delayed reply, last week was eaten by our quarterly planning. Short answer: <strong>yes, we're open in Q3</strong>, and the timing actually works in our favor since we have a couple of joint customer stories we've been wanting to tell publicly.",
+            "Saw your note about co-marketing - sorry for the delayed reply, last week was eaten by our quarterly planning. Short answer: <strong>yes, we're open in Q3</strong>, and the timing actually works in our favor since we have a couple of joint customer stories we've been wanting to tell publicly.",
           ),
           sectionTitle("Shapes we could take"),
-          bullet("<strong>Joint blog post.</strong> The 'how we use each other' angle — your team uses Linear; we use VectorMail. Could be a Substack-style essay (4-5K words) or a tighter how-we-work piece (1,500 words). Both perform well in our audience."),
-          bullet("<strong>Joint webinar.</strong> 45-60 min live, with audience Q&A. Strong for top-of-funnel — but only works if both teams commit to promotion (yours is 2x bigger so we'd lean on you a bit)."),
-          bullet("<strong>Joint customer story.</strong> If we have a customer that's both Linear + VectorMail, we could do a 3-way case study. I'd guess Brightlane or Castleworks fits — happy to check."),
+          bullet("<strong>Joint blog post.</strong> The 'how we use each other' angle - your team uses Linear; we use VectorMail. Could be a Substack-style essay (4-5K words) or a tighter how-we-work piece (1,500 words). Both perform well in our audience."),
+          bullet("<strong>Joint webinar.</strong> 45-60 min live, with audience Q&A. Strong for top-of-funnel - but only works if both teams commit to promotion (yours is 2x bigger so we'd lean on you a bit)."),
+          bullet("<strong>Joint customer story.</strong> If we have a customer that's both Linear + VectorMail, we could do a 3-way case study. I'd guess Brightlane or Castleworks fits - happy to check."),
           bullet("<strong>Bundle / cross-promo.</strong> Not as exciting from a content perspective, but the deepest pre-existing relationships convert."),
           sectionTitle("What I'd propose"),
           p(
-            "Let's start with the joint webinar — that's the format that produces the most value in the shortest time and gives both sides ammunition for follow-up content. I'd want to land it in mid-to-late July (before SaaStr in mid-September). Topic could be the practical 'AI-native team' theme — how teams that look like ours actually use the tools.",
+            "Let's start with the joint webinar - that's the format that produces the most value in the shortest time and gives both sides ammunition for follow-up content. I'd want to land it in mid-to-late July (before SaaStr in mid-September). Topic could be the practical 'AI-native team' theme - how teams that look like ours actually use the tools.",
           ),
           sectionTitle("Logistics if we go forward"),
           bullet("60 min webinar · live + recorded · both sides promote to email lists + social"),
           bullet("Expected reach: ~5K live, ~30K via recording (per your audience size + ours)"),
           bullet("Production: I have someone on my side who can run the tech, or we use Zoom Webinars"),
           bullet("Topic + speakers locked by July 1 if we're shipping mid-July"),
-          p("30-min scoping call sounds good — I'm holding Tuesday 2 PM PT and Wednesday 10 AM PT next week. Either work?"),
+          p("30-min scoping call sounds good - I'm holding Tuesday 2 PM PT and Wednesday 10 AM PT next week. Either work?"),
           hr(),
           signature("Owen Wright", "Head of Partnerships · Linear", "owen@linear.app"),
         ]),
@@ -8363,14 +8363,14 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Happy to do a reference call for the Northwind prospect — I owe you about 5 of these and have given exactly zero, so let's break the streak. Send me the times their team has open and I'll fit it in.",
+            "Happy to do a reference call for the Northwind prospect - I owe you about 5 of these and have given exactly zero, so let's break the streak. Send me the times their team has open and I'll fit it in.",
           ),
           sectionTitle("How I usually run these"),
           bullet("<strong>20 minutes max</strong> · 5 min context, 10 min Q&A, 5 min buffer"),
-          bullet("Phone or video, your call. I personally prefer phone — less performative."),
+          bullet("Phone or video, your call. I personally prefer phone - less performative."),
           bullet("I always cover three things, in this order:"),
           bullet("&nbsp;&nbsp;&nbsp;&nbsp;1) <strong>What we use VectorMail for + the specific outcomes</strong>"),
-          bullet("&nbsp;&nbsp;&nbsp;&nbsp;2) <strong>What was painful in the first 30 days</strong> — honest answer, with the caveats"),
+          bullet("&nbsp;&nbsp;&nbsp;&nbsp;2) <strong>What was painful in the first 30 days</strong> - honest answer, with the caveats"),
           bullet("&nbsp;&nbsp;&nbsp;&nbsp;3) <strong>Would I buy it again? Why?</strong>"),
           sectionTitle("Heads-up on what I'll say"),
           p(
@@ -8397,7 +8397,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           headline("Q2 board deck · v1 draft ready for review"),
           p(
-            "Hi,<br/><br/>First full draft of the Q2 board deck is in the shared drive. ~38 slides total. Goal: <strong>final-ready by Tuesday May 28</strong>, board sends the day after, meeting Thursday May 29. Comments inline by Friday EOD please — easier to resolve in writing than in the Monday review.",
+            "Hi,<br/><br/>First full draft of the Q2 board deck is in the shared drive. ~38 slides total. Goal: <strong>final-ready by Tuesday May 28</strong>, board sends the day after, meeting Thursday May 29. Comments inline by Friday EOD please - easier to resolve in writing than in the Monday review.",
           ),
           sectionTitle("Deck sections"),
           bullet("<strong>Cover + executive summary</strong> · 2 slides · the 'one slide if they only read one' synthesis"),
@@ -8414,9 +8414,9 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Authorize $250K SVB bridge facility (already vetted by counsel)"),
           bullet("Adopt the revised option grant guidelines for executive hires"),
           sectionTitle("Open items / known gaps"),
-          bullet("Customer-of-the-month slide — need a quote from Brightlane (Aria is chasing)"),
-          bullet("April churn analysis — Finance to finalize Monday after the May close"),
-          bullet("Updated comp benchmark data for the option grant slide — Lina pulling Tuesday"),
+          bullet("Customer-of-the-month slide - need a quote from Brightlane (Aria is chasing)"),
+          bullet("April churn analysis - Finance to finalize Monday after the May close"),
+          bullet("Updated comp benchmark data for the option grant slide - Lina pulling Tuesday"),
           ctaRow([
             ctaButton("Open the deck", { color: "#1F3A2E" }),
             ctaButton("Comment template", { color: "#1F3A2E", variant: "outline" }),
@@ -8441,7 +8441,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #0caa41; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Approved · Effective immediately</span></div>`,
           headline("Your Brex spending limit was increased to $50,000/month"),
           p(
-            "Good news — based on your cash balance, historical card usage, and account health, we've automatically increased your <strong>monthly spending limit from $30K to $50K</strong>. No action needed; the new limit is effective immediately and applies to all cards on the account.",
+            "Good news - based on your cash balance, historical card usage, and account health, we've automatically increased your <strong>monthly spending limit from $30K to $50K</strong>. No action needed; the new limit is effective immediately and applies to all cards on the account.",
           ),
           bigStat("New monthly limit", "$50,000 / month", { color: "#0caa41" }),
           keyValBlock([
@@ -8459,7 +8459,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Account tenure</strong>: 18 months · seasoned customer"),
           sectionTitle("Want even more?"),
           p(
-            "If you anticipate exceeding $50K/month — for example, big vendor commitments at Q2 close or large hardware buys — you can request a manual review for higher limits. Typical Series A companies in your range can reach $150K/month with documentation. Just reply to this email.",
+            "If you anticipate exceeding $50K/month - for example, big vendor commitments at Q2 close or large hardware buys - you can request a manual review for higher limits. Typical Series A companies in your range can reach $150K/month with documentation. Just reply to this email.",
           ),
           ctaRow([
             ctaButton("View card settings", { color: "#0f0f0f" }),
@@ -8484,7 +8484,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Mercury"),
           headline("Daily snapshot · Sunday, May 17, 2026"),
           p(
-            "Good morning. Here's where your accounts stand at midnight PT. Cash position is healthy — runway holds at <strong>20.9 months</strong> at current burn.",
+            "Good morning. Here's where your accounts stand at midnight PT. Cash position is healthy - runway holds at <strong>20.9 months</strong> at current burn.",
           ),
           metricGrid([
             { label: "Total cash", value: "$6.53M", sub: "across all accounts" },
@@ -8538,7 +8538,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #f59e0b; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Outbid · 2 days remaining</span></div>`,
           headline("Your bid on inboxbrain.ai was outbid"),
           p(
-            "Heads up — your $3,500 bid on <strong>inboxbrain.ai</strong> was outbid by another buyer 17 minutes ago. The current top bid is <strong>$4,200</strong>. You have until the auction closes Tuesday at 5:00 PM PT to reclaim the lead.",
+            "Heads up - your $3,500 bid on <strong>inboxbrain.ai</strong> was outbid by another buyer 17 minutes ago. The current top bid is <strong>$4,200</strong>. You have until the auction closes Tuesday at 5:00 PM PT to reclaim the lead.",
           ),
           keyValBlock([
             { label: "Domain", value: "inboxbrain.ai" },
@@ -8580,7 +8580,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Yes — Brightlane is in for the customer story. Our marketing team is on board, our security team has green-lit the public details we've discussed, and I personally think the story we'd tell is genuinely useful to other engineering orgs.",
+            "Yes - Brightlane is in for the customer story. Our marketing team is on board, our security team has green-lit the public details we've discussed, and I personally think the story we'd tell is genuinely useful to other engineering orgs.",
           ),
           sectionTitle("One ask before publish"),
           bullet("<strong>Can we review the draft before it goes live?</strong> Two reasons: (1) confirm the metrics you cite are still accurate, (2) make sure my quotes don't accidentally leak anything sensitive (our internal usage data is fair game; our customer names are not)."),
@@ -8596,7 +8596,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("The exact contract value (the ARR range is fine in general; the per-seat negotiated price isn't)"),
           sectionTitle("Distribution"),
           p(
-            "I'd love to be part of the launch — happy to amplify on LinkedIn, do a podcast slot if you arrange it (with Aria's help), and be available for reference calls for the first 30 days post-publish. After that I'll need to pull back to focus on our own roadmap, but the launch window is fair game.",
+            "I'd love to be part of the launch - happy to amplify on LinkedIn, do a podcast slot if you arrange it (with Aria's help), and be available for reference calls for the first 30 days post-publish. After that I'll need to pull back to focus on our own roadmap, but the launch window is fair game.",
           ),
           p("Send the draft when ready."),
           hr(),
@@ -8618,7 +8618,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("VectorMail · Weekly"),
           headline("Your week with Buddy · auto-triage summary"),
           p(
-            `Hi,<br/><br/>Quick personal recap of what Buddy did for you this week (May 11 – May 17). The TL;DR: <strong>14 messages archived automatically, 3 snoozed for later, 7 surfaced for your attention, and 11 replies drafted</strong> — of which you sent 9 with light edits and 2 with material changes.`,
+            `Hi,<br/><br/>Quick personal recap of what Buddy did for you this week (May 11 - May 17). The TL;DR: <strong>14 messages archived automatically, 3 snoozed for later, 7 surfaced for your attention, and 11 replies drafted</strong> - of which you sent 9 with light edits and 2 with material changes.`,
           ),
           metricGrid([
             { label: "Auto-archived", value: "14", sub: "newsletters, receipts, alerts" },
@@ -8631,7 +8631,7 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Notable patterns"),
           bullet("<strong>Investor threads</strong> consistently surfaced in <em>Important · Needs Reply</em> (your engagement rate: 100%, median response time 4.2 hours)."),
           bullet("<strong>Receipts + notifications</strong> auto-archived at 96% accuracy this week. The 4% we got wrong: 2 Stripe alerts that needed manual triage (we've adjusted the model)."),
-          bullet("<strong>Sales/inbound</strong> messages all got drafted replies with consistent voice. You sent 7 of 8 without changes — strongest reply-quality week we've measured."),
+          bullet("<strong>Sales/inbound</strong> messages all got drafted replies with consistent voice. You sent 7 of 8 without changes - strongest reply-quality week we've measured."),
           sectionTitle("What Buddy got wrong this week"),
           bullet(`Snoozed Sophia's customer-story email for 'next week' when it would have been better to surface immediately. Adjusted weight on 'sender = engaged customer' in the snooze model.`),
           bullet(`Drafted a reply to TechCrunch press inquiry that was too casual. You significantly edited it. We've added 'press inquiry' as a higher-formality category.`),
@@ -8656,10 +8656,10 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Owen Wright here — Head of Partnerships at Linear (separate from my partnerships-process email earlier this week; this one is personal, not work). Heard great things about you and VectorMail from <strong>Hana Cho at Forerunner</strong> over dinner two weeks ago, and she said you were heading to NYC in late May.",
+            "Owen Wright here - Head of Partnerships at Linear (separate from my partnerships-process email earlier this week; this one is personal, not work). Heard great things about you and VectorMail from <strong>Hana Cho at Forerunner</strong> over dinner two weeks ago, and she said you were heading to NYC in late May.",
           ),
           p(
-            "Want to grab a quick coffee while you're in town? I'm in the Flatiron / Union Square area most days. The conversation I want to have is half curiosity (your view on the AI productivity stack — Hana said you have an unusually clear thesis) and half catalyst (we may want to do something joint on the partnership side that's bigger than the co-marketing thing in the other thread).",
+            "Want to grab a quick coffee while you're in town? I'm in the Flatiron / Union Square area most days. The conversation I want to have is half curiosity (your view on the AI productivity stack - Hana said you have an unusually clear thesis) and half catalyst (we may want to do something joint on the partnership side that's bigger than the co-marketing thing in the other thread).",
           ),
           sectionTitle("Specific dates I have open"),
           bullet("Wednesday May 28 · 8-10 AM or 3-5 PM"),
@@ -8670,7 +8670,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Devoción · Williamsburg</strong> · if you want a longer slot and the walk"),
           bullet("<strong>Your hotel lobby</strong> · whatever's easiest"),
           p(
-            "Reply with whatever works. If none of these times do, I can flex — just want to lock something before you're back on the plane home.",
+            "Reply with whatever works. If none of these times do, I can flex - just want to lock something before you're back on the plane home.",
           ),
           hr(),
           signature("Owen Wright", "Head of Partnerships · Linear", "owen@linear.app"),
@@ -8689,7 +8689,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            `Reaching out from <strong>Lenny's Newsletter team.</strong> Lenny is hosting a 60-minute webinar in July on the topic of <strong>'How AI-native companies design their product orgs'</strong>, and we'd love to feature you as one of two guests. The other guest is likely Marisol Choi (Lattice) — we're still confirming.`,
+            `Reaching out from <strong>Lenny's Newsletter team.</strong> Lenny is hosting a 60-minute webinar in July on the topic of <strong>'How AI-native companies design their product orgs'</strong>, and we'd love to feature you as one of two guests. The other guest is likely Marisol Choi (Lattice) - we're still confirming.`,
           ),
           sectionTitle("Format"),
           keyValBlock([
@@ -8715,7 +8715,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Past guests we've featured include Marty Cagan, Teresa Torres, and a recent rotation of AI-native founders"),
           p("Confirm a date and we'll send the pre-call agenda + technical setup details."),
           hr(),
-          signature("Marisol Singh", "Production · Lenny's Podcast & Webinars", "podcast@lennysnewsletter.com"),
+          signature("Marisol Reyes", "Production · Lenny's Podcast & Webinars", "podcast@lennysnewsletter.com"),
         ]),
         summary: "Lenny webinar invite. Action: pick a July date.",
         labels: [labelImportant],
@@ -8776,7 +8776,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Forwarding a VP Engineering resume from a close friend at <strong>Bloom Health (Series C)</strong>. She's looking to leave and is being quiet about the search — three other companies have her resume but only one (Lattice, who's not actively hiring at her level) is in her active conversation set. <strong>I'd love your eyes on this before I formally move her into the pipeline.</strong>",
+            "Forwarding a VP Engineering resume from a close friend at <strong>Bloom Health (Series C)</strong>. She's looking to leave and is being quiet about the search - three other companies have her resume but only one (Lattice, who's not actively hiring at her level) is in her active conversation set. <strong>I'd love your eyes on this before I formally move her into the pipeline.</strong>",
           ),
           sectionTitle("Quick summary"),
           keyValBlock([
@@ -8785,21 +8785,21 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Team size she manages", value: "62 engineers · 5 directors reporting to her" },
             { label: "Previous", value: "Director Eng at Stripe (3y) · Staff Eng at Square (2y) · early Brex" },
             { label: "Notable past projects", value: "Stripe Identity launch · Square Online launch" },
-            { label: "Why she's leaving", value: "Confidential — but the short version is leadership change at Bloom doesn't match her values" },
+            { label: "Why she's leaving", value: "Confidential - but the short version is leadership change at Bloom doesn't match her values" },
             { label: "Open to roles", value: "VP Eng at smaller Series A/B AI-native companies" },
           ]),
           sectionTitle("Why I'm flagging her specifically"),
           bullet("Her background is exactly what we'd want for our future VP Eng (Q3-Q4 2026 hire target per the original plan)"),
-          bullet("She built and ran two ship-from-scratch teams (Stripe Identity, Square Online) — that's the muscle we need next"),
-          bullet("Her old reports describe her as 'unusually low-ego' — the most consistent feedback in her references"),
+          bullet("She built and ran two ship-from-scratch teams (Stripe Identity, Square Online) - that's the muscle we need next"),
+          bullet("Her old reports describe her as 'unusually low-ego' - the most consistent feedback in her references"),
           bullet("She has explicit AI experience (Bloom Health's clinical-decision-support product uses Claude heavily)"),
-          bullet("If she does move, she'll have at least 3 offers within 2 weeks — opportunity-cost of slow play is high"),
+          bullet("If she does move, she'll have at least 3 offers within 2 weeks - opportunity-cost of slow play is high"),
           sectionTitle("Risk to be aware of"),
           bullet("Her current comp is reportedly ~$520K cash + significant Bloom equity. We'd need to be at the top of our band to be competitive."),
-          bullet("She's not formally on the market — so any conversation needs to be confidential from the start"),
+          bullet("She's not formally on the market - so any conversation needs to be confidential from the start"),
           sectionTitle("What I'd propose"),
           p(
-            `<strong>Coffee with her, off-the-record, no formal interview process.</strong> Goal: figure out if we'd be excited to recruit her once we're ready to hire VP Eng. If yes, we keep the relationship warm; if no, we both walk away cleanly. I can set it up — would prefer to meet her with you so we can both calibrate.`,
+            `<strong>Coffee with her, off-the-record, no formal interview process.</strong> Goal: figure out if we'd be excited to recruit her once we're ready to hire VP Eng. If yes, we keep the relationship warm; if no, we both walk away cleanly. I can set it up - would prefer to meet her with you so we can both calibrate.`,
           ),
           p("Reply with your read on the resume and whether the coffee is worth doing."),
           hr(),
@@ -8826,20 +8826,20 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Title", value: "AI for productivity · who wins, what's broken, what's overhyped" },
             { label: "Format", value: "45-min moderated panel + 10 min audience Q&A" },
             { label: "Date", value: "Tuesday, September 23, 2026" },
-            { label: "Time", value: "2:30 PM – 3:25 PM PT" },
+            { label: "Time", value: "2:30 PM - 3:25 PM PT" },
             { label: "Venue", value: "Yerba Buena Center for the Arts, San Francisco" },
             { label: "Audience", value: "~1,400 in-person · livestream + post-event recording" },
             { label: "Moderator", value: "swyx (Latent Space)" },
           ]),
           sectionTitle("Other panelists (confirmed)"),
-          bullet("Sasha Banerjee · CEO, Cresta (agent platform)"),
+          bullet("Sasha Kovac · CEO, Cresta (agent platform)"),
           bullet("Eli Marshall · Founder, Decagon (customer support agents)"),
           bullet("Mira Lee · CTO, Stack Labs (AI-native workflow)"),
           sectionTitle("The conversation"),
           bullet("Audience is technical · they want substance, not platitudes"),
           bullet("swyx prepares 8-10 sharp questions in advance, sends them 5 days before"),
           bullet("Strong opinions are encouraged · panels work when panelists disagree productively"),
-          bullet("No PR talking points — the audience will spot them and the social-media chatter post-event punishes them"),
+          bullet("No PR talking points - the audience will spot them and the social-media chatter post-event punishes them"),
           sectionTitle("Honorarium + logistics"),
           bullet("$1,500 panelist honorarium"),
           bullet("Travel + 2 nights at the conference hotel covered"),
@@ -8885,7 +8885,7 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Recommended first actions"),
           bullet("Enable MFA on your account (admin-level access without MFA is a soft policy violation)"),
           bullet("Confirm your API keys are stored in 1Password rather than env files"),
-          bullet("Review billing/usage limits — they default lower than what most production accounts need"),
+          bullet("Review billing/usage limits - they default lower than what most production accounts need"),
           ctaRow([
             ctaButton("Open Console", { color: "#cb785c" }),
             ctaButton("Set up MFA", { color: "#cb785c", variant: "outline" }),
@@ -8900,7 +8900,7 @@ function buildDemoThreads(): DemoThread[] {
       {
         id: "demo-thread-176",
         subject: "Customer call notes - Loop AI save call",
-        senderName: "Aria Singh",
+        senderName: "Aria Lawson",
         senderEmail: "aria@vectormail.app",
         daysAgo: 1,
         hour: 16,
@@ -8912,9 +8912,9 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("What we learned on the call"),
           bullet("Their previous VP Ops (who had been our champion + DAU driver) left April 3 for another company"),
-          bullet("New ops lead (Sarah Park) wasn't onboarded to VectorMail by her predecessor — she defaulted back to native Gmail because no one walked her through the value"),
-          bullet("Once we showed Sarah a 15-minute walkthrough, she immediately got it — 'oh, this is why everyone here was so attached to it'"),
-          bullet("The 'low DAU = churn risk' signal was correct but the diagnosis was wrong — they didn't lose interest, they lost continuity"),
+          bullet("New ops lead (Sarah Park) wasn't onboarded to VectorMail by her predecessor - she defaulted back to native Gmail because no one walked her through the value"),
+          bullet("Once we showed Sarah a 15-minute walkthrough, she immediately got it - 'oh, this is why everyone here was so attached to it'"),
+          bullet("The 'low DAU = churn risk' signal was correct but the diagnosis was wrong - they didn't lose interest, they lost continuity"),
           sectionTitle("What's happening next week"),
           bullet("<strong>Tuesday 10 AM PT:</strong> 1-hour refresher session for Loop AI's team led by Sarah and me. 12 people invited (every active seat)."),
           bullet("<strong>Wednesday:</strong> Personalized briefs setup workshop with the 4 power users (one tier above what we usually offer; one-time goodwill gesture)"),
@@ -8925,7 +8925,7 @@ function buildDemoThreads(): DemoThread[] {
             { tone: "ok" },
           ),
           hr(),
-          signature("Aria Singh", "Customer Success Lead · VectorMail", "aria@vectormail.app"),
+          signature("Aria Lawson", "Customer Success Lead · VectorMail", "aria@vectormail.app"),
         ]),
         summary: "Save call recap - Loop AI renewing. No action.",
         labels: [labelUpdates],
@@ -8940,29 +8940,29 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "QBR with Brightlane scheduled May 24, 10 AM PT.",
         body: email([
           brandBlock("Calendar"),
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "24", weekday: "Sat" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">QBR · Brightlane</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">10:00 AM – 11:00 AM PT · 60 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Zoom · with Sophia + Brightlane leadership</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 20px 0;"><tr><td style="vertical-align: top; padding: 0;">${calendarDateTile({ month: "May", day: "24", weekday: "Sat" })}</td><td style="vertical-align: top; padding-left: 0;"><div style="font-size: 19px; font-weight: 600; color: #1f1f1f; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 6px;">QBR · Brightlane</div><div style="font-size: 14px; color: #5f6368; line-height: 1.5;">10:00 AM - 11:00 AM PT · 60 min</div><div style="font-size: 13px; color: #80868b; margin-top: 4px;">Zoom · with Sophia + Brightlane leadership</div></td></tr></table>`,
           p(
-            "Quarterly business review with Brightlane — our largest customer by ARR. Renewal discussion in parallel. Aria has the QBR deck mostly ready; want your eyes on the structure before Monday.",
+            "Quarterly business review with Brightlane - our largest customer by ARR. Renewal discussion in parallel. Aria has the QBR deck mostly ready; want your eyes on the structure before Monday.",
           ),
           sectionTitle("Where"),
           keyValBlock([
             { label: "Video", value: `<a href="#" style="color: #1a73e8; text-decoration: none;">brightlane.zoom.us/j/qbr-4128</a>` },
             { label: "Brightlane attendees", value: "Sophia (VP Eng) · Tomas (CFO) · Maya (CIO)" },
             { label: "Our attendees", value: "You + Aria + Marcus (technical Q&A if needed)" },
-            { label: "Organizer", value: "Aria Singh" },
+            { label: "Organizer", value: "Aria Lawson" },
           ]),
           sectionTitle("QBR agenda · 60 min"),
-          logRow("10:00 – 10:10", "Account health snapshot — usage, sentiment, key wins · Aria", { tone: "info" }),
-          logRow("10:10 – 10:25", "Brightlane's Q2 outcomes from VectorMail · Sophia + Aria", { tone: "info" }),
-          logRow("10:25 – 10:40", "Product roadmap preview — what's coming in Q3 · you", { tone: "info" }),
-          logRow("10:40 – 10:55", "Renewal terms confirmation · Tomas + you", { tone: "warn" }),
-          logRow("10:55 – 11:00", "Open Q&A + wrap", { tone: "info" }),
+          logRow("10:00 - 10:10", "Account health snapshot - usage, sentiment, key wins · Aria", { tone: "info" }),
+          logRow("10:10 - 10:25", "Brightlane's Q2 outcomes from VectorMail · Sophia + Aria", { tone: "info" }),
+          logRow("10:25 - 10:40", "Product roadmap preview - what's coming in Q3 · you", { tone: "info" }),
+          logRow("10:40 - 10:55", "Renewal terms confirmation · Tomas + you", { tone: "warn" }),
+          logRow("10:55 - 11:00", "Open Q&A + wrap", { tone: "info" }),
           sectionTitle("Key decisions to land"),
           bullet("Confirm Brightlane is signing the expansion + 12-month price lock (their procurement team has been quiet, want explicit yes)"),
           bullet("Get verbal commitment on the customer-story participation (Sophia signed off in email; want it in front of Tomas too)"),
           bullet("Surface our Q3 priorities to align with their Q3 hiring + product plans"),
           sectionTitle("Risks I want surfaced before the call"),
-          bullet("Slack Connect channel got paused 24 hours ago — flag in this thread so we know if it's about anything we should address"),
+          bullet("Slack Connect channel got paused 24 hours ago - flag in this thread so we know if it's about anything we should address"),
           bullet("Aria heard their procurement team is slow this quarter; confirm contracts can sign by Tuesday EOD"),
           ctaRow([
             ctaButton("Yes", { color: "#0caa41" }),
@@ -8986,7 +8986,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Following up quickly — appreciate you giving me time earlier this week. I'm closing the piece tonight and I have <strong>one specific quote question I'd love to include from you</strong> before I file. If you can give me 5 minutes by phone or 60 seconds in writing today, that would let me close the loop cleanly.",
+            "Following up quickly - appreciate you giving me time earlier this week. I'm closing the piece tonight and I have <strong>one specific quote question I'd love to include from you</strong> before I file. If you can give me 5 minutes by phone or 60 seconds in writing today, that would let me close the loop cleanly.",
           ),
           sectionTitle("The one question"),
           infoCard(
@@ -8996,11 +8996,11 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Context on how I'll use it"),
           bullet("Direct quote, attributed to you with title (founder & CEO, VectorMail)"),
           bullet("Used in the 'where this category goes' section toward the end of the piece"),
-          bullet("Anything you say is on the record — you've seen me work, you know my style"),
+          bullet("Anything you say is on the record - you've seen me work, you know my style"),
           bullet("If you want to revise after the call, that's fine; I won't publish a version you haven't seen"),
           sectionTitle("Filing schedule"),
-          bullet("Tonight by 11:59 PM PT — final draft to editor"),
-          bullet("Tomorrow morning — runs"),
+          bullet("Tonight by 11:59 PM PT - final draft to editor"),
+          bullet("Tomorrow morning - runs"),
           bullet("Quote needed by 5 PM PT today at the absolute latest"),
           p(
             "Easiest path: reply to this email with 2-3 sentences. I'll incorporate as-is, or I'll send back if I'm going to compress in a way that changes meaning.",
@@ -9027,7 +9027,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           bigStat("Gross volume reported", "$1,847,210.00"),
           keyValBlock([
-            { label: "Tax year", value: "2025 (January 1 – December 31)" },
+            { label: "Tax year", value: "2025 (January 1 - December 31)" },
             { label: "Form type", value: "1099-K (third-party network reporting)" },
             { label: "Entity name on file", value: "VectorMail, Inc." },
             { label: "Tax ID (EIN) reported", value: "**-***1234" },
@@ -9037,7 +9037,7 @@ function buildDemoThreads(): DemoThread[] {
             { label: "State copies", value: "California (we sent), all others (you'll handle)" },
           ]),
           sectionTitle("What this is (and what it isn't)"),
-          bullet("<strong>What it is:</strong> Gross volume — what was charged on cards processed through Stripe, before fees, refunds, or chargebacks."),
+          bullet("<strong>What it is:</strong> Gross volume - what was charged on cards processed through Stripe, before fees, refunds, or chargebacks."),
           bullet("<strong>What it isn't:</strong> Net revenue. Your actual taxable income is gross minus fees minus refunds minus chargebacks; your accountant calculates this."),
           bullet("<strong>What you do with it:</strong> Forward to your accountant. Pilot.com (your bookkeeper) can ingest it directly if you give them dashboard access."),
           sectionTitle("Reconciliation tip"),
@@ -9050,7 +9050,7 @@ function buildDemoThreads(): DemoThread[] {
             ctaButton("Forward to Pilot", { color: "#635bff", variant: "outline" }),
             ctaButton("Tax dashboard", { color: "#635bff", variant: "outline" }),
           ]),
-          fineprint("If you spot a discrepancy on the 1099-K, contact Stripe Support before filing — corrections take 5-10 business days and we can issue a corrected 1099-K if needed."),
+          fineprint("If you spot a discrepancy on the 1099-K, contact Stripe Support before filing - corrections take 5-10 business days and we can issue a corrected 1099-K if needed."),
           companyEmailFooter("Stripe"),
         ]),
         summary: "Stripe 1099-K available. Action: forward to accountant.",
@@ -9092,7 +9092,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Marketing tagged you</strong> in 'Landing copy v3' · 3 days ago"),
           sectionTitle("Trending in your workspace"),
           p(
-            "Discussion in <code>Q3 OKRs</code> has been the most active conversation in the workspace this week — 41 comments across 6 sections. Dana is doing the heavy synthesis lifting. Worth checking in if you haven't this week.",
+            "Discussion in <code>Q3 OKRs</code> has been the most active conversation in the workspace this week - 41 comments across 6 sections. Dana is doing the heavy synthesis lifting. Worth checking in if you haven't this week.",
           ),
           ctaRow([
             ctaButton("Open workspace", { color: "#000000" }),
@@ -9122,7 +9122,7 @@ function buildDemoThreads(): DemoThread[] {
             "<strong>This is not a formal acquisition approach.</strong> We're at the 'understanding the landscape' phase, which typically precedes specific outreach by 6-12 months. I'm having quiet, confidential conversations with founders of companies that we think are interesting, regardless of whether anything ever comes of it on our end. Your name keeps coming up in that group.",
           ),
           sectionTitle("What I'd want to discuss · 45 minutes"),
-          bullet("Your view of the AI-inbox category — where the moats actually are vs. where they're hyped"),
+          bullet("Your view of the AI-inbox category - where the moats actually are vs. where they're hyped"),
           bullet("Your founding thesis + how it's evolved through customer feedback"),
           bullet("Your 24-month roadmap (publicly tellable parts; we'll do this under NDA if needed)"),
           bullet("How BlueOcean's distribution network might complement or compete with your wedge"),
@@ -9133,15 +9133,15 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Both sides walk away with calibration about the other's positioning"),
           sectionTitle("Confidentiality"),
           infoCard(
-            `<strong>This conversation stays between us.</strong> I won't share what you tell me with BlueOcean's executive team unless you explicitly green-light it. NDA available on request if you'd prefer formal structure (most founders skip — informal is usually fine).<br/><br/>I also won't pitch you on selling. If anything formal ever happens it would come through a separate, more deliberate process.`,
+            `<strong>This conversation stays between us.</strong> I won't share what you tell me with BlueOcean's executive team unless you explicitly green-light it. NDA available on request if you'd prefer formal structure (most founders skip - informal is usually fine).<br/><br/>I also won't pitch you on selling. If anything formal ever happens it would come through a separate, more deliberate process.`,
             { tone: "info" },
           ),
           sectionTitle("Logistics"),
           bullet("45 minutes · Zoom · I'll send the calendar invite once you confirm"),
           bullet("Available windows in the next two weeks: May 22 (afternoon), May 28 (morning), June 3 (any time)"),
-          bullet("Happy to do dinner instead if you're in NYC any time soon — Eliot's preference"),
+          bullet("Happy to do dinner instead if you're in NYC any time soon - Eliot's preference"),
           p(
-            "If you'd rather pass — completely understood. Reply 'not the right time' and I'll leave you alone. If interested, just reply with a window."
+            "If you'd rather pass - completely understood. Reply 'not the right time' and I'll leave you alone. If interested, just reply with a window."
           ),
           hr(),
           signature("Eliot Marsh", "Corporate Development · BlueOcean Corp", "eliot@blueoceancorp.com"),
@@ -9160,30 +9160,30 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            `Quick last-minute: I'm hosting a small <strong>founder dinner this Friday</strong> in SoMa. <strong>8 founders, 100% off-the-record, no investors in the room.</strong> The format has been working really well — we get one quiet candid conversation each month that's genuinely useful for everyone there.`,
+            `Quick last-minute: I'm hosting a small <strong>founder dinner this Friday</strong> in SoMa. <strong>8 founders, 100% off-the-record, no investors in the room.</strong> The format has been working really well - we get one quiet candid conversation each month that's genuinely useful for everyone there.`,
           ),
           sectionTitle("Logistics"),
           keyValBlock([
-            { label: "When", value: "Friday, May 22 · 7:00 PM – 10:00 PM PT" },
+            { label: "When", value: "Friday, May 22 · 7:00 PM - 10:00 PM PT" },
             { label: "Where", value: "Private room · Saison · 178 Townsend St (close to your office)" },
             { label: "Dress", value: "Smart casual" },
             { label: "Cost", value: "I'm covering · founder dinner gift from Growth Collective" },
-            { label: "Off the record?", value: "Yes — Chatham House rules · nothing leaves the room" },
+            { label: "Off the record?", value: "Yes - Chatham House rules · nothing leaves the room" },
           ]),
           sectionTitle("Who's in the room"),
           bullet("Marisol Choi (Lattice, recently IPO'd)"),
-          bullet("Carter Liu (Northglade — and you'd recognize each other since you just signed them)"),
+          bullet("Carter Liu (Northglade - and you'd recognize each other since you just signed them)"),
           bullet("Daniela Hsu (Bloom Health, Series C)"),
-          bullet("Quentin Yu (Cresta — agent platform · scaling fast)"),
+          bullet("Quentin Yu (Cresta - agent platform · scaling fast)"),
           bullet("Two stealth-mode founders (I'll intro at dinner)"),
-          bullet("Plus me, plus the room is open for one more — which is where you come in"),
+          bullet("Plus me, plus the room is open for one more - which is where you come in"),
           sectionTitle("Topic for this month"),
           p(
             `<strong>The hard parts of scaling that no one talks about.</strong> We pre-circulate one question for everyone to think about: 'What's the hardest decision you've made in the last 6 months that you can't talk about publicly?' Genuinely useful conversation usually emerges from that one prompt.`,
           ),
           sectionTitle("Reply by Wed if possible"),
           p(
-            "I have a small standby list if you can't make it — just want to fill the seat with someone who'll show up. If you can come, send a yes by Wednesday and I'll send Friday details + the pre-question.",
+            "I have a small standby list if you can't make it - just want to fill the seat with someone who'll show up. If you can come, send a yes by Wednesday and I'll send Friday details + the pre-question.",
           ),
           hr(),
           signature("Tara Wells", "Founder · Growth Collective", "tara@growthcollective.io"),
@@ -9195,7 +9195,7 @@ function buildDemoThreads(): DemoThread[] {
       {
         id: "demo-thread-183",
         subject: "Customer escalation closed - DataPipe",
-        senderName: "Aria Singh",
+        senderName: "Aria Lawson",
         senderEmail: "aria@vectormail.app",
         daysAgo: 0,
         hour: 12,
@@ -9203,7 +9203,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            `Quick win to report — <strong>the DataPipe save call went great.</strong> We pulled the relationship back from the brink in 30 minutes. Their CTO is happier with us today than he was three weeks ago. Closing thoughts and what we learned below.`,
+            `Quick win to report - <strong>the DataPipe save call went great.</strong> We pulled the relationship back from the brink in 30 minutes. Their CTO is happier with us today than he was three weeks ago. Closing thoughts and what we learned below.`,
           ),
           sectionTitle("What happened on the call"),
           bullet("<strong>Root cause identified.</strong> Their sync delays were caused by a <em>misconfigured webhook endpoint on their side</em> (firewall added two weeks ago was throttling our webhook deliveries). Not a VectorMail bug at all."),
@@ -9218,9 +9218,9 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Marcus drafting a 'troubleshooting webhook delivery' runbook so we catch this pattern faster next time."),
           bullet("Aria sending a one-pager on common firewall configurations to all enterprise customers as preemptive education."),
           bullet("Marketing including the DataPipe story (with permission) in next month's case-study cycle."),
-          p("Great recovery. Touch grass and go home for the weekend — earned it."),
+          p("Great recovery. Touch grass and go home for the weekend - earned it."),
           hr(),
-          signature("Aria Singh", "Customer Success Lead · VectorMail", "aria@vectormail.app"),
+          signature("Aria Lawson", "Customer Success Lead · VectorMail", "aria@vectormail.app"),
         ]),
         summary: "Customer escalation closed cleanly. No action - good news.",
         labels: [labelUpdates],
@@ -9236,7 +9236,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "I'm reaching out from the Forbes editorial team. <strong>We're considering you for inclusion in the 2026 Forbes 30 Under 30 list — Enterprise Technology category.</strong> This is the long-listing stage; final selection happens at our editorial committee in late June, with notifications going out in early July.",
+            "I'm reaching out from the Forbes editorial team. <strong>We're considering you for inclusion in the 2026 Forbes 30 Under 30 list - Enterprise Technology category.</strong> This is the long-listing stage; final selection happens at our editorial committee in late June, with notifications going out in early July.",
           ),
           sectionTitle("How it works"),
           bullet("<strong>Long list (now):</strong> ~120 founders we're considering · I need short answers to 5 questions from each."),
@@ -9354,7 +9354,7 @@ function buildDemoThreads(): DemoThread[] {
           logRow("16:47 PT", "Marcus auto-notified via email + Slack", { tone: "info" }),
           sectionTitle("Suggested fix"),
           infoCard(
-            "Add a null check on <code>email.sysLabels</code> at line 140 — the type was tightened in the recent Prisma upgrade. Once fixed, push directly to <code>main</code> or open a hotfix PR.",
+            "Add a null check on <code>email.sysLabels</code> at line 140 - the type was tightened in the recent Prisma upgrade. Once fixed, push directly to <code>main</code> or open a hotfix PR.",
             { tone: "info" },
           ),
           ctaRow([
@@ -9382,10 +9382,10 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Quick confirmation — <strong>Sophia (Brightlane) and I are locked in for the reference call Monday at 11 AM PT.</strong> Really appreciate the introduction; this kind of peer-to-peer conversation is what closes our procurement team. I'll do my best to make sure she has a quick, friction-free conversation.",
+            "Quick confirmation - <strong>Sophia (Brightlane) and I are locked in for the reference call Monday at 11 AM PT.</strong> Really appreciate the introduction; this kind of peer-to-peer conversation is what closes our procurement team. I'll do my best to make sure she has a quick, friction-free conversation.",
           ),
           sectionTitle("What I'm hoping to learn"),
-          bullet("Real friction points in the first 30-60 days — Sophia mentioned in your intro she'd be honest about these, which is exactly what my CFO needs to hear"),
+          bullet("Real friction points in the first 30-60 days - Sophia mentioned in your intro she'd be honest about these, which is exactly what my CFO needs to hear"),
           bullet("How the migration went specifically (we're coming from Microsoft Copilot + Superhuman; she's coming from Superhuman alone)"),
           bullet("Decision factors that made the difference between 'try' and 'commit at scale'"),
           bullet("How she'd describe the procurement experience (this is the call that probably decides things on our side)"),
@@ -9395,7 +9395,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("Move to final decision by Friday EOD if the call goes well (which I expect it will)"),
           bullet("Send you the formal commitment language by next Monday"),
           p(
-            "Thanks again for connecting us. If anything changes on Sophia's end, easy for her to ping me directly — but I'm planning to send a calendar accept this evening and we'll lock it.",
+            "Thanks again for connecting us. If anything changes on Sophia's end, easy for her to ping me directly - but I'm planning to send a calendar accept this evening and we'll lock it.",
           ),
           hr(),
           signature("Drew Hwang", "Director of IT, Productivity Tools · Northwind Corp", "drew@northwindcorp.com"),
@@ -9431,7 +9431,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>Daily summary bot:</strong> we'll send a daily digest at 5 PM PT recapping the day's threads"),
           sectionTitle("Why we did this"),
           p(
-            "Brightlane is our largest customer by ARR and our most engaged by daily-feature usage. A shared channel gives us a forward-deployed presence — bugs surface faster, feature requests don't disappear into ticketing systems, and the relationship is structurally tighter. Recommendation: do this for our top 5 customers by Q3.",
+            "Brightlane is our largest customer by ARR and our most engaged by daily-feature usage. A shared channel gives us a forward-deployed presence - bugs surface faster, feature requests don't disappear into ticketing systems, and the relationship is structurally tighter. Recommendation: do this for our top 5 customers by Q3.",
           ),
           hr(),
           signature("Operations", "VectorMail · Internal", "ops@vectormail.app"),
@@ -9452,7 +9452,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #f59e0b; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Card declined · Likely policy</span></div>`,
           headline("Card ending 1842 was declined for a $260 charge at Notion"),
           p(
-            "A charge attempt was just declined on one of your Brex cards. <strong>Not a fraud event</strong> — declined by your own spending policy, specifically the card's merchant-category allow list. If the charge was expected, you can either adjust the card's policy or use a different card with the right category enabled.",
+            "A charge attempt was just declined on one of your Brex cards. <strong>Not a fraud event</strong> - declined by your own spending policy, specifically the card's merchant-category allow list. If the charge was expected, you can either adjust the card's policy or use a different card with the right category enabled.",
           ),
           keyValBlock([
             { label: "Card", value: "Brex Visa •• 1842 (Marcus's primary card)" },
@@ -9465,7 +9465,7 @@ function buildDemoThreads(): DemoThread[] {
           ]),
           sectionTitle("Why this card has the restriction"),
           infoCard(
-            `Marcus's card has been set to 'travel + meals only' by policy — software purchases were intended to route through the operations team's card to consolidate vendor approvals. Either Marcus forgot to use the right card, or the policy needs adjustment.`,
+            `Marcus's card has been set to 'travel + meals only' by policy - software purchases were intended to route through the operations team's card to consolidate vendor approvals. Either Marcus forgot to use the right card, or the policy needs adjustment.`,
             { tone: "info" },
           ),
           sectionTitle("Quick fixes"),
@@ -9542,13 +9542,13 @@ function buildDemoThreads(): DemoThread[] {
             `Marcus mentioned you in the <strong>VectorMail HQ</strong> Slack workspace. Here's what you missed:`,
           ),
           `<div style="margin: 0 0 18px 0; padding: 16px 18px; background: #f8f9fa; border: 1px solid #ececec; border-radius: 10px;">`,
-          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-bottom: 10px;"><tr><td style="width: 44px; padding-right: 12px; vertical-align: top;"><div style="width: 36px; height: 36px; background: #4a154b; color: #ffffff; border-radius: 6px; font-size: 14px; font-weight: 700; text-align: center; line-height: 36px;">ML</div></td><td style="vertical-align: top;"><div style="font-size: 14.5px; font-weight: 600; color: #1f1f1f; margin-bottom: 2px;">Marcus Liu <span style="font-size: 12px; color: #80868b; font-weight: 400;">· #all-eng · 2:14 PM PT</span></div><div style="font-size: 14.5px; color: #1f1f1f; line-height: 1.5;"><span style="color: #1264a3; font-weight: 600;">@demo</span> — we're shipping the <strong>pgvector migration</strong> today. Could you take a quick pass on the rollout doc before 5 PM? Two questions inline that I want your call on (the dual-write window + whether to keep Pinecone live as a kill-switch for the first 48h).</div><div style="font-size: 13px; color: #1264a3; margin-top: 8px;">📎 <a href="#" style="color: #1264a3; text-decoration: none;">rollout-pgvector-2026-05-17.md</a> · 3 KB</div></td></tr></table>`,
+          `<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-bottom: 10px;"><tr><td style="width: 44px; padding-right: 12px; vertical-align: top;"><div style="width: 36px; height: 36px; background: #4a154b; color: #ffffff; border-radius: 6px; font-size: 14px; font-weight: 700; text-align: center; line-height: 36px;">ML</div></td><td style="vertical-align: top;"><div style="font-size: 14.5px; font-weight: 600; color: #1f1f1f; margin-bottom: 2px;">Marcus Liu <span style="font-size: 12px; color: #80868b; font-weight: 400;">· #all-eng · 2:14 PM PT</span></div><div style="font-size: 14.5px; color: #1f1f1f; line-height: 1.5;"><span style="color: #1264a3; font-weight: 600;">@demo</span> - we're shipping the <strong>pgvector migration</strong> today. Could you take a quick pass on the rollout doc before 5 PM? Two questions inline that I want your call on (the dual-write window + whether to keep Pinecone live as a kill-switch for the first 48h).</div><div style="font-size: 13px; color: #1264a3; margin-top: 8px;">📎 <a href="#" style="color: #1264a3; text-decoration: none;">rollout-pgvector-2026-05-17.md</a> · 3 KB</div></td></tr></table>`,
           `<div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #ececec; font-size: 12.5px; color: #5f6368;">Thread: 4 replies · Reactions: 👀 3 · ✅ 1 · Last reply 12 min ago</div>`,
           `</div>`,
           sectionTitle("Recent thread replies"),
           bullet(`<strong>Elena Vargas</strong> · 'I'll do the dual-write piece. Plan is to mirror writes to both indexes for 7 days, decide on cutover after.'`),
           bullet(`<strong>Nathan Wu</strong> · 'Kill-switch makes sense. We can flip via env var, no deploy needed.'`),
-          bullet(`<strong>Aria Singh</strong> · 'CS impact looks minimal. I'll have the support runbook ready by 5.'`),
+          bullet(`<strong>Aria Lawson</strong> · 'CS impact looks minimal. I'll have the support runbook ready by 5.'`),
           bullet(`<strong>Marcus Liu</strong> · '+1, then we go at 6 PM. Cool with you @demo?'`),
           ctaRow([
             ctaButton("Reply in Slack", { color: "#4a154b" }),
@@ -9573,7 +9573,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Tour confirmed for the <strong>4th floor space at 535 Mission</strong> on Wednesday at 1:00 PM PT. Property details below — you'll meet me on the 1st floor lobby, then we'll go up together. Tour usually takes 45 minutes including time for questions.",
+            "Tour confirmed for the <strong>4th floor space at 535 Mission</strong> on Wednesday at 1:00 PM PT. Property details below - you'll meet me on the 1st floor lobby, then we'll go up together. Tour usually takes 45 minutes including time for questions.",
           ),
           sectionTitle("Property details · 535 Mission · 4th floor"),
           keyValBlock([
@@ -9586,7 +9586,7 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Move-in cost", value: "First + last month deposit ($84K) + $5K admin fee" },
           ]),
           sectionTitle("Suggested questions to ask during the tour"),
-          bullet("HVAC + comfort (4th floor faces south — afternoon sun is real)"),
+          bullet("HVAC + comfort (4th floor faces south - afternoon sun is real)"),
           bullet("Internet speed + redundancy (most WeWork floors share a single 1Gbps line)"),
           bullet("Noise (Mission Street side has Muni traffic; ask about the kitchenette wall)"),
           bullet("Security after-hours (badge-in, cameras, who has access)"),
@@ -9596,7 +9596,7 @@ function buildDemoThreads(): DemoThread[] {
           bullet("<strong>600 California</strong> · $48K/mo · bigger but the location is worse for your team"),
           bullet("<strong>This one (535 Mission)</strong> · $42K/mo · best location-to-price · my pick if it shows well"),
           p(
-            "If you like the space, I'd recommend deciding within 5 business days — there's another team in the queue. See you Wednesday.",
+            "If you like the space, I'd recommend deciding within 5 business days - there's another team in the queue. See you Wednesday.",
           ),
           hr(),
           signature("Alex Reyes", "Commercial Broker · WeWork", "broker@wework.com"),
@@ -9608,7 +9608,7 @@ function buildDemoThreads(): DemoThread[] {
       {
         id: "demo-thread-193",
         subject: "Customer success - playbook review",
-        senderName: "Aria Singh",
+        senderName: "Aria Lawson",
         senderEmail: "aria@vectormail.app",
         daysAgo: 7,
         snippet: "Refreshed the CS playbook. Comments?",
@@ -9619,7 +9619,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("Three changes that matter"),
           infoCard(
-            `<strong>1. Churn-risk trigger moved from 14 → 7 days of zero logins</strong><br/><span style="color: #5f6368; font-size: 13px;"><strong>Why:</strong> Loop AI dropped to zero usage on day 4. By the time we triggered the playbook at day 14, the relationship had calcified. 7 days catches it while there's still curiosity left in the conversation. Auto-tested in our churn model — 7 days catches 87% of eventual churners vs 72% at 14 days, with only 11% false-positive rate.</span>`,
+            `<strong>1. Churn-risk trigger moved from 14 → 7 days of zero logins</strong><br/><span style="color: #5f6368; font-size: 13px;"><strong>Why:</strong> Loop AI dropped to zero usage on day 4. By the time we triggered the playbook at day 14, the relationship had calcified. 7 days catches it while there's still curiosity left in the conversation. Auto-tested in our churn model - 7 days catches 87% of eventual churners vs 72% at 14 days, with only 11% false-positive rate.</span>`,
             { accent: "#1F3A2E" },
           ),
           infoCard(
@@ -9642,7 +9642,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           p("Aiming to ship Monday EOD. Comments by Sunday EOD please."),
           hr(),
-          signature("Aria Singh", "Customer Success Lead · VectorMail", "aria@vectormail.app"),
+          signature("Aria Lawson", "Customer Success Lead · VectorMail", "aria@vectormail.app"),
         ]),
         summary: "CS playbook update. Action: review and comment.",
         labels: [labelImportant],
@@ -9676,7 +9676,7 @@ function buildDemoThreads(): DemoThread[] {
             { tone: "warn" },
           ),
           sectionTitle("Three levers · pick one"),
-          bullet("<strong>1. Switch primary embedding model to text-embedding-3-small.</strong> Saves ~$3,500/mo. Quality drop measured at 1.8 pp on our eval set — at the edge of acceptable. Marcus's recommendation."),
+          bullet("<strong>1. Switch primary embedding model to text-embedding-3-small.</strong> Saves ~$3,500/mo. Quality drop measured at 1.8 pp on our eval set - at the edge of acceptable. Marcus's recommendation."),
           bullet("<strong>2. Cap free-tier user search volume at 50/day.</strong> Saves ~$2,800/mo. Customer-facing change; needs PM input."),
           bullet("<strong>3. Raise the AI budget to $12K for the rest of Q2.</strong> No quality impact, but variance bleeds into Q3 model and board narrative."),
           sectionTitle("My recommendation"),
@@ -9711,12 +9711,12 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("Customer Onboarding · 1 comment"),
           infoCard(
-            `<div style="font-size: 14px; color: #1f1f1f; margin-bottom: 6px;"><strong>Aria Singh</strong> · 2 days ago</div><div style="font-size: 13.5px; color: #5f6368; line-height: 1.5;">"After the Northglade onboarding win, I'd like to update this doc with the 'pre-onboarding workshop' addition I described. Heads up I'll likely do this Monday — let me know if you want to weigh in first."</div>`,
+            `<div style="font-size: 14px; color: #1f1f1f; margin-bottom: 6px;"><strong>Aria Lawson</strong> · 2 days ago</div><div style="font-size: 13.5px; color: #5f6368; line-height: 1.5;">"After the Northglade onboarding win, I'd like to update this doc with the 'pre-onboarding workshop' addition I described. Heads up I'll likely do this Monday - let me know if you want to weigh in first."</div>`,
             { accent: "#000000" },
           ),
           sectionTitle("Pricing Reset · 1 comment"),
           infoCard(
-            `<div style="font-size: 14px; color: #1f1f1f; margin-bottom: 6px;"><strong>Marketing</strong> · 1 day ago</div><div style="font-size: 13.5px; color: #5f6368; line-height: 1.5;">"Variant B is at 100% as of Tuesday. Want to update the doc with actual production numbers — should I write the post-experiment summary section here, or in a separate doc? Lightly preferring keeping it together for context."</div>`,
+            `<div style="font-size: 14px; color: #1f1f1f; margin-bottom: 6px;"><strong>Marketing</strong> · 1 day ago</div><div style="font-size: 13.5px; color: #5f6368; line-height: 1.5;">"Variant B is at 100% as of Tuesday. Want to update the doc with actual production numbers - should I write the post-experiment summary section here, or in a separate doc? Lightly preferring keeping it together for context."</div>`,
             { accent: "#000000" },
           ),
           ctaRow([
@@ -9743,7 +9743,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #f59e0b; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Slack Connect · Channel paused</span></div>`,
           headline("#shared-brightlane was paused by Brightlane's admin"),
           p(
-            `A Slack admin on the <strong>Brightlane</strong> side has paused the shared connect channel <code>#shared-brightlane</code>. No messages can be sent or received until they reactivate it. <strong>This is not necessarily a relationship issue</strong> — paused channels are common when companies do internal cleanup or update their Slack Connect policies. But worth a soft check-in.`,
+            `A Slack admin on the <strong>Brightlane</strong> side has paused the shared connect channel <code>#shared-brightlane</code>. No messages can be sent or received until they reactivate it. <strong>This is not necessarily a relationship issue</strong> - paused channels are common when companies do internal cleanup or update their Slack Connect policies. But worth a soft check-in.`,
           ),
           keyValBlock([
             { label: "Channel", value: "#shared-brightlane" },
@@ -9754,13 +9754,13 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Our presence", value: "Aria + 3 others remain in the channel" },
           ]),
           sectionTitle("Common reasons admins pause channels"),
-          bullet("<strong>Slack Connect policy update</strong> — they're refreshing their company-wide policy and pausing all connect channels temporarily"),
-          bullet("<strong>Security review</strong> — periodic audit of who has external access"),
-          bullet("<strong>Internal escalation</strong> — they're cleaning up shared spaces while resolving an internal issue (could be neutral)"),
-          bullet("<strong>Relationship signal</strong> — they're consciously pulling back · the rarest reason in our experience"),
+          bullet("<strong>Slack Connect policy update</strong> - they're refreshing their company-wide policy and pausing all connect channels temporarily"),
+          bullet("<strong>Security review</strong> - periodic audit of who has external access"),
+          bullet("<strong>Internal escalation</strong> - they're cleaning up shared spaces while resolving an internal issue (could be neutral)"),
+          bullet("<strong>Relationship signal</strong> - they're consciously pulling back · the rarest reason in our experience"),
           sectionTitle("Suggested action"),
           p(
-            `<strong>Soft check-in from Aria.</strong> Direct message to Sophia, light tone, 'noticed our shared channel got paused — anything I should know about, or just internal cleanup on your side?' Most pauses are benign; we want to know fast if it's not.`,
+            `<strong>Soft check-in from Aria.</strong> Direct message to Sophia, light tone, 'noticed our shared channel got paused - anything I should know about, or just internal cleanup on your side?' Most pauses are benign; we want to know fast if it's not.`,
           ),
           ctaRow([
             ctaButton("Open channel info", { color: "#4a154b" }),
@@ -9831,7 +9831,7 @@ function buildDemoThreads(): DemoThread[] {
             `Hi,<br/><br/>Draft of the <strong>pgvector migration blog post</strong> is ready. ~2,200 words, walks through why we left Pinecone, the migration plan, recall benchmarks at our scale, and the cost outcome (70% reduction, ~$3,000/mo saved). My goal with this piece is twofold: (1) tell the story honestly, (2) make it something other Series A AI companies can use as a decision template.`,
           ),
           sectionTitle("Structure of the piece"),
-          bullet("<strong>Intro · why we moved.</strong> 350 words. Not anti-Pinecone — we just outgrew the trade-offs they're optimized for."),
+          bullet("<strong>Intro · why we moved.</strong> 350 words. Not anti-Pinecone - we just outgrew the trade-offs they're optimized for."),
           bullet("<strong>Decision framework.</strong> 500 words. The 6 questions we asked. Honest about where Pinecone would still be the right answer."),
           bullet("<strong>Migration architecture.</strong> 600 words. Dual-write window, the canary cutover, the kill-switch we kept for 48 hours."),
           bullet("<strong>Recall benchmarks at our scale.</strong> 400 words + 3 charts. HNSW vs IVFFlat vs Pinecone. Real numbers."),
@@ -9848,7 +9848,7 @@ function buildDemoThreads(): DemoThread[] {
           ),
           sectionTitle("What I need from you"),
           bullet("Read by <strong>Sunday EOD</strong> · don't edit yet, just react"),
-          bullet("Sharp pushback on framing if you have it — easier to revise the argument now than later"),
+          bullet("Sharp pushback on framing if you have it - easier to revise the argument now than later"),
           bullet("Note any specifics that would be too revealing (we name-check OpenRouter and Aurinko; thought about it, but think it's fine)"),
           ctaRow([
             ctaButton("Open the draft", { color: "#1F3A2E" }),
@@ -9873,7 +9873,7 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Datadog"),
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #dc2626; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">P1 · SLO Breach</span></div>`,
           headline("search.latency.p95 burned through 73% of error budget in 12 minutes"),
-          p("An SLO monitor on the <strong>vectormail-api</strong> service crossed its threshold and burned through a large portion of this month's error budget. The breach has self-resolved, but the burn rate spiked to 14.2x normal — well above the 6x page threshold — so this is recorded as a P1 incident."),
+          p("An SLO monitor on the <strong>vectormail-api</strong> service crossed its threshold and burned through a large portion of this month's error budget. The breach has self-resolved, but the burn rate spiked to 14.2x normal - well above the 6x page threshold - so this is recorded as a P1 incident."),
           metricGrid([
             { label: "Service", value: "vectormail-api", sub: "us-west-2 · prod" },
             { label: "SLO target", value: "p95 ≤ 400ms" },
@@ -9892,7 +9892,7 @@ function buildDemoThreads(): DemoThread[] {
           logRow("18:00:35", "SLO monitor recovered", { tone: "ok" }),
           sectionTitle("Correlated change"),
           infoCard(
-            `<strong>Build #2247</strong> — <span style="font-family: ${MONO_STACK}; font-size: 13px;">feat: parallel embedding fetch in /api/search</span><br/><span style="color: #5f6368; font-size: 13px;">Deployed at 17:43 PT by elena-vargas · rolled back at 17:57 PT</span>`,
+            `<strong>Build #2247</strong> - <span style="font-family: ${MONO_STACK}; font-size: 13px;">feat: parallel embedding fetch in /api/search</span><br/><span style="color: #5f6368; font-size: 13px;">Deployed at 17:43 PT by elena-vargas · rolled back at 17:57 PT</span>`,
             { tone: "info" },
           ),
           sectionTitle("Suspected root cause"),
@@ -9902,7 +9902,7 @@ function buildDemoThreads(): DemoThread[] {
           sectionTitle("Recommended next steps"),
           bullet("Re-land with a concurrency limiter (Marcus already has a draft in #search-perf)."),
           bullet("Add an SLO alarm on embedding-pool saturation as a leading indicator."),
-          bullet("Open a postmortem in Notion — incident ID INC-0142."),
+          bullet("Open a postmortem in Notion - incident ID INC-0142."),
           ctaRow([
             ctaButton("Open in Datadog", { color: "#632ca6" }),
             ctaButton("View traces", { color: "#632ca6", variant: "outline" }),
@@ -9943,7 +9943,7 @@ function buildDemoThreads(): DemoThread[] {
         snippet: "Receipt for your $1,000 donation.",
         body: email([
           brandBlock("GiveDirectly"),
-          headline("Thank you — your donation receipt"),
+          headline("Thank you - your donation receipt"),
           p(
             "Thank you so much for your generosity. Your <strong>$1,000 donation</strong> to <strong>GiveDirectly</strong> has been received and will be wired directly to families living in extreme poverty as part of our next disbursement cycle. Tax receipt is attached for your records.",
           ),
@@ -9952,7 +9952,7 @@ function buildDemoThreads(): DemoThread[] {
             { label: "Donor", value: "Demo User" },
             { label: "Date", value: "May 9, 2026" },
             { label: "Payment method", value: "Brex Visa •• 1842" },
-            { label: "Designation", value: "Unrestricted (most flexible — what we recommend)" },
+            { label: "Designation", value: "Unrestricted (most flexible - what we recommend)" },
             { label: "Tax-deductible", value: "Yes · 100% of donation (we don't take overhead from individual gifts)" },
             { label: "EIN", value: "27-1661997" },
             { label: "Receipt #", value: "GD-2026-1841237" },
@@ -9986,7 +9986,7 @@ function buildDemoThreads(): DemoThread[] {
         body: email([
           p("Hi,"),
           p(
-            "Heads up — <strong>May books are closing on schedule.</strong> We'll have a clean trial balance ready for you by Wednesday May 28. One small categorization question I want to surface so we can close cleanly:",
+            "Heads up - <strong>May books are closing on schedule.</strong> We'll have a clean trial balance ready for you by Wednesday May 28. One small categorization question I want to surface so we can close cleanly:",
           ),
           sectionTitle("The question"),
           infoCard(
@@ -9994,7 +9994,7 @@ function buildDemoThreads(): DemoThread[] {
             { tone: "info" },
           ),
           sectionTitle("Other minor categorization questions for May (3)"),
-          bullet("<strong>Cobalt Q2</strong> · $4,200 · default 'Professional Services' · proposed 'Security Ops' — needs your confirm"),
+          bullet("<strong>Cobalt Q2</strong> · $4,200 · default 'Professional Services' · proposed 'Security Ops' - needs your confirm"),
           bullet("<strong>20VC honorarium</strong> · $0 (no charge, but recorded as income for Q3) · should record as Marketing income vs Other"),
           bullet("<strong>Backstage Capital community fees</strong> · $0 (free) · no journal entry needed unless you want to track the value"),
           sectionTitle("Close timeline"),
@@ -10023,7 +10023,7 @@ function buildDemoThreads(): DemoThread[] {
           `<div style="margin: 0 0 16px 0;"><span style="display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #ffffff; background: #dc2626; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;">Hot lead · Score 91 · 24h SLA</span></div>`,
           headline("Anabel Reyes crossed the hot-lead threshold"),
           p(
-            "A lead just scored 91 — the highest score in your pipeline this week. Two of the highest-weight rules fired simultaneously (pricing-page-visit + demo-request), which is rare and almost always converts.",
+            "A lead just scored 91 - the highest score in your pipeline this week. Two of the highest-weight rules fired simultaneously (pricing-page-visit + demo-request), which is rare and almost always converts.",
           ),
           profileCard({
             name: "Anabel Reyes",
@@ -10050,14 +10050,14 @@ function buildDemoThreads(): DemoThread[] {
           logRow("May 16", "Filled out demo request form · 47 min on /pricing first", { tone: "ok" }),
           sectionTitle("Account fit · 6/6 ICP signals"),
           bullet("Industry: SaaS Operations · Tier 1 vertical for you"),
-          bullet("Headcount: 180 · within band (100–500)"),
-          bullet("Tech stack: Notion, Slack, Stripe — overlaps with 80% of customers"),
+          bullet("Headcount: 180 · within band (100-500)"),
+          bullet("Tech stack: Notion, Slack, Stripe - overlaps with 80% of customers"),
           bullet("LinkedIn: scaling Ops team (3 hires in last 90 days)"),
-          bullet("Funding: Series B, $80M raised — well-resourced"),
+          bullet("Funding: Series B, $80M raised - well-resourced"),
           bullet("Geography: SF Bay Area · same-zone with your team"),
           sectionTitle("Suggested outreach"),
           infoCard(
-            `Don't lead with the demo — she's already opted in. Lead with the customer story most relevant to her (Brightlane has the same headcount + similar tech stack). Drop into <code>#sales-hot-leads</code> for routing or claim directly.`,
+            `Don't lead with the demo - she's already opted in. Lead with the customer story most relevant to her (Brightlane has the same headcount + similar tech stack). Drop into <code>#sales-hot-leads</code> for routing or claim directly.`,
             { tone: "info" },
           ),
           ctaRow([
@@ -10119,7 +10119,7 @@ function buildDemoThreads(): DemoThread[] {
             rightLabel: "Customer",
           }),
           bullet("Context: existing customer (12 seats) · health score is Green"),
-          bullet("Prep: she's lining up for expansion — Aria thinks 30-50 seats by Q3"),
+          bullet("Prep: she's lining up for expansion - Aria thinks 30-50 seats by Q3"),
           sectionTitle("Fri · 10:00 AM PT · 30 min"),
           profileCard({
             name: "Daniel Park",
@@ -10130,7 +10130,7 @@ function buildDemoThreads(): DemoThread[] {
             rightLabel: "Investor",
           }),
           bullet("Context: just emailed last week about the round · we don't have room currently"),
-          bullet("Prep: be direct — no room in Series A, hold for Series B conversation"),
+          bullet("Prep: be direct - no room in Series A, hold for Series B conversation"),
           ctaRow([
             ctaButton("View calendar week", { color: "#1F3A2E" }),
             ctaButton("Block off another office-hours slot next week", { color: "#1F3A2E", variant: "outline" }),
@@ -10154,10 +10154,10 @@ function buildDemoThreads(): DemoThread[] {
           brandBlock("Linear"),
           headline("Cycle 10 planning is ready · 47 issues triaged"),
           p(
-            "Your <strong>Cycle 10 planning</strong> for the <strong>vectormail-ai</strong> team is ready to commit. <strong>47 issues triaged into the cycle</strong> across 4 team members. Capacity check shows healthy headroom — you're at 84% of stretch, leaving room for spec'd work that drops in during the cycle.",
+            "Your <strong>Cycle 10 planning</strong> for the <strong>vectormail-ai</strong> team is ready to commit. <strong>47 issues triaged into the cycle</strong> across 4 team members. Capacity check shows healthy headroom - you're at 84% of stretch, leaving room for spec'd work that drops in during the cycle.",
           ),
           metricGrid([
-            { label: "Cycle", value: "10", sub: "May 19 – May 30" },
+            { label: "Cycle", value: "10", sub: "May 19 - May 30" },
             { label: "Issues triaged", value: "47" },
             { label: "Total points", value: "42" },
             { label: "Team capacity", value: "84%", sub: "of stretch" },
@@ -10186,7 +10186,7 @@ function buildDemoThreads(): DemoThread[] {
             ctaButton("Start cycle", { color: "#5e6ad2", variant: "outline" }),
             ctaButton("View capacity heatmap", { color: "#5e6ad2", variant: "outline" }),
           ]),
-          fineprint("Team: vectormail-ai · Cycle 10: May 19 (Monday 9 AM PT) – May 30 (Friday 5 PM PT) · 11 working days"),
+          fineprint("Team: vectormail-ai · Cycle 10: May 19 (Monday 9 AM PT) - May 30 (Friday 5 PM PT) · 11 working days"),
           companyEmailFooter("Linear"),
         ]),
         summary: "Linear cycle planning ready. No action.",
@@ -10940,7 +10940,7 @@ export function getDemoThreadBrain(threadId: string): {
       about: "Promotional or bulk mail-style thread in the demo inbox.",
       expectedFromMe:
         "No reply needed unless you want to engage; fine to archive.",
-      expectedReason: "Newsletter-like content with no direct ask — nothing to reply to.",
+      expectedReason: "Newsletter-like content with no direct ask - nothing to reply to.",
       expectedPriority: "Low",
     },
   };

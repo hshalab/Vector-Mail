@@ -174,7 +174,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           error: "Content policy violation",
-          message: `This reply can't be sent — the ${error.field} contains ${error.reason}. Edit the offending content and try again.`,
+          message: `This reply can't be sent - the ${error.field} contains ${error.reason}. Edit the offending content and try again.`,
           field: error.field,
           reason: error.reason,
         },

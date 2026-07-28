@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
 import { Trash2 } from "lucide-react";
+import { Skel } from "@/components/ui/skeletons";
 import {
   Select,
   SelectContent,
@@ -163,8 +164,30 @@ export function FilterRulesSheet({
                 Existing rules
               </p>
               {isLoading ? (
-                <div className="flex flex-1 items-center justify-center py-8">
-                  <p className="text-sm text-[#5f6368] dark:text-[#9aa0a6]">Loading...</p>
+                <div className="flex flex-1 flex-col gap-2 py-1">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="rounded-lg border border-[#e8eaed] bg-white p-3 dark:border-[#3c4043] dark:bg-[#202124]"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Skel
+                          delay={i * 60}
+                          className="h-3.5 rounded"
+                          style={{ width: `${45 + ((i * 11) % 30)}%` }}
+                        />
+                        <Skel
+                          delay={i * 60 + 40}
+                          className="ml-auto h-6 w-6 shrink-0 rounded-md"
+                        />
+                      </div>
+                      <Skel
+                        delay={i * 60 + 70}
+                        className="mt-2 h-2.5 rounded"
+                        style={{ width: `${30 + ((i * 7) % 24)}%` }}
+                      />
+                    </div>
+                  ))}
                 </div>
               ) : (rules ?? []).length === 0 ? (
                 <div className="flex flex-1 flex-col items-center justify-center gap-2 py-8 text-center">

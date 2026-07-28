@@ -32,7 +32,7 @@ export const REASONING_MODEL_CHAIN = [
   "anthropic/claude-sonnet-4.5",
   "anthropic/claude-sonnet-4-5",
   "anthropic/claude-3.7-sonnet",
-  "anthropic/claude-3.5-haiku",
+  "anthropic/claude-haiku-4.5",
 ] as const;
 
 export async function createCompletionWithModelFallback(

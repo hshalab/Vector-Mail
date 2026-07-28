@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { Loader2, Shield, CheckCircle2 } from "lucide-react";
 import { useDemoMode } from "@/hooks/use-demo-mode";
 import { DEMO_ACCOUNT_ID } from "@/lib/demo/constants";
+import { Skel } from "@/components/ui/skeletons";
 
 interface SendingIdentitySheetProps {
   accountId: string;
@@ -117,8 +118,21 @@ export function SendingIdentitySheet({
             Connect your Gmail to set a custom From address and deliverability options.
           </p>
         ) : loading ? (
-          <div className="flex flex-1 items-center justify-center py-8">
-            <Loader2 className="h-8 w-8 animate-spin text-[#1a73e8] dark:text-[#1e2a4a]" />
+          <div className="mt-6 flex flex-1 flex-col gap-6">
+            <Skel className="h-4 w-3/4 rounded" />
+            <div className="space-y-2">
+              <Skel className="h-3 w-24 rounded" delay={60} />
+              <Skel className="h-10 w-full rounded-lg" delay={90} />
+            </div>
+            <div className="space-y-2">
+              <Skel className="h-3 w-28 rounded" delay={140} />
+              <Skel className="h-10 w-full rounded-lg" delay={170} />
+            </div>
+            <div className="space-y-2">
+              <Skel className="h-3 w-20 rounded" delay={220} />
+              <Skel className="h-20 w-full rounded-lg" delay={250} />
+            </div>
+            <Skel tone="strong" className="mt-1 h-9 w-full rounded-lg" delay={320} />
           </div>
         ) : (
           <div className="mt-6 flex flex-1 flex-col gap-8">

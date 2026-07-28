@@ -20,9 +20,15 @@ import { briefingProcedures } from "./account-procedures/briefing";
 import { emailReadingProcedures } from "./account-procedures/email-reading";
 import { threadReadingProcedures } from "./account-procedures/thread-reading";
 import { syncProcedures } from "./account-procedures/sync";
+import { calendarProcedures } from "./account-procedures/calendar";
+import { meetingIntentProcedures } from "./account-procedures/meeting-intent";
+import { bookingProcedures } from "./account-procedures/booking";
 
 export const accountRouter = createTRPCRouter({
   ...identityProcedures,
+  ...calendarProcedures,
+  ...meetingIntentProcedures,
+  ...bookingProcedures,
   ...sendingProcedures,
   ...briefingProcedures,
   ...emailReadingProcedures,

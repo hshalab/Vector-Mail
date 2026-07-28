@@ -104,7 +104,7 @@ export function SignInChoiceModal({ open, onOpenChange }: SignInChoiceModalProps
           </h2>
           <p className="mt-2 text-[13.5px] leading-relaxed text-[#5f5848]">
             {signingIn
-              ? "Hang tight — we're opening Google's secure sign-in."
+              ? "Hang tight - we're opening Google's secure sign-in."
               : "VectorMail is invite-only while we onboard teams one at a time. Request access, or sign in if you've already been approved."}
           </p>
         </div>
@@ -139,7 +139,7 @@ export function SignInChoiceModal({ open, onOpenChange }: SignInChoiceModalProps
                   Opening secure sign-in
                 </span>
                 <span className="mt-0.5 block text-[12.5px] leading-snug text-[#7a7363]">
-                  Redirecting you to Google to finish — one moment.
+                  Redirecting you to Google to finish - one moment.
                 </span>
               </div>
             </div>

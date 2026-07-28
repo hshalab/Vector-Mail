@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useMemo, useEffect, useImperativeHandle, forwardRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { formatDistanceToNow, format } from "date-fns";
-import { MoreVertical, RefreshCw, Mail, MailOpen, Star, Bell, CalendarClock, X, Trash2, Loader2 } from "lucide-react";
+import { MoreVertical, RefreshCw, Mail, MailOpen, Star, Bell, CalendarClock, X, Trash2 } from "lucide-react";
 import { useAtom } from "jotai";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -28,6 +28,7 @@ import { SnoozeMenu } from "./SnoozeMenu";
 import type { InfiniteData } from "@tanstack/react-query";
 import { RemindMenu } from "./RemindMenu";
 import { ThreadListSkeleton } from "./ThreadListSkeleton";
+import { SkeletonRows } from "@/components/ui/skeletons";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useDemoMode } from "@/hooks/use-demo-mode";
 import { DEMO_ACCOUNT_ID } from "@/lib/demo/constants";
@@ -1622,7 +1623,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
       // Group by the SAME timestamp the list is sorted by (getThreadTimestamp),
       // not lastMessageDate alone. If these two ever disagree (e.g. a thread is
       // mid-sync with a stale lastMessageDate), grouping by a different key than
-      // the sort key drags an old date-group above a newer one — the scramble.
+      // the sort key drags an old date-group above a newer one - the scramble.
       // Sharing one timestamp source makes group order == sort order, always.
       const date = format(new Date(getThreadTimestamp(thread)), "yyyy-MM-dd");
       if (!acc[date]) acc[date] = [];
@@ -1635,14 +1636,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
   const lastThreadId = allThreads[allThreads.length - 1]?.id;
 
   if (accountsLoading) {
-    return (
-      <div className="flex h-full items-center justify-center bg-white dark:bg-[#ffffff]">
-        <div className="text-center">
-          <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-[#e5e7eb] border-t-[#1e2a4a] dark:border-[#ffffff] dark:border-t-[#1e2a4a]" />
-          <p className="mt-3 text-[13px] text-[#6b7280] dark:text-[#a1a1aa]">Loading...</p>
-        </div>
-      </div>
-    );
+    return <ThreadListSkeleton />;
   }
 
   if (currentTab === "scheduled") {
@@ -1968,7 +1962,6 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
       if (slowLoad) {
         return (
           <div className="flex h-64 flex-col items-center justify-center gap-4 px-6 text-center">
-            <Loader2 className="h-10 w-10 animate-spin text-[#5f6368] dark:text-[#9aa0a6]" />
             <div>
               <p className="text-[14px] font-medium text-[#202124] dark:text-[#e8eaed]">
                 Taking longer than usual
@@ -2247,20 +2240,24 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
           </React.Fragment>
         ))}
         {(isFetchingNextPage || loadingMoreAtListEnd) && (
-          <div className="flex items-center justify-center gap-2 py-6 text-[12px] text-[#5f6368] dark:text-[#9aa0a6]">
-            <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#e5e7eb] border-t-[#1e2a4a] dark:border-[#ffffff] dark:border-t-[#1e2a4a]" />
-            <span>Loading more emails…</span>
-          </div>
+          <SkeletonRows
+            rows={2}
+            lines={3}
+            avatarClassName="h-10 w-10 rounded-md"
+            rowClassName="min-h-[88px] gap-3.5 border-b border-[#e5e7eb] px-5 py-4 dark:border-[#ffffff]"
+          />
         )}
         {!hasNextPage &&
           !isFetchingNextPage &&
           !loadingMoreAtListEnd &&
           allThreads.length >= 50 &&
           (isSyncActive || (currentTab === "inbox" && !backfillComplete) ? (
-            <div className="flex items-center justify-center gap-2 py-6 text-[12px] text-[#5f6368] dark:text-[#9aa0a6]">
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#e5e7eb] border-t-[#1e2a4a] dark:border-[#ffffff] dark:border-t-[#1e2a4a]" />
-              <span>Syncing older emails…</span>
-            </div>
+            <SkeletonRows
+              rows={2}
+              lines={3}
+              avatarClassName="h-10 w-10 rounded-md"
+              rowClassName="min-h-[88px] gap-3.5 border-b border-[#e5e7eb] px-5 py-4 dark:border-[#ffffff]"
+            />
           ) : (
             <div className="py-6 text-center text-[11px] tracking-wide text-[#9aa0a6] dark:text-[#5f6368]">
               You&apos;re all caught up

@@ -21,6 +21,29 @@ import {
 } from "lucide-react";
 import { formatDistanceToNow, format } from "date-fns";
 import { toast } from "sonner";
+import { Skel, SkeletonLines } from "@/components/ui/skeletons";
+
+function AutopilotRowsSkeleton() {
+  return (
+    <div className="space-y-2" aria-busy="true">
+      {[0, 1].map((i) => (
+        <div
+          key={i}
+          className="rounded-xl border border-[#e4e7ed] bg-[#fafbfc] p-3"
+        >
+          <div className="flex items-start gap-3">
+            <Skel delay={i * 80} className="h-8 w-8 shrink-0 rounded-full" />
+            <div className="flex-1 space-y-2 pt-0.5">
+              <Skel delay={i * 80 + 30} className="h-3 w-2/3 rounded" />
+              <Skel delay={i * 80 + 60} className="h-2.5 w-1/2 rounded" />
+            </div>
+            <Skel delay={i * 80 + 90} className="h-6 w-16 shrink-0 rounded-md" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 const HUMAN_STATUS_LABEL: Record<string, string> = {
   pending: "Working on it",
@@ -620,7 +643,7 @@ export function AutopilotSection({ accountId, isDemo = false }: { accountId: str
                 {MODE_TAGLINE[mode]}
                 {mode === "auto" && (
                   <span className="ml-1 text-[#7a849a]">
-                    ({Math.round(CONFIDENCE_THRESHOLDS.HIGH * 100)}%+ sends, {Math.round(CONFIDENCE_THRESHOLDS.MEDIUM * 100)}–{Math.round(CONFIDENCE_THRESHOLDS.HIGH * 100) - 1}% asks)
+                    ({Math.round(CONFIDENCE_THRESHOLDS.HIGH * 100)}%+ sends, {Math.round(CONFIDENCE_THRESHOLDS.MEDIUM * 100)}-{Math.round(CONFIDENCE_THRESHOLDS.HIGH * 100) - 1}% asks)
                   </span>
                 )}
               </p>
@@ -745,10 +768,7 @@ export function AutopilotSection({ accountId, isDemo = false }: { accountId: str
               </div>
 
               {listPendingQuery.isLoading ? (
-                <div className="flex items-center gap-2 rounded-xl border border-[#e4e7ed] bg-[#fafbfc] p-3 text-[12px] text-[#4a5572]">
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  Loading…
-                </div>
+                <AutopilotRowsSkeleton />
               ) : pendingRows.length === 0 ? (
                 <div className="rounded-xl border border-dashed border-[#e4e7ed] bg-[#fafbfc] px-4 py-5">
                   <div className="flex flex-col items-center justify-center gap-1 text-center">
@@ -1043,10 +1063,7 @@ export function AutopilotSection({ accountId, isDemo = false }: { accountId: str
 
             <div className="min-h-0 max-h-[60vh] overflow-y-auto px-3 py-3">
               {listExecutionsQuery.isLoading ? (
-                <div className="flex items-center gap-2 rounded-xl border border-[#e4e7ed] bg-[#fafbfc] p-3 text-[12px] text-[#4a5572]">
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  Loading…
-                </div>
+                <AutopilotRowsSkeleton />
               ) : listExecutionsQuery.isError ? (
                 <div className="flex items-center gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3 text-[12px] text-rose-700">
                   <AlertTriangle className="h-3.5 w-3.5" />
@@ -1133,10 +1150,7 @@ export function AutopilotSection({ accountId, isDemo = false }: { accountId: str
                         {isOpen && (
                           <div className="border-t border-[#e4e7ed] bg-white px-3 py-3">
                             {detailLoading ? (
-                              <div className="flex items-center gap-2 text-[12px] text-[#4a5572]">
-                                <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                                Loading detail…
-                              </div>
+                              <SkeletonLines lines={4} lastWidth="45%" className="py-1" />
                             ) : detailError || !detail ? (
                               <div className="flex items-center gap-2 rounded-lg border border-rose-500/30 bg-rose-500/10 p-2.5 text-[12px] text-rose-700">
                                 <AlertTriangle className="h-3.5 w-3.5" />

@@ -1,22 +1,6 @@
-/**
- * Regression guard for the inbox-backfill gap bug.
- *
- * The bug: backfill completion was inferred from the presence of a delta token
- * (`Account.nextDeltaToken`). A delta token is set the moment incremental sync
- * becomes possible — long before the full history has been walked — so any
- * account that obtained a token early was permanently locked out of backfill,
- * leaving a gap (newest days present, months silently missing).
- *
- * The fix: completion is tracked by `Account.inboxBackfilledAt`. A delta token
- * must NEVER stop the history walk. If anyone re-couples the two, these tests
- * fail. See src/lib/mail-sync-inbox-step.ts and the inbox path in
- * src/server/api/routers/account-procedures/sync.ts.
- */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
-// Self-contained mock factories (no outer references) to avoid Jest's
-// hoisting TDZ; handles are retrieved after the imports below.
 jest.mock("@/server/db", () => ({
   db: {
     account: { findFirst: jest.fn(), update: jest.fn() },
@@ -69,14 +53,13 @@ beforeEach(() => {
   jest.clearAllMocks();
   mockDb.account.update.mockResolvedValue({});
   mockDb.thread.count.mockResolvedValue(100);
-  // Recent latest-inbox date → inbox is NOT stale.
+  
   mockDb.thread.findFirst.mockResolvedValue({ lastMessageDate: new Date() });
   mockAccountInstance.establishInboxDeltaToken.mockResolvedValue(undefined);
 });
 
 describe("inbox backfill gate (worker step behavior)", () => {
   it("keeps walking history when a delta token exists but inboxBackfilledAt is null", async () => {
-    // The exact poisoned state that used to freeze the inbox forever.
     mockDb.account.findFirst.mockResolvedValue({
       ...ACCOUNT_BASE,
       nextDeltaToken: "delta-token-set-early",
@@ -91,10 +74,9 @@ describe("inbox backfill gate (worker step behavior)", () => {
 
     const res = await runInboxSyncOneStep("acc1");
 
-    // A delta token must NOT stop the backfill walk.
+    
     expect(res.hasMore).toBe(true);
     expect(res.continueToken).toBeTruthy();
-    // It must take the list-walk path, never the delta short-circuit.
     expect(mockAccountInstance.syncLatestEmails).not.toHaveBeenCalled();
     expect(mockAccountInstance.fetchInboxPageViaList).toHaveBeenCalled();
   });
@@ -126,7 +108,7 @@ describe("inbox backfill gate (worker step behavior)", () => {
     });
     mockAccountInstance.fetchInboxPageViaList.mockResolvedValue({
       emails: [],
-      nextPageToken: undefined, // no more pages → true bottom of history
+      nextPageToken: undefined, 
       listed: 0,
       fetched: 0,
     });
@@ -163,10 +145,7 @@ describe("inbox backfill gate (source invariants)", () => {
     const src = stripComments(
       read("src/server/api/routers/account-procedures/sync.ts"),
     );
-    // First-page hasMore must key off the backfill flag.
     expect(src).toMatch(/!account\.inboxBackfilledAt/);
-    // Background-worker delegation must require a completed backfill, so an
-    // incomplete inbox is driven inline (the worker returns no continueToken).
     expect(src).toMatch(/!!account\.inboxBackfilledAt/);
   });
 });

@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronDown, Loader2 } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { api } from "@/trpc/react";
+import { Skel, SkeletonLines } from "@/components/ui/skeletons";
 import { trackInboxBrainEvent } from "@/lib/analytics/inbox-brain";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -74,10 +75,20 @@ export function ThreadBrainPanel({
       {expanded && (
         <div className="ai-brief-body">
           {isLoading && (
-            <span className="inline-flex items-center gap-2">
-              <Loader2 className="h-4 w-4 animate-spin" />
-              Reading thread...
-            </span>
+            <div
+              className="flex flex-col gap-3.5"
+              aria-busy="true"
+              aria-label="Reading thread"
+            >
+              <div className="flex flex-col gap-1.5">
+                <Skel className="h-2.5 w-28 rounded-sm" />
+                <SkeletonLines lines={2} lastWidth="68%" />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <Skel className="h-2.5 w-36 rounded-sm" delay={90} />
+                <SkeletonLines lines={2} lastWidth="52%" />
+              </div>
+            </div>
           )}
           {isError && (error?.message ?? "Couldn’t load inbox brain.")}
           {!isLoading && !isError && data && (

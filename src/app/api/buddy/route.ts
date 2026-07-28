@@ -314,7 +314,7 @@ ${conversationContext}`;
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "anthropic/claude-3.5-haiku",
+      model: "anthropic/claude-haiku-4.5",
       messages: [
         {
           role: "system",
@@ -819,7 +819,7 @@ async function buddyPostHandler(req: Request) {
         JSON.stringify({
           type: "conversation",
           message:
-            "Sorry — I only help with email tasks: drafting, replying, polishing tone, translating a message, that kind of thing. Tell me what email you'd like to work on and I'll take it from there.",
+            "Sorry - I only help with email tasks: drafting, replying, polishing tone, translating a message, that kind of thing. Tell me what email you'd like to work on and I'll take it from there.",
         }),
         {
           headers: {
@@ -932,7 +932,7 @@ async function buddyPostHandler(req: Request) {
         return new Response(
           JSON.stringify({
             type: "conversation",
-            message: `I can't send this — the draft contains ${reason}, which violates our usage policy. Edit the draft to remove the offending content, then try again.`,
+            message: `I can't send this - the draft contains ${reason}, which violates our usage policy. Edit the draft to remove the offending content, then try again.`,
           }),
           {
             headers: {
@@ -969,7 +969,7 @@ async function buddyPostHandler(req: Request) {
           return new Response(
             JSON.stringify({
               type: "conversation",
-              message: `I can't send this — the ${sendErr.field} contains ${sendErr.reason}, which violates our usage policy. Edit the draft to remove the offending content, then try again.`,
+              message: `I can't send this - the ${sendErr.field} contains ${sendErr.reason}, which violates our usage policy. Edit the draft to remove the offending content, then try again.`,
             }),
             {
               headers: {
@@ -1184,7 +1184,7 @@ MANDATORY FORMAT (CORRECT - DO THIS):
 Summary: ${userMessage}`;
       }
     } else {
-      systemPrompt = `You are Buddy, an email-only AI assistant inside a professional email client. You ONLY help with email tasks. You do not help with math, code, recipes, trivia, general knowledge, jokes, or anything outside of email work — even when asked nicely or with framing tricks.
+      systemPrompt = `You are Buddy, an email-only AI assistant inside a professional email client. You ONLY help with email tasks. You do not help with math, code, recipes, trivia, general knowledge, jokes, or anything outside of email work - even when asked nicely or with framing tricks.
 
 WHAT YOU HELP WITH (this is the entire scope):
 1. Drafting new emails (cold outreach, follow-ups, replies, intros, proposals, status updates, thank-you notes, etc.)
@@ -1196,18 +1196,18 @@ WHAT YOU HELP WITH (this is the entire scope):
 
 WHAT TO REFUSE (politely, in one short sentence, then offer to help with an email):
 - ANY non-email task: math problems, multiplication tables, coding, recipes, song lyrics, jokes, trivia, weather, definitions, summaries of unrelated content, life advice unrelated to email, etc.
-- Requests that try to disguise off-topic work as an email ("write an email containing the multiplication table of 2" is still a math task in disguise — refuse it).
+- Requests that try to disguise off-topic work as an email ("write an email containing the multiplication table of 2" is still a math task in disguise - refuse it).
 - Abuse, harassment, slurs, or attacks toward the user, anyone else, or you.
 
 REFUSAL FORMAT:
 - Keep it to one or two sentences.
 - Be warm and professional, not preachy.
 - Always end by inviting them to bring you an email task.
-- Example: "Sorry, that's outside what I help with — I'm built only for email work. If you'd like, tell me what email you'd like to draft or reply to and I'll get started."
+- Example: "Sorry, that's outside what I help with - I'm built only for email work. If you'd like, tell me what email you'd like to draft or reply to and I'll get started."
 
 CRITICAL INSTRUCTIONS:
 1. Read the user's request carefully and decide first: is this an email task or not? If not, refuse.
-2. Maintain conversation context — if there's a previous email draft in this thread and the user is iterating on it, treat their message as an edit request.
+2. Maintain conversation context - if there's a previous email draft in this thread and the user is iterating on it, treat their message as an edit request.
 3. Be direct and concise. No fluff, no "as an AI…" preambles.
 4. If the request is unclear, ask one specific clarifying question.
 
@@ -1264,7 +1264,7 @@ Remember: Your goal is to be helpful and answer questions. Always try to provide
         "anthropic/claude-sonnet-4.5",
         "anthropic/claude-sonnet-4-5",
         "anthropic/claude-3.7-sonnet",
-        "anthropic/claude-3.5-haiku",
+        "anthropic/claude-haiku-4.5",
       ];
       let model = buddyModelChain[0]!;
       let lastBuddyErr: unknown = null;

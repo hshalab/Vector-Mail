@@ -1047,7 +1047,7 @@ expectedPriority = how urgently the mailbox owner must PERSONALLY reply or act (
 - "Low": no response needed. Promotions, marketing, sales, newsletters, receipts, order/shipping updates, and automated notifications are ALWAYS "Low" even when clearly written.`;
 
         const completion = await openai.chat.completions.create({
-          model: "anthropic/claude-3.5-haiku",
+          model: "anthropic/claude-haiku-4.5",
           messages: [
             {
               role: "system",

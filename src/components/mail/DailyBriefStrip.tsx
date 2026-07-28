@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { Skel } from "@/components/ui/skeletons";
 import { api } from "@/trpc/react";
 import { threadIdAtom } from "@/hooks/use-threads";
 import { trackInboxBrainEvent } from "@/lib/analytics/inbox-brain";
@@ -435,12 +436,13 @@ export function DailyBriefStrip({
       >
         {header}
         {expanded && (
-          <div className="mt-2 space-y-2 border-t border-[#e5e7eb] pt-2 dark:border-[#ffffff]">
-            <div className="flex items-center gap-2 px-1">
-              <Loader2 className="h-3.5 w-3.5 shrink-0 animate-spin text-[#1e2a4a] dark:text-[#1e2a4a]" />
-              <div className="h-3 w-full max-w-[180px] animate-pulse rounded bg-[#e5e7eb] dark:bg-[#27272a]" />
+          <div className="mt-2 space-y-2.5 border-t border-[#e5e7eb] pt-2.5 dark:border-[#ffffff]">
+            <Skel className="h-3 w-full max-w-[180px] rounded" />
+            <Skel className="h-16 w-full rounded-lg" delay={80} />
+            <div className="grid grid-cols-2 gap-1.5">
+              <Skel className="h-12 rounded-lg" delay={140} />
+              <Skel className="h-12 rounded-lg" delay={170} />
             </div>
-            <div className="h-16 animate-pulse rounded-lg bg-[#f3f4f6] dark:bg-[#18181b]" />
           </div>
         )}
       </div>

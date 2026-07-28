@@ -69,7 +69,7 @@ export const sendingProcedures = {
         if (isOutgoingContentBlockedError(sendErr)) {
           throw new TRPCError({
             code: "BAD_REQUEST",
-            message: `This email can't be sent — the ${sendErr.field} contains ${sendErr.reason}. Edit the offending content and try again.`,
+            message: `This email can't be sent - the ${sendErr.field} contains ${sendErr.reason}. Edit the offending content and try again.`,
           });
         }
         throw sendErr;

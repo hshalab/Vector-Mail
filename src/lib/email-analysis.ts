@@ -54,7 +54,7 @@ ${emailContent}
 Summary:`;
 
     const completion = await openai.chat.completions.create({
-      model: "anthropic/claude-3.5-haiku",
+      model: "anthropic/claude-haiku-4.5",
       messages: [
         {
           role: "user",
@@ -114,7 +114,7 @@ ${emailContent}
 Return only the tags as a comma-separated list, no other text.`;
 
     const completion = await openai.chat.completions.create({
-      model: "anthropic/claude-3.5-haiku",
+      model: "anthropic/claude-haiku-4.5",
       messages: [
         {
           role: "user",

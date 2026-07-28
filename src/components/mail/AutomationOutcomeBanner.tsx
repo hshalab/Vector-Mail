@@ -14,6 +14,7 @@ import {
 
 import { api } from "@/trpc/react";
 import { cn } from "@/lib/utils";
+import { Skel } from "@/components/ui/skeletons";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -156,8 +157,11 @@ export function AutomationOutcomeBanner({
         {expanded && (
           <div className="mt-1 space-y-2 px-1 pb-1">
             {summaryQuery.isLoading && !s ? (
-              <div className="flex items-center justify-center py-6">
-                <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#dadce0] border-t-[#1a73e8] dark:border-[#3c4043] dark:border-t-[#1e2a4a]" />
+              <div className="grid grid-cols-2 gap-1.5">
+                <Skel className="h-14 rounded-lg" />
+                <Skel className="h-14 rounded-lg" delay={40} />
+                <Skel className="h-14 rounded-lg" delay={80} />
+                <Skel className="h-14 rounded-lg" delay={120} />
               </div>
             ) : (
               <>

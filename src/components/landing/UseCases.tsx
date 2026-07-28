@@ -3,6 +3,25 @@
 import Image from "next/image";
 import { useEffect, useState, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
+import { motion, type Variants } from "framer-motion";
+
+const GRID_VARIANTS: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.09, delayChildren: 0.05 },
+  },
+};
+
+const CARD_VARIANTS: Variants = {
+  hidden: { opacity: 0, y: 26, scale: 0.96, filter: "blur(8px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { type: "spring", stiffness: 230, damping: 24, mass: 0.9 },
+  },
+};
 
 const TABS = [
   "Founders",
@@ -136,8 +155,8 @@ const FollowUpRadarPreview = (
         <span className="ui-thread-status urgent">9 days</span>
       </div>
       <div className="ui-thread-row">
-        <span className="ui-thread-avatar gray">RK</span>
-        <span className="ui-thread-name">Rajeev @ HubSpot</span>
+        <span className="ui-thread-avatar gray">RH</span>
+        <span className="ui-thread-name">Ryan @ HubSpot</span>
         <span className="ui-thread-status urgent">12 days</span>
       </div>
       <div className="ui-thread-row">
@@ -208,7 +227,7 @@ const PrIncidentPreview = (
 const FocusModePreview = (
   <div className="ui-preview">
     <div className="ui-preview-head">
-      <span>Deep work mode · 09:00–12:00</span>
+      <span>Deep work mode · 09:00-12:00</span>
       <span className="right">
         <span className="live-dot">active</span>
       </span>
@@ -567,8 +586,7 @@ const ROLECARDS_CSS = `
   }
   .vm-rolecards-scope .role-tab:hover { color: rgba(255,255,255,0.85); }
   .vm-rolecards-scope .role-tab.active { color: #ffffff; font-weight: 600; }
-  .vm-rolecards-scope .role-tab.active::after {
-    content: '';
+  .vm-rolecards-scope .role-tab-underline {
     position: absolute;
     bottom: -1px;
     left: 0;
@@ -585,11 +603,6 @@ const ROLECARDS_CSS = `
     gap: 18px;
     max-width: 1180px;
     margin: 0 auto;
-    animation: vm-rolecards-fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  @keyframes vm-rolecards-fade-in {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
   }
 
   /* CARD CHROME */
@@ -606,7 +619,6 @@ const ROLECARDS_CSS = `
     text-align: left;
   }
   .vm-rolecards-scope .role-card:hover {
-    transform: translateY(-2px);
     box-shadow: 0 1px 2px rgba(15,20,40,0.05), 0 8px 24px rgba(15,20,40,0.08);
     border-color: rgba(30,42,74,0.18);
   }
@@ -1096,6 +1108,12 @@ export function UseCases() {
     const idx = idxMap[key];
     if (idx !== undefined) setActive(idx);
   }, [searchParams]);
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setActive((a) => (a + 1) % TABS.length);
+    }, 4000);
+    return () => clearTimeout(id);
+  }, [active]);
 
   return (
     <section
@@ -1167,28 +1185,46 @@ export function UseCases() {
                 className={`role-tab${active === i ? " active" : ""}`}
               >
                 {label}
+                {active === i && (
+                  <motion.span
+                    layoutId="vm-role-underline"
+                    className="role-tab-underline"
+                    transition={{ type: "spring", stiffness: 400, damping: 34 }}
+                  />
+                )}
               </button>
             ))}
           </nav>
 
-          <div
+          <motion.div
             key={active}
             id={`role-cards-${active}`}
             className="cards-grid"
             role="tabpanel"
             aria-label={`${TABS[active]} cards`}
+            variants={GRID_VARIANTS}
+            initial="hidden"
+            animate="show"
           >
             {cards.map((c) => (
-              <article key={c.h} className="role-card">
+              <motion.article
+                key={c.h}
+                className="role-card"
+                variants={CARD_VARIANTS}
+                whileHover={{
+                  y: -4,
+                  transition: { type: "spring", stiffness: 400, damping: 26 },
+                }}
+              >
                 {c.preview}
                 <div className="card-body">
                   <h3 className="card-title">{c.h}</h3>
                   <p className="card-desc">{c.p}</p>
                   <span className="card-tag">{c.tag}</span>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
 
           <footer className="roles-foot">
             <span>Switch tabs to see the cards built for that role.</span>

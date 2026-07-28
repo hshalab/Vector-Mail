@@ -22,6 +22,7 @@ import { usePendingSend } from "@/contexts/PendingSendContext";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useDemoMode } from "@/hooks/use-demo-mode";
 import { DEMO_ACCOUNT_ID } from "@/lib/demo/constants";
+import { Skel } from "@/components/ui/skeletons";
 
 type Thread = RouterOutputs["account"]["getThreads"]["threads"][0];
 
@@ -161,8 +162,16 @@ const ReplyBox = ({
 
   if (!currentThread && threadId) {
     return (
-      <div className="flex h-[200px] items-center justify-center border-t border-[#dadce0] bg-white dark:border-[#3c4043] dark:bg-[#202124]">
-        <div className="text-sm text-[#5f6368] dark:text-[#9aa0a6]">Loading reply box...</div>
+      <div className="border-t border-[#dadce0] bg-white p-4 dark:border-[#3c4043] dark:bg-[#202124]">
+        <div className="flex flex-col gap-3">
+          <Skel className="h-9 w-full rounded-lg" />
+          <Skel className="h-[92px] w-full rounded-lg" delay={60} />
+          <div className="flex items-center gap-2 pt-0.5">
+            <Skel tone="strong" className="h-9 w-24 rounded-lg" delay={120} />
+            <Skel className="h-9 w-9 rounded-lg" delay={150} />
+            <Skel className="h-9 w-9 rounded-lg" delay={170} />
+          </div>
+        </div>
       </div>
     );
   }

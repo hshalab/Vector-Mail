@@ -250,7 +250,7 @@ function VideoModal({ onClose }: { onClose: () => void }) {
             letterSpacing: "-0.1px",
           }}
         >
-          A short tour through Buddy, daily briefs, and Autopilot — the
+          A short tour through Buddy, daily briefs, and Autopilot - the
           three surfaces that handle most of your inbox.
         </div>
       </div>

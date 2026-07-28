@@ -5,6 +5,7 @@ import { Bell, ChevronDown, ChevronRight } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { cn } from "@/lib/utils";
 import { api } from "@/trpc/react";
+import { SkeletonRows } from "@/components/ui/skeletons";
 
 const NUDGES_DISPLAY_LIMIT = 7;
 
@@ -84,9 +85,13 @@ export function NudgesBlock({
         )}
       >
         {header}
-        <div className="flex items-center justify-center py-6">
-          <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#dadce0] border-t-[#1a73e8] dark:border-[#3c4043] dark:border-t-[#1e2a4a]" />
-        </div>
+        <SkeletonRows
+          rows={3}
+          lines={2}
+          avatarClassName="h-4 w-4 rounded"
+          rowClassName="px-1 py-2"
+          className="mt-1"
+        />
       </div>
     );
   }

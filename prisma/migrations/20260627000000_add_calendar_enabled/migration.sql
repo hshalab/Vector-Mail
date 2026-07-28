@@ -1,0 +1,1 @@
+ALTER TABLE "Account" ADD COLUMN "calendarEnabled" BOOLEAN NOT NULL DEFAULT false;
