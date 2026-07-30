@@ -38,7 +38,7 @@ export function ThreadListSkeleton() {
       aria-label="Loading threads"
     >
       <div
-        className="relative overflow-hidden border-b border-[#e5e7eb] dark:border-[#ffffff]"
+        className="relative overflow-hidden border-b border-[var(--line)] dark:border-[var(--surface)]"
         style={{
           background:
             "radial-gradient(120% 90% at 0% 0%, rgba(212,169,85,0.08) 0%, transparent 60%), linear-gradient(180deg, #ffffff 0%, #ffffff 100%)",
@@ -49,20 +49,20 @@ export function ThreadListSkeleton() {
             <span
               aria-hidden
               className="block"
-              style={{ width: 14, height: 1, background: "#1e2a4a" }}
+              style={{ width: 14, height: 1, background: "var(--accent)" }}
             />
             <div
-              className="h-2 w-24 animate-pulse rounded-sm bg-[#f3f4f6]"
+              className="h-2 w-24 animate-pulse rounded-sm bg-[var(--surface-3)]"
             />
           </div>
-          <div className="mb-3 h-7 w-2/3 animate-pulse rounded bg-[#f3f4f6]" />
-          <div className="h-3 w-1/2 animate-pulse rounded bg-[#f3f4f6]" />
+          <div className="mb-3 h-7 w-2/3 animate-pulse rounded bg-[var(--surface-3)]" />
+          <div className="h-3 w-1/2 animate-pulse rounded bg-[var(--surface-3)]" />
         </div>
       </div>
 
-      <div className="flex items-center gap-3 border-b border-[#e5e7eb] bg-[#ffffff]/95 px-5 py-2.5 dark:border-[#ffffff] dark:bg-[#ffffff]/95">
+      <div className="flex items-center gap-3 border-b border-[var(--line)] bg-[var(--surface)] px-5 py-2.5 dark:border-[var(--surface)] dark:bg-[var(--surface)]">
         <div
-          className="h-3 w-32 animate-pulse rounded-sm bg-[#f3f4f6]"
+          className="h-3 w-32 animate-pulse rounded-sm bg-[var(--surface-3)]"
         />
         <span
           aria-hidden
@@ -74,7 +74,7 @@ export function ThreadListSkeleton() {
           }}
         />
         <div
-          className="h-2.5 w-10 animate-pulse rounded-sm bg-[#f3f4f6]"
+          className="h-2.5 w-10 animate-pulse rounded-sm bg-[var(--surface-3)]"
         />
       </div>
 
@@ -91,9 +91,9 @@ function SkeletonRow({ index }: { index: number }) {
   const snippetWidth = 70 + ((index * 13) % 22);
 
   return (
-    <div className="flex w-full min-h-[88px] items-start gap-3.5 border-b border-[#e5e7eb] px-5 py-4 pr-3 dark:border-[#ffffff]">
+    <div className="flex w-full min-h-[88px] items-start gap-3.5 border-b border-[var(--line)] px-5 py-4 pr-3 dark:border-[var(--surface)]">
       <div
-        className="h-10 w-10 shrink-0 animate-pulse bg-[#f3f4f6]"
+        className="h-10 w-10 shrink-0 animate-pulse bg-[var(--surface-3)]"
         style={{
           borderRadius: 6,
           border: "1px solid #e5e7eb",
@@ -102,21 +102,21 @@ function SkeletonRow({ index }: { index: number }) {
       <div className="flex min-w-0 flex-1 flex-col gap-2">
         <div className="flex items-center justify-between gap-3">
           <div
-            className="h-3.5 animate-pulse rounded-sm bg-[#f3f4f6]"
+            className="h-3.5 animate-pulse rounded-sm bg-[var(--surface-3)]"
             style={{
               width: `${senderWidth}%`,
             }}
           />
-          <div className="h-2.5 w-9 shrink-0 animate-pulse rounded-sm bg-[#f3f4f6]" />
+          <div className="h-2.5 w-9 shrink-0 animate-pulse rounded-sm bg-[var(--surface-3)]" />
         </div>
         <div
-          className="h-3 animate-pulse rounded-sm bg-[#f3f4f6]"
+          className="h-3 animate-pulse rounded-sm bg-[var(--surface-3)]"
           style={{
             width: `${subjectWidth}%`,
           }}
         />
         <div
-          className="h-2.5 animate-pulse rounded-sm bg-[#f3f4f6]"
+          className="h-2.5 animate-pulse rounded-sm bg-[var(--surface-3)]"
           style={{
             width: `${snippetWidth}%`,
           }}

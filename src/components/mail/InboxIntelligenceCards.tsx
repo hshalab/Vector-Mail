@@ -22,8 +22,8 @@ export function InboxIntelligenceCards({
   if (!accountId || isLoading || !data?.cards?.length) return null;
 
   return (
-    <div className={cn("border-b border-[#e4e7ed] px-3 py-2", className)}>
-      <div className="mb-1.5 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-[#7a849a]">
+    <div className={cn("border-b border-[var(--line-soft)] px-3 py-2.5", className)}>
+      <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-4)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/Opus-B.png"
@@ -38,12 +38,12 @@ export function InboxIntelligenceCards({
             key={c.id}
             type="button"
             onClick={() => onRunQuery(c.suggestedQuery)}
-            className="shrink-0 rounded-lg border border-[#e4e7ed] bg-[#fafbfc] px-3 py-2 text-left transition hover:border-[#1e2a4a]/30 hover:bg-[#1e2a4a]/5"
+            className="shrink-0 rounded-[10px] border border-[var(--line)] bg-[var(--surface-2)] px-3 py-2 text-left transition hover:border-[var(--accent-line)] hover:bg-[var(--accent-soft)]"
           >
-            <div className="text-[11px] font-medium text-[#0e1729]">
+            <div className="text-[11.5px] font-semibold tracking-[-0.01em] text-[var(--ink)]">
               {c.title}
             </div>
-            <div className="text-[10px] text-[#7a849a]">
+            <div className="mt-0.5 text-[10.5px] text-[var(--ink-4)]">
               {c.subtitle ?? `${c.count} in last 90 days · tap to search`}
             </div>
           </button>

@@ -1,7 +1,7 @@
 "use client";
 
 import { api } from "@/trpc/react";
-import { CalendarPlus } from "lucide-react";
+import { IconCalendar } from "./icons";
 import type { BookingCandidate } from "./BookingModal";
 import { Skel } from "@/components/ui/skeletons";
 
@@ -33,7 +33,9 @@ export function MeetingRequestsWidget({
   return (
     <div className="calendar-widget">
       <div className="calendar-widget-head">
-        <CalendarPlus className="calendar-widget-icon" />
+        <span className="widget-chip">
+          <IconCalendar />
+        </span>
         <span className="calendar-widget-title">MEETING REQUESTS</span>
         {data && data.candidates.length > 0 && (
           <span className="calendar-widget-count">

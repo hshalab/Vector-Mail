@@ -2,7 +2,7 @@ import { Skel, SkeletonRows } from "@/components/ui/skeletons";
 export function MailShellSkeleton() {
   return (
     <div
-      className="flex h-dvh min-h-dvh w-full overflow-hidden bg-[#f6f8fc]"
+      className="flex h-dvh min-h-dvh w-full overflow-hidden bg-[var(--surface-2)]"
       role="status"
       aria-busy="true"
       aria-label="Loading your inbox"
@@ -54,7 +54,7 @@ export function MailShellSkeleton() {
             rows={10}
             avatar
             avatarClassName="h-10 w-10 rounded-lg"
-            rowClassName="border-b border-[#eef0f4] px-5 py-4"
+            rowClassName="border-b border-[var(--line-soft)] px-5 py-4"
           />
         </div>
       </div>

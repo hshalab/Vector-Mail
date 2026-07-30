@@ -3,29 +3,29 @@
 import React, { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import {
   Menu,
-  Inbox,
-  Send,
-  Bot,
   X,
   Plus,
   Loader2,
-  Zap,
   CircleHelp,
   ArrowLeft,
   CalendarClock,
-  Trash2,
-  Pencil,
-  ChevronsUp,
   RefreshCw,
-  ChevronDown,
-  CheckCircle2,
-  Clock,
-  XCircle,
-  FlaskConical,
-  Sparkles,
   LogOut,
 } from "lucide-react";
 import Link from "next/link";
+import {
+  IconInbox,
+  IconSent,
+  IconSchedule,
+  IconTrash,
+  IconBuddy,
+  IconNudge,
+  IconCalendar,
+  IconBolt,
+  IconBrief,
+  IconCompose,
+} from "./icons";
+import { DayScheduleCard, type DayEvent } from "./DayScheduleCard";
 import { cn } from "@/lib/utils";
 import {
   TooltipProvider,
@@ -92,7 +92,7 @@ import { MailShellSkeleton } from "@/components/mail/MailShellSkeleton";
 function UpcomingMeetingsSkeleton({ pad = "px-5 py-3" }: { pad?: string }) {
   return (
     <div
-      className="divide-y divide-[#eef0f4] dark:divide-[#3c4043]"
+      className="divide-y divide-[var(--line-soft)] dark:divide-[var(--line)]"
       aria-hidden
     >
       {Array.from({ length: 4 }).map((_, i) => (
@@ -119,6 +119,56 @@ interface MailLayoutProps {
 }
 
 
+function buildDemoDay(): DayEvent[] {
+  const now = new Date();
+  const SPAN_BEFORE = 150;
+  const SPAN_AFTER = 255;
+  const anchor = Math.min(
+    Math.max(
+      Math.round((now.getHours() * 60 + now.getMinutes()) / 5) * 5,
+      SPAN_BEFORE,
+    ),
+    24 * 60 - SPAN_AFTER,
+  );
+  return [
+    {
+      id: "standup",
+      title: "Engineering standup",
+      startMin: anchor - 150,
+      endMin: anchor - 135,
+      meta: "7 attendees",
+    },
+    {
+      id: "screen",
+      title: "Mei Lin · phone screen",
+      startMin: anchor - 75,
+      endMin: anchor - 30,
+      meta: "Greenhouse req-2418",
+    },
+    {
+      id: "renewal",
+      title: "Brightlane renewal",
+      startMin: anchor + 25,
+      endMin: anchor + 55,
+      meta: "Sophia + Tomas",
+    },
+    {
+      id: "office-hours",
+      title: "Hana · office hours",
+      startMin: anchor + 120,
+      endMin: anchor + 150,
+      meta: "Forerunner",
+    },
+    {
+      id: "design-review",
+      title: "Design review · Q3 shell",
+      startMin: anchor + 210,
+      endMin: anchor + 255,
+      meta: "Priya + Marcus",
+    },
+  ];
+}
+
 const THREAD_LIST_WIDTH_PCT = { min: 20, max: 55, fallback: 52 } as const;
 const AI_PANEL_WIDTH_PX = { min: 320, max: 620, fallback: 360 } as const;
 
@@ -140,6 +190,8 @@ function threadListWidthPctDefault(
 export function Mail({ defaultLayout }: MailLayoutProps) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+  const [demoDay, setDemoDay] = useState<DayEvent[] | null>(null);
+  useEffect(() => setDemoDay(buildDemoDay()), []);
   const [selectedThread, setSelectedThread] = useState<string | null>(null);
   const [showAIPanel, setShowAIPanel] = useState(false);
   const [aiSearchResetKey, setAiSearchResetKey] = useState(0);
@@ -283,6 +335,18 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
   const autopilotSimulated = autopilotToday?.simulatedToday ?? 0;
   const autopilotHandled = autopilotSent + autopilotSimulated;
   const autopilotMinSaved = autopilotHandled * 5;
+  const autopilotTotal =
+    autopilotSent + autopilotSimulated + autopilotPending + autopilotFailed;
+  const autopilotBreakdown = useMemo(
+    () =>
+      [
+        { key: "sent", label: "Sent", value: autopilotSent },
+        { key: "pending", label: "Pending", value: autopilotPending },
+        { key: "sim", label: "Simulated", value: autopilotSimulated },
+        { key: "failed", label: "Failed", value: autopilotFailed },
+      ] as const,
+    [autopilotSent, autopilotPending, autopilotSimulated, autopilotFailed],
+  );
   const todaysBriefCount = dailyBriefForCount
     ? dailyBriefForCount.needsReply.length +
       dailyBriefForCount.important.length +
@@ -374,10 +438,10 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
   );
 
   const navItems = [
-    { id: "inbox", icon: Inbox, label: "Inbox" },
-    { id: "sent", icon: Send, label: "Sent" },
-    { id: "scheduled", icon: CalendarClock, label: "Schedule" },
-    { id: "trash", icon: Trash2, label: "Trash" },
+    { id: "inbox", icon: IconInbox, label: "Inbox" },
+    { id: "sent", icon: IconSent, label: "Sent" },
+    { id: "scheduled", icon: IconSchedule, label: "Schedule" },
+    { id: "trash", icon: IconTrash, label: "Trash" },
   ];
 
   if (showConnectCard) {
@@ -403,14 +467,14 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
           cycleBriefFocus={cycleBriefFocusFromShortcut}
         />
         <ShortcutHelpModal open={helpOpen} onOpenChange={setHelpOpen} />
-        <div className="flex h-full min-h-0 w-full flex-col bg-[#f6f8fc] dark:bg-[#202124]">
-          <div className="flex shrink-0 items-center justify-between border-b border-[#dadce0] bg-white px-4 py-2.5 dark:border-[#3c4043] dark:bg-[#202124] [padding-top:max(0.625rem,env(safe-area-inset-top))]">
+        <div className="flex h-full min-h-0 w-full flex-col bg-[var(--surface-2)] dark:bg-[var(--surface)]">
+          <div className="flex shrink-0 items-center justify-between border-b border-[var(--line)] bg-white px-4 py-2.5 dark:border-[var(--line)] dark:bg-[var(--surface)] [padding-top:max(0.625rem,env(safe-area-inset-top))]">
             <div className="flex min-w-0 flex-1 items-center gap-2">
               {selectedThread ? (
                 <button
                   type="button"
                   onClick={handleThreadClose}
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[#5f6368] transition-colors hover:bg-[#f1f3f4] hover:text-[#202124] dark:text-[#9aa0a6] dark:hover:bg-[#3c4043] dark:hover:text-[#e8eaed] [touch-action:manipulation]"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[var(--ink-2)] transition-colors hover:bg-[var(--surface-3)] hover:text-[var(--ink)] dark:text-[var(--ink-3)] dark:hover:bg-[var(--line)] dark:hover:text-[var(--ink)] [touch-action:manipulation]"
                   aria-label="Close email"
                   title="Close email"
                 >
@@ -425,7 +489,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   </SheetTrigger>
                   <SheetContent
                     side="left"
-                    className="flex w-[280px] flex-col min-h-0 overflow-y-auto border-[#dadce0] bg-white p-0 dark:border-[#3c4043] dark:bg-[#202124] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                    className="flex w-[280px] flex-col min-h-0 overflow-y-auto border-[var(--line)] bg-white p-0 dark:border-[var(--line)] dark:bg-[var(--surface)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                   >
                     <SheetTitle className="sr-only">VectorMail menu</SheetTitle>
                     <SheetDescription className="sr-only">
@@ -438,7 +502,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                       router={router}
                       onNavigate={handleMobileNavigation}
                     />
-                    <div className="border-t border-[#dadce0] px-2 py-2 dark:border-[#3c4043]">
+                    <div className="border-t border-[var(--line)] px-2 py-2 dark:border-[var(--line)]">
                       <LabelsList
                         accountId={accountId}
                         currentTab={tab}
@@ -454,32 +518,32 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                         }}
                       />
                     </div>
-                    <div className="border-t border-[#dadce0] px-2 py-2 dark:border-[#3c4043]">
-                      <div className="px-3 pb-1.5 pt-1 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-[#a39e93] dark:text-[#9aa0a6]">
+                    <div className="border-t border-[var(--line)] px-2 py-2 dark:border-[var(--line)]">
+                      <div className="px-3 pb-1.5 pt-1 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-[#a39e93] dark:text-[var(--ink-3)]">
                         Intelligence
                       </div>
                       {(
                         [
                           {
-                            icon: Sparkles,
+                            icon: IconBrief,
                             label: "Today's brief",
                             count: todaysBriefCount,
                             key: "brief" as const,
                           },
                           {
-                            icon: Plus,
+                            icon: IconNudge,
                             label: "Nudges",
                             count: nudgesCount,
                             key: "nudges" as const,
                           },
                           {
-                            icon: CalendarClock,
+                            icon: IconCalendar,
                             label: "Upcoming",
                             count: upcomingEvents.length || null,
                             key: "upcoming" as const,
                           },
                           {
-                            icon: Zap,
+                            icon: IconBolt,
                             label: "Autopilot",
                             count:
                               autopilotState === null
@@ -499,17 +563,17 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                               title="Autopilot is available on desktop only"
                               className="flex w-full cursor-default items-center gap-3 rounded-lg px-3 py-2.5 text-left"
                             >
-                              <item.icon className="h-5 w-5 shrink-0 text-[#a39e93] dark:text-[#5f6368]" />
+                              <item.icon className="h-5 w-5 shrink-0 text-[#a39e93] dark:text-[var(--ink-2)]" />
                               <div className="min-w-0 flex-1">
-                                <div className="text-[14px] font-medium text-[#5f6368] dark:text-[#9aa0a6]">
+                                <div className="text-[14px] font-medium text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                                   {item.label}
                                 </div>
-                                <div className="mt-0.5 text-[11px] leading-snug text-[#a39e93] dark:text-[#5f6368]">
+                                <div className="mt-0.5 text-[11px] leading-snug text-[#a39e93] dark:text-[var(--ink-2)]">
                                   Available on desktop
                                 </div>
                               </div>
                               <span
-                                className="shrink-0 rounded-full border border-[#dadce0] bg-[#f8f9fa] px-2 py-0.5 text-[9.5px] font-semibold uppercase tracking-[0.08em] text-[#5f6368] dark:border-[#3c4043] dark:bg-[#292a2d] dark:text-[#9aa0a6]"
+                                className="shrink-0 rounded-full border border-[var(--line)] bg-[var(--surface-2)] px-2 py-0.5 text-[9.5px] font-semibold uppercase tracking-[0.08em] text-[var(--ink-2)] dark:border-[var(--line)] dark:bg-[var(--surface-3)] dark:text-[var(--ink-3)]"
                                 style={{
                                   fontFamily:
                                     "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -528,12 +592,12 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                               setSheetOpen(false);
                               setMobileIntelOpen(item.key);
                             }}
-                            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-[14px] font-medium text-[#202124] transition-colors hover:bg-[#f1f3f4] dark:text-[#e8eaed] dark:hover:bg-[#303134] [touch-action:manipulation]"
+                            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-[14px] font-medium text-[var(--ink)] transition-colors hover:bg-[var(--surface-3)] dark:text-[var(--ink)] dark:hover:bg-[var(--surface-3)] [touch-action:manipulation]"
                           >
-                            <item.icon className="h-5 w-5 shrink-0 text-[#5f6368] dark:text-[#9aa0a6]" />
+                            <item.icon className="h-5 w-5 shrink-0 text-[var(--ink-2)] dark:text-[var(--ink-3)]" />
                             <span className="flex-1">{item.label}</span>
                             {item.count !== null && item.count !== undefined && (
-                              <span className="rounded-full bg-[#f1f3f4] px-2 py-0.5 text-[11px] font-semibold text-[#5f6368] dark:bg-[#3c4043] dark:text-[#9aa0a6]">
+                              <span className="rounded-full bg-[var(--surface-3)] px-2 py-0.5 text-[11px] font-semibold text-[var(--ink-2)] dark:bg-[var(--line)] dark:text-[var(--ink-3)]">
                                 {item.count}
                               </span>
                             )}
@@ -542,9 +606,9 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                       })}
                     </div>
 
-                    <div className="mt-auto border-t border-[#dadce0] p-3 dark:border-[#3c4043] [padding-bottom:max(0.75rem,env(safe-area-inset-bottom))]">
-                      <div className="mb-2 flex items-center gap-3 rounded-xl border border-[#dadce0] bg-[#f8f9fa] px-3 py-2.5 dark:border-[#3c4043] dark:bg-[#292a2d]">
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e5e7eb] dark:bg-[#3c4043]">
+                    <div className="mt-auto border-t border-[var(--line)] p-3 dark:border-[var(--line)] [padding-bottom:max(0.75rem,env(safe-area-inset-bottom))]">
+                      <div className="mb-2 flex items-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--surface-2)] px-3 py-2.5 dark:border-[var(--line)] dark:bg-[var(--surface-3)]">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[var(--line)] dark:bg-[var(--line)]">
                           {user?.imageUrl ? (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
@@ -553,17 +617,17 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                               className="h-full w-full object-cover"
                             />
                           ) : (
-                            <span className="text-[13px] font-semibold text-[#5f6368] dark:text-[#9aa0a6]">
+                            <span className="text-[13px] font-semibold text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                               {userName.charAt(0).toUpperCase()}
                             </span>
                           )}
                         </div>
                         <div className="min-w-0 flex-1">
-                          <p className="truncate text-[13px] font-medium text-[#202124] dark:text-[#e8eaed]">
+                          <p className="truncate text-[13px] font-medium text-[var(--ink)] dark:text-[var(--ink)]">
                             {userName}
                           </p>
                           {userEmail && (
-                            <p className="truncate text-[11.5px] text-[#5f6368] dark:text-[#9aa0a6]">
+                            <p className="truncate text-[11.5px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                               {userEmail}
                             </p>
                           )}
@@ -573,7 +637,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                         type="button"
                         onClick={handleSignOut}
                         disabled={isSigningOut}
-                        className="flex min-h-[44px] w-full items-center justify-center gap-2.5 rounded-xl border border-[#f4c7c1] bg-white px-3 py-2.5 text-[14px] font-semibold text-[#d93025] transition-colors hover:bg-[#fce8e6] disabled:opacity-70 dark:border-[#5f2120] dark:bg-[#292a2d] dark:text-[#f28b82] dark:hover:bg-[#5f2120] [touch-action:manipulation]"
+                        className="flex min-h-[44px] w-full items-center justify-center gap-2.5 rounded-xl border border-[var(--rose)] bg-white px-3 py-2.5 text-[14px] font-semibold text-[var(--rose)] transition-colors hover:bg-[var(--rose-soft)] disabled:opacity-70 dark:border-[var(--rose-soft)] dark:bg-[var(--surface-3)] dark:text-[var(--rose)] dark:hover:bg-[var(--rose-soft)] [touch-action:manipulation]"
                         aria-label={isSigningOut ? "Signing out" : "Sign out"}
                       >
                         {isSigningOut ? (
@@ -589,7 +653,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   </SheetContent>
                 </Sheet>
               )}
-              <span className="min-w-0 truncate text-[15px] font-medium capitalize text-[#202124] dark:text-[#e8eaed]">
+              <span className="min-w-0 truncate text-[15px] font-medium capitalize text-[var(--ink)] dark:text-[var(--ink)]">
                 {selectedThread ? "Message" : (navItems.find((i) => i.id === tab)?.label ?? tab)}
               </span>
             </div>
@@ -598,7 +662,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
               <button
                 type="button"
                 onClick={() => threadListRef.current?.triggerSync()}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[#5f6368] transition-colors hover:bg-[#f1f3f4] hover:text-[#202124] dark:text-[#9aa0a6] dark:hover:bg-[#3c4043] dark:hover:text-[#e8eaed]"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[var(--ink-2)] transition-colors hover:bg-[var(--surface-3)] hover:text-[var(--ink)] dark:text-[var(--ink-3)] dark:hover:bg-[var(--line)] dark:hover:text-[var(--ink)]"
                 aria-label={syncPending ? "Stop sync" : "Sync Inbox, Sent, and Trash"}
               >
                 <RefreshCw
@@ -614,19 +678,17 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
           </div>
 
           {isDemo && (
-            <div className="flex shrink-0 flex-wrap items-center justify-center gap-x-2 gap-y-1 border-b border-[#e8eaed] bg-[#f8f9fa] px-3 py-1.5 dark:border-[#3c4043] dark:bg-[#252628]">
-              <span className="text-[11px] text-[#5f6368] dark:text-[#9aa0a6]">
-                You’re exploring VectorMail with sample data so you can see how everything works. Ready for your own inbox?
+            <div className="flex shrink-0 items-center gap-2.5 border-b border-[var(--line-soft)] bg-[var(--surface-2)] px-4 py-2">
+              <span className="vm-demo-badge shrink-0">Demo</span>
+              <span className="min-w-0 flex-1 text-[11.5px] leading-snug text-[var(--ink-3)]">
+                Sample data — nothing here touches a real inbox.
               </span>
               <a
                 href="mailto:parbhat@parbhat.dev?subject=VectorMail%20%E2%80%93%20Request%20access&body=Hi%2C%0A%0AI'd%20like%20to%20request%20access%20to%20connect%20my%20Gmail%20and%20use%20VectorMail%20with%20my%20own%20inbox.%20Please%20let%20me%20know%20when%20access%20is%20available.%0A%0AThank%20you."
-                className="shrink-0 rounded-md bg-[#1a73e8] px-2.5 py-1 text-[11px] font-medium text-white transition-colors hover:bg-[#1557b0] dark:bg-[#1e2a4a] dark:text-[#202124] dark:hover:bg-[#aecbfa]"
+                className="vm-demo-cta shrink-0"
               >
                 Request access
               </a>
-              <span className="w-full text-center text-[10px] text-[#5f6368] dark:text-[#9aa0a6]">
-                We’ll reply once your account is enabled.
-              </span>
             </div>
           )}
 
@@ -637,7 +699,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
           )}
 
           {!selectedThread ? (
-            <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-[#f6f8fc] dark:bg-[#202124]">
+            <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-[var(--surface-2)] dark:bg-[var(--surface)]">
               <SearchBar />
               <div className="min-h-0 flex-1 overflow-hidden">
                 <ThreadList
@@ -648,7 +710,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
               </div>
             </div>
           ) : (
-            <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-white dark:bg-[#202124]">
+            <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-white dark:bg-[var(--surface)]">
               <ThreadDisplay threadId={selectedThread} onClose={handleThreadClose} />
             </div>
           )}
@@ -661,18 +723,18 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
         >
           <DialogContent
             showCloseButton={false}
-            className="flex max-h-[min(640px,85vh)] w-[min(420px,calc(100vw-2rem))] max-w-none flex-col gap-0 overflow-hidden border-[#e5e7eb] bg-white p-0 dark:border-[#3c4043] dark:bg-[#202124] sm:max-w-none"
+            className="flex max-h-[min(640px,85vh)] w-[min(420px,calc(100vw-2rem))] max-w-none flex-col gap-0 overflow-hidden border-[var(--line)] bg-white p-0 dark:border-[var(--line)] dark:bg-[var(--surface)] sm:max-w-none"
           >
             <DialogTitle className="sr-only">Today&apos;s brief</DialogTitle>
             <DialogDescription className="sr-only">
               Today&apos;s prioritized email threads
             </DialogDescription>
-            <div className="flex shrink-0 items-center justify-end border-b border-[#e4e7ed] px-2 py-1.5 dark:border-[#3c4043]">
+            <div className="flex shrink-0 items-center justify-end border-b border-[var(--line)] px-2 py-1.5 dark:border-[var(--line)]">
               <button
                 type="button"
                 onClick={() => setMobileIntelOpen(null)}
                 aria-label="Close"
-                className="flex h-8 w-8 items-center justify-center rounded-full text-[#5f6368] transition-colors hover:bg-[#f1f3f4] hover:text-[#202124] dark:text-[#9aa0a6] dark:hover:bg-[#3c4043] [touch-action:manipulation]"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--ink-2)] transition-colors hover:bg-[var(--surface-3)] hover:text-[var(--ink)] dark:text-[var(--ink-3)] dark:hover:bg-[var(--line)] [touch-action:manipulation]"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -698,18 +760,18 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
         >
           <DialogContent
             showCloseButton={false}
-            className="flex max-h-[min(640px,85vh)] w-[min(420px,calc(100vw-2rem))] max-w-none flex-col gap-0 overflow-hidden border-[#e5e7eb] bg-white p-0 dark:border-[#3c4043] dark:bg-[#202124] sm:max-w-none"
+            className="flex max-h-[min(640px,85vh)] w-[min(420px,calc(100vw-2rem))] max-w-none flex-col gap-0 overflow-hidden border-[var(--line)] bg-white p-0 dark:border-[var(--line)] dark:bg-[var(--surface)] sm:max-w-none"
           >
-            <div className="flex shrink-0 items-center justify-between gap-2 border-b border-[#e4e7ed] px-5 py-4 dark:border-[#3c4043]">
+            <div className="flex shrink-0 items-center justify-between gap-2 border-b border-[var(--line)] px-5 py-4 dark:border-[var(--line)]">
               <div className="flex min-w-0 items-center gap-2.5">
-                <Plus className="h-5 w-5 shrink-0 text-[#1e2a4a] dark:text-[#9aa0a6]" />
-                <DialogTitle className="text-[16px] font-semibold tracking-tight text-[#0e1729] dark:text-[#e8eaed]">
+                <Plus className="h-5 w-5 shrink-0 text-[var(--accent)] dark:text-[var(--ink-3)]" />
+                <DialogTitle className="text-[16px] font-semibold tracking-tight text-[var(--ink)] dark:text-[var(--ink)]">
                   Nudges
                 </DialogTitle>
               </div>
               <div className="flex shrink-0 items-center gap-1.5">
                 {nudgesCount !== null && nudgesCount > 0 && (
-                  <span className="rounded-full bg-[#1e2a4a]/10 px-2.5 py-1 text-[11px] font-semibold text-[#1e2a4a] dark:bg-[#3c4043] dark:text-[#9aa0a6]">
+                  <span className="rounded-full bg-[var(--accent-soft)] px-2.5 py-1 text-[11px] font-semibold text-[var(--accent)] dark:bg-[var(--line)] dark:text-[var(--ink-3)]">
                     {nudgesCount}
                   </span>
                 )}
@@ -717,7 +779,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   type="button"
                   onClick={() => setMobileIntelOpen(null)}
                   aria-label="Close"
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-[#5f6368] transition-colors hover:bg-[#f1f3f4] hover:text-[#202124] dark:text-[#9aa0a6] dark:hover:bg-[#3c4043] [touch-action:manipulation]"
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--ink-2)] transition-colors hover:bg-[var(--surface-3)] hover:text-[var(--ink)] dark:text-[var(--ink-3)] dark:hover:bg-[var(--line)] [touch-action:manipulation]"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -729,15 +791,15 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
             <div className="min-h-0 flex-1 overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {(nudgesForCount?.nudges ?? []).length === 0 ? (
                 <div className="px-5 py-12 text-center">
-                  <p className="text-[14px] font-semibold text-[#0e1729] dark:text-[#e8eaed]">
+                  <p className="text-[14px] font-semibold text-[var(--ink)] dark:text-[var(--ink)]">
                     You&apos;re all caught up
                   </p>
-                  <p className="mt-2 text-[12px] leading-relaxed text-[#7a849a]">
+                  <p className="mt-2 text-[12px] leading-relaxed text-[var(--ink-3)]">
                     No threads are waiting on your reply right now.
                   </p>
                 </div>
               ) : (
-                <ul className="divide-y divide-[#eef0f4] dark:divide-[#3c4043]">
+                <ul className="divide-y divide-[var(--line-soft)] dark:divide-[var(--line)]">
                   {(nudgesForCount?.nudges ?? []).map((nudge) => (
                     <li key={nudge.threadId}>
                       <button
@@ -746,16 +808,16 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                           setMobileIntelOpen(null);
                           handleThreadSelect(nudge.threadId);
                         }}
-                        className="flex w-full flex-col gap-1 px-5 py-3 text-left transition-colors hover:bg-[#f4f5f8] dark:hover:bg-[#3c4043] [touch-action:manipulation]"
+                        className="flex w-full flex-col gap-1 px-5 py-3 text-left transition-colors hover:bg-[var(--surface-3)] dark:hover:bg-[var(--line)] [touch-action:manipulation]"
                       >
-                        <p className="line-clamp-2 text-[13.5px] font-medium text-[#0e1729] dark:text-[#e8eaed]">
+                        <p className="line-clamp-2 text-[13.5px] font-medium text-[var(--ink)] dark:text-[var(--ink)]">
                           {nudge.thread?.subject ?? "(No subject)"}
                         </p>
-                        <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11.5px] text-[#7a849a]">
+                        <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11.5px] text-[var(--ink-3)]">
                           <span>{nudge.reason ?? "You haven't replied"}</span>
                           {nudge.thread?.lastMessageDate && (
                             <>
-                              <span className="text-[#a8b0c0]">·</span>
+                              <span className="text-[var(--ink-4)]">·</span>
                               <span>
                                 {formatDistanceToNow(
                                   new Date(nudge.thread.lastMessageDate),
@@ -780,24 +842,24 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
         >
           <DialogContent
             showCloseButton={false}
-            className="flex max-h-[min(640px,85vh)] w-[min(420px,calc(100vw-2rem))] max-w-none flex-col gap-0 overflow-hidden border-[#e5e7eb] bg-white p-0 dark:border-[#3c4043] dark:bg-[#202124] sm:max-w-none"
+            className="flex max-h-[min(640px,85vh)] w-[min(420px,calc(100vw-2rem))] max-w-none flex-col gap-0 overflow-hidden border-[var(--line)] bg-white p-0 dark:border-[var(--line)] dark:bg-[var(--surface)] sm:max-w-none"
           >
-            <div className="flex shrink-0 items-center justify-between gap-2 border-b border-[#e4e7ed] px-5 py-4 dark:border-[#3c4043]">
+            <div className="flex shrink-0 items-center justify-between gap-2 border-b border-[var(--line)] px-5 py-4 dark:border-[var(--line)]">
               <div className="flex min-w-0 items-center gap-2.5">
-                <CalendarClock className="h-5 w-5 shrink-0 text-[#1e2a4a] dark:text-[#9aa0a6]" />
-                <DialogTitle className="text-[16px] font-semibold tracking-tight text-[#0e1729] dark:text-[#e8eaed]">
+                <CalendarClock className="h-5 w-5 shrink-0 text-[var(--accent)] dark:text-[var(--ink-3)]" />
+                <DialogTitle className="text-[16px] font-semibold tracking-tight text-[var(--ink)] dark:text-[var(--ink)]">
                   Upcoming
                 </DialogTitle>
               </div>
               <div className="flex shrink-0 items-center gap-1.5">
-                <span className="rounded-full border border-[#e4e7ed] bg-[#fafbfc] px-2.5 py-1 text-[10.5px] font-semibold text-[#4a5572] dark:border-[#3c4043] dark:bg-[#292a2d] dark:text-[#9aa0a6]">
+                <span className="rounded-full border border-[var(--line)] bg-[var(--surface-2)] px-2.5 py-1 text-[10.5px] font-semibold text-[var(--ink-2)] dark:border-[var(--line)] dark:bg-[var(--surface-3)] dark:text-[var(--ink-3)]">
                   Last 60d
                 </span>
                 <button
                   type="button"
                   onClick={() => setMobileIntelOpen(null)}
                   aria-label="Close"
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-[#5f6368] transition-colors hover:bg-[#f1f3f4] hover:text-[#202124] dark:text-[#9aa0a6] dark:hover:bg-[#3c4043] [touch-action:manipulation]"
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--ink-2)] transition-colors hover:bg-[var(--surface-3)] hover:text-[var(--ink)] dark:text-[var(--ink-3)] dark:hover:bg-[var(--line)] [touch-action:manipulation]"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -811,16 +873,16 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                 <UpcomingMeetingsSkeleton pad="px-5 py-3" />
               ) : upcomingEvents.length === 0 ? (
                 <div className="px-5 py-12 text-center">
-                  <p className="text-[14px] font-semibold text-[#0e1729] dark:text-[#e8eaed]">
+                  <p className="text-[14px] font-semibold text-[var(--ink)] dark:text-[var(--ink)]">
                     No upcoming meetings
                   </p>
-                  <p className="mt-2 text-[12px] leading-relaxed text-[#7a849a]">
+                  <p className="mt-2 text-[12px] leading-relaxed text-[var(--ink-3)]">
                     We scan the last 60 days for Google Meet, Zoom, and Teams
                     links. Anything past its end time drops automatically.
                   </p>
                 </div>
               ) : (
-                <ul className="divide-y divide-[#eef0f4] dark:divide-[#3c4043]">
+                <ul className="divide-y divide-[var(--line-soft)] dark:divide-[var(--line)]">
                   {upcomingEvents.map((event) => {
                     const startDate = new Date(event.startAt);
                     const endDate = event.endAt
@@ -849,13 +911,13 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                               handleThreadSelect(event.sourceThreadId);
                             }
                           }}
-                          className="flex w-full flex-col gap-1 px-5 py-3 text-left transition-colors hover:bg-[#f4f5f8] dark:hover:bg-[#3c4043] [touch-action:manipulation]"
+                          className="flex w-full flex-col gap-1 px-5 py-3 text-left transition-colors hover:bg-[var(--surface-3)] dark:hover:bg-[var(--line)] [touch-action:manipulation]"
                         >
                           <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                            <span className="rounded-md bg-[#1e2a4a]/[0.08] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-[#1e2a4a] dark:bg-[#3c4043] dark:text-[#9aa0a6]">
+                            <span className="rounded-md bg-[var(--accent)]/[0.08] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-[var(--accent)] dark:bg-[var(--line)] dark:text-[var(--ink-3)]">
                               {dayLabel}
                             </span>
-                            <span className="text-[11.5px] font-medium text-[#4a5572] dark:text-[#9aa0a6]">
+                            <span className="text-[11.5px] font-medium text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                               {timeLabel}
                               {endDate &&
                                 endDate.getTime() !==
@@ -863,7 +925,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                                 ` - ${format(endDate, "h:mm a")}`}
                             </span>
                           </div>
-                          <p className="line-clamp-2 text-[13.5px] font-medium text-[#0e1729] dark:text-[#e8eaed]">
+                          <p className="line-clamp-2 text-[13.5px] font-medium text-[var(--ink)] dark:text-[var(--ink)]">
                             {event.title}
                           </p>
                         </button>
@@ -883,13 +945,13 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
     <TooltipProvider delayDuration={0}>
       {isSigningOut && (
         <div
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-4 bg-white/95 backdrop-blur-sm dark:bg-[#ffffff]/95"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-4 bg-white/95 backdrop-blur-sm dark:bg-[var(--surface)]"
           aria-live="polite"
           aria-busy="true"
         >
-          <Loader2 className="h-10 w-10 animate-spin text-[#1e2a4a]" />
-          <p className="text-[15px] font-medium text-[#111118] dark:text-[#f4f4f5]">Logging out…</p>
-          <p className="text-[13px] text-[#6b7280] dark:text-[#71717a]">Taking you to the home page</p>
+          <Loader2 className="h-10 w-10 animate-spin text-[var(--accent)]" />
+          <p className="text-[15px] font-medium text-[var(--ink)] dark:text-[var(--ink)]">Logging out…</p>
+          <p className="text-[13px] text-[var(--ink-2)] dark:text-[var(--ink-4)]">Taking you to the home page</p>
         </div>
       )}
       <MailKeyboardShortcuts
@@ -908,22 +970,15 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
         cycleBriefFocus={cycleBriefFocusFromShortcut}
       />
       <ShortcutHelpModal open={helpOpen} onOpenChange={setHelpOpen} />
-      <div className="vm-mockup flex h-full min-h-0 w-full bg-white dark:bg-[#ffffff]">
-        <aside className="sidebar w-[240px] shrink-0">
+      <div className="vm-mockup flex h-full min-h-0 w-full">
+        <aside className="sidebar w-[248px] shrink-0">
           <Link
             href="/"
             prefetch
             className="sidebar-head"
             style={{ textDecoration: "none" }}
           >
-            <span
-              className="brand-mark"
-              style={{
-                background: "#1e2a4a",
-                borderRadius: 6,
-                overflow: "hidden",
-              }}
-            >
+            <span className="brand-mark" style={{ background: "var(--primary)" }}>
               <video
                 src="/Vectormail-logo.mp4"
                 autoPlay
@@ -934,6 +989,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
               />
             </span>
             <span className="brand-name">VectorMail</span>
+            {isDemo && <span className="brand-tag">Demo</span>}
           </Link>
 
           <button
@@ -941,7 +997,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
             onClick={() => setComposeOpen(true)}
             className="new-email-btn"
           >
-            <Pencil size={13} strokeWidth={1.6} />
+            <IconCompose width={14} height={14} />
             <span>New email</span>
             <span className="kbd-mini">C</span>
           </button>
@@ -949,9 +1005,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
           <nav className="sidebar-scroll [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div className="sidebar-section">
               <div className="sidebar-label">
-                <span>
-                  <span style={{ color: "var(--accent)" }}>✦</span> FOLDERS
-                </span>
+                <span>Folders</span>
               </div>
               {navItems.map((item) => (
                 <button
@@ -963,7 +1017,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   }}
                   className={cn("sidebar-item", tab === item.id && "active")}
                 >
-                  <item.icon className="icon" size={14} />
+                  <item.icon className="icon" />
                   <span className="label-text">{item.label}</span>
                 </button>
               ))}
@@ -987,9 +1041,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
 
             <div className="sidebar-section">
               <div className="sidebar-label">
-                <span>
-                  <span style={{ color: "var(--accent)" }}>✦</span> INTELLIGENCE
-                </span>
+                <span>Intelligence</span>
               </div>
 
               <Popover
@@ -1000,9 +1052,9 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   <button
                     type="button"
                     title="Today's Brief"
-                    className="sidebar-item brief-item"
+                    className="sidebar-item is-intel brief-item"
                   >
-                    <span className="brief-glyph" aria-hidden="true" />
+                    <IconBrief className="icon" />
                     <span className="label-text">Today&apos;s Brief</span>
                     <span className="count">
                       {todaysBriefCount === null ? "-" : todaysBriefCount}
@@ -1013,7 +1065,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   side="right"
                   align="start"
                   sideOffset={12}
-                  className="w-[400px] max-w-[92vw] border-[#e4e7ed] bg-white p-0 text-[#0e1729] shadow-lg"
+                  className="w-[400px] max-w-[92vw] border-[var(--line)] bg-white p-0 text-[var(--ink)] shadow-lg"
                 >
                   <div className="max-h-[640px] overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     <DailyBriefStrip
@@ -1040,9 +1092,9 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                     window.location.href = "/buddy?fresh=true";
                   }
                 }}
-                className="sidebar-item"
+                className="sidebar-item is-intel"
               >
-                <Bot className="icon" size={14} />
+                <IconBuddy className="icon" />
                 <span className="label-text">AI Buddy</span>
               </button>
 
@@ -1059,11 +1111,11 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                     return !prev;
                   });
                 }}
-                className={cn("sidebar-item", showAIPanel && "active")}
+                className={cn("sidebar-item is-intel", showAIPanel && "active")}
               >
                 <span
                   className="icon"
-                  style={{ overflow: "hidden", borderRadius: 4 }}
+                  style={{ overflow: "hidden", borderRadius: 5 }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -1073,7 +1125,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   />
                 </span>
                 <span className="label-text">Inbox brain</span>
-                {isDemo && <span className="count">DEMO</span>}
+                {isDemo && <span className="badge-soft">Demo</span>}
               </button>
 
               <Popover
@@ -1084,9 +1136,9 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   <button
                     type="button"
                     title="Threads waiting on your reply"
-                    className="sidebar-item"
+                    className="sidebar-item is-intel"
                   >
-                    <Plus className="icon" size={14} />
+                    <IconNudge className="icon" />
                     <span className="label-text">Nudges</span>
                     {nudgesCount !== null && (
                       <span className="count">{nudgesCount}</span>
@@ -1097,21 +1149,21 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   side="right"
                   align="start"
                   sideOffset={12}
-                  className="w-[380px] max-w-[92vw] border-[#e4e7ed] bg-white p-0 text-[#0e1729] shadow-lg"
+                  className="w-[380px] max-w-[92vw] border-[var(--line)] bg-white p-0 text-[var(--ink)] shadow-lg"
                 >
-                  <div className="flex items-center justify-between border-b border-[#eef0f4] px-4 py-3">
+                  <div className="flex items-center justify-between border-b border-[var(--line-soft)] px-4 py-3">
                     <p
-                      className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#1e2a4a]"
+                      className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)]"
                       style={{
                         fontFamily:
                           "var(--font-jetbrains-mono), ui-monospace, monospace",
                       }}
                     >
-                      <span className="text-[#1e2a4a]">✦</span>
+                      <span className="text-[var(--accent)]">✦</span>
                       NUDGES
                     </p>
                     {nudgesCount !== null && (
-                      <span className="rounded-full bg-[#1e2a4a]/10 px-2 py-0.5 text-[10px] font-semibold text-[#1e2a4a]">
+                      <span className="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-[10px] font-semibold text-[var(--accent)]">
                         {nudgesCount}
                       </span>
                     )}
@@ -1119,15 +1171,15 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   <div className="max-h-[520px] overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {(nudgesForCount?.nudges ?? []).length === 0 ? (
                       <div className="px-4 py-10 text-center">
-                        <p className="text-[13px] font-medium text-[#1e2a44]">
+                        <p className="text-[13px] font-medium text-[var(--ink-1)]">
                           You&apos;re all caught up
                         </p>
-                        <p className="mt-1 text-[11.5px] leading-relaxed text-[#7a849a]">
+                        <p className="mt-1 text-[11.5px] leading-relaxed text-[var(--ink-3)]">
                           No threads are waiting on your reply right now.
                         </p>
                       </div>
                     ) : (
-                      <ul className="divide-y divide-[#eef0f4]">
+                      <ul className="divide-y divide-[var(--line-soft)]">
                         {(nudgesForCount?.nudges ?? []).map((nudge) => (
                           <li key={nudge.threadId}>
                             <button
@@ -1136,16 +1188,16 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                                 setNudgesPopoverOpen(false);
                                 handleThreadSelect(nudge.threadId);
                               }}
-                              className="group flex w-full flex-col gap-1 px-4 py-3 text-left transition-colors hover:bg-[#f4f5f8]"
+                              className="group flex w-full flex-col gap-1 px-4 py-3 text-left transition-colors hover:bg-[var(--surface-3)]"
                             >
-                              <p className="line-clamp-2 text-[13px] font-medium text-[#0e1729] group-hover:text-[#1e2a4a]">
+                              <p className="line-clamp-2 text-[13px] font-medium text-[var(--ink)] group-hover:text-[var(--accent)]">
                                 {nudge.thread?.subject ?? "(No subject)"}
                               </p>
-                              <div className="flex items-center gap-2 text-[11px] text-[#7a849a]">
+                              <div className="flex items-center gap-2 text-[11px] text-[var(--ink-3)]">
                                 <span>{nudge.reason ?? "You haven't replied"}</span>
                                 {nudge.thread?.lastMessageDate && (
                                   <>
-                                    <span className="text-[#a8b0c0]">·</span>
+                                    <span className="text-[var(--ink-4)]">·</span>
                                     <span>
                                       {formatDistanceToNow(
                                         new Date(nudge.thread.lastMessageDate),
@@ -1172,9 +1224,9 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   <button
                     type="button"
                     title="Upcoming meetings from email"
-                    className="sidebar-item"
+                    className="sidebar-item is-intel"
                   >
-                    <ChevronsUp className="icon" size={14} />
+                    <IconCalendar className="icon" />
                     <span className="label-text">Upcoming</span>
                     {upcomingEvents.length > 0 && (
                       <span className="count">{upcomingEvents.length}</span>
@@ -1185,11 +1237,11 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                   side="right"
                   align="start"
                   sideOffset={12}
-                  className="w-[360px] max-w-[90vw] border-[#e4e7ed] bg-white p-0 text-[#0e1729] shadow-lg"
+                  className="w-[360px] max-w-[90vw] border-[var(--line)] bg-white p-0 text-[var(--ink)] shadow-lg"
                 >
-                  <div className="flex items-center justify-between border-b border-[#eef0f4] px-4 py-3">
+                  <div className="flex items-center justify-between border-b border-[var(--line-soft)] px-4 py-3">
                     <p
-                      className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a849a]"
+                      className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ink-3)]"
                       style={{
                         fontFamily:
                           "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -1197,7 +1249,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                     >
                       UPCOMING MEETINGS
                     </p>
-                    <span className="rounded-full border border-[#e4e7ed] bg-[#fafbfc] px-2 py-0.5 text-[10px] font-semibold text-[#4a5572]">
+                    <span className="rounded-full border border-[var(--line)] bg-[var(--surface-2)] px-2 py-0.5 text-[10px] font-semibold text-[var(--ink-2)]">
                       Last 60d
                     </span>
                   </div>
@@ -1206,17 +1258,17 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                       <UpcomingMeetingsSkeleton pad="px-4 py-3" />
                     ) : upcomingEvents.length === 0 ? (
                       <div className="px-4 py-8 text-center">
-                        <p className="text-[13px] font-medium text-[#1e2a44]">
+                        <p className="text-[13px] font-medium text-[var(--ink-1)]">
                           No upcoming meetings
                         </p>
-                        <p className="mt-1 text-[11.5px] leading-relaxed text-[#7a849a]">
+                        <p className="mt-1 text-[11.5px] leading-relaxed text-[var(--ink-3)]">
                           We scan the last 60 days for Google Meet, Zoom, and
                           Teams links. Anything past its end time is
                           automatically removed.
                         </p>
                       </div>
                     ) : (
-                      <ul className="divide-y divide-[#eef0f4]">
+                      <ul className="divide-y divide-[var(--line-soft)]">
                         {upcomingEvents.map((event) => {
                           const startDate = new Date(event.startAt);
                           const endDate = event.endAt
@@ -1244,11 +1296,11 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                                     handleThreadSelect(event.sourceThreadId);
                                   }
                                 }}
-                                className="group flex w-full flex-col gap-1 px-4 py-3 text-left transition-colors hover:bg-[#f4f5f8]"
+                                className="group flex w-full flex-col gap-1 px-4 py-3 text-left transition-colors hover:bg-[var(--surface-3)]"
                               >
                                 <div className="flex items-center gap-2">
                                   <span
-                                    className="rounded-md bg-[#1e2a4a]/8 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-[#1e2a4a]"
+                                    className="rounded-md bg-[var(--accent-soft)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-[var(--accent)]"
                                     style={{
                                       fontFamily:
                                         "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -1257,7 +1309,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                                     {dayLabel}
                                   </span>
                                   <span
-                                    className="text-[11px] font-medium text-[#4a5572]"
+                                    className="text-[11px] font-medium text-[var(--ink-2)]"
                                     style={{
                                       fontFamily:
                                         "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -1269,11 +1321,11 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                                         startDate.getTime() &&
                                       ` - ${format(endDate, "h:mm a")}`}
                                   </span>
-                                  <span className="ml-auto text-[10px] text-[#a8b0c0]">
+                                  <span className="ml-auto text-[10px] text-[var(--ink-4)]">
                                     in {formatDistanceToNow(startDate)}
                                   </span>
                                 </div>
-                                <p className="line-clamp-2 text-[13px] font-medium text-[#0e1729] group-hover:text-[#1e2a4a]">
+                                <p className="line-clamp-2 text-[13px] font-medium text-[var(--ink)] group-hover:text-[var(--accent)]">
                                   {event.title}
                                 </p>
                               </button>
@@ -1290,9 +1342,9 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                 type="button"
                 title="Autopilot"
                 onClick={() => setShowAIPanel(true)}
-                className="sidebar-item"
+                className="sidebar-item is-intel"
               >
-                <Zap className="icon" size={14} />
+                <IconBolt className="icon" />
                 <span className="label-text">Autopilot</span>
                 {autopilotState !== null && (
                   <span className="count">{autopilotState}</span>
@@ -1301,73 +1353,72 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
             </div>
 
             {accountId && (
-              <div className="autopilot-widget">
-                <div className="autopilot-widget-head">
-                  <ChevronDown className="autopilot-widget-toggle" />
-                  <Zap className="autopilot-widget-icon" />
-                  <span className="autopilot-widget-title">
-                    AUTOPILOT TODAY
+              <div className="ap-card">
+                <div className="ap-head">
+                  <span className="widget-chip">
+                    <IconBolt />
                   </span>
-                  <span className="autopilot-widget-count">
-                    {autopilotHandled + autopilotPending + autopilotFailed}
-                  </span>
-                </div>
-                <div className="autopilot-widget-grid">
-                  <div className="autopilot-stat">
-                    <div className="autopilot-stat-row">
-                      <CheckCircle2 className="autopilot-stat-icon stat-success" />
-                      <span className="autopilot-stat-value">
-                        {autopilotSent}
-                      </span>
-                    </div>
-                    <span className="autopilot-stat-label">SENT</span>
-                  </div>
-                  <div className="autopilot-stat">
-                    <div className="autopilot-stat-row">
-                      <Clock className="autopilot-stat-icon stat-pending" />
-                      <span className="autopilot-stat-value">
-                        {autopilotPending}
-                      </span>
-                    </div>
-                    <span className="autopilot-stat-label">PENDING</span>
-                  </div>
-                  <div className="autopilot-stat">
-                    <div className="autopilot-stat-row">
-                      <XCircle className="autopilot-stat-icon stat-failed" />
-                      <span className="autopilot-stat-value">
-                        {autopilotFailed}
-                      </span>
-                    </div>
-                    <span className="autopilot-stat-label">FAILED</span>
-                  </div>
-                  <div className="autopilot-stat">
-                    <div className="autopilot-stat-row">
-                      <FlaskConical className="autopilot-stat-icon stat-sim" />
-                      <span className="autopilot-stat-value">
-                        {autopilotSimulated}
-                      </span>
-                    </div>
-                    <span className="autopilot-stat-label">SIMULATED</span>
-                  </div>
-                </div>
-                <div className="autopilot-widget-summary">
-                  <Sparkles className="autopilot-widget-summary-icon" />
-                  <span className="autopilot-widget-summary-text">
-                    Inbox handled
-                  </span>
-                  <span className="autopilot-widget-summary-counts">
-                    <span>{autopilotHandled} follow-ups</span>
-                    <span>~{autopilotMinSaved} min saved</span>
-                  </span>
-                </div>
-                {autopilotHandled === 0 &&
-                  autopilotPending === 0 &&
-                  autopilotFailed === 0 && (
-                    <p className="autopilot-widget-empty">
-                      No autopilot activity yet today. Once the engine sends or
-                      queues follow-ups, you&apos;ll see the breakdown here.
-                    </p>
+                  <span className="ap-head-title">Autopilot today</span>
+                  {autopilotState !== null && (
+                    <span
+                      className={cn(
+                        "ap-status",
+                        autopilotState === "on" && "is-on",
+                      )}
+                    >
+                      {autopilotState === "on" ? "Live" : "Off"}
+                    </span>
                   )}
+                </div>
+
+                {autopilotTotal > 0 ? (
+                  <>
+                    <div className="ap-hero">
+                      <span className="ap-hero-value">{autopilotTotal}</span>
+                      <span className="ap-hero-unit">
+                        {autopilotTotal === 1 ? "action" : "actions"}
+                      </span>
+                      {autopilotMinSaved > 0 && (
+                        <span className="ap-hero-saved">
+                          ~{autopilotMinSaved} min saved
+                        </span>
+                      )}
+                    </div>
+
+                    <div
+                      className="ap-meter"
+                      role="img"
+                      aria-label={autopilotBreakdown
+                        .map((s) => `${s.value} ${s.label.toLowerCase()}`)
+                        .join(", ")}
+                    >
+                      {autopilotBreakdown
+                        .filter((s) => s.value > 0)
+                        .map((s) => (
+                          <span
+                            key={s.key}
+                            className={`ap-seg ${s.key}`}
+                            style={{ flexGrow: s.value }}
+                          />
+                        ))}
+                    </div>
+
+                    <ul className="ap-legend">
+                      {autopilotBreakdown.map((s) => (
+                        <li key={s.key} data-zero={s.value === 0 || undefined}>
+                          <span className={`ap-dot ${s.key}`} />
+                          <span className="ap-legend-label">{s.label}</span>
+                          <span className="ap-legend-value">{s.value}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <p className="ap-empty">
+                    Nothing sent or queued today. Follow-ups Autopilot handles
+                    will show up here as they happen.
+                  </p>
+                )}
               </div>
             )}
 
@@ -1387,89 +1438,8 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
               />
             )}
 
-            {accountId && isDemo && (
-              <div className="calendar-widget">
-                <div className="calendar-widget-head">
-                  <ChevronDown className="calendar-widget-toggle" />
-                  <CalendarClock className="calendar-widget-icon" />
-                  <span className="calendar-widget-title">
-                    CALENDAR TODAY
-                  </span>
-                  <span className="calendar-widget-count">4</span>
-                </div>
-                <div className="calendar-widget-events">
-                  <div className="calendar-event">
-                    <div className="calendar-event-time">
-                      <span className="calendar-event-hour">10</span>
-                      <span className="calendar-event-meridiem">AM</span>
-                    </div>
-                    <div className="calendar-event-body">
-                      <div className="calendar-event-title">
-                        Engineering standup
-                      </div>
-                      <div className="calendar-event-meta">
-                        15 min · 7 attendees
-                      </div>
-                    </div>
-                    <span className="calendar-event-dot dot-info" />
-                  </div>
-                  <div className="calendar-event">
-                    <div className="calendar-event-time">
-                      <span className="calendar-event-hour">11</span>
-                      <span className="calendar-event-meridiem">AM</span>
-                    </div>
-                    <div className="calendar-event-body">
-                      <div className="calendar-event-title">
-                        Mei Lin · phone screen
-                      </div>
-                      <div className="calendar-event-meta">
-                        45 min · Greenhouse req-2418
-                      </div>
-                    </div>
-                    <span className="calendar-event-dot dot-warn" />
-                  </div>
-                  <div className="calendar-event">
-                    <div className="calendar-event-time">
-                      <span className="calendar-event-hour">3</span>
-                      <span className="calendar-event-meridiem">PM</span>
-                    </div>
-                    <div className="calendar-event-body">
-                      <div className="calendar-event-title">
-                        Brightlane renewal
-                      </div>
-                      <div className="calendar-event-meta">
-                        30 min · Sophia + Tomas
-                      </div>
-                    </div>
-                    <span className="calendar-event-dot dot-success" />
-                  </div>
-                  <div className="calendar-event">
-                    <div className="calendar-event-time">
-                      <span className="calendar-event-hour">4</span>
-                      <span className="calendar-event-meridiem">PM</span>
-                    </div>
-                    <div className="calendar-event-body">
-                      <div className="calendar-event-title">
-                        Hana · office hours
-                      </div>
-                      <div className="calendar-event-meta">
-                        30 min · Forerunner
-                      </div>
-                    </div>
-                    <span className="calendar-event-dot dot-accent" />
-                  </div>
-                </div>
-                <div className="calendar-widget-summary">
-                  <Sparkles className="calendar-widget-summary-icon" />
-                  <span className="calendar-widget-summary-text">
-                    Day in shape
-                  </span>
-                  <span className="calendar-widget-summary-counts">
-                    <span>4 meetings</span>
-                    <span>3h 45m free</span>
-                  </span>
-                </div>
-              </div>
+            {accountId && isDemo && demoDay && (
+              <DayScheduleCard events={demoDay} />
             )}
             <div style={{ display: "none" }} aria-hidden="true">
               {tab === "inbox" && (
@@ -1508,65 +1478,26 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
           </div>
         </aside>
 
-        <div className="flex flex-1 flex-col overflow-hidden">
+        <div className="vm-main">
           {isDemo && (
             <div
-              style={{ display: "none" }}
-              aria-hidden="true"
-              className="flex shrink-0 flex-wrap items-center justify-center gap-x-3 gap-y-1 border-b px-4 py-1.5"
+              className="vm-demo-strip"
+              style={{ marginRight: showAIPanel ? effectiveWidth + 10 : 0 }}
             >
-              <span
-                className="inline-flex items-center gap-1.5"
-                style={{
-                  fontFamily:
-                    "var(--font-jetbrains-mono), ui-monospace, monospace",
-                  fontSize: 10,
-                  color: "#b88a3f",
-                  fontWeight: 700,
-                  letterSpacing: "0.16em",
-                }}
-              >
-                <span
-                  aria-hidden
-                  className="block rounded-full"
-                  style={{
-                    width: 5,
-                    height: 5,
-                    background: "#1e2a4a",
-                    boxShadow: "0 0 0 2.5px rgba(212,169,85,0.18)",
-                  }}
-                />
-                DEMO MODE
-              </span>
-              <span
-                className="text-[#5b554c] dark:text-[#a89b86]"
-                style={{
-                  fontFamily: "var(--font-newsreader), Georgia, serif",
-                  fontStyle: "italic",
-                  fontSize: 12.5,
-                  letterSpacing: "-0.005em",
-                }}
-              >
-                exploring VectorMail with sample data
+              <span className="vm-demo-badge">Demo mode</span>
+              <span className="vm-demo-text">
+                You&apos;re exploring VectorMail with sample data — nothing here touches a real inbox.
               </span>
               <a
                 href="mailto:parbhat@parbhat.dev?subject=VectorMail%20%E2%80%93%20Request%20access&body=Hi%2C%0A%0AI'd%20like%20to%20request%20access%20to%20connect%20my%20Gmail%20and%20use%20VectorMail%20with%20my%20own%20inbox.%20Please%20let%20me%20know%20when%20access%20is%20available.%0A%0AThank%20you."
-                className="inline-flex shrink-0 items-center gap-1 rounded-md px-2.5 py-1 text-[11px] font-semibold text-[#1a1612] transition-all hover:-translate-y-px"
-                style={{
-                  background:
-                    "linear-gradient(180deg, #1e2a4a 0%, #1e2a4a 100%)",
-                  border: "1px solid #b88a3f",
-                  boxShadow:
-                    "inset 0 1px 0 rgba(255,255,255,0.35), 0 2px 6px rgba(212,169,85,0.32)",
-                  letterSpacing: "0.005em",
-                }}
+                className="vm-demo-cta"
               >
                 Request access
-                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden>
                   <path
                     d="M3 6h6M6 3l3 3-3 3"
                     stroke="currentColor"
-                    strokeWidth="1.5"
+                    strokeWidth="1.6"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
@@ -1578,16 +1509,16 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
           <div
             ref={containerRef}
             className={cn(
-              "flex flex-1 overflow-hidden",
+              "vm-columns",
               (isResizing || isAiResizing) && "select-none cursor-col-resize",
             )}
           >
             <aside
               ref={sidebarRef}
-              className="flex h-full shrink-0 flex-col border-r border-[#e5e7eb] bg-white dark:border-[#ffffff] dark:bg-[#ffffff]"
+              className="vm-list-col"
               style={{
                 width: `${threadListLayoutWidthPct}%`,
-                minWidth: 280,
+                minWidth: 300,
                 ...(isResizing && { willChange: "width" }),
               }}
             >
@@ -1607,7 +1538,7 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                         />
                       </button>
                     </TooltipTrigger>
-                    <TooltipContent side="bottom" className="bg-[#18181b] text-xs text-[#f4f4f5]">
+                    <TooltipContent side="bottom" className="bg-[var(--surface-3)] text-xs text-[var(--ink)]">
                       {syncPending ? "Syncing…" : "Sync emails"}
                     </TooltipContent>
                   </Tooltip>
@@ -1627,139 +1558,52 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
               role="separator"
               aria-label="Resize panels"
               onPointerDown={handleResizeStart}
-              className={cn(
-                "relative z-10 flex w-[5px] shrink-0 cursor-col-resize items-center justify-center self-stretch transition-colors",
-                "bg-transparent hover:bg-[#1e2a4a]/20 dark:hover:bg-[#1e2a4a]/20",
-                isResizing && "bg-[#1e2a4a]/30 dark:bg-[#1e2a4a]/30",
-              )}
-              style={{ touchAction: "none", minHeight: 120 }}
+              className={cn("vm-resizer", isResizing && "is-active")}
             />
 
             <main
-              className={cn(
-                "flex min-w-0 flex-1 flex-col bg-white dark:bg-[#ffffff]",
-              )}
-              style={{ marginRight: showAIPanel ? effectiveWidth : 0 }}
+              className="vm-reader-col"
+              style={{ marginRight: showAIPanel ? effectiveWidth + 10 : 0 }}
             >
               <ThreadDisplay threadId={selectedThread} onClose={handleThreadClose} />
             </main>
 
 
             <aside
-              className={cn(
-                "fixed right-0 top-0 z-40 h-screen border-l border-[#e5e7eb] bg-white shadow-[-2px_0_8px_rgba(0,0,0,0.04)] transition-transform duration-300 ease-out dark:border-[#ffffff] dark:bg-[#ffffff] dark:shadow-[-2px_0_8px_rgba(0,0,0,0.3)]",
-                showAIPanel ? "translate-x-0" : "translate-x-full",
-              )}
+              className="vm-ai-panel"
+              data-open={showAIPanel ? "true" : "false"}
               style={{ width: effectiveWidth }}
             >
               <div
                 role="separator"
                 aria-label="Resize AI Inbox Brain panel"
                 onPointerDown={handleAiResizeStart}
-                className={cn(
-                  "absolute left-0 top-0 z-50 h-full w-[6px] -translate-x-1/2 cursor-col-resize",
-                  "bg-transparent hover:bg-[#1e2a4a]/20 dark:hover:bg-[#1e2a4a]/20",
-                  isAiResizing && "bg-[#1e2a4a]/30 dark:bg-[#1e2a4a]/30",
-                )}
-                style={{ touchAction: "none" }}
+                className={cn("vm-ai-resizer", isAiResizing && "is-active")}
               />
               <div className="flex h-full flex-col">
-                <div
-                  className="border-b border-[#e5e7eb] bg-gradient-to-b from-[#ffffff] to-[#ffffff] px-4 py-3 dark:border-[#ffffff] dark:from-[#ffffff] dark:to-[#ffffff]"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex min-w-0 items-center gap-2.5">
-                      <div
-                        className="-mt-0.5 h-8 w-8 shrink-0 overflow-hidden"
-                        style={{
-                          borderRadius: 7,
-                          border: "1px solid #b88a3f",
-                          boxShadow:
-                            "inset 0 1px 0 rgba(255,255,255,0.25), 0 2px 6px rgba(212,169,85,0.32)",
-                        }}
-                      >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src="/Opus-B.png"
-                          alt="Inbox Brain"
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                      <div className="min-w-0 py-0.5">
-                        <div className="flex items-baseline gap-2">
-                          <span
-                            className="truncate text-[14px] font-semibold tracking-tight text-[#111118] dark:text-[#f5ebd9]"
-                          >
-                            Inbox brain
-                          </span>
-                          {isDemo && (
-                            <span
-                              className="rounded px-1.5 py-0.5"
-                              style={{
-                                background: "rgba(212,169,85,0.14)",
-                                color: "#b88a3f",
-                                fontFamily:
-                                  "var(--font-jetbrains-mono), ui-monospace, monospace",
-                                fontSize: 9,
-                                fontWeight: 700,
-                                letterSpacing: "0.1em",
-                              }}
-                            >
-                              DEMO
-                            </span>
-                          )}
-                        </div>
-                        {!isMobile && (
-                          <p
-                            className="mt-1 flex items-center gap-1.5 text-[#8a8278] dark:text-[#8a8278]"
-                            style={{
-                              fontFamily:
-                                "var(--font-jetbrains-mono), ui-monospace, monospace",
-                              fontSize: 9.5,
-                              letterSpacing: "0.06em",
-                              fontWeight: 600,
-                            }}
-                          >
-                            <kbd
-                              className="rounded px-1 py-px"
-                              style={{
-                                background: "#ffffff",
-                                border: "1px solid #e5e7eb",
-                                boxShadow: "inset 0 -1px 0 #e5e7eb",
-                                color: "#1a1612",
-                                fontSize: 9,
-                                letterSpacing: "0.04em",
-                              }}
-                            >
-                              {isMacOS ? "⌘↵" : "Ctrl+Enter"}
-                            </kbd>
-                            SEND
-                          </p>
-                        )}
-                      </div>
+                <div className="vm-ai-head">
+                  <span className="vm-ai-mark">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/Opus-B.png"
+                      alt="Inbox Brain"
+                      className="h-full w-full object-cover"
+                    />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="vm-ai-title truncate">Inbox brain</span>
+                      {isDemo && <span className="badge-soft">Demo</span>}
                     </div>
-                    <div className="flex items-center gap-1">
-                      {!isMobile && (
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                setHelpOpen(true);
-                              }}
-                              className="flex h-8 w-8 items-center justify-center rounded-full text-[#6b7280] transition-colors hover:bg-[#f3f4f6] dark:text-[#a1a1aa] dark:hover:bg-[#ffffff]/[0.04]"
-                              aria-label="Keyboard shortcuts"
-                            >
-                              <CircleHelp className="h-4 w-4" />
-                            </button>
-                          </TooltipTrigger>
-                          <TooltipContent side="bottom" className="max-w-[260px]">
-                            <p>All mail &amp; Inbox brain shortcuts</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      )}
+                    {!isMobile && (
+                      <p className="vm-ai-sub">
+                        <kbd>{isMacOS ? "⌘↵" : "Ctrl+Enter"}</kbd>
+                        to send
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex shrink-0 items-center gap-0.5">
+                    {!isMobile && (
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <button
@@ -1767,42 +1611,61 @@ export function Mail({ defaultLayout }: MailLayoutProps) {
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              setShowAIPanel((prev) => {
-                                if (!prev) {
-                                  trackInboxBrainEvent(
-                                    "inbox_brain_panel_opened",
-                                    { source: "toolbar_new_chat" },
-                                  );
-                                }
-                                return true;
-                              });
-                              setAiSearchResetKey((k) => k + 1);
+                              setHelpOpen(true);
                             }}
-                            className="flex h-8 w-8 items-center justify-center rounded-full text-[#6b7280] transition-colors hover:bg-[#f3f4f6] dark:text-[#a1a1aa] dark:hover:bg-[#ffffff]/[0.04]"
-                            aria-label="New chat (AI Inbox Brain)"
+                            className="vm-icon-btn"
+                            aria-label="Keyboard shortcuts"
                           >
-                            <Plus className="h-4 w-4" />
+                            <CircleHelp className="h-4 w-4" />
                           </button>
                         </TooltipTrigger>
-                        <TooltipContent side="bottom">
-                          <p>New chat (Inbox brain)</p>
+                        <TooltipContent side="bottom" className="max-w-[260px]">
+                          <p>All mail &amp; Inbox brain shortcuts</p>
                         </TooltipContent>
                       </Tooltip>
-                      <button
-                        onClick={() => setShowAIPanel(false)}
-                        className="flex h-8 w-8 items-center justify-center rounded-full text-[#6b7280] transition-colors hover:bg-[#f3f4f6] dark:text-[#a1a1aa] dark:hover:bg-[#ffffff]/[0.04]"
-                        aria-label="Close"
-                      >
-                        <X className="h-4 w-4" />
-                      </button>
-                    </div>
+                    )}
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setShowAIPanel((prev) => {
+                              if (!prev) {
+                                trackInboxBrainEvent(
+                                  "inbox_brain_panel_opened",
+                                  { source: "toolbar_new_chat" },
+                                );
+                              }
+                              return true;
+                            });
+                            setAiSearchResetKey((k) => k + 1);
+                          }}
+                          className="vm-icon-btn"
+                          aria-label="New chat (AI Inbox Brain)"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>New chat (Inbox brain)</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <button
+                      onClick={() => setShowAIPanel(false)}
+                      className="vm-icon-btn"
+                      aria-label="Close"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
                   </div>
-                  {(accountId || isDemo) && (
-                    <div className="mt-3">
-                      <AutopilotSection accountId={isDemo ? DEMO_ACCOUNT_ID : accountId} isDemo={isDemo} />
-                    </div>
-                  )}
                 </div>
+                {(accountId || isDemo) && (
+                  <div className="shrink-0 border-b border-[var(--line-soft)] px-3 py-3">
+                    <AutopilotSection accountId={isDemo ? DEMO_ACCOUNT_ID : accountId} isDemo={isDemo} />
+                  </div>
+                )}
                 <div className="flex-1 overflow-hidden">
                   <EmailSearchAssistant
                     isCollapsed={false}

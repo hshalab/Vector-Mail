@@ -491,7 +491,7 @@ export default function EmailSearchAssistant({
     return (
       <div className="flex h-full flex-col gap-3 p-3" aria-busy="true">
         <Skel className="h-8 w-full rounded-xl" />
-        <div className="flex-1 space-y-4 rounded-xl border border-[#e4e7ed] bg-white p-4">
+        <div className="flex-1 space-y-4 rounded-xl border border-[var(--line)] bg-white p-4">
           <SkeletonLines lines={3} lastWidth="62%" />
           <SkeletonLines lines={2} lastWidth="44%" />
           <SkeletonLines lines={3} lastWidth="72%" />
@@ -506,20 +506,20 @@ export default function EmailSearchAssistant({
     return (
       <div className="flex h-full flex-col p-3">
         <motion.div
-          className="flex h-full flex-col rounded-xl border border-[#e4e7ed] bg-white p-4"
+          className="flex h-full flex-col rounded-xl border border-[var(--line)] bg-white p-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
           <div className="flex items-center gap-3 py-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#1e2a4a]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--accent)]">
               <Bot className="h-5 w-5 text-white" />
             </div>
             <div>
-              <p className="text-sm font-medium text-[#0e1729]">
+              <p className="text-sm font-medium text-[var(--ink)]">
                 No account connected
               </p>
-              <p className="text-xs text-[#7a849a]">
+              <p className="text-xs text-[var(--ink-3)]">
                 Connect your Google account
               </p>
             </div>
@@ -527,7 +527,7 @@ export default function EmailSearchAssistant({
           <div className="mt-4">
             <button
               onClick={handleAccountConnection}
-              className="w-full rounded-xl bg-gradient-to-r from-[#2d3d6b] to-[#1e2a4a] px-4 py-2.5 text-sm font-medium text-white transition-all hover:shadow-lg hover:shadow-[#1e2a4a]/20"
+              className="w-full rounded-xl bg-gradient-to-r from-[var(--accent-bright)] to-[var(--accent)] px-4 py-2.5 text-sm font-medium text-white transition-all hover:shadow-lg hover:shadow-[var(--accent-line)]"
             >
               Connect your Google account
             </button>
@@ -540,8 +540,8 @@ export default function EmailSearchAssistant({
   return (
     <div className="flex h-full flex-col">
       {!showDemoUI && hasValidAccount && (
-        <div className="flex items-center justify-between gap-2 border-b border-[#e4e7ed] px-3 py-2.5">
-          <span className="text-[11px] leading-snug text-[#7a849a]">
+        <div className="flex items-center justify-between gap-2 border-b border-[var(--line)] px-3 py-2.5">
+          <span className="text-[11px] leading-snug text-[var(--ink-3)]">
             Show grounded sources
           </span>
           <div className="flex items-center gap-2">
@@ -571,15 +571,15 @@ export default function EmailSearchAssistant({
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-3 rounded-xl border border-[#1e2a4a]/15 bg-[#1e2a4a]/5 p-3"
+                className="mb-3 rounded-xl border border-[var(--accent-soft)] bg-[var(--accent)]/5 p-3"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-[#1e2a4a]/90">
+                    <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--accent)]/90">
                       <Play className="h-3.5 w-3.5" />
                       Founder demo
                     </p>
-                    <p className="mt-1 text-xs text-[#1e2a44]">
+                    <p className="mt-1 text-xs text-[var(--ink-1)]">
                       Try a guided 30-sec walkthrough: attention, replies, and
                       weekly summary.
                     </p>
@@ -588,7 +588,7 @@ export default function EmailSearchAssistant({
                     <button
                       type="button"
                       onClick={startGuidedDemo}
-                      className="shrink-0 rounded-md bg-[#1e2a4a] px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#2d3d6b]"
+                      className="shrink-0 rounded-md bg-[var(--accent)] px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[var(--accent-bright)]"
                     >
                       Try 30-sec demo
                     </button>
@@ -596,7 +596,7 @@ export default function EmailSearchAssistant({
                     <button
                       type="button"
                       onClick={exitGuidedDemo}
-                      className="shrink-0 rounded-md border border-[#e4e7ed] px-2 py-1.5 text-xs text-[#1e2a44] transition-colors hover:bg-[#f4f5f8]"
+                      className="shrink-0 rounded-md border border-[var(--line)] px-2 py-1.5 text-xs text-[var(--ink-1)] transition-colors hover:bg-[var(--surface-3)]"
                     >
                       Exit
                     </button>
@@ -614,10 +614,10 @@ export default function EmailSearchAssistant({
                   <motion.div
                     key={message.id}
                     layout="position"
-                    className={cn("z-10 mb-3 break-words rounded-3xl", {
-                      "ml-auto max-w-[85%] bg-[#1e2a4a] px-5 py-3 shadow-lg":
+                    className={cn("z-10 mb-3 break-words", {
+                      "ml-auto max-w-[84%] rounded-2xl rounded-br-md bg-[var(--primary)] shadow-[var(--shadow-md)]":
                         message.role === "user",
-                      "mr-auto max-w-[90%] bg-[#fafbfc] ring-1 ring-[#e4e7ed]":
+                      "mr-auto max-w-[94%] rounded-2xl rounded-bl-md bg-[var(--surface-2)] ring-1 ring-[var(--line)]":
                         message.role === "assistant",
                     })}
                     layoutId={`container-[${messages.length - 1}]`}
@@ -626,7 +626,7 @@ export default function EmailSearchAssistant({
                     <div className="px-4 py-3 text-sm leading-relaxed">
                       {message.role === "assistant" ? (
                         <div className="space-y-2">
-                          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-[#5f6368] dark:text-[#9aa0a6]">
+                          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                             <span className="h-3 w-3 overflow-hidden rounded-full">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img
@@ -638,7 +638,7 @@ export default function EmailSearchAssistant({
                             Inbox brain
                           </div>
                           {isStreamingAssistant ? (
-                            <div className="whitespace-pre-wrap text-sm text-[#1e2a44]">
+                            <div className="whitespace-pre-wrap text-sm text-[var(--ink-1)]">
                               {stripJsonFenceFromDisplay(message.content) ||
                                 "\u00a0"}
                             </div>
@@ -653,16 +653,16 @@ export default function EmailSearchAssistant({
                               return (
                                 <div className="space-y-3">
                                   {hasProseBody ? (
-                                    <div className="whitespace-pre-wrap text-sm leading-relaxed text-[#1e2a44]">
+                                    <div className="whitespace-pre-wrap text-sm leading-relaxed text-[var(--ink-1)]">
                                       {detailProse}
                                     </div>
                                   ) : (
                                     <>
-                                      <p className="text-sm font-semibold leading-snug text-[#0e1729]">
+                                      <p className="text-sm font-semibold leading-snug text-[var(--ink)]">
                                         {turn.summary}
                                       </p>
                                       {turn.actions.length > 0 && (
-                                        <ul className="list-decimal space-y-1 pl-4 text-sm text-[#1e2a44]">
+                                        <ul className="list-decimal space-y-1 pl-4 text-sm text-[var(--ink-1)]">
                                           {turn.actions.map((a, i) => (
                                             <li key={i}>{a}</li>
                                           ))}
@@ -675,7 +675,7 @@ export default function EmailSearchAssistant({
                                       {turn.threads.map((t, chipIndex) => (
                                         <div
                                           key={`${message.id}-${t.threadId}`}
-                                          className="max-w-full rounded-lg border border-[#1e2a4a]/15 bg-[#1e2a4a]/5 px-2.5 py-2"
+                                          className="max-w-full rounded-lg border border-[var(--accent-soft)] bg-[var(--accent)]/5 px-2.5 py-2"
                                         >
                                           <button
                                             type="button"
@@ -691,7 +691,7 @@ export default function EmailSearchAssistant({
                                               );
                                               onOpenThread?.(t.threadId);
                                             }}
-                                            className="max-w-full truncate rounded-full border border-[#1e2a4a]/20 bg-[#1e2a4a]/10 px-3 py-1 text-left text-xs font-medium text-[#1e2a4a] transition-colors hover:bg-[#1e2a4a]/15 disabled:opacity-50"
+                                            className="max-w-full truncate rounded-full border border-[var(--accent-line)] bg-[var(--accent-soft)] px-3 py-1 text-left text-xs font-medium text-[var(--accent)] transition-colors hover:bg-[var(--accent-soft)] disabled:opacity-50"
                                             disabled={!onOpenThread}
                                             title={
                                               onOpenThread
@@ -705,14 +705,14 @@ export default function EmailSearchAssistant({
                                             <div className="mt-1.5 flex items-center gap-1.5">
                                               {t.reason && (
                                                 <span
-                                                  className="max-w-[240px] truncate text-[10px] text-[#4a5572] underline decoration-dotted underline-offset-2"
+                                                  className="max-w-[240px] truncate text-[10px] text-[var(--ink-2)] underline decoration-dotted underline-offset-2"
                                                   title={`Why this? ${t.reason}`}
                                                 >
                                                   Why this? {t.reason}
                                                 </span>
                                               )}
                                               {t.confidence && (
-                                                <span className="rounded-full bg-[#1e2a4a]/15 px-1.5 py-0.5 text-[10px] font-medium text-[#1e2a4a]">
+                                                <span className="rounded-full bg-[var(--accent-soft)] px-1.5 py-0.5 text-[10px] font-medium text-[var(--accent)]">
                                                   {t.confidence}
                                                 </span>
                                               )}
@@ -740,7 +740,7 @@ export default function EmailSearchAssistant({
                                             );
                                             onOpenThread(turn.threads[0]!.threadId);
                                           }}
-                                          className="inline-flex items-center gap-1 rounded-md border border-[#e4e7ed] bg-[#f4f5f8] px-2.5 py-1 text-[11px] font-medium text-[#0e1729] transition-colors hover:bg-[#ebedf2]"
+                                          className="inline-flex items-center gap-1 rounded-md border border-[var(--line)] bg-[var(--surface-3)] px-2.5 py-1 text-[11px] font-medium text-[var(--ink)] transition-colors hover:bg-[var(--surface-2)]"
                                         >
                                           Open top thread
                                           <ArrowRight className="h-3 w-3" />
@@ -753,7 +753,7 @@ export default function EmailSearchAssistant({
                           )}
                         </div>
                       ) : (
-                        <span className="text-white">{message.content}</span>
+                        <span className="text-[var(--primary-ink)]">{message.content}</span>
                       )}
                     </div>
                   </motion.div>
@@ -766,9 +766,9 @@ export default function EmailSearchAssistant({
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-3 mr-auto max-w-[90%]"
               >
-                <div className="rounded-xl bg-[#fafbfc] px-4 py-3 ring-1 ring-[#e4e7ed]">
+                <div className="rounded-xl bg-[var(--surface-2)] px-4 py-3 ring-1 ring-[var(--line)]">
                   <div className="flex items-center gap-2">
-                    <div className="flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-[#f4f5f8] ring-1 ring-[#e4e7ed]">
+                    <div className="flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-[var(--surface-3)] ring-1 ring-[var(--line)]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src="/Opus-B.png"
@@ -777,9 +777,9 @@ export default function EmailSearchAssistant({
                       />
                     </div>
                     <div className="flex items-center gap-1">
-                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#5f6368] [animation-delay:-0.3s]" />
-                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#5f6368] [animation-delay:-0.15s]" />
-                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#5f6368]" />
+                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--ink-2)] [animation-delay:-0.3s]" />
+                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--ink-2)] [animation-delay:-0.15s]" />
+                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--ink-2)]" />
                     </div>
                   </div>
                 </div>
@@ -789,16 +789,16 @@ export default function EmailSearchAssistant({
               <motion.div
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-2 rounded-xl border border-[#e4e7ed] bg-[#fafbfc] p-3"
+                className="mt-2 rounded-xl border border-[var(--line)] bg-[var(--surface-2)] p-3"
               >
                 <div className="mb-2 flex items-center justify-between gap-3">
-                  <span className="text-[11px] text-[#4a5572]">
+                  <span className="text-[11px] text-[var(--ink-2)]">
                     Step {guidedStepIndex + 1} of {ASK_AI_GUIDED_STEPS.length}
                   </span>
                   <button
                     type="button"
                     onClick={exitGuidedDemo}
-                    className="inline-flex items-center gap-1 text-[11px] text-[#4a5572] hover:text-[#0e1729]"
+                    className="inline-flex items-center gap-1 text-[11px] text-[var(--ink-2)] hover:text-[var(--ink)]"
                   >
                     <X className="h-3 w-3" />
                     Exit demo
@@ -810,7 +810,7 @@ export default function EmailSearchAssistant({
                       <button
                         type="button"
                         onClick={() => runGuidedStep(guidedStepIndex + 1)}
-                        className="inline-flex items-center gap-1 rounded-md bg-[#1e2a4a] px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#2d3d6b]"
+                        className="inline-flex items-center gap-1 rounded-md bg-[var(--accent)] px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[var(--accent-bright)]"
                       >
                         Next step
                         <ArrowRight className="h-3.5 w-3.5" />
@@ -818,7 +818,7 @@ export default function EmailSearchAssistant({
                       <button
                         type="button"
                         onClick={() => runGuidedStep(guidedStepIndex + 1)}
-                        className="inline-flex items-center gap-1 rounded-md border border-[#e4e7ed] px-2.5 py-1.5 text-xs text-[#1e2a44] transition-colors hover:bg-[#f4f5f8]"
+                        className="inline-flex items-center gap-1 rounded-md border border-[var(--line)] px-2.5 py-1.5 text-xs text-[var(--ink-1)] transition-colors hover:bg-[var(--surface-3)]"
                       >
                         <SkipForward className="h-3.5 w-3.5" />
                         Skip
@@ -848,7 +848,7 @@ export default function EmailSearchAssistant({
                         );
                         onOpenThread(lastAssistantTurn.threads[0]!.threadId);
                       }}
-                      className="inline-flex items-center gap-1 rounded-md border border-[#e4e7ed] px-2.5 py-1.5 text-xs text-[#1e2a44] transition-colors hover:bg-[#f4f5f8]"
+                      className="inline-flex items-center gap-1 rounded-md border border-[var(--line)] px-2.5 py-1.5 text-xs text-[var(--ink-1)] transition-colors hover:bg-[var(--surface-3)]"
                     >
                       Open top thread
                     </button>
@@ -866,19 +866,19 @@ export default function EmailSearchAssistant({
                   onClick={startGuidedDemo}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="w-full rounded-xl border border-[#1e2a4a]/15 bg-[#1e2a4a]/10 px-3 py-2.5 text-left transition-colors hover:bg-[#1e2a4a]/15"
+                  className="w-full rounded-xl border border-[var(--accent-soft)] bg-[var(--accent-soft)] px-3 py-2.5 text-left transition-colors hover:bg-[var(--accent-soft)]"
                 >
-                  <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#1e2a4a]/90">
+                  <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-[var(--accent)]/90">
                     <Play className="h-3.5 w-3.5" />
                     Try a 30-sec demo
                   </span>
-                  <span className="mt-1 block text-[12px] text-[#1e2a44]">
+                  <span className="mt-1 block text-[12px] text-[var(--ink-1)]">
                     Guided walkthrough in 3 steps. You can skip or exit anytime.
                   </span>
                 </motion.button>
               )}
               <div className="text-center px-1">
-                <p className="text-[13px] leading-snug text-[#1e2a44] dark:text-[#4a5572]">
+                <p className="text-[13px] leading-snug text-[var(--ink-1)] dark:text-[var(--ink-2)]">
                   {showDemoUI
                     ? "Ask in plain English: get a structured answer and open real demo threads."
                     : "Ask in plain English: get a structured answer and jump to real threads."}
@@ -890,9 +890,9 @@ export default function EmailSearchAssistant({
                   <button
                     key={label}
                     onClick={() => handleQuerySuggestion(query)}
-                    className="flex items-center justify-center gap-1.5 rounded-lg border border-[#e4e7ed] bg-[#fafbfc] px-3 py-2.5 text-[11px] font-medium leading-tight text-[#0e1729] transition-all hover:border-[#1e2a4a]/25 hover:bg-[#1e2a4a]/10 hover:text-[#1e2a4a]"
+                    className="flex items-center justify-center gap-1.5 rounded-lg border border-[var(--line)] bg-[var(--surface-2)] px-3 py-2.5 text-[11px] font-medium leading-tight text-[var(--ink)] transition-all hover:border-[var(--accent-line)] hover:bg-[var(--accent-soft)] hover:text-[var(--accent)]"
                   >
-                    <Icon className="h-3.5 w-3.5 text-[#4a5572]" strokeWidth={1.75} />
+                    <Icon className="h-3.5 w-3.5 text-[var(--ink-2)]" strokeWidth={1.75} />
                     <span>{label}</span>
                   </button>
                 ))}
@@ -900,7 +900,7 @@ export default function EmailSearchAssistant({
 
               {founderDemo && !showDemoUI && (
                 <div>
-                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-[#1e2a4a]/85">
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-[var(--accent-soft)]5">
                     Founder demo flows
                   </p>
                   <div className="grid grid-cols-2 gap-2.5">
@@ -909,9 +909,9 @@ export default function EmailSearchAssistant({
                         key={label}
                         type="button"
                         onClick={() => void sendMessage(query)}
-                        className="flex items-center justify-center gap-1.5 rounded-lg border border-[#1e2a4a]/15 bg-[#1e2a4a]/5 px-3 py-2.5 text-[11px] font-medium leading-tight text-[#0e1729] transition-all hover:border-[#1e2a4a]/30 hover:bg-[#1e2a4a]/10"
+                        className="flex items-center justify-center gap-1.5 rounded-lg border border-[var(--accent-soft)] bg-[var(--accent)]/5 px-3 py-2.5 text-[11px] font-medium leading-tight text-[var(--ink)] transition-all hover:border-[var(--accent-line)] hover:bg-[var(--accent-soft)]"
                       >
-                        <Icon className="h-3.5 w-3.5 text-[#1e2a4a]" strokeWidth={1.75} />
+                        <Icon className="h-3.5 w-3.5 text-[var(--accent)]" strokeWidth={1.75} />
                         <span className="text-left leading-tight">{label}</span>
                       </button>
                     ))}
@@ -923,7 +923,7 @@ export default function EmailSearchAssistant({
                 <button
                   onClick={handleProcessEmails}
                   disabled={processEmailsMutation.isPending || !validAccountId}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#1e2a4a] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#0d1530] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--accent)] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[var(--accent-deep)] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <Bot className="h-4 w-4 text-white" />
                   {processEmailsMutation.isPending
@@ -938,7 +938,7 @@ export default function EmailSearchAssistant({
 
         <form
           onSubmit={handleSubmit}
-          className="mt-auto flex w-full gap-2 border-t border-[#e4e7ed] p-3.5"
+          className="mt-auto flex w-full gap-2 border-t border-[var(--line)] p-3.5"
         >
           <div className="relative flex-1">
             <input
@@ -947,7 +947,7 @@ export default function EmailSearchAssistant({
               onChange={handleInputChange}
               onKeyDown={handleInputKeyDown}
               value={input}
-              className="h-10 w-full rounded-xl border border-[#e4e7ed] bg-[#fafbfc] px-4 text-sm text-[#0e1729] outline-none transition-all placeholder:text-[#a8b0c0] focus:border-[#1e2a4a]/30 focus:ring-1 focus:ring-[#1e2a4a]/30 disabled:opacity-50"
+              className="h-10 w-full rounded-xl border border-[var(--line)] bg-[var(--surface-2)] px-4 text-sm text-[var(--ink)] outline-none transition-all placeholder:text-[var(--ink-4)] focus:border-[var(--accent-line)] focus:ring-1 focus:ring-[var(--accent-line)] disabled:opacity-50"
               placeholder={
                 showDemoUI
                   ? "Try a question… request access to use Inbox brain on your mail."
@@ -960,7 +960,7 @@ export default function EmailSearchAssistant({
           </div>
           <button
             type="submit"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#1e2a4a] text-white transition-all hover:bg-[#0d1530] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--accent)] text-white transition-all hover:bg-[var(--accent-deep)] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
             disabled={isLoading || !input.trim() || (!hasValidAccount && !showDemoUI)}
           >
             {isLoading ? (

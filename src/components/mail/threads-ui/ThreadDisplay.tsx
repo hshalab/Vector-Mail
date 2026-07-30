@@ -6,7 +6,15 @@ import useThreads from "@/hooks/use-threads";
 import { useAtom } from "jotai";
 import { isSearchingAtom } from "../search/SearchBar";
 import ReplyBox from "./ReplyBox";
-import { Mail, Forward, Reply, X, Clock, Bell, Tag, ChevronDown, Loader2, CalendarPlus, MessageCircle } from "lucide-react";
+import { Mail, Forward, Reply, X, Tag, ChevronDown, Loader2, MessageCircle } from "lucide-react";
+import {
+  IconClock,
+  IconNudge,
+  IconForward,
+  IconCalendarPlus,
+  IconReply,
+  IconClose,
+} from "@/components/mail/icons";
 import { cn } from "@/lib/utils";
 import { useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
@@ -130,10 +138,19 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
 
   if (!thread) {
     return (
-      <div className="flex h-full items-center justify-center bg-white dark:bg-[#ffffff]">
-        <div className="flex items-center gap-2.5 text-[#a89b86] dark:text-[#5b554c]">
-          <Mail className="h-4 w-4" strokeWidth={1.5} />
-          <span className="text-[13px]">No conversation selected</span>
+      <div className="reader-empty h-full">
+        <span className="reader-empty-icon">
+          <Mail className="h-5 w-5" strokeWidth={1.5} />
+        </span>
+        <div>
+          <p className="text-[14px] font-semibold tracking-[-0.015em] text-[var(--ink-1)]">
+            No conversation selected
+          </p>
+          <p className="reader-empty-text mt-1.5">
+            Pick a thread from the list, or press{" "}
+            <kbd className="search-kbd">J</kbd> /{" "}
+            <kbd className="search-kbd">K</kbd> to move through your inbox.
+          </p>
         </div>
       </div>
     );
@@ -192,37 +209,37 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
           setSuggestReplyError(null);
         }
       }}>
-        <DialogContent className="max-w-lg border-[#e5e7eb] bg-white p-6 dark:border-[#3c4043] dark:bg-[#202124]">
+        <DialogContent className="max-w-lg border-[var(--line)] bg-white p-6 dark:border-[var(--line)] dark:bg-[var(--surface)]">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 pr-8 text-left text-[#111118] dark:text-[#f4f4f5]">
-              <MessageCircle className="h-5 w-5 shrink-0 text-[#1e2a4a] dark:text-[#1e2a4a]" />
+            <DialogTitle className="flex items-center gap-2 pr-8 text-left text-[var(--ink)] dark:text-[var(--ink)]">
+              <MessageCircle className="h-5 w-5 shrink-0 text-[var(--accent)] dark:text-[var(--accent)]" />
               <span className="whitespace-nowrap">Suggest reply</span>
             </DialogTitle>
           </DialogHeader>
           {suggestReplyStep === "loading" && (
             <div className="flex flex-col items-center gap-4 py-6">
-              <Loader2 className="h-10 w-10 animate-spin text-[#1e2a4a] dark:text-[#1e2a4a]" />
-              <p className="text-center text-sm text-[#5f6368] dark:text-[#9aa0a6]">
+              <Loader2 className="h-10 w-10 animate-spin text-[var(--accent)] dark:text-[var(--accent)]" />
+              <p className="text-center text-sm text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                 {suggestReplyStatus}
               </p>
-              <p className="text-xs text-[#9aa0a6] dark:text-[#71717a]">
+              <p className="text-xs text-[var(--ink-3)] dark:text-[var(--ink-4)]">
                 AI is reading the thread and writing a reply in your voice. Usually 5-15 seconds.
               </p>
             </div>
           )}
           {suggestReplyStep === "ready" && suggestReplyResult && (
             <div className="space-y-4">
-              <p className="text-sm text-[#5f6368] dark:text-[#9aa0a6]">
+              <p className="text-sm text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                 Here’s your reply. You can edit it in the composer, send it now, or cancel.
               </p>
-              <div className="rounded-lg border border-[#e5e7eb] bg-[#f6f8fc] p-3 dark:border-[#3c4043] dark:bg-[#292a2d]">
-                <p className="mb-1 text-xs font-medium text-[#5f6368] dark:text-[#9aa0a6]">Subject</p>
-                <p className="text-sm font-medium text-[#111118] dark:text-[#f4f4f5]">{suggestReplyResult.subject}</p>
+              <div className="rounded-lg border border-[var(--line)] bg-[var(--surface-2)] p-3 dark:border-[var(--line)] dark:bg-[var(--surface-3)]">
+                <p className="mb-1 text-xs font-medium text-[var(--ink-2)] dark:text-[var(--ink-3)]">Subject</p>
+                <p className="text-sm font-medium text-[var(--ink)] dark:text-[var(--ink)]">{suggestReplyResult.subject}</p>
               </div>
-              <div className="max-h-48 overflow-y-auto rounded-lg border border-[#e5e7eb] bg-[#f6f8fc] p-3 dark:border-[#3c4043] dark:bg-[#292a2d] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                <p className="mb-1 text-xs font-medium text-[#5f6368] dark:text-[#9aa0a6]">Message</p>
+              <div className="max-h-48 overflow-y-auto rounded-lg border border-[var(--line)] bg-[var(--surface-2)] p-3 dark:border-[var(--line)] dark:bg-[var(--surface-3)] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                <p className="mb-1 text-xs font-medium text-[var(--ink-2)] dark:text-[var(--ink-3)]">Message</p>
                 <div
-                  className="prose prose-sm dark:prose-invert max-w-none text-[#111118] dark:text-[#e8eaed] [&_p]:mb-1"
+                  className="prose prose-sm dark:prose-invert max-w-none text-[var(--ink)] dark:text-[var(--ink)] [&_p]:mb-1"
                   dangerouslySetInnerHTML={{ __html: suggestReplyResult.body.slice(0, 1500) + (suggestReplyResult.body.length > 1500 ? "..." : "") }}
                 />
               </div>
@@ -235,7 +252,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
                     setSuggestReplyStep("idle");
                     setSuggestReplyResult(null);
                   }}
-                  className="border-[#dadce0] dark:border-[#3c4043]"
+                  className="border-[var(--line)] dark:border-[var(--line)]"
                 >
                   Cancel
                 </Button>
@@ -251,7 +268,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
                     setSuggestReplyResult(null);
                     requestAnimationFrame(() => window.dispatchEvent(new CustomEvent("focus-reply")));
                   }}
-                  className="border-[#1e2a4a] text-[#1e2a4a] hover:bg-[#1e2a4a]/10 dark:border-[#1e2a4a] dark:text-[#1e2a4a] dark:hover:bg-[#1e2a4a]/10"
+                  className="border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent-soft)] dark:border-[var(--accent)] dark:text-[var(--accent)] dark:hover:bg-[var(--accent-soft)]"
                 >
                   Edit
                 </Button>
@@ -284,7 +301,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
                       toast.error("Failed to send reply");
                     }
                   }}
-                  className="bg-[#1e2a4a] text-white hover:bg-[#b88a3f] dark:bg-[#1e2a4a] dark:text-[#202124] dark:hover:bg-[#aecbfa]"
+                  className="bg-[var(--accent)] text-white hover:bg-[var(--accent)] dark:bg-[var(--accent)] dark:text-[var(--primary-ink)]"
                 >
                   Send
                 </Button>
@@ -311,7 +328,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
           )}
         </DialogContent>
       </Dialog>
-      <div className="flex min-h-0 h-full flex-col bg-white dark:bg-[#ffffff]">
+      <div className="reader flex min-h-0 h-full flex-col">
 
         <div className="reader-toolbar hidden md:flex shrink-0">
           {threadId && (
@@ -326,7 +343,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
               aria-label="Close email"
               title="Close email"
             >
-              <X className="h-3.5 w-3.5" />
+              <IconClose className="h-3.5 w-3.5" />
             </button>
           )}
           {threadId && <div className="tool-divider" aria-hidden />}
@@ -337,7 +354,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
               isSnoozedTab={currentTab === "snoozed"}
             >
               <button type="button" className="tool-btn">
-                <Clock className="h-3.5 w-3.5 shrink-0" />
+                <IconClock className="h-3.5 w-3.5 shrink-0" />
                 Snooze
               </button>
             </SnoozeMenu>
@@ -349,7 +366,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
               isRemindersTab={currentTab === "reminders"}
             >
               <button type="button" className="tool-btn">
-                <Bell className="h-3.5 w-3.5 shrink-0" />
+                <IconNudge className="h-3.5 w-3.5 shrink-0" />
                 Remind me
               </button>
             </RemindMenu>
@@ -359,7 +376,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
             onClick={() => setForwardDialogOpen(true)}
             className="tool-btn"
           >
-            <Forward className="h-3.5 w-3.5 shrink-0" />
+            <IconForward className="h-3.5 w-3.5 shrink-0" />
             Forward
           </button>
           <button
@@ -386,7 +403,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
             }}
             className="tool-btn"
           >
-            <CalendarPlus className="h-3.5 w-3.5 shrink-0" />
+            <IconCalendarPlus className="h-3.5 w-3.5 shrink-0" />
             Add to calendar
           </button>
           <div className="tool-spacer" />
@@ -471,21 +488,15 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
             }}
             className="tool-btn gold-cta"
           >
-            <Reply className="h-3.5 w-3.5 shrink-0" />
+            <IconReply className="h-3.5 w-3.5 shrink-0" />
             Reply <span className="kbd">R</span>
           </button>
         </div>
 
         <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto scroll-smooth pb-20 text-base md:pb-0 md:text-sm [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="px-4 pb-6 pt-4 md:px-6 md:pt-6">
+          <div className="reader-measure px-4 pb-4 pt-5 md:px-8 md:pt-7">
             <div className="mb-2 flex flex-wrap items-center gap-2">
-              <h1
-                className="text-[22px] font-medium leading-[1.15] text-[#111118] dark:text-[#f5ebd9] md:text-[28px]"
-                style={{
-                  fontFamily: "var(--font-newsreader), Georgia, serif",
-                  letterSpacing: "-0.025em",
-                }}
-              >
+              <h1 className="reader-subject text-[21px] md:text-[25px]">
                 {firstEmail?.subject || "(No subject)"}
               </h1>
               {(() => {
@@ -546,7 +557,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
                       fontFamily:
                         "var(--font-jetbrains-mono), ui-monospace, monospace",
                       fontSize: 9.5,
-                      color: "#b88a3f",
+                      color: "var(--accent)",
                       fontWeight: 600,
                       letterSpacing: "0.16em",
                       lineHeight: 1.4,
@@ -570,8 +581,8 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
               })()}
             </div>
             {threadEvent && (
-              <p className="mb-2 flex items-center gap-2 text-[13px] text-[#5f6368] dark:text-[#9aa0a6]">
-                <CalendarPlus className="h-3.5 w-3.5 shrink-0" />
+              <p className="mb-2 flex items-center gap-2 text-[13px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">
+                <IconCalendarPlus className="h-3.5 w-3.5 shrink-0" />
                 {format(new Date(threadEvent.startAt), "MMM d, h:mm a")}
                 {threadEvent.location && ` · ${threadEvent.location}`}
                 {" - "}
@@ -579,7 +590,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
               </p>
             )}
             {autoFollowUpSummary && (
-              <p className="mb-2 text-[12px] leading-snug text-[#5f6368] dark:text-[#9aa0a6]">
+              <p className="mb-2 text-[12px] leading-snug text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                 Auto follow-up{" "}
                 {autoFollowUpSummary.wasRealSend ? "sent" : "completed (simulated)"}{" "}
                 {formatDistanceToNow(new Date(autoFollowUpSummary.lastSuccessAt), {
@@ -588,7 +599,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
               </p>
             )}
             {isUnifiedView && thread?.account && (
-              <p className="mb-2 text-xs text-[#5f6368] dark:text-[#9aa0a6]">
+              <p className="mb-2 text-xs text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                 From account: {thread.account.emailAddress}
               </p>
             )}
@@ -629,11 +640,11 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
                     <PopoverContent
                       side="bottom"
                       align="start"
-                      className="w-[360px] max-w-[90vw] border-[#e4e7ed] bg-white p-0 text-[#0e1729] shadow-md"
+                      className="w-[360px] max-w-[90vw] border-[var(--line)] bg-white p-0 text-[var(--ink)] shadow-md"
                     >
-                      <div className="border-b border-[#eef0f4] px-4 py-3">
+                      <div className="border-b border-[var(--line-soft)] px-4 py-3">
                         <p
-                          className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a849a]"
+                          className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ink-3)]"
                           style={{
                             fontFamily:
                               "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -643,19 +654,19 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
                         </p>
                       </div>
                       <dl className="grid grid-cols-[64px_1fr] gap-x-3 gap-y-2 px-4 py-3 text-[13px] leading-relaxed">
-                        <dt className="text-[#7a849a]">From</dt>
+                        <dt className="text-[var(--ink-3)]">From</dt>
                         <dd className="min-w-0 break-words">
-                          <span className="font-medium text-[#0e1729]">
+                          <span className="font-medium text-[var(--ink)]">
                             {senderName}
                           </span>
                           {senderEmail && (
-                            <span className="ml-1 text-[#4a5572]">
+                            <span className="ml-1 text-[var(--ink-2)]">
                               &lt;{senderEmail}&gt;
                             </span>
                           )}
                         </dd>
-                        <dt className="text-[#7a849a]">To</dt>
-                        <dd className="min-w-0 break-words text-[#1e2a44]">
+                        <dt className="text-[var(--ink-3)]">To</dt>
+                        <dd className="min-w-0 break-words text-[var(--ink-1)]">
                           {(firstEmail?.to ?? [])
                             .map(
                               (r) =>
@@ -667,8 +678,8 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
                         </dd>
                         {(firstEmail?.cc?.length ?? 0) > 0 && (
                           <>
-                            <dt className="text-[#7a849a]">Cc</dt>
-                            <dd className="min-w-0 break-words text-[#1e2a44]">
+                            <dt className="text-[var(--ink-3)]">Cc</dt>
+                            <dd className="min-w-0 break-words text-[var(--ink-1)]">
                               {(firstEmail?.cc ?? [])
                                 .map(
                                   (r) =>
@@ -679,13 +690,13 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
                             </dd>
                           </>
                         )}
-                        <dt className="text-[#7a849a]">Subject</dt>
-                        <dd className="min-w-0 break-words text-[#1e2a44]">
+                        <dt className="text-[var(--ink-3)]">Subject</dt>
+                        <dd className="min-w-0 break-words text-[var(--ink-1)]">
                           {originalSubject}
                         </dd>
-                        <dt className="text-[#7a849a]">Date</dt>
+                        <dt className="text-[var(--ink-3)]">Date</dt>
                         <dd
-                          className="min-w-0 break-words text-[#4a5572]"
+                          className="min-w-0 break-words text-[var(--ink-2)]"
                           style={{
                             fontFamily:
                               "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -714,14 +725,14 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
             </div>
           </div>
 
-          <div className="w-full px-4 py-6 md:px-6 md:py-8">
+          <div className="reader-measure px-4 pb-8 pt-1 md:px-8">
             {thread.emails.length > 1 && (
               <div className="mb-8 flex items-center gap-4">
-                <div className="h-px flex-1 bg-[#dadce0] dark:bg-[#3c4043]" />
-                <span className="text-[11px] font-medium uppercase tracking-wider text-[#5f6368] dark:text-[#9aa0a6]">
+                <div className="h-px flex-1 bg-[var(--line)] dark:bg-[var(--line)]" />
+                <span className="text-[11px] font-medium uppercase tracking-wider text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                   {thread.emails.length} messages in thread
                 </span>
-                <div className="h-px flex-1 bg-[#dadce0] dark:bg-[#3c4043]" />
+                <div className="h-px flex-1 bg-[var(--line)] dark:bg-[var(--line)]" />
               </div>
             )}
 
@@ -731,13 +742,13 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
                   key={email.id}
                   className={cn(
                     index > 0 &&
-                    "border-t border-[#f1f3f4] pt-10 dark:border-[#3c4043]",
+                    "border-t border-[var(--surface-3)] pt-10 dark:border-[var(--line)]",
                   )}
                 >
                   {index > 0 && (
                     <div className="mb-6 flex items-center gap-4">
-                      <Avatar className="h-9 w-9 border border-[#dadce0] dark:border-[#3c4043]">
-                        <AvatarFallback className="bg-[#e8eaed] text-[13px] font-medium text-[#5f6368] dark:bg-[#3c4043] dark:text-[#9aa0a6]">
+                      <Avatar className="h-9 w-9 border border-[var(--line)] dark:border-[var(--line)]">
+                        <AvatarFallback className="bg-[var(--surface-3)] text-[13px] font-medium text-[var(--ink-2)] dark:bg-[var(--line)] dark:text-[var(--ink-3)]">
                           {(email.from?.name ?? "U")
                             .split(" ")
                             .map((n: string) => n[0])
@@ -746,7 +757,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1">
-                        <span className="text-[14px] font-semibold text-[#1a1a1a] dark:text-[#ffffff]">
+                        <span className="text-[14px] font-semibold text-[var(--ink)]">
                           {email.from?.name?.trim() || email.from?.address || "Unknown"}
                         </span>
                         {email.sentAt && (
@@ -768,7 +779,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
         </div>
 
         {showReplyBox && (
-          <div className="hidden shrink-0 border-t border-[#e5e7eb] dark:border-[#ffffff] md:block">
+          <div className="hidden shrink-0 border-t border-[var(--line)] dark:border-[var(--surface)] md:block">
             <ReplyBox
               suggestedReply={suggestedReply}
               autoApplySuggestedReply={autoApplySuggestedReply}
@@ -779,10 +790,10 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
         )}
 
         {isMobile && (
-          <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center gap-2 border-t border-[#3c4043] bg-[#202124] px-4 py-3 [touch-action:manipulation] md:hidden [padding-bottom:max(0.75rem,env(safe-area-inset-bottom))]">
+          <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center gap-2 border-t border-[var(--line)] bg-[var(--surface)] px-4 py-3 [touch-action:manipulation] md:hidden [padding-bottom:max(0.75rem,env(safe-area-inset-bottom))]">
             <Button
               onClick={() => setReplyDialogOpen(true)}
-              className="min-h-[44px] flex-1 rounded-full bg-[#1a73e8] text-white hover:bg-[#1765cc] dark:bg-[#1e2a4a] dark:text-[#202124] dark:hover:bg-[#aecbfa] [touch-action:manipulation]"
+              className="min-h-[44px] flex-1 rounded-full bg-[var(--primary)] text-[var(--primary-ink)] hover:bg-[var(--primary-hi)] dark:bg-[var(--accent)] dark:text-[var(--primary-ink)] [touch-action:manipulation]"
             >
               <Reply className="mr-2 h-4 w-4" />
               Reply
@@ -790,7 +801,7 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
             <Button
               onClick={() => setForwardDialogOpen(true)}
               variant="outline"
-              className="min-h-[44px] flex-1 rounded-full border-[#3c4043] bg-transparent text-[#e8eaed] hover:bg-[#3c4043] [touch-action:manipulation]"
+              className="min-h-[44px] flex-1 rounded-full border-[var(--line)] bg-transparent text-[var(--ink)] hover:bg-[var(--line)] [touch-action:manipulation]"
             >
               <Forward className="mr-2 h-4 w-4" />
               Forward
@@ -799,13 +810,13 @@ export function ThreadDisplay({ threadId: propThreadId, onClose }: ThreadDisplay
         )}
 
         {isMobile && replyDialogOpen && (
-          <div className="fixed inset-0 z-[60] flex flex-col bg-[#202124] md:hidden">
-            <div className="flex items-center justify-between border-b border-[#3c4043] px-4 py-3">
+          <div className="fixed inset-0 z-[60] flex flex-col bg-[var(--surface)] md:hidden">
+            <div className="flex items-center justify-between border-b border-[var(--line)] px-4 py-3">
               <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1a73e8]/20 dark:bg-[#1e2a4a]/20">
-                  <Reply className="h-4 w-4 text-[#1e2a4a]" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--accent-line)] dark:bg-[var(--accent-line)]">
+                  <Reply className="h-4 w-4 text-[var(--accent)]" />
                 </div>
-                <h2 className="text-lg font-medium text-[#e8eaed]">Reply</h2>
+                <h2 className="text-lg font-medium text-[var(--ink)]">Reply</h2>
               </div>
               <Button
                 variant="ghost"
@@ -1079,7 +1090,7 @@ function ThreadLabelsBar({
       {displayLabels.map((lbl) => (
         <span
           key={lbl.id}
-          className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[12px] font-medium bg-[#e8f0fe] text-[#b88a3f] dark:bg-[#174ea6]/40 dark:text-[#1e2a4a]"
+          className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[12px] font-medium bg-[#e8f0fe] text-[var(--accent)] dark:bg-[var(--accent-line)] dark:text-[var(--accent)]"
           style={lbl.color ? { backgroundColor: `${lbl.color}20`, color: lbl.color } : undefined}
         >
           {lbl.name}
@@ -1087,7 +1098,7 @@ function ThreadLabelsBar({
             type="button"
             onClick={() => removeLabelMutation.mutate({ threadId, labelId: lbl.id })}
             disabled={removeLabelMutation.isPending}
-            className="rounded-full p-0.5 hover:bg-[#1e2a4a]/10 dark:hover:bg-white/10 disabled:opacity-70"
+            className="rounded-full p-0.5 hover:bg-[var(--accent-soft)] dark:hover:bg-white/10 disabled:opacity-70"
             aria-label={`Remove ${lbl.name}`}
           >
             {pendingRemoveId === lbl.id ? (
@@ -1105,7 +1116,7 @@ function ThreadLabelsBar({
               variant="ghost"
               size="sm"
               disabled={addLabelMutation.isPending}
-              className="h-7 gap-1 rounded-full border border-dashed border-[#dadce0] px-2.5 text-[12px] text-[#5f6368] hover:border-[#1a73e8] hover:text-[#1a73e8] dark:border-[#3c4043] dark:text-[#9aa0a6] dark:hover:border-[#1e2a4a] dark:hover:text-[#1e2a4a] disabled:opacity-70"
+              className="h-7 gap-1 rounded-full border border-dashed border-[var(--line)] px-2.5 text-[12px] text-[var(--ink-2)] hover:border-[var(--accent)] hover:text-[var(--accent)] dark:border-[var(--line)] dark:text-[var(--ink-3)] dark:hover:border-[var(--accent)] dark:hover:text-[var(--accent)] disabled:opacity-70"
             >
               {addLabelMutation.isPending && pendingAddId ? (
                 <Loader2 className="h-3 w-3 animate-spin" />
@@ -1128,7 +1139,7 @@ function ThreadLabelsBar({
                 ) : (
                   <span
                     className="mr-2 h-3 w-3 rounded-full shrink-0"
-                    style={l.color ? { backgroundColor: l.color } : { backgroundColor: "#1a73e8" }}
+                    style={l.color ? { backgroundColor: l.color } : { backgroundColor: "var(--accent)" }}
                   />
                 )}
                 {l.name}

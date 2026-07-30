@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { IconAperture } from "@/components/mail/icons";
 import { cn } from "@/lib/utils";
 import { api } from "@/trpc/react";
 import { Skel, SkeletonLines } from "@/components/ui/skeletons";
@@ -52,23 +53,27 @@ export function ThreadBrainPanel({
           type="button"
           onClick={toggleMobile}
           aria-expanded={expanded}
-          className="ai-brief-head -mx-1.5 -my-1 flex w-[calc(100%+0.75rem)] cursor-pointer items-center gap-2.5 rounded-md px-1.5 py-1 text-left transition-colors active:bg-[#f4f5f8] [touch-action:manipulation]"
+          className="ai-brief-head -mx-1.5 -my-1 w-[calc(100%+0.75rem)] cursor-pointer rounded-md px-1.5 py-1 text-left transition-colors active:bg-[var(--surface-3)] [touch-action:manipulation]"
         >
-          <span className="ai-brief-icon" />
-          <span className="ai-brief-label">Inbox Brain</span>
-          <span className="ai-brief-time !ml-auto">live</span>
+          <span className="ai-brief-icon">
+            <IconAperture />
+          </span>
+          <span className="ai-brief-label">Inbox brain</span>
+          <span className="ai-brief-live">Live</span>
           <ChevronDown
             className={cn(
-              "h-4 w-4 shrink-0 text-[#8a8278] transition-transform duration-200",
+              "h-4 w-4 shrink-0 text-[var(--ink-3)] transition-transform duration-200",
               expanded && "rotate-180",
             )}
           />
         </button>
       ) : (
         <div className="ai-brief-head">
-          <span className="ai-brief-icon" />
-          <span className="ai-brief-label">Inbox Brain</span>
-          <span className="ai-brief-time">live</span>
+          <span className="ai-brief-icon">
+            <IconAperture />
+          </span>
+          <span className="ai-brief-label">Inbox brain</span>
+          <span className="ai-brief-live">Live</span>
         </div>
       )}
 
@@ -90,26 +95,18 @@ export function ThreadBrainPanel({
               </div>
             </div>
           )}
-          {isError && (error?.message ?? "Couldn’t load inbox brain.")}
+          {isError && (
+            <p className="ai-brief-error">
+              {error?.message ?? "Couldn’t load inbox brain."}
+            </p>
+          )}
           {!isLoading && !isError && data && (
             <>
-              <div className="ai-brief-section">
-                <div className="ai-brief-section-label">
-                  WHAT THIS IS ABOUT
-                </div>
-                <div className="ai-brief-section-body">{data.about}</div>
-              </div>
-              <div className="ai-brief-section">
-                <div className="ai-brief-section-label">
-                  WHAT&apos;S EXPECTED FROM YOU
-                </div>
-                <div className="ai-brief-section-body">
-                  {data.expectedFromMe}
-                </div>
-              </div>
-              {data.expectedReason && (
-                <div className="ai-brief-why">
-                  Why this? {data.expectedReason}{" "}
+              <p className="ai-brief-summary">{data.about}</p>
+
+              <div className="ai-brief-action">
+                <div className="ai-brief-action-head">
+                  <span className="ai-brief-action-label">Your move</span>
                   <span
                     className={cn(
                       "ai-brief-priority",
@@ -120,7 +117,14 @@ export function ThreadBrainPanel({
                     {data.expectedPriority}
                   </span>
                 </div>
-              )}
+                <p className="ai-brief-action-body">{data.expectedFromMe}</p>
+                {data.expectedReason && (
+                  <p className="ai-brief-why">
+                    <span className="ai-brief-why-label">Why</span>
+                    {data.expectedReason}
+                  </p>
+                )}
+              </div>
             </>
           )}
         </div>

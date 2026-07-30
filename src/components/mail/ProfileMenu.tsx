@@ -31,42 +31,40 @@ export function ProfileMenu({ onSignOut, isSigningOut }: ProfileMenuProps) {
         <DropdownMenuTrigger asChild>
           <button
             type="button"
-            className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#e5e7eb] bg-[#f3f4f6] dark:border-[#ffffff] dark:bg-[#18181b] focus:outline-none focus:ring-2 focus:ring-[#1e2a4a]"
+            className="user-avatar overflow-hidden focus:outline-none focus-visible:shadow-[var(--ring)]"
             aria-label="Account menu"
           >
             {imageUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={imageUrl} alt="" className="h-full w-full object-cover" />
             ) : (
-              <span className="text-sm font-medium text-[#6b7280] dark:text-[#a1a1aa]">
-                {name.charAt(0).toUpperCase()}
-              </span>
+              <span>{name.charAt(0).toUpperCase()}</span>
             )}
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="min-w-[220px] rounded-lg border-[#e5e7eb] bg-white dark:border-[#ffffff] dark:bg-[#ffffff]"
+          className="min-w-[240px] rounded-xl border-[var(--line)] bg-[var(--surface)] p-1 shadow-[var(--shadow-lg)]"
         >
-          <div className="flex items-center gap-3 border-b border-[#f3f4f6] px-2 py-3 dark:border-[#ffffff]">
+          <div className="flex items-center gap-3 border-b border-[var(--line-soft)] px-2 py-3">
             {imageUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={imageUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
             ) : (
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e5e7eb] text-[15px] font-medium text-[#6b7280] dark:bg-[#18181b] dark:text-[#a1a1aa]">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--surface-3)] text-[15px] font-semibold text-[var(--ink-2)]">
                 {name.charAt(0).toUpperCase()}
               </div>
             )}
             <div className="min-w-0 flex-1">
-              <p className="truncate text-[14px] font-medium text-[#111118] dark:text-[#f4f4f5]">{name}</p>
+              <p className="truncate text-[13.5px] font-semibold tracking-[-0.012em] text-[var(--ink)]">{name}</p>
               {email && (
-                <p className="truncate text-[12px] text-[#6b7280] dark:text-[#a1a1aa]">{email}</p>
+                <p className="truncate text-[11.5px] text-[var(--ink-3)]">{email}</p>
               )}
             </div>
           </div>
           <DropdownMenuItem
             onClick={() => setProfileOpen(true)}
-            className="cursor-pointer text-[#111118] focus:bg-[#f3f4f6] dark:text-[#f4f4f5] dark:focus:bg-[#ffffff]/[0.04]"
+            className="mt-1 cursor-pointer rounded-lg text-[13px] text-[var(--ink-1)] focus:bg-[var(--surface-3)] focus:text-[var(--ink)]"
           >
             <Settings className="h-4 w-4" />
             Manage account
@@ -75,7 +73,7 @@ export function ProfileMenu({ onSignOut, isSigningOut }: ProfileMenuProps) {
             onClick={onSignOut}
             disabled={isSigningOut}
             variant="destructive"
-            className="cursor-pointer text-[#ef4444] focus:bg-[#fef2f2] dark:text-[#f87171] dark:focus:bg-[#7f1d1d]/30"
+            className="cursor-pointer rounded-lg text-[13px] text-[var(--rose)] focus:bg-[var(--rose-soft)] focus:text-[var(--rose)]"
           >
             {isSigningOut ? (
               <Loader2 className="h-4 w-4 animate-spin" />

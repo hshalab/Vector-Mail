@@ -4,13 +4,12 @@ import React, { Suspense } from "react";
 import { Mail } from "@/components/mail/Mail";
 import { useIsMobile } from "@/hooks/use-mobile";
 import MailLoading from "./loading";
-import "@/styles/mail-mockup.css";
 
 function MailPageContent() {
   const isMobile = useIsMobile();
 
   return (
-    <div className="mail-app relative min-h-dvh h-dvh w-full overflow-hidden bg-white dark:bg-[#0e0c0a]">
+    <div className="mail-app relative min-h-dvh h-dvh w-full overflow-hidden">
       <Mail
         defaultLayout={isMobile ? [0, 100, 0] : [20, 42, 58]}
         defaultCollapsed={false}

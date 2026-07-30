@@ -1,6 +1,7 @@
 "use client";
 
-import { Eye, Send, Sparkles } from "lucide-react";
+import { Eye, Send } from "lucide-react";
+import { IconCompose } from "@/components/mail/icons";
 
 import { cn } from "@/lib/utils";
 import { CONFIDENCE_THRESHOLDS } from "@/lib/automation/policy";
@@ -34,7 +35,7 @@ export function AutopilotModeExplainer({
       }
       : mode === "assist"
         ? {
-          icon: <Sparkles className="h-3.5 w-3.5 text-[#1e2a4a]" />,
+          icon: <IconCompose className="h-3.5 w-3.5 text-[var(--accent)]" />,
           ring: "border-[#1e2a4a]/30 bg-[#1e2a4a]/[0.06]",
           title: "text-[#0e1729]",
           body: "text-[#3a4258]",

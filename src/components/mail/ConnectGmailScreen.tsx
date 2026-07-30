@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Bot, Lock, Search, Shield, Sparkles, Zap } from "lucide-react";
+import { Bot, Lock, Search, Shield, Zap } from "lucide-react";
+import { IconSearch } from "@/components/mail/icons";
 
 const DRAFT_REPLY =
   "Hey Sam - Thursday at 3pm works on my end. I'll send a calendar invite shortly.";
@@ -314,7 +315,7 @@ export function ConnectGmailScreen() {
           <div className="vm-onb-rise vm-onb-delay-7 mt-7 grid max-w-[520px] grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
             {[
               {
-                icon: Sparkles,
+                icon: IconSearch,
                 title: "Semantic search",
                 body: "Find by meaning, not just keywords.",
               },

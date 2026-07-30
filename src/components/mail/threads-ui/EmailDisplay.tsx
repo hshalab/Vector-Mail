@@ -278,7 +278,7 @@ const EmailDisplay = ({ email }: Props) => {
   return (
     <div
       className={cn("min-h-0", {
-        "border-l-2 border-l-[#1e2a4a]/40 pl-4": isMe,
+        "border-l-2 border-l-[var(--accent-line)] pl-4": isMe,
       })}
     >
       {showLoading ? (
@@ -312,19 +312,9 @@ const EmailDisplay = ({ email }: Props) => {
           className="overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           ref={letterRef}
         >
-          <div
-            className="mx-3 sm:mx-auto"
-            style={{
-              maxWidth: 760,
-              background: "#ffffff",
-              borderRadius: 8,
-              border: "1px solid #e5e7eb",
-              boxShadow:
-                "0 1px 2px rgba(26,22,18,0.04), 0 4px 12px -4px rgba(26,22,18,0.06)",
-            }}
-          >
+          <div className="w-full">
             <div
-              className="email-body-wrapper px-4 py-5 sm:px-10 sm:py-9"
+              className="email-body-wrapper py-1"
               style={{
                 wordWrap: "break-word",
                 overflowWrap: "break-word",
@@ -335,7 +325,7 @@ const EmailDisplay = ({ email }: Props) => {
                 fontSize: 15,
                 lineHeight: 1.65,
                 letterSpacing: "-0.003em",
-                color: "#1a1612",
+                color: "var(--ink)",
               }}
               dangerouslySetInnerHTML={{
                 __html: sanitizeEmailHtml(displayBody),

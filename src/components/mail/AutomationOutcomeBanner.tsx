@@ -8,9 +8,9 @@ import {
   ChevronRight,
   Clock,
   FlaskConical,
-  Sparkles,
   XCircle,
 } from "lucide-react";
+import { IconCheckCircle } from "@/components/mail/icons";
 
 import { api } from "@/trpc/react";
 import { cn } from "@/lib/utils";
@@ -212,7 +212,7 @@ export function AutomationOutcomeBanner({
                   title="Handled % = real follow-ups sent / eligible needs-reply opportunities today. Time saved uses a ~3 min per handled thread heuristic."
                 >
                   <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#202124] dark:text-[#e8eaed]">
-                    <Sparkles className="h-3 w-3 text-[#1a73e8] dark:text-[#1e2a4a]" />
+                    <IconCheckCircle className="h-3 w-3 text-[var(--green)]" />
                     Inbox handled
                     <span className="tabular-nums">
                       {metricsQuery.isLoading && !m ? "…" : `${m?.autoHandledPercent ?? 0}%`}

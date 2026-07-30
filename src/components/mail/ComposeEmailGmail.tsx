@@ -726,14 +726,14 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
         <Button
           variant="outline"
           disabled={isButtonDisabled}
-          className="rounded-full bg-[#1a73e8] px-6 py-2 text-[14px] font-medium text-white shadow-none transition-colors hover:bg-[#1765cc] disabled:cursor-not-allowed disabled:opacity-50 dark:bg-[#1e2a4a] dark:text-[#202124] dark:hover:bg-[#aecbfa]"
+          className="rounded-full bg-[var(--primary)] px-6 py-2 text-[14px] font-medium text-[var(--primary-ink)] shadow-none transition-colors hover:bg-[var(--primary-hi)] disabled:cursor-not-allowed disabled:opacity-50 "
         >
           <Pencil className="mr-2 size-4" />
           Compose
         </Button>
       </DialogTrigger>
-      <DialogContent className="flex h-[100dvh] max-h-[100dvh] w-full max-w-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0c] p-0 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_24px_48px_-12px_rgba(0,0,0,0.6),0_48px_96px_-24px_rgba(0,0,0,0.5)] [-ms-overflow-style:none] [scrollbar-width:none] md:h-auto md:max-h-[85vh] md:max-w-[640px] [&::-webkit-scrollbar]:hidden [&>button]:hidden">
-        <div className="relative flex shrink-0 items-center justify-between border-b border-white/[0.06] bg-gradient-to-b from-[#101013] to-[#0a0a0c] px-5 py-4">
+      <DialogContent className="flex h-[100dvh] max-h-[100dvh] w-full max-w-full flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-0 text-[var(--ink)] shadow-[var(--shadow-lg)] [-ms-overflow-style:none] [scrollbar-width:none] md:h-auto md:max-h-[85vh] md:max-w-[640px] [&::-webkit-scrollbar]:hidden [&>button]:hidden">
+        <div className="relative flex shrink-0 items-center justify-between border-b border-[var(--line-soft)] bg-[var(--surface-2)] px-5 py-4">
           <span
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 h-px"
@@ -743,26 +743,26 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
             }}
           />
           <div className="flex flex-col">
-            <span className="text-[14.5px] font-semibold tracking-tight text-white leading-none">
+            <span className="text-[14.5px] font-semibold tracking-tight text-[var(--ink)] leading-none">
               New message
             </span>
-            <span className="mt-1 text-[11px] tracking-tight text-[#7a7a85] leading-none">
+            <span className="mt-1 text-[11px] tracking-tight text-[var(--ink-3)] leading-none">
               Compose and send a fresh email
             </span>
           </div>
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="flex h-7 w-7 items-center justify-center rounded-full text-[#8e8e93] transition-all hover:bg-white/[0.06] hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/20"
+            className="flex h-7 w-7 items-center justify-center rounded-full text-[var(--ink-3)] transition-all hover:bg-[var(--surface-3)] hover:text-[var(--ink)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-line)]"
             aria-label="Close"
           >
             <X className="h-3.5 w-3.5" />
           </button>
         </div>
 
-        <div className="group flex shrink-0 items-center gap-3 border-b border-white/[0.06] bg-transparent px-5 py-3 transition-colors focus-within:bg-white/[0.015]">
+        <div className="group flex shrink-0 items-center gap-3 border-b border-[var(--line-soft)] bg-transparent px-5 py-3 transition-colors focus-within:bg-[var(--surface-2)]">
           <span
-            className="w-14 shrink-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#6e6e73] transition-colors group-focus-within:text-[#afafb3]"
+            className="w-14 shrink-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ink-3)] transition-colors group-focus-within:text-[var(--ink-2)]"
             style={{
               fontFamily:
                 "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -776,7 +776,7 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
             value={to}
             onChange={(e) => setTo(e.target.value)}
             disabled={isSending}
-            className="vm-dark-autofill min-w-0 flex-1 rounded-md border-0 bg-transparent px-2 text-[14px] text-white placeholder:text-[#4a4a52] focus-visible:ring-0"
+            className="min-w-0 flex-1 rounded-md border-0 bg-transparent px-2 text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-4)] focus-visible:ring-0"
           />
           <div className="flex shrink-0 items-center gap-1">
             <button
@@ -784,7 +784,7 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
               onClick={() => setShowCc(true)}
               onDoubleClick={() => setShowCc(false)}
               title={showCc ? "Double-click to hide Cc" : "Show Cc"}
-              className={`rounded-md px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors ${showCc ? "text-white bg-white/[0.06]" : "text-[#6e6e73] hover:text-[#afafb3]"}`}
+              className={`rounded-md px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors ${showCc ? "text-[var(--ink)] bg-[var(--surface-3)]" : "text-[var(--ink-3)] hover:text-[var(--ink-2)]"}`}
               style={{
                 fontFamily:
                   "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -797,7 +797,7 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
               onClick={() => setShowBcc(true)}
               onDoubleClick={() => setShowBcc(false)}
               title={showBcc ? "Double-click to hide Bcc" : "Show Bcc"}
-              className={`rounded-md px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors ${showBcc ? "text-white bg-white/[0.06]" : "text-[#6e6e73] hover:text-[#afafb3]"}`}
+              className={`rounded-md px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors ${showBcc ? "text-[var(--ink)] bg-[var(--surface-3)]" : "text-[var(--ink-3)] hover:text-[var(--ink-2)]"}`}
               style={{
                 fontFamily:
                   "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -808,9 +808,9 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
           </div>
         </div>
         {showCc && (
-          <div className="group flex shrink-0 items-center gap-3 border-b border-white/[0.06] bg-transparent px-5 py-3 transition-colors focus-within:bg-white/[0.015]">
+          <div className="group flex shrink-0 items-center gap-3 border-b border-[var(--line-soft)] bg-transparent px-5 py-3 transition-colors focus-within:bg-[var(--surface-2)]">
             <span
-              className="w-14 shrink-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#6e6e73] transition-colors group-focus-within:text-[#afafb3]"
+              className="w-14 shrink-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ink-3)] transition-colors group-focus-within:text-[var(--ink-2)]"
               style={{
                 fontFamily:
                   "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -823,14 +823,14 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
               value={cc}
               onChange={(e) => setCc(e.target.value)}
               disabled={isSending}
-              className="vm-dark-autofill min-w-0 flex-1 rounded-md border-0 bg-transparent px-2 text-[14px] text-white placeholder:text-[#4a4a52] focus-visible:ring-0"
+              className="min-w-0 flex-1 rounded-md border-0 bg-transparent px-2 text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-4)] focus-visible:ring-0"
             />
           </div>
         )}
         {showBcc && (
-          <div className="group flex shrink-0 items-center gap-3 border-b border-white/[0.06] bg-transparent px-5 py-3 transition-colors focus-within:bg-white/[0.015]">
+          <div className="group flex shrink-0 items-center gap-3 border-b border-[var(--line-soft)] bg-transparent px-5 py-3 transition-colors focus-within:bg-[var(--surface-2)]">
             <span
-              className="w-14 shrink-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#6e6e73] transition-colors group-focus-within:text-[#afafb3]"
+              className="w-14 shrink-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ink-3)] transition-colors group-focus-within:text-[var(--ink-2)]"
               style={{
                 fontFamily:
                   "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -843,14 +843,14 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
               value={bcc}
               onChange={(e) => setBcc(e.target.value)}
               disabled={isSending}
-              className="vm-dark-autofill min-w-0 flex-1 rounded-md border-0 bg-transparent px-2 text-[14px] text-white placeholder:text-[#4a4a52] focus-visible:ring-0"
+              className="min-w-0 flex-1 rounded-md border-0 bg-transparent px-2 text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-4)] focus-visible:ring-0"
             />
           </div>
         )}
 
-        <div className="group flex shrink-0 items-center gap-3 border-b border-white/[0.06] bg-transparent px-5 py-3 transition-colors focus-within:bg-white/[0.015]">
+        <div className="group flex shrink-0 items-center gap-3 border-b border-[var(--line-soft)] bg-transparent px-5 py-3 transition-colors focus-within:bg-[var(--surface-2)]">
           <span
-            className="w-14 shrink-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#6e6e73] transition-colors group-focus-within:text-[#afafb3]"
+            className="w-14 shrink-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ink-3)] transition-colors group-focus-within:text-[var(--ink-2)]"
             style={{
               fontFamily:
                 "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -864,7 +864,7 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
             disabled={isSending}
-            className="vm-dark-autofill min-w-0 flex-1 rounded-md border-0 bg-transparent px-2 text-[14px] font-medium tracking-tight text-white placeholder:text-[#4a4a52] focus-visible:ring-0"
+            className="min-w-0 flex-1 rounded-md border-0 bg-transparent px-2 text-[14px] font-medium tracking-tight text-[var(--ink)] placeholder:text-[var(--ink-4)] focus-visible:ring-0"
           />
         </div>
 
@@ -924,11 +924,11 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
                 }
               }
             }}
-            className="min-h-[280px] flex-1 overflow-y-auto bg-transparent px-5 py-5 text-[14.5px] leading-[1.65] tracking-[-0.005em] text-[#e5e5e7] [-ms-overflow-style:none] [scrollbar-width:none] focus:outline-none [&::-webkit-scrollbar]:hidden [&_a]:text-[#5c9eff] [&_a]:underline [&_a]:decoration-[#5c9eff]/40"
+            className="min-h-[280px] flex-1 overflow-y-auto bg-transparent px-5 py-5 text-[14.5px] leading-[1.65] tracking-[-0.005em] text-[var(--ink-1)] [-ms-overflow-style:none] [scrollbar-width:none] focus:outline-none [&::-webkit-scrollbar]:hidden [&_a]:text-[var(--accent)] [&_a]:underline [&_a]:decoration-[var(--accent-line)]"
             style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}
           />
           {!body && !isGenerating && (
-            <div className="pointer-events-none absolute left-5 top-5 text-[14.5px] text-[#6e6e73]">
+            <div className="pointer-events-none absolute left-5 top-5 text-[14.5px] text-[var(--ink-3)]">
               Write your message…
             </div>
           )}
@@ -938,11 +938,11 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
               aria-hidden
               className="pointer-events-none mt-1 select-none space-y-2 px-5 pb-4"
             >
-              <div className="vm-skeleton-line-dark" style={{ width: "82%" }} />
-              <div className="vm-skeleton-line-dark" style={{ width: "94%" }} />
-              <div className="vm-skeleton-line-dark" style={{ width: "67%" }} />
-              <div className="vm-skeleton-line-dark" style={{ width: "78%" }} />
-              <div className="vm-skeleton-line-dark" style={{ width: "44%" }} />
+              <div className="vm-skeleton-line" style={{ width: "82%" }} />
+              <div className="vm-skeleton-line" style={{ width: "94%" }} />
+              <div className="vm-skeleton-line" style={{ width: "67%" }} />
+              <div className="vm-skeleton-line" style={{ width: "78%" }} />
+              <div className="vm-skeleton-line" style={{ width: "44%" }} />
             </div>
           )}
 
@@ -966,26 +966,26 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
             <div
               role="status"
               aria-live="polite"
-              className="pointer-events-none absolute right-3 top-3 z-10 inline-flex items-center gap-2 rounded-full border border-white/[0.10] bg-[#0a0a0c]/85 px-3 py-1.5 shadow-lg backdrop-blur-md"
+              className="pointer-events-none absolute right-3 top-3 z-10 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-3 py-1.5 shadow-lg backdrop-blur-md"
             >
               <span className="relative flex h-2 w-2 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#5c9eff]/60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#5c9eff]" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent-line)]" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent)]" />
               </span>
-              <span className="text-[11px] font-semibold tracking-tight text-white">
+              <span className="text-[11px] font-semibold tracking-tight text-[var(--ink)]">
                 {isRegenerating ? "Regenerating draft" : "Drafting message"}
               </span>
               <span className="ml-0.5 inline-flex items-end gap-0.5">
                 <span
-                  className="block h-1 w-1 rounded-full bg-white/55"
+                  className="block h-1 w-1 rounded-full bg-[var(--ink-4)]"
                   style={{ animation: "vm-bounce-dot 1.2s ease-in-out 0ms infinite" }}
                 />
                 <span
-                  className="block h-1 w-1 rounded-full bg-white/55"
+                  className="block h-1 w-1 rounded-full bg-[var(--ink-4)]"
                   style={{ animation: "vm-bounce-dot 1.2s ease-in-out 150ms infinite" }}
                 />
                 <span
-                  className="block h-1 w-1 rounded-full bg-white/55"
+                  className="block h-1 w-1 rounded-full bg-[var(--ink-4)]"
                   style={{ animation: "vm-bounce-dot 1.2s ease-in-out 300ms infinite" }}
                 />
               </span>
@@ -995,13 +995,13 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
 
 
         {attachments.length > 0 && (
-          <div className="flex shrink-0 flex-wrap gap-2 border-t border-white/[0.06] px-5 py-3">
+          <div className="flex shrink-0 flex-wrap gap-2 border-t border-[var(--line-soft)] px-5 py-3">
             {attachments.map((file, index) => (
-              <div key={index} className="flex items-center gap-2.5 rounded-lg bg-white/[0.04] px-3 py-2 text-[13px]">
-                <Paperclip className="h-3.5 w-3.5 text-[#8e8e93]" />
-                <span className="max-w-[120px] truncate text-[#e5e5e7]">{file.name}</span>
-                <span className="text-[13px] text-[#6e6e73]">{formatFileSize(file.size)}</span>
-                <button type="button" onClick={() => handleRemoveAttachment(index)} disabled={isSending} className="rounded p-0.5 text-[#6e6e73] transition-colors hover:bg-white/[0.06] hover:text-[#e5e5e7]">
+              <div key={index} className="flex items-center gap-2.5 rounded-lg bg-[var(--surface-3)] px-3 py-2 text-[13px]">
+                <Paperclip className="h-3.5 w-3.5 text-[var(--ink-3)]" />
+                <span className="max-w-[120px] truncate text-[var(--ink-1)]">{file.name}</span>
+                <span className="text-[13px] text-[var(--ink-3)]">{formatFileSize(file.size)}</span>
+                <button type="button" onClick={() => handleRemoveAttachment(index)} disabled={isSending} className="rounded p-0.5 text-[var(--ink-3)] transition-colors hover:bg-[var(--surface-3)] hover:text-[var(--ink-1)]">
                   <X className="h-3 w-3" />
                 </button>
               </div>
@@ -1010,7 +1010,7 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
         )}
 
 
-        <div className="flex shrink-0 items-center gap-1 border-t border-white/[0.06] bg-gradient-to-t from-[#0c0c0e] to-[#0a0a0c] px-5 py-3.5 max-md:flex-nowrap max-md:overflow-x-auto">
+        <div className="flex shrink-0 items-center gap-1 border-t border-[var(--line-soft)] bg-[var(--surface-2)] px-5 py-3.5 max-md:flex-nowrap max-md:overflow-x-auto">
           <input ref={fileInputRef} type="file" multiple className="hidden" onChange={handleFileSelect} />
           <input ref={folderInputRef} type="file" multiple className="hidden" onChange={handleFolderSelect}
             // @ts-expect-error - webkitdirectory is valid for folder selection
@@ -1023,7 +1023,7 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
               <button
                 type="button"
                 disabled={isSending || isGenerating}
-                className="flex h-9 shrink-0 items-center gap-2 rounded-lg px-2.5 text-[12.5px] font-semibold tracking-tight text-[#afafb3] transition-all hover:bg-white/[0.06] hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/20 disabled:cursor-not-allowed disabled:opacity-40"
+                className="flex h-9 shrink-0 items-center gap-2 rounded-lg px-2.5 text-[12.5px] font-semibold tracking-tight text-[var(--ink-2)] transition-all hover:bg-[var(--surface-3)] hover:text-[var(--ink)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-line)] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <Plus className="h-3.5 w-3.5" /> Add
               </button>
@@ -1031,23 +1031,23 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
             <DropdownMenuContent
               align="start"
               sideOffset={6}
-              className="min-w-[200px] rounded-xl border border-white/[0.08] bg-[#101013] p-1 shadow-[0_8px_24px_rgba(0,0,0,0.5),0_16px_48px_rgba(0,0,0,0.4)]"
+              className="min-w-[200px] rounded-xl border border-[var(--line)] bg-[var(--surface-2)] p-1 shadow-[var(--shadow-lg)]"
             >
               <DropdownMenuItem
                 onClick={() => fileInputRef.current?.click()}
-                className="cursor-pointer rounded-md text-[13px] text-[#e5e5e7] focus:bg-white/[0.06] focus:text-white"
+                className="cursor-pointer rounded-md text-[13px] text-[var(--ink-1)] focus:bg-[var(--surface-3)] focus:text-[var(--ink)]"
               >
                 <Paperclip className="mr-3 h-3.5 w-3.5" /> Attach files
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => folderInputRef.current?.click()}
-                className="cursor-pointer rounded-md text-[13px] text-[#e5e5e7] focus:bg-white/[0.06] focus:text-white"
+                className="cursor-pointer rounded-md text-[13px] text-[var(--ink-1)] focus:bg-[var(--surface-3)] focus:text-[var(--ink)]"
               >
                 <Folder className="mr-3 h-3.5 w-3.5" /> Attach folder
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => setLinkDialogOpen(true)}
-                className="cursor-pointer rounded-md text-[13px] text-[#e5e5e7] focus:bg-white/[0.06] focus:text-white"
+                className="cursor-pointer rounded-md text-[13px] text-[var(--ink-1)] focus:bg-[var(--surface-3)] focus:text-[var(--ink)]"
               >
                 <Link className="mr-3 h-3.5 w-3.5" /> Insert link
               </DropdownMenuItem>
@@ -1079,7 +1079,7 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
               toast.success("Signature inserted");
               bodyEditableRef.current?.focus();
             }}
-            className="flex h-9 shrink-0 items-center gap-2 rounded-lg px-2.5 text-[12.5px] font-semibold tracking-tight text-[#afafb3] transition-all hover:bg-white/[0.06] hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/20 disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-9 shrink-0 items-center gap-2 rounded-lg px-2.5 text-[12.5px] font-semibold tracking-tight text-[var(--ink-2)] transition-all hover:bg-[var(--surface-3)] hover:text-[var(--ink)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-line)] disabled:cursor-not-allowed disabled:opacity-40"
           >
             <FileSignature className="h-3.5 w-3.5" /> Signature
           </button>
@@ -1089,7 +1089,7 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
             type="button"
             disabled={isSending || isGenerating}
             onClick={() => setEmojiPopoverOpen(true)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-[16px] transition-all hover:bg-white/[0.06] hover:scale-110 focus:outline-none focus-visible:ring-1 focus-visible:ring-white/20 disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-[16px] transition-all hover:bg-[var(--surface-3)] hover:scale-110 focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-line)] disabled:cursor-not-allowed disabled:opacity-40"
             title="Insert emoji"
           >
             😊
@@ -1104,19 +1104,19 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
               type="button"
               onClick={handleSend}
               disabled={isSending || isGenerating || isDemo}
-              className="flex h-9 items-center justify-center gap-2 rounded-l-lg rounded-r-none border-r border-white/[0.18] px-4 text-[12.5px] font-semibold leading-none tracking-tight text-white transition-all hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
+              className="flex h-9 items-center justify-center gap-2 rounded-l-lg rounded-r-none border-r border-[var(--line-strong)] px-4 text-[12.5px] font-semibold leading-none tracking-tight text-[var(--primary-ink)] transition-all hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
               style={{
                 background:
-                  "linear-gradient(180deg, #3a86f7 0%, #2c7ff6 50%, #1f6cd9 100%)",
+                  "linear-gradient(180deg, var(--primary-hi) 0%, var(--primary) 100%)",
                 boxShadow:
-                  "inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(44,127,246,0.30)",
+                  "var(--shadow-raise)",
               }}
             >
               <Send className="h-3.5 w-3.5 shrink-0" />
               <span className="leading-none">
                 {isSending ? "Sending…" : "Send"}
               </span>
-              <kbd className="inline-flex translate-y-[1px] items-center justify-center rounded bg-white/[0.18] px-1 text-[10px] font-semibold leading-none">
+              <kbd className="inline-flex translate-y-[1px] items-center justify-center rounded bg-[var(--surface-4)] px-1 text-[10px] font-semibold leading-none">
                 ⌘↵
               </kbd>
             </button>
@@ -1125,13 +1125,13 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
                 <button
                   type="button"
                   disabled={isSending || isGenerating}
-                  className="flex h-9 w-8 items-center justify-center rounded-l-none rounded-r-lg text-white transition-all hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
+                  className="flex h-9 w-8 items-center justify-center rounded-l-none rounded-r-lg text-[var(--primary-ink)] transition-all hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
                   aria-label="More send options"
                   style={{
                     background:
-                      "linear-gradient(180deg, #3a86f7 0%, #2c7ff6 50%, #1f6cd9 100%)",
+                      "linear-gradient(180deg, var(--primary-hi) 0%, var(--primary) 100%)",
                     boxShadow:
-                      "inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(44,127,246,0.30)",
+                      "var(--shadow-raise)",
                   }}
                 >
                   <ChevronDown className="h-3.5 w-3.5" />
@@ -1140,33 +1140,33 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
               <DropdownMenuContent
                 align="end"
                 sideOffset={6}
-                className="min-w-[220px] rounded-xl border border-white/[0.08] bg-[#101013] p-1 shadow-[0_8px_24px_rgba(0,0,0,0.5),0_16px_48px_rgba(0,0,0,0.4)]"
+                className="min-w-[220px] rounded-xl border border-[var(--line)] bg-[var(--surface-2)] p-1 shadow-[var(--shadow-lg)]"
               >
                 {isMobile && (
                   <DropdownMenuItem
                     onClick={() => handleAIGenerate()}
                     disabled={isSending || isGenerating}
-                    className="cursor-pointer rounded-md text-[13px] text-[#e5e5e7] focus:bg-white/[0.06] focus:text-white"
+                    className="cursor-pointer rounded-md text-[13px] text-[var(--ink-1)] focus:bg-[var(--surface-3)] focus:text-[var(--ink)]"
                   >
                     <Wand2 className="mr-3 h-3.5 w-3.5" /> Generate with AI
                   </DropdownMenuItem>
                 )}
-                {isMobile && <div className="my-1 border-t border-white/[0.06]" />}
+                {isMobile && <div className="my-1 border-t border-[var(--line-soft)]" />}
                 <DropdownMenuItem
                   onClick={() => setScheduleSendOpen(true)}
                   disabled={isSending || isGenerating}
-                  className="cursor-pointer rounded-md text-[13px] text-[#e5e5e7] focus:bg-white/[0.06] focus:text-white"
+                  className="cursor-pointer rounded-md text-[13px] text-[var(--ink-1)] focus:bg-[var(--surface-3)] focus:text-[var(--ink)]"
                 >
                   <Clock className="mr-3 h-3.5 w-3.5" /> Schedule send
                 </DropdownMenuItem>
-                <div className="my-1 border-t border-white/[0.06]" />
-                <label className="flex cursor-pointer items-center gap-3 rounded-md px-2 py-2 text-[13px] text-[#e5e5e7] hover:bg-white/[0.06]">
+                <div className="my-1 border-t border-[var(--line-soft)]" />
+                <label className="flex cursor-pointer items-center gap-3 rounded-md px-2 py-2 text-[13px] text-[var(--ink-1)] hover:bg-[var(--surface-3)]">
                   <input
                     type="checkbox"
                     checked={trackOpens}
                     onChange={(e) => setTrackOpens(e.target.checked)}
                     disabled={isSending || isGenerating}
-                    className="h-3.5 w-3.5 rounded border-[#3f3f46] bg-transparent accent-[#2c7ff6]"
+                    className="h-3.5 w-3.5 rounded border-[var(--line-strong)] bg-transparent accent-[var(--accent)]"
                   />
                   Track when opened
                 </label>
@@ -1179,7 +1179,7 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
             type="button"
             onClick={handleAIGenerate}
             disabled={isSending || isGenerating}
-            className="group ml-3 flex h-9 shrink-0 items-center gap-2 rounded-lg border border-white/[0.10] bg-white/[0.025] px-3.5 text-[12.5px] font-semibold tracking-tight text-[#dcdce0] transition-all hover:-translate-y-px hover:border-white/[0.20] hover:bg-white/[0.06] hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/20 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
+            className="group ml-3 flex h-9 shrink-0 items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface-2)] px-3.5 text-[12.5px] font-semibold tracking-tight text-[var(--ink-1)] transition-all hover:-translate-y-px hover:border-[var(--line-strong)] hover:bg-[var(--surface-3)] hover:text-[var(--ink)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-line)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
           >
             <Wand2 className="h-3.5 w-3.5 transition-transform group-hover:rotate-[-6deg]" />
             Generate
@@ -1187,22 +1187,22 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
         </div>
 
         <Dialog open={linkDialogOpen} onOpenChange={setLinkDialogOpen}>
-          <DialogContent className="rounded-2xl border-white/[0.08] bg-[#141416] text-white">
+          <DialogContent className="rounded-2xl border-[var(--line)] bg-[var(--surface-3)] text-[var(--ink)]">
             <DialogHeader>
-              <DialogTitle className="text-[15px] text-white">Insert Link</DialogTitle>
+              <DialogTitle className="text-[15px] text-[var(--ink)]">Insert Link</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div className="space-y-1.5">
-                <Label htmlFor="link-text" className="text-[13px] text-[#a1a1aa]">Text</Label>
-                <Input id="link-text" placeholder="Click here" value={linkText} onChange={(e) => setLinkText(e.target.value)} className="border-white/[0.08] bg-white/[0.04] text-white placeholder:text-[#6e6e73] focus-visible:ring-[#2c7ff6]/40" />
+                <Label htmlFor="link-text" className="text-[13px] text-[var(--ink-3)]">Text</Label>
+                <Input id="link-text" placeholder="Click here" value={linkText} onChange={(e) => setLinkText(e.target.value)} className="border-[var(--line)] bg-[var(--surface-3)] text-[var(--ink)] placeholder:text-[var(--ink-3)] focus-visible:ring-[var(--accent-line)]" />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="link-url" className="text-[13px] text-[#a1a1aa]">URL</Label>
-                <Input id="link-url" placeholder="https://example.com" value={linkUrl} onChange={(e) => setLinkUrl(e.target.value)} className="border-white/[0.08] bg-white/[0.04] text-white placeholder:text-[#6e6e73] focus-visible:ring-[#2c7ff6]/40" />
+                <Label htmlFor="link-url" className="text-[13px] text-[var(--ink-3)]">URL</Label>
+                <Input id="link-url" placeholder="https://example.com" value={linkUrl} onChange={(e) => setLinkUrl(e.target.value)} className="border-[var(--line)] bg-[var(--surface-3)] text-[var(--ink)] placeholder:text-[var(--ink-3)] focus-visible:ring-[var(--accent-line)]" />
               </div>
               <div className="flex justify-end gap-2">
-                <Button variant="outline" onClick={() => { setLinkDialogOpen(false); setLinkUrl(""); setLinkText(""); }} className="border-white/[0.12] bg-transparent text-[#afafb3] hover:bg-white/[0.06] hover:text-white">Cancel</Button>
-                <Button className="bg-[#2c7ff6] text-white hover:bg-[#1a6fe8]"
+                <Button variant="outline" onClick={() => { setLinkDialogOpen(false); setLinkUrl(""); setLinkText(""); }} className="border-[var(--line)] bg-transparent text-[var(--ink-2)] hover:bg-[var(--surface-3)] hover:text-[var(--ink)]">Cancel</Button>
+                <Button className="bg-[var(--primary)] text-[var(--primary-ink)] hover:bg-[var(--primary-hi)]"
                   onClick={() => {
                     if (linkUrl && linkText) {
                       const formattedUrl =
@@ -1314,9 +1314,9 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
           <PopoverTrigger asChild>
             <button type="button" className="absolute left-0 top-0 h-0 w-0 opacity-0" aria-hidden />
           </PopoverTrigger>
-          <PopoverContent className="w-80 rounded-xl border-white/[0.08] bg-[#141416] text-white" align="start">
+          <PopoverContent className="w-80 rounded-xl border-[var(--line)] bg-[var(--surface-3)] text-[var(--ink)]" align="start">
             <div className="space-y-2">
-              <Label className="text-[13px] font-medium text-[#a1a1aa]">Emojis</Label>
+              <Label className="text-[13px] font-medium text-[var(--ink-3)]">Emojis</Label>
               <div className="grid grid-cols-8 gap-2">
                 {[
                   "😀",
@@ -1399,7 +1399,7 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
                         bodyEditableRef.current?.focus();
                       }, 0);
                     }}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg text-lg transition-colors hover:bg-white/[0.06]"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg text-lg transition-colors hover:bg-[var(--surface-3)]"
                   >
                     {emoji}
                   </button>
@@ -1410,32 +1410,32 @@ ${isRegeneration ? `\nGenerate a fresh, improved, and completely different versi
         </Popover>
 
         <Dialog open={scheduleSendOpen} onOpenChange={setScheduleSendOpen}>
-          <DialogContent className="w-auto min-w-[320px] rounded-2xl border-white/[0.08] bg-[#141416] p-6 text-white">
+          <DialogContent className="w-auto min-w-[320px] rounded-2xl border-[var(--line)] bg-[var(--surface-3)] p-6 text-[var(--ink)]">
             <DialogHeader>
-              <DialogTitle className="text-[16px] font-semibold text-white">Schedule send</DialogTitle>
+              <DialogTitle className="text-[16px] font-semibold text-[var(--ink)]">Schedule send</DialogTitle>
             </DialogHeader>
             <div className="space-y-5">
               <div className="flex w-full flex-col items-center">
-                <Label className="mb-2 block w-full text-center text-[13px] font-medium text-[#a1a1aa]">Date</Label>
+                <Label className="mb-2 block w-full text-center text-[13px] font-medium text-[var(--ink-3)]">Date</Label>
                 <div className="flex w-full justify-center">
                   <Calendar
                     mode="single"
                     selected={scheduleDate}
                     onSelect={setScheduleDate}
                     disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
-                    className="[--cell-size:1.2rem] rounded-lg border border-white/[0.08] bg-white/[0.02] p-1.5 text-[11px] [&_[data-slot=calendar]]:text-[11px] [&_.rdp-month]:!gap-y-0.5 [&_.rdp-week]:!mt-0.5"
+                    className="[--cell-size:1.2rem] rounded-lg border border-[var(--line)] bg-[var(--surface-2)] p-1.5 text-[11px] [&_[data-slot=calendar]]:text-[11px] [&_.rdp-month]:!gap-y-0.5 [&_.rdp-week]:!mt-0.5"
                   />
                 </div>
               </div>
               <div>
-                <Label className="mb-3 block text-[13px] font-medium text-[#a1a1aa]">Time (24-hour)</Label>
+                <Label className="mb-3 block text-[13px] font-medium text-[var(--ink-3)]">Time (24-hour)</Label>
                 <TimeInput24 value={scheduleTime} onChange={setScheduleTime} />
               </div>
               <Button
                 type="button"
                 onClick={handleScheduleSend}
                 disabled={scheduleSendMutation.isPending || !authLoaded || !userId}
-                className="w-full rounded-lg bg-[#2c7ff6] py-2.5 text-[14px] font-semibold text-white hover:bg-[#1a6fe8]"
+                className="w-full rounded-lg bg-[var(--primary)] py-2.5 text-[14px] font-semibold text-[var(--primary-ink)] hover:bg-[var(--primary-hi)]"
               >
                 {!authLoaded || !userId ? "Loading..." : scheduleSendMutation.isPending ? "Scheduling..." : "Schedule send"}
               </Button>

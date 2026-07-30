@@ -2,10 +2,10 @@
 
 export function ThreadViewSkeleton() {
   return (
-    <div className="vm-thread-skel relative flex h-full flex-col bg-white dark:bg-[#ffffff]">
+    <div className="vm-thread-skel relative flex h-full flex-col bg-white dark:bg-[var(--surface)]">
       <style dangerouslySetInnerHTML={{ __html: SKELETON_CSS }} />
 
-      <div className="flex items-center gap-1 border-b border-[#eef0f4] bg-white px-6 py-3">
+      <div className="flex items-center gap-1 border-b border-[var(--line-soft)] bg-white px-6 py-3">
         <div className="vm-skel-bar" style={{ height: 28, width: 28, borderRadius: 7 }} />
         <span aria-hidden className="vm-skel-divider" />
         <div className="vm-skel-bar" style={{ height: 24, width: 78, borderRadius: 6 }} />

@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { CalendarClock, CheckCircle2, ChevronDown } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import { IconCalendar } from "./icons";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { CalendarConnectButton } from "./CalendarConnectButton";
@@ -94,8 +95,9 @@ export function CalendarSection({
   return (
     <div className="calendar-widget">
       <div className="calendar-widget-head">
-        <ChevronDown className="calendar-widget-toggle" />
-        <CalendarClock className="calendar-widget-icon" />
+        <span className="widget-chip">
+          <IconCalendar />
+        </span>
         <span className="calendar-widget-title">CALENDAR</span>
         {calendarEnabled && (
           <span

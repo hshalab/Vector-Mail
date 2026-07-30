@@ -1,6 +1,6 @@
 import React, { useRef, useCallback, useMemo, useEffect, useImperativeHandle, forwardRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { formatDistanceToNow, format } from "date-fns";
+import { format } from "date-fns";
 import { MoreVertical, RefreshCw, Mail, MailOpen, Star, Bell, CalendarClock, X, Trash2 } from "lucide-react";
 import { useAtom } from "jotai";
 import { cn } from "@/lib/utils";
@@ -69,6 +69,24 @@ const AVATAR_PALETTE: ReadonlyArray<AvatarColor> = [
   { h: 240, s: 30, l: 44 },
   { h: 28, s: 25, l: 36 },
 ];
+function formatCompactTime(date: Date): string {
+  const ms = Date.now() - date.getTime();
+  if (!Number.isFinite(ms)) return "";
+  if (ms < 60_000) return "now";
+
+  const minutes = Math.floor(ms / 60_000);
+  if (minutes < 60) return `${minutes}m`;
+
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h`;
+
+  const days = Math.floor(hours / 24);
+  if (days < 7) return `${days}d`;
+
+  return date.getFullYear() === new Date().getFullYear()
+    ? format(date, "MMM d")
+    : format(date, "MMM ''yy");
+}
 
 function hashString(input: string): number {
   let hash = 5381;
@@ -113,7 +131,7 @@ function getAvatarStyle(
       "0 1px 2px rgba(15,20,40,0.10)",
       "0 2px 6px rgba(15,20,40,0.08)",
     ].join(", "),
-    color: "#ffffff",
+    color: "var(--surface)",
   };
 }
 
@@ -1620,11 +1638,6 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
   const groupedThreads = useMemo(() => {
     if (!threadsForDisplay || threadsForDisplay.length === 0) return {};
     return threadsForDisplay.reduce((acc: GroupedThreads, thread: Thread) => {
-      // Group by the SAME timestamp the list is sorted by (getThreadTimestamp),
-      // not lastMessageDate alone. If these two ever disagree (e.g. a thread is
-      // mid-sync with a stale lastMessageDate), grouping by a different key than
-      // the sort key drags an old date-group above a newer one - the scramble.
-      // Sharing one timestamp source makes group order == sort order, always.
       const date = format(new Date(getThreadTimestamp(thread)), "yyyy-MM-dd");
       if (!acc[date]) acc[date] = [];
       acc[date].push(thread);
@@ -1641,10 +1654,10 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
 
   if (currentTab === "scheduled") {
     return (
-      <div className="flex h-full flex-col bg-white dark:bg-[#ffffff]">
-        <div className="flex-shrink-0 border-b border-[#e5e7eb] px-4 py-3 dark:border-[#ffffff]">
-          <h2 className="text-sm font-medium text-[#202124] dark:text-[#e8eaed]">Scheduled sends</h2>
-          <p className="mt-0.5 text-xs text-[#5f6368] dark:text-[#9aa0a6]">Emails that will be sent at the chosen time</p>
+      <div className="flex h-full flex-col bg-white dark:bg-[var(--surface)]">
+        <div className="flex-shrink-0 border-b border-[var(--line)] px-4 py-3 dark:border-[var(--surface)]">
+          <h2 className="text-sm font-medium text-[var(--ink)] dark:text-[var(--ink)]">Scheduled sends</h2>
+          <p className="mt-0.5 text-xs text-[var(--ink-2)] dark:text-[var(--ink-3)]">Emails that will be sent at the chosen time</p>
         </div>
         <div className="flex-1 overflow-y-auto">
           {!scheduledSends || scheduledSends.length === 0 ? (
@@ -1658,20 +1671,20 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
               </p>
             </div>
           ) : (
-            <ul className="divide-y divide-[#dadce0] dark:divide-[#3c4043]">
+            <ul className="divide-y divide-[var(--line)] dark:divide-[var(--line)]">
               {scheduledSends.map((item: { id: string; subject: string; scheduledAt: Date }) => (
                 <li
                   key={item.id}
-                  className="flex items-center justify-between gap-3 px-4 py-3 hover:bg-[#f8f9fa] dark:hover:bg-[#292a2d]"
+                  className="flex items-center justify-between gap-3 px-4 py-3 hover:bg-[var(--surface-2)] dark:hover:bg-[var(--surface-3)]"
                 >
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-[#202124] dark:text-[#e8eaed]">{item.subject}</p>
-                    <p className="text-xs text-[#5f6368] dark:text-[#9aa0a6]">{format(item.scheduledAt, "MMM d, yyyy 'at' h:mm a")}</p>
+                    <p className="truncate text-sm font-medium text-[var(--ink)] dark:text-[var(--ink)]">{item.subject}</p>
+                    <p className="text-xs text-[var(--ink-2)] dark:text-[var(--ink-3)]">{format(item.scheduledAt, "MMM d, yyyy 'at' h:mm a")}</p>
                   </div>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="shrink-0 text-[#d93025] hover:bg-[#fce8e6] dark:text-[#f28b82] dark:hover:bg-[#5f2120]"
+                    className="shrink-0 text-[var(--rose)] hover:bg-[var(--rose-soft)] dark:text-[var(--rose)] dark:hover:bg-[var(--rose-soft)]"
                     onClick={() => cancelScheduledMutation.mutate({ id: item.id })}
                     disabled={cancelScheduledMutation.isPending}
                   >
@@ -1689,16 +1702,16 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
 
   if (!accountId || (accounts !== undefined && accounts.length === 0)) {
     return (
-      <div className="flex h-full items-center justify-center bg-white p-10 dark:bg-[#ffffff]">
+      <div className="flex h-full items-center justify-center bg-white p-10 dark:bg-[var(--surface)]">
         <div className="max-w-sm text-center">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#f1f3f4] dark:bg-[#3c4043]">
-            <Mail className="h-8 w-8 text-[#5f6368] dark:text-[#9aa0a6]" />
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--surface-3)] dark:bg-[var(--line)]">
+            <Mail className="h-8 w-8 text-[var(--ink-2)] dark:text-[var(--ink-3)]" />
           </div>
-          <h2 className="mb-2 text-lg font-medium text-[#202124] dark:text-[#e8eaed]">{CONNECTION_ERROR_MESSAGES.NO_ACCOUNT}</h2>
-          <p className="mb-6 text-[14px] leading-relaxed text-[#5f6368] dark:text-[#9aa0a6]">{CONNECTION_ERROR_MESSAGES.CONNECT_DESCRIPTION}</p>
+          <h2 className="mb-2 text-lg font-medium text-[var(--ink)] dark:text-[var(--ink)]">{CONNECTION_ERROR_MESSAGES.NO_ACCOUNT}</h2>
+          <p className="mb-6 text-[14px] leading-relaxed text-[var(--ink-2)] dark:text-[var(--ink-3)]">{CONNECTION_ERROR_MESSAGES.CONNECT_DESCRIPTION}</p>
           <button
             onClick={handleAccountConnection}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#1a73e8] px-5 py-2.5 text-[14px] font-medium text-white transition-colors hover:bg-[#1765cc] dark:bg-[#1e2a4a] dark:text-[#202124] dark:hover:bg-[#aecbfa]"
+            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-[14px] font-medium text-white transition-colors hover:bg-[var(--accent-deep)] dark:bg-[var(--accent)] dark:text-[var(--primary-ink)]"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24">
               <path
@@ -1731,8 +1744,6 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
     const fromName =
       latestEmail?.from?.name?.trim() || fromAddress || "Unknown";
     const subject = thread.subject || "(No subject)";
-    // Match the grouping/sort key so the row's date badge agrees with the
-    // group header it sits under (see groupedThreads).
     const date = new Date(getThreadTimestamp(thread));
     const bodySnippet = latestEmail?.bodySnippet ?? null;
     const sysLabels = latestEmail?.sysLabels ?? [];
@@ -1813,7 +1824,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
             checked={isRowSelected}
             onCheckedChange={() => toggleSelection(thread.id)}
             aria-label={`Select ${subject}`}
-            className="border-[#9ca3af] dark:border-[#71717a] data-[state=checked]:bg-[#1e2a4a] data-[state=checked]:border-[#1e2a4a] dark:data-[state=checked]:bg-[#1e2a4a] dark:data-[state=checked]:border-[#1e2a4a]"
+            className="border-[#9ca3af] dark:border-[var(--ink-4)] data-[state=checked]:bg-[var(--accent)] data-[state=checked]:border-[var(--accent)] dark:data-[state=checked]:bg-[var(--accent)] dark:data-[state=checked]:border-[var(--accent)]"
           />
         </div>
 
@@ -1826,8 +1837,8 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
         <div className="email-row-content">
           <div className="email-row-head">
             <span className="email-from">{fromName}</span>
-            <span className="email-time">
-              {formatDistanceToNow(date, { addSuffix: false })}
+            <span className="email-time" title={format(date, "EEE, MMM d yyyy · h:mm a")}>
+              {formatCompactTime(date)}
             </span>
           </div>
 
@@ -1887,18 +1898,18 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
           {nudgeType === "REMINDER" && (
             <Tooltip>
               <TooltipTrigger asChild>
-                <Bell className="h-3 w-3 text-[#b36b00] dark:text-[#ffffff]" />
+                <Bell className="h-3 w-3 text-[var(--amber)] dark:text-[var(--surface)]" />
               </TooltipTrigger>
               <TooltipContent
                 side="left"
-                className="bg-[#303134] text-xs text-[#e8eaed]"
+                className="bg-[var(--surface-3)] text-xs text-[var(--ink)]"
               >
                 Reminder
               </TooltipContent>
             </Tooltip>
           )}
           {isImportant && (
-            <Star className="h-3 w-3 fill-[#1e2a4a] text-[#1e2a4a] dark:fill-[#1e2a4a] dark:text-[#1e2a4a]" />
+            <Star className="h-3 w-3 fill-[var(--accent)] text-[var(--accent)] dark:fill-[var(--accent)] dark:text-[var(--accent)]" />
           )}
         </span>
 
@@ -1917,7 +1928,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 shrink-0 rounded-full text-[#5f6368] hover:bg-[#f1f3f4] hover:text-[#202124] dark:text-[#9aa0a6] dark:hover:bg-[#3c4043] dark:hover:text-[#e8eaed]"
+                  className="h-8 w-8 shrink-0 rounded-full text-[var(--ink-2)] hover:bg-[var(--surface-3)] hover:text-[var(--ink)] dark:text-[var(--ink-3)] dark:hover:bg-[var(--line)] dark:hover:text-[var(--ink)]"
                   aria-label="Snooze"
                 >
                   <MoreVertical className="h-4 w-4" />
@@ -1934,7 +1945,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 shrink-0 rounded-full text-[#5f6368] hover:bg-[#f1f3f4] hover:text-[#202124] dark:text-[#9aa0a6] dark:hover:bg-[#3c4043] dark:hover:text-[#e8eaed]"
+                  className="h-8 w-8 shrink-0 rounded-full text-[var(--ink-2)] hover:bg-[var(--surface-3)] hover:text-[var(--ink)] dark:text-[var(--ink-3)] dark:hover:bg-[var(--line)] dark:hover:text-[var(--ink)]"
                   aria-label="Remind me if no reply"
                 >
                   <Bell className="h-4 w-4" />
@@ -1963,17 +1974,17 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
         return (
           <div className="flex h-64 flex-col items-center justify-center gap-4 px-6 text-center">
             <div>
-              <p className="text-[14px] font-medium text-[#202124] dark:text-[#e8eaed]">
+              <p className="text-[14px] font-medium text-[var(--ink)] dark:text-[var(--ink)]">
                 Taking longer than usual
               </p>
-              <p className="mt-1 text-[12px] text-[#5f6368] dark:text-[#9aa0a6]">
+              <p className="mt-1 text-[12px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                 The server may be busy. Try refreshing the list.
               </p>
             </div>
             <Button
               variant="outline"
               size="sm"
-              className="border-[#dadce0] text-[#202124] hover:bg-[#f1f3f4] dark:border-[#3c4043] dark:text-[#e8eaed] dark:hover:bg-[#303134]"
+              className="border-[var(--line)] text-[var(--ink)] hover:bg-[var(--surface-3)] dark:border-[var(--line)] dark:text-[var(--ink)] dark:hover:bg-[var(--surface-3)]"
               onClick={() => {
                 setSlowLoad(false);
                 void forceThreadListRefresh();
@@ -1991,16 +2002,16 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
     if (isFocusActive && noThreads && !isFetching) {
       return (
         <div className="flex h-64 flex-col items-center justify-center gap-3 px-6 text-center">
-          <p className="text-[14px] font-medium text-[#202124] dark:text-[#e8eaed]">
+          <p className="text-[14px] font-medium text-[var(--ink)] dark:text-[var(--ink)]">
             No threads in this focus view yet
           </p>
-          <p className="text-[12px] text-[#5f6368] dark:text-[#9aa0a6]">
+          <p className="text-[12px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">
             Try another bucket or switch back to all threads.
           </p>
           <Button
             variant="outline"
             size="sm"
-            className="border-[#dadce0] text-[#202124] hover:bg-[#f1f3f4] dark:border-[#3c4043] dark:text-[#e8eaed] dark:hover:bg-[#303134]"
+            className="border-[var(--line)] text-[var(--ink)] hover:bg-[var(--surface-3)] dark:border-[var(--line)] dark:text-[var(--ink)] dark:hover:bg-[var(--surface-3)]"
             onClick={() => {
               trackInboxBrainEvent("daily_brief_focus_changed", {
                 filter_key: "all",
@@ -2038,16 +2049,16 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
       if (currentAccountNeedsReconnection && !isReconnectUiMuted()) {
         return (
           <div className="flex h-64 flex-col items-center justify-center px-6 text-center">
-            <Mail className="mb-4 h-10 w-10 text-[#d93025] dark:text-[#f28b82]" />
-            <p className="text-[14px] font-medium text-[#202124] dark:text-[#e8eaed]">
+            <Mail className="mb-4 h-10 w-10 text-[var(--rose)] dark:text-[var(--rose)]" />
+            <p className="text-[14px] font-medium text-[var(--ink)] dark:text-[var(--ink)]">
               Reconnect your account
             </p>
-            <p className="mt-1 max-w-sm text-[12px] text-[#5f6368] dark:text-[#9aa0a6]">
+            <p className="mt-1 max-w-sm text-[12px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">
               Your email connection expired and couldn’t be refreshed. Reconnect to sync again.
             </p>
             <a
               href="/api/connect/google"
-              className="mt-4 inline-flex items-center justify-center rounded-lg bg-[#1a73e8] px-4 py-2.5 text-[14px] font-medium text-white transition-colors hover:bg-[#1765cc] dark:bg-[#1e2a4a] dark:text-[#202124] dark:hover:bg-[#aecbfa]"
+              className="mt-4 inline-flex items-center justify-center rounded-lg bg-[var(--accent)] px-4 py-2.5 text-[14px] font-medium text-white transition-colors hover:bg-[var(--accent-deep)] dark:bg-[var(--accent)] dark:text-[var(--primary-ink)]"
             >
               Reconnect account
             </a>
@@ -2059,9 +2070,9 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
       if (syncFailed) {
         return (
           <div className="flex h-64 flex-col items-center justify-center px-6 text-center">
-            <Mail className="mb-4 h-10 w-10 text-[#d93025] dark:text-[#f28b82]" />
-            <p className="text-[14px] font-medium text-[#202124] dark:text-[#e8eaed]">Sync failed</p>
-            <p className="mt-1 max-w-sm text-[12px] text-[#5f6368] dark:text-[#9aa0a6]">
+            <Mail className="mb-4 h-10 w-10 text-[var(--rose)] dark:text-[var(--rose)]" />
+            <p className="text-[14px] font-medium text-[var(--ink)] dark:text-[var(--ink)]">Sync failed</p>
+            <p className="mt-1 max-w-sm text-[12px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">
               {syncEmailsMutation.error?.message?.toLowerCase().includes("sign in") ||
                 syncEmailsMutation.error?.message?.toLowerCase().includes("unauthorized")
                 ? "Session couldn't be verified. Refresh the page and try Sync again."
@@ -2071,7 +2082,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
               <Button
                 variant="outline"
                 size="sm"
-                className="border-[#dadce0] text-[#202124] hover:bg-[#f1f3f4] dark:border-[#3c4043] dark:text-[#e8eaed] dark:hover:bg-[#303134]"
+                className="border-[var(--line)] text-[var(--ink)] hover:bg-[var(--surface-3)] dark:border-[var(--line)] dark:text-[var(--ink)] dark:hover:bg-[var(--surface-3)]"
                 onClick={() => window.location.reload()}
               >
                 Refresh page
@@ -2080,7 +2091,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
                 <Button
                   variant="outline"
                   size="sm"
-                  className="border-[#dadce0] text-[#202124] hover:bg-[#f1f3f4] dark:border-[#3c4043] dark:text-[#e8eaed] dark:hover:bg-[#303134]"
+                  className="border-[var(--line)] text-[var(--ink)] hover:bg-[var(--surface-3)] dark:border-[var(--line)] dark:text-[var(--ink)] dark:hover:bg-[var(--surface-3)]"
                   onClick={() => {
                     if (accountId?.trim()) {
                       syncEmailsMutation.mutate({
@@ -2103,9 +2114,9 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
         <div className="flex h-64 flex-col items-center justify-center px-6 text-center">
           {isRemindersTab ? (
             <>
-              <Bell className="mb-4 h-10 w-10 text-[#9aa0a6] dark:text-[#5f6368]" />
-              <p className="text-[14px] text-[#5f6368] dark:text-[#9aa0a6]">No reminders due</p>
-              <p className="mt-1 max-w-sm text-[12px] text-[#5f6368] dark:text-[#9aa0a6]">
+              <Bell className="mb-4 h-10 w-10 text-[var(--ink-3)] dark:text-[var(--ink-2)]" />
+              <p className="text-[14px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">No reminders due</p>
+              <p className="mt-1 max-w-sm text-[12px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                 {syncEmailsMutation.error?.message?.toLowerCase().includes("sign in") ||
                   syncEmailsMutation.error?.message?.toLowerCase().includes("unauthorized")
                   ? "Session couldn’t be verified. Refresh the page and try Sync again."
@@ -2115,7 +2126,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
                 <Button
                   variant="outline"
                   size="sm"
-                  className="border-[#dadce0] text-[#202124] hover:bg-[#f1f3f4] dark:border-[#3c4043] dark:text-[#e8eaed] dark:hover:bg-[#303134]"
+                  className="border-[var(--line)] text-[var(--ink)] hover:bg-[var(--surface-3)] dark:border-[var(--line)] dark:text-[var(--ink)] dark:hover:bg-[var(--surface-3)]"
                   onClick={() => window.location.reload()}
                 >
                   Refresh page
@@ -2124,7 +2135,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-[#dadce0] text-[#202124] hover:bg-[#f1f3f4] dark:border-[#3c4043] dark:text-[#e8eaed] dark:hover:bg-[#303134]"
+                    className="border-[var(--line)] text-[var(--ink)] hover:bg-[var(--surface-3)] dark:border-[var(--line)] dark:text-[var(--ink)] dark:hover:bg-[var(--surface-3)]"
                     onClick={() => {
                       if (accountId.trim()) {
                         syncEmailsMutation.mutate({
@@ -2143,22 +2154,22 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
             </>
           ) : isRemindersTab ? (
             <>
-              <Bell className="mb-4 h-10 w-10 text-[#9aa0a6] dark:text-[#5f6368]" />
-              <p className="text-[14px] text-[#5f6368] dark:text-[#9aa0a6]">No reminders due</p>
+              <Bell className="mb-4 h-10 w-10 text-[var(--ink-3)] dark:text-[var(--ink-2)]" />
+              <p className="text-[14px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">No reminders due</p>
             </>
           ) : currentTab === "trash" ? (
             <>
-              <Trash2 className="mb-4 h-10 w-10 text-[#9aa0a6] dark:text-[#5f6368]" />
-              <p className="text-[14px] text-[#5f6368] dark:text-[#9aa0a6]">No emails in trash</p>
-              <p className="mt-1 text-[12px] text-[#5f6368] dark:text-[#9aa0a6]">
+              <Trash2 className="mb-4 h-10 w-10 text-[var(--ink-3)] dark:text-[var(--ink-2)]" />
+              <p className="text-[14px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">No emails in trash</p>
+              <p className="mt-1 text-[12px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                 Use <strong>Sync</strong> at the top to sync Inbox, Sent, and Trash together.
               </p>
             </>
           ) : (
             <>
-              <Mail className="mb-4 h-10 w-10 text-[#9aa0a6] dark:text-[#5f6368]" />
-              <p className="text-[14px] text-[#5f6368] dark:text-[#9aa0a6]">No emails found</p>
-              <p className="mt-1 text-[12px] text-[#5f6368] dark:text-[#9aa0a6]">
+              <Mail className="mb-4 h-10 w-10 text-[var(--ink-3)] dark:text-[var(--ink-2)]" />
+              <p className="text-[14px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">No emails found</p>
+              <p className="mt-1 text-[12px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">
                 Use <strong>Sync</strong> at the top to sync Inbox, Sent, and Trash together.
               </p>
             </>
@@ -2171,9 +2182,9 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
       <div className="flex flex-col">
         {currentTab === "inbox" && !isReadOnlyPreview && Object.keys(groupedThreads).length > 0 && (
           <header className="date-header">
-            <div className="date-eyebrow">THE DAILY RITUAL</div>
+            <div className="date-eyebrow">Inbox</div>
             <h1 className="date-title">
-              {format(new Date(), "EEEE")},{" "}
+              {format(new Date(), "EEEE")}{" "}
               <span className="it">{format(new Date(), "MMMM d")}</span>
             </h1>
             <div className="date-stats">
@@ -2192,10 +2203,10 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
                     </span>
                     <span className="sep" aria-hidden />
                     <span>
-                      <span className="num">{total}</span> in queue
+                      <span className="num">{total}</span> threads
                     </span>
                     <span className="sep" aria-hidden />
-                    <span className="live">synced just now</span>
+                    <span className="live">Synced just now</span>
                   </>
                 );
               })()}
@@ -2205,12 +2216,12 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
         {isReadOnlyPreview && (
           <div className="border-b border-[#1f2937] bg-gradient-to-r from-[#0f172a] via-[#111827] to-[#0b1220] px-4 py-3 shadow-[inset_0_1px_0_rgba(148,163,184,0.12)]">
             <div className="flex items-start gap-2.5">
-              <span className="mt-0.5 inline-flex h-2 w-2 shrink-0 rounded-full bg-[#1e2a4a] shadow-[0_0_12px_rgba(96,165,250,0.9)]" />
+              <span className="mt-0.5 inline-flex h-2 w-2 shrink-0 rounded-full bg-[var(--accent)] shadow-[0_0_12px_rgba(96,165,250,0.9)]" />
               <div className="min-w-0">
                 <p className="text-[12px] font-semibold tracking-wide text-[#f3e8c8]">
                   Live inbox preview
                 </p>
-                <p className="mt-1 text-[11px] leading-relaxed text-[#e8d59f]/90">
+                <p className="mt-1 text-[11px] leading-relaxed text-[var(--ink-3)]">
                   Showing your latest mail from the provider while we sync into VectorMail. Rows are read only until sync finishes, then you can open threads and use all actions.
                 </p>
               </div>
@@ -2218,8 +2229,8 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
           </div>
         )}
         {currentTab === "inbox" && !isReadOnlyPreview && hasPreviewRows && (
-          <div className="border-b border-text-[#1e2a4a] bg-text-[#1e2a4a] px-4 py-2.5 dark:border-text-[#1e2a4a] dark:bg-text-[#1e2a4a]">
-            <p className="text-[11px] text-text-[#1e2a4a] dark:text-text-[#1e2a4a]">
+          <div className="border-b border-text-[var(--accent)] bg-text-[var(--accent)] px-4 py-2.5 dark:border-text-[var(--accent)] dark:bg-text-[var(--accent)]">
+            <p className="text-[11px] text-text-[var(--accent)] dark:text-text-[var(--accent)]">
               Sync is taking longer than expected. Threads are unlocked now, and inbox sync will keep retrying in the background.
             </p>
           </div>
@@ -2244,7 +2255,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
             rows={2}
             lines={3}
             avatarClassName="h-10 w-10 rounded-md"
-            rowClassName="min-h-[88px] gap-3.5 border-b border-[#e5e7eb] px-5 py-4 dark:border-[#ffffff]"
+            rowClassName="min-h-[88px] gap-3.5 border-b border-[var(--line)] px-5 py-4 dark:border-[var(--surface)]"
           />
         )}
         {!hasNextPage &&
@@ -2256,10 +2267,10 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
               rows={2}
               lines={3}
               avatarClassName="h-10 w-10 rounded-md"
-              rowClassName="min-h-[88px] gap-3.5 border-b border-[#e5e7eb] px-5 py-4 dark:border-[#ffffff]"
+              rowClassName="min-h-[88px] gap-3.5 border-b border-[var(--line)] px-5 py-4 dark:border-[var(--surface)]"
             />
           ) : (
-            <div className="py-6 text-center text-[11px] tracking-wide text-[#9aa0a6] dark:text-[#5f6368]">
+            <div className="py-6 text-center text-[11px] tracking-wide text-[var(--ink-3)] dark:text-[var(--ink-2)]">
               You&apos;re all caught up
             </div>
           ))}
@@ -2308,17 +2319,17 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
   };
 
   return (
-    <div className="flex h-full flex-col overflow-hidden bg-white dark:bg-[#ffffff]">
+    <div className="flex h-full flex-col overflow-hidden bg-white dark:bg-[var(--surface)]">
       {showBulkBar && (
-        <div className="flex flex-wrap items-center gap-2 border-b border-[#e5e7eb] bg-[#f9fafb] px-3 py-2 dark:border-[#ffffff] dark:bg-[#18181b]">
-          <span className="text-[12px] text-[#5f6368] dark:text-[#9aa0a6]">
+        <div className="flex flex-wrap items-center gap-2 border-b border-[var(--line)] bg-[var(--surface-2)] px-3 py-2 dark:border-[var(--surface)] dark:bg-[var(--surface-3)]">
+          <span className="text-[12px] text-[var(--ink-2)] dark:text-[var(--ink-3)]">
             {selectedCount} selected
           </span>
           <div className="flex flex-wrap items-center gap-0.5">
             <Button
               variant="ghost"
               size="sm"
-              className="h-7 gap-1.5 text-[12px] text-[#5f6368] hover:bg-[#e8eaed] hover:text-[#202124] dark:text-[#9aa0a6] dark:hover:bg-[#3c4043] dark:hover:text-[#e8eaed]"
+              className="h-7 gap-1.5 text-[12px] text-[var(--ink-2)] hover:bg-[var(--surface-3)] hover:text-[var(--ink)] dark:text-[var(--ink-3)] dark:hover:bg-[var(--line)] dark:hover:text-[var(--ink)]"
               disabled={isBulkPending}
               onClick={() =>
                 accountId &&
@@ -2334,7 +2345,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
             <Button
               variant="ghost"
               size="sm"
-              className="h-7 gap-1.5 text-[12px] text-[#5f6368] hover:bg-[#e8eaed] hover:text-[#202124] dark:text-[#9aa0a6] dark:hover:bg-[#3c4043] dark:hover:text-[#e8eaed]"
+              className="h-7 gap-1.5 text-[12px] text-[var(--ink-2)] hover:bg-[var(--surface-3)] hover:text-[var(--ink)] dark:text-[var(--ink-3)] dark:hover:bg-[var(--line)] dark:hover:text-[var(--ink)]"
               disabled={isBulkPending}
               onClick={() =>
                 accountId &&
@@ -2354,7 +2365,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="h-7 gap-1.5 text-[12px] text-[#d93025] hover:bg-[#fce8e6] hover:text-[#d93025] dark:text-[#f28b82] dark:hover:bg-[#5f2120]"
+                      className="h-7 gap-1.5 text-[12px] text-[var(--rose)] hover:bg-[var(--rose-soft)] hover:text-[var(--rose)] dark:text-[var(--rose)] dark:hover:bg-[var(--rose-soft)]"
                       disabled={isBulkPending || isDemo}
                       onClick={() => (isDemo ? toast.info("You're exploring with sample data. Request access to connect your Gmail.") : setDeleteConfirmOpen(true))}
                     >
@@ -2363,7 +2374,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
                     </Button>
                   </span>
                 </TooltipTrigger>
-                <TooltipContent side="bottom" className="bg-[#303134] text-xs text-[#e8eaed]">
+                <TooltipContent side="bottom" className="bg-[var(--surface-3)] text-xs text-[var(--ink)]">
                   {isDemo ? "Request access to use this" : "Delete selected"}
                 </TooltipContent>
               </Tooltip>
@@ -2371,7 +2382,7 @@ export const ThreadList = forwardRef<ThreadListRef, ThreadListProps>(function Th
             <Button
               variant="ghost"
               size="sm"
-              className="h-7 text-[12px] text-[#5f6368] hover:bg-[#e8eaed] hover:text-[#202124] dark:text-[#9aa0a6] dark:hover:bg-[#3c4043] dark:hover:text-[#e8eaed]"
+              className="h-7 text-[12px] text-[var(--ink-2)] hover:bg-[var(--surface-3)] hover:text-[var(--ink)] dark:text-[var(--ink-3)] dark:hover:bg-[var(--line)] dark:hover:text-[var(--ink)]"
               disabled={isBulkPending}
               onClick={clearSelection}
             >
